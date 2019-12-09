@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>QC Metrics Analyser</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dc.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.6.3/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <script src="{{ url_for('static', filename='js/d3.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/crossfilter.min.js') }}"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.5/dc.js"></script> -->
+  <script src="{{ url_for('static', filename='js/dc.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/queue.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/runs-graphs.js') }}"></script>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <!--NAVBAR-->
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand" data-scroll href="#home"><img src="{{ url_for('static', filename='images/qc-metrics-analyser-logo.png') }}" alt="logo"></a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{ url_for('index') }}">Home</a></li>
+              <li><a href="{{ url_for('runs') }}">Runs</a></li>
+              <li><a href="{{ url_for('chemistry') }}">Chemistry</a></li>
+              <li><a href="{{ url_for('experiments') }}">Experiments</a></li>
+              <li><a href="{{ url_for('users') }}">Users</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--NAVBAR-END-->
+
+      <!--BANNER-->
+      <div class="bg-banner" id="home">
+        <div class="bg-banner-inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1 class="banner-title">QC Metrics Analyser</h1>
+                <h2 class="banner-subtitle">Next Generation Sequencing</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--BANNER-END-->
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!--FOOTER-->
+    <footer class="bg-footer">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 margin-bottom-xs">
+          <ul class="list-inline">
+            <li class="border-right">
+              <a class="hidden-xs" href="#">Top</a>
+              <a class="visible-xs" href="#">Top of Page</a>
+            </li>
+            <li class="border-right"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="border-right"><a href="{{ url_for('runs') }}">Runs</a></li>
+            <li class="border-right hidden-xs"><a href="{{ url_for('chemistry') }}">Chemistry</a></li>
+            <li class="border-right"><a href="{{ url_for('experiments') }}">Experiments</a></li>
+            <li class="hidden-xs"><a href="{{ url_for('users') }}">Users</a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p class="copyright">2018 -
+            <script>
+              document.write(new Date().getFullYear());
+            </script> &copy; Thomas Jones - All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+    <!--FOOTER-END-->
+
+  </div>
+  <!--page-->
+</body>
+
+</html>
