@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block content %}
+
+    <!--COUNT-->
+    <section>
+      <div class="row">
+  
+        <h3>Users Count</h3>
+        <hr>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+          <div id="user--count"></div>
+        </div>
+  
+      </div>
+    </section>
+    <!--COUNT-END-->
+  
+    <!--AVERAGE-->
+    <section>
+      <div class="row">
+  
+        <h3>Average QC Values</h3>
+        <hr>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
+          <h4><i class="fa fa-line-chart fa-1x"></i>Average Yield</h4>
+          <div id="user--average-yield"></div>
+        </div>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+          <h4><i class="fa fa-thumbs-up fa-1x"></i>Average Pass Filter</h4>
+          <div id="user--average-pass-filter"></div>
+        </div>
+  
+      </div>
+  
+      <div class="row">
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
+          <h4><i class="fa fa-th fa-1x"></i>Average Cluster Density</h4>
+          <div id="user--average-cluster-density"></div>
+        </div>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+          <h4><i class="fa fa-check-square fa-1x"></i>Average Q30 Score</h4>
+          <div id="user--average-Q30"></div>
+        </div>
+  
+      </div>
+    </section>
+    <!--AVERAGE-END-->
+  
+    <!--DISTRIBUTION-->
+    <section>
+      <div class="row">
+  
+        <h3>Distribution Patterns</h3>
+        <hr>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
+          <h4 class="distribution"><i class="fa fa-flask fa-1x"></i>Sequencing Chemistrys</h4>
+          <div id="user--chemistry-distribution"></div>
+        </div>
+  
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+          <h4 class="distribution"><i class="fa fa-users fa-1x"></i>Sequencing Experiments</h4>
+          <div id="user--experiment-distribution"></div>
+        </div>
+  
+      </div>
+    </section>
+    <!--DISTRIBUTION-END-->
+
+{% endblock %}
