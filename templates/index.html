@@ -61,59 +61,55 @@
         <hr>
 
         <div class="row run-metrics">
-
-        <div class="col-sm-3 col-sm-offset-3">
-            <h4 class="homepage-subtitle">Yield</h4>
-            <a href="{{ url_for('runs', _anchor='yield') }}">
-            <div class="overlay-container-1">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
-                <div class="overlay">
-                <div class="overlay-text">Yield</div>
-                </div>
+            <div class="col-sm-5 offset-sm-1">
+                <h4 class="homepage-subtitle">Yield</h4>
+                <a href="{{ url_for('runs', _anchor='yield') }}">
+                    <div class="overlay-container-1">
+                        <img class="homepage-img" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
+                        <div class="overlay">
+                        <div class="overlay-text">Yield</div>
+                        </div>
+                    </div>
+                </a>
             </div>
-            </a>
-        </div>
 
-        <div class="col-sm-3 col-sm-offset-0">
-            <h4 class="homepage-subtitle">Cluster Density</h4>
-            <a href="{{ url_for('runs', _anchor='cluster-density') }}">
-            <div class="overlay-container-2">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
-                <div class="overlay">
-                <div class="overlay-text">Cluster Density</div>
+            <div class="col-sm-5">
+                <h4 class="homepage-subtitle">Cluster Density</h4>
+                <a href="{{ url_for('runs', _anchor='cluster-density') }}">
+                <div class="overlay-container-2">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
+                    <div class="overlay">
+                    <div class="overlay-text">Cluster Density</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
-
         </div>
 
         <div class="row">
-
-        <div class="col-sm-3 col-sm-offset-3">
-            <h4 class="homepage-subtitle">Pass Filter</h4>
-            <a href="{{ url_for('runs', _anchor='pass-filter') }}">
-            <div class="overlay-container-3">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
-                <div class="overlay">
-                <div class="overlay-text">Clusters Passing Filter</div>
+            <div class="col-sm-5 offset-sm-1">
+                <h4 class="homepage-subtitle">Pass Filter</h4>
+                <a href="{{ url_for('runs', _anchor='pass-filter') }}">
+                <div class="overlay-container-3">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
+                    <div class="overlay">
+                    <div class="overlay-text">Clusters Passing Filter</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
 
-        <div class="col-sm-3 col-sm-offset-0">
-            <h4 class="homepage-subtitle">Q30 Score</h4>
-            <a href="{{ url_for('runs', _anchor='Q30') }}">
-            <div class="overlay-container-4">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
-                <div class="overlay">
-                <div class="overlay-text">Q30 Score</div>
+            <div class="col-sm-5">
+                <h4 class="homepage-subtitle">Q30 Score</h4>
+                <a href="{{ url_for('runs', _anchor='Q30') }}">
+                <div class="overlay-container-4">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
+                    <div class="overlay">
+                    <div class="overlay-text">Q30 Score</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
-
         </div>
     </section>
     <!--SEQUENCING-RUNS-END-->
@@ -124,7 +120,7 @@
         <hr>
         <div class="row other-metrics">
 
-        <div class="col-sm-2 col-sm-offset-2">
+        <div class="col-sm-4">
             <h4 class="homepage-subtitle">Chemistry</h4>
             <a href="{{ url_for('chemistry') }}">
             <div class="overlay-container-5">
@@ -136,7 +132,7 @@
             </a>
         </div>
 
-        <div class="col-sm-2 col-sm-offset-1">
+        <div class="col-sm-4">
             <h4 class="homepage-subtitle">Experiments</h4>
             <a href="{{ url_for('experiments') }}">
             <div class="overlay-container-6">
@@ -148,7 +144,7 @@
             </a>
         </div>
 
-        <div class="col-sm-2 col-sm-offset-1">
+        <div class="col-sm-4">
             <h4 class="homepage-subtitle">Users</h4>
             <a href="{{ url_for('users') }}">
             <div class="overlay-container-7">
