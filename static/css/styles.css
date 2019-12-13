@@ -413,33 +413,53 @@ h4.homepage-subtitle {
     margin-bottom: 16px;
 }
 
-.bg-footer {
+.footer-nav {
     background-color: #222;
-    padding: 32px 12px 0 0;
     border: solid 1px #222;
-    border-top-color: blue;
+    border-bottom-color: blue;
+    margin-bottom: 0;
+    padding: 20px 0 5px;;
 }
 
-.copyright {
-    padding: 0;
-    color: rgb(105, 141, 176);
-    font-size: 12px;
-    line-height: 22px;
-}
-
-.bg-footer ul {
+.footer-nav ul {
     text-align: center;
     float: none !important;
+    padding: 0;
 }
 
-.bg-footer ul li a {
-    color: #ddd;
+.footer-nav ul > li {
+    display: inline-block;
+    width: 16%
+}
+
+.footer-nav ul > li > a {
+    color: #ffffff80;
     font-size: 14px;
     margin: 0 2px;
     transition: all .25s ease-in-out;
     -webkit-transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     -o-transition: all .25s ease-in-out;
+}
+
+.footer-nav ul > li > a:hover {
+    color: #ffffffb3;
+    text-decoration: none;
+}
+
+.footer-copyright {
+	text-align: center;
+	margin: 0 auto;
+	background-color: #051526;
+	width: 100%;
+	padding: 10px;
+}
+
+.footer-copyright p {
+	color: rgb(105, 141, 176);
+	font-size: 12px;
+	margin: 0;
+    padding: 20px;
 }
 
 /*create more space between footer links on small screens above 303px width*/
