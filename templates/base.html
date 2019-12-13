@@ -66,28 +66,28 @@
     </div>
 
     <!--FOOTER-->
-    <footer class="bg-footer">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 margin-bottom-xs">
-          <ul class="list-inline">
-            <li class="border-right">
-              <a class="hidden-xs" href="#">Top</a>
-              <a class="visible-xs" href="#">Top of Page</a>
-            </li>
-            <li class="border-right"><a href="{{ url_for('index') }}">Home</a></li>
-            <li class="border-right"><a href="{{ url_for('runs') }}">Runs</a></li>
-            <li class="border-right hidden-xs"><a href="{{ url_for('chemistry') }}">Chemistry</a></li>
-            <li class="border-right"><a href="{{ url_for('experiments') }}">Experiments</a></li>
-            <li class="hidden-xs"><a href="{{ url_for('users') }}">Users</a></li>
-          </ul>
+    <footer class="">
+        <div class="row footer-nav">
+            <div class="col-xs-12 col-sm-12 margin-bottom-xs">
+                <ul class="">
+                    <li class="">
+                        <a class="d-block d-md-none" href="#">Top</a>
+                        <a class="d-none d-md-inline-block" href="#">Top of Page</a>
+                    </li>
+                    <li class=""><a href="{{ url_for('index') }}">Home</a></li>
+                    <li class=""><a href="{{ url_for('runs') }}">Runs</a></li>
+                    <li class="d-none d-sm-inline-block"><a href="{{ url_for('chemistry') }}">Chemistry</a></li>
+                    <li class=""><a href="{{ url_for('experiments') }}">Experiments</a></li>
+                    <li class="d-none d-sm-inline-block"><a href="{{ url_for('users') }}">Users</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
-          <p class="copyright">2018 -
-            <script>
-              document.write(new Date().getFullYear());
-            </script> &copy; Thomas Jones - All Rights Reserved</p>
+            <div class="row footer-copyright">
+                <div class="col-xs-12 col-sm-12">
+                    <p class="">2018 -<script>document.write(new Date().getFullYear());</script> &copy; Thomas Jones - All Rights Reserved</p>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
     <!--FOOTER-END-->
 
