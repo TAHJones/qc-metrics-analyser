@@ -60,8 +60,8 @@
         <h3>Sequencing Run Metrics</h3>
         <hr>
 
-        <div class="row run-metrics">
-            <div class="col-sm-5 offset-sm-1">
+        <div class="row justify-content-center run-metrics">
+            <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Yield</h4>
                 <a href="{{ url_for('runs', _anchor='yield') }}">
                     <div class="overlay-container-1">
@@ -73,7 +73,7 @@
                 </a>
             </div>
 
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Cluster Density</h4>
                 <a href="{{ url_for('runs', _anchor='cluster-density') }}">
                 <div class="overlay-container-2">
@@ -86,8 +86,8 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-5 offset-sm-1">
+        <div class="row justify-content-center run-metrics">
+            <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Pass Filter</h4>
                 <a href="{{ url_for('runs', _anchor='pass-filter') }}">
                 <div class="overlay-container-3">
@@ -99,7 +99,7 @@
                 </a>
             </div>
 
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Q30 Score</h4>
                 <a href="{{ url_for('runs', _anchor='Q30') }}">
                 <div class="overlay-container-4">
@@ -118,9 +118,9 @@
     <section>
         <h3>Other Sequencing Metrics</h3>
         <hr>
-        <div class="row other-metrics">
+        <div class="row justify-content-center other-metrics">
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h4 class="homepage-subtitle">Chemistry</h4>
             <a href="{{ url_for('chemistry') }}">
             <div class="overlay-container-5">
@@ -132,7 +132,7 @@
             </a>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h4 class="homepage-subtitle">Experiments</h4>
             <a href="{{ url_for('experiments') }}">
             <div class="overlay-container-6">
@@ -144,7 +144,7 @@
             </a>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h4 class="homepage-subtitle">Users</h4>
             <a href="{{ url_for('users') }}">
             <div class="overlay-container-7">
