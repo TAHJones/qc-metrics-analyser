@@ -60,7 +60,7 @@
         <h3>Sequencing Run Metrics</h3>
         <hr>
 
-        <div class="row justify-content-center run-metrics">
+        <div class="row justify-content-center">
             <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Yield</h4>
                 <a href="{{ url_for('runs', _anchor='yield') }}">
@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center run-metrics">
+        <div class="row justify-content-center">
             <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Pass Filter</h4>
                 <a href="{{ url_for('runs', _anchor='pass-filter') }}">
@@ -119,43 +119,41 @@
         <h3>Other Sequencing Metrics</h3>
         <hr>
         <div class="row justify-content-center other-metrics">
-
-        <div class="col-sm-3">
-            <h4 class="homepage-subtitle">Chemistry</h4>
-            <a href="{{ url_for('chemistry') }}">
-            <div class="overlay-container-5">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
-                <div class="overlay">
-                <div class="overlay-text">Sequencing Chemistry</div>
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Chemistry</h4>
+                <a href="{{ url_for('chemistry') }}">
+                <div class="overlay-container-5">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Chemistry</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
 
-        <div class="col-sm-3">
-            <h4 class="homepage-subtitle">Experiments</h4>
-            <a href="{{ url_for('experiments') }}">
-            <div class="overlay-container-6">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
-                <div class="overlay">
-                <div class="overlay-text">Sequencing Experiments</div>
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Experiments</h4>
+                <a href="{{ url_for('experiments') }}">
+                <div class="overlay-container-6">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Experiments</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
 
-        <div class="col-sm-3">
-            <h4 class="homepage-subtitle">Users</h4>
-            <a href="{{ url_for('users') }}">
-            <div class="overlay-container-7">
-                <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
-                <div class="overlay">
-                <div class="overlay-text">Sequencing Users</div>
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Users</h4>
+                <a href="{{ url_for('users') }}">
+                <div class="overlay-container-7">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Users</div>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
-        </div>
-
         </div>
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
