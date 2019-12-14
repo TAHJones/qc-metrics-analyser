@@ -418,13 +418,12 @@ h4.homepage-subtitle {
 
 .footer-nav ul {
     text-align: center;
-    float: none !important;
     padding: 0;
 }
 
 .footer-nav ul > li {
     display: inline-block;
-    width: 16%
+    width: 15%
 }
 
 .footer-nav ul > li > a {
