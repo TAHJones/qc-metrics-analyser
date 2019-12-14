@@ -1,16 +1,11 @@
 /* GENERAL */
 
 body {
-    background-color: #fff;
+    background-color: #d1dce7;
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
-    padding-top: 0;
-}
-
-.page {
-    background-color: #d1dce7;
-    margin: 0 auto;
     max-width: 1200px;
+    padding: 0;
 }
 
 a {
