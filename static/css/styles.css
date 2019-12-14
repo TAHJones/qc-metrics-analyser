@@ -36,9 +36,9 @@ h4 {
 
 /*shift header to the left to compensate for legend*/
 
-h4.distribution {
+/* h4.distribution {
     margin-right: 115px;
-}
+} */
 
 hr {
     border: solid 2px #405a74;
