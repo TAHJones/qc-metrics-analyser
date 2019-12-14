@@ -403,11 +403,6 @@ h4.homepage-subtitle {
 
 /* FOOTER */
 
-.bg-footer .copyright {
-    text-align: center;
-    margin-bottom: 16px;
-}
-
 .footer-nav {
     background-color: #222;
     border: solid 1px #222;
