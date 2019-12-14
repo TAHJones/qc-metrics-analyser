@@ -1,4 +1,7 @@
 /* GENERAL */
+html {
+    background-color: #000;
+}
 
 body {
     background-color: #d1dce7;
@@ -367,10 +370,29 @@ h4.homepage-subtitle {
 .footer-copyright {
 	text-align: center;
 	margin: 0 auto;
-	background-color: #051526;
+    background-color: rgb(34, 49, 63);
+	background-image: url(/static/images/banner.jpg);
+    background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 	width: 100%;
-	padding: 10px;
 }
+
+
+.footer-copyright > .col-12 {
+    background-color: rgba(34, 49, 63, 0.8); 
+    padding: 40px 0;
+
+}
+
+/* .bg-banner {
+	color: #FFF;
+	background-color: rgb(34, 49, 63);
+	background-image: url(/static/images/banner.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+} */
 
 .footer-copyright p {
 	color: rgb(105, 141, 176);
