@@ -1,11 +1,22 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
     <!--GRAPHS-->
     <section class="container">
 		<div class="row justify-content-center">
             <div class="col-sm-10">
                 <h3>Yield - Gb</h3>
-                <div class="graph" id="yield"></div>
+                <div class="graph" id="yield">
+                    {% for metric in metrics %}
+                        {{ metric.run }}
+                        {{ metric.pool }}
+                        {{ metric.user }}
+                        {{ metric.yield }}
+                        {{ metric.clusterDensity }}
+                        {{ metric.passFilter }}
+                        {{ metric.q30 }}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </section>
@@ -14,7 +25,8 @@
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <h3>Cluster Density - K/mm2</h3>
-                <div class="graph" id="cluster-density"></div>
+                <div class="graph" id="cluster-density">
+                </div>
             </div>
         </div>
     </section>
@@ -23,7 +35,8 @@
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <h3>Clusters Passing Filter - %</h3>
-                <div class="graph" id="pass-filter"></div>
+                <div class="graph" id="pass-filter">
+                </div>
             </div>
         </div>
     </section>
@@ -32,7 +45,8 @@
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <h3>Q30 Score - %</h3>
-                <div class="graph" id="Q30"></div>
+                <div class="graph" id="Q30">
+                </div>
             </div>
         </div>
     </section>
