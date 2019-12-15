@@ -36,7 +36,7 @@ def getMetrics():
 
 @app.route('/runs')
 def runs():
-    return render_template("runs.html")
+    return render_template("runs.html", metrics=mongo.db.seqMetCol.find())
 
 
 @app.route('/chemistry')
