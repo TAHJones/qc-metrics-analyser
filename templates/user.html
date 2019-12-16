@@ -1,0 +1,170 @@
+{% extends 'base.html' %} {% block content %}
+
+    <!--ENTER-SEQUENCING-QC-DATA-->
+    <section class="container">
+        <h3>Enter Your Sequencing QC Data</h3>
+        <hr>
+             
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} {% endwith %}
+                <p>Please enter you sequencing QC data into the form below:</p>
+                <br>
+
+                <form method="POST">
+                    <div class="row">
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="Name" name="name" id="name" required data-validation-required-message="Please enter your name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Pool Number</label>
+                            <input type="text" class="form-control" placeholder="Pool" name="pool" id="pool" required data-validation-required-message="Please enter pool number.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Yield - Gigabases</label>
+                            <input type="number" class="form-control" placeholder="Yield" name="yield" id="yield" required data-validation-required-message="Please enter run yield.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Cluster Density - K/mm2</label>
+                            <input type="number" class="form-control" placeholder="Cluster Density" name="clusterDensity" id="clusterDensity" required data-validation-required-message="Please enter cluster density.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Clusters Passing Filter - %</label>
+                            <input type="number" class="form-control" placeholder="Clusters Passing Filter" name="passFilter" id="passFilter" required data-validation-required-message="Please enter clusters passing filter.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Q30 Score - %</label>
+                            <input type="number" class="form-control" placeholder="Q30 Score" name="q30" id="q30" required data-validation-required-message="Please enter Q30 score.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group col-sm-12 floating-label-form-group controls">
+                            <label>Additional Comments</label>
+                            <textarea rows="5" class="form-control" placeholder="Additional Comment" name="comment" id="comment" required data-validation-required-message="Please enter any addition information."></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+   <!--SEQUENCING-RUNS-->
+    <section class="container">
+        <h3>Sequencing Run Metrics</h3>
+        <hr>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Yield</h4>
+                <a href="{{ url_for('runs', _anchor='yield') }}">
+                    <div class="overlay-container-1">
+                        <img class="homepage-img" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
+                        <div class="overlay">
+                        <div class="overlay-text">Yield</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Cluster Density</h4>
+                <a href="{{ url_for('runs', _anchor='cluster-density') }}">
+                <div class="overlay-container-2">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
+                    <div class="overlay">
+                    <div class="overlay-text">Cluster Density</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Pass Filter</h4>
+                <a href="{{ url_for('runs', _anchor='pass-filter') }}">
+                <div class="overlay-container-3">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
+                    <div class="overlay">
+                    <div class="overlay-text">Clusters Passing Filter</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Q30 Score</h4>
+                <a href="{{ url_for('runs', _anchor='Q30') }}">
+                <div class="overlay-container-4">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
+                    <div class="overlay">
+                    <div class="overlay-text">Q30 Score</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--SEQUENCING-RUNS-END-->
+
+    <!--OTHER-SEQUENCING-METRICS-->
+    <section class="container">
+        <h3>Other Sequencing Metrics</h3>
+        <hr>
+        <div class="row justify-content-center other-metrics">
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Chemistry</h4>
+                <a href="{{ url_for('chemistry') }}">
+                <div class="overlay-container-5">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Chemistry</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Experiments</h4>
+                <a href="{{ url_for('experiments') }}">
+                <div class="overlay-container-6">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Experiments</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-3">
+                <h4 class="homepage-subtitle">Users</h4>
+                <a href="{{ url_for('users') }}">
+                <div class="overlay-container-7">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Users</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--OTHER-SEQUENCING-METRICS-END-->
+
+{% endblock %}
