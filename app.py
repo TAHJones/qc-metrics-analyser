@@ -34,18 +34,6 @@ def index():
 
     return render_template("index.html", metrics=mongo.db.seqMetCol.find())
 
-"""
-@app.route("/")
-def index():
-    return render_template("index.html", metrics=mongo.db.seqMetCol.find())
-"""
-
-"""
-@app.route("/get_metrics")
-def getMetrics():
-    return render_template("get-metrics.html", metrics=mongo.db.seqMetCol.find())
-"""
-
 
 @app.route('/runs')
 def runs():
