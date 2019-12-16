@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
@@ -17,6 +17,20 @@ def index():
     if request.method == "POST":
         flash("Thanks {}, your data has been entered successfully".format(
             request.form["name"]))
+
+    return render_template("index.html", metrics=mongo.db.seqMetCol.find())
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    """Main page with instructions"""
+    if request.method == "POST":
+        flash("Thanks {}, your data has been entered successfully".format(
+            request.form["username"]
+        ))
+        session["username"] = request.form["username"]
+
+    if "username" in session:
+        return redirect(url_for("username", username=session["username"]))
 
     return render_template("index.html", metrics=mongo.db.seqMetCol.find())
 
