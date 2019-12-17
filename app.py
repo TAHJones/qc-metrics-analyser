@@ -37,6 +37,27 @@ def index():
     return render_template("index.html", metrics=mongo.db.seqMetCol.find())
 
 
+@app.route("/user/<username>", methods=["GET", "POST"])
+def username(username):
+    """Add and display chat messages"""
+    if request.method == "POST":
+        username = session["username"]
+        # session.clear()
+        # name = request.form["name"]
+        # pool = request.form["pool"]
+        # yields = request.form["yield"]
+        # clusterDensity = request.form["clusterDensity"]
+        # passFilter = request.form["passFilter"]
+        # q30 = request.form["q30"]
+        metrics = mongo.db.seqMetCol
+        metrics.insert_one(request.form.to_dict())
+        return redirect(url_for("username", username=username))
+
+    session.clear()
+    return render_template("user.html", username=username)
+    # return render_template("user.html")
+
+
 @app.route('/runs')
 def runs():
     return render_template("runs.html", metrics=mongo.db.seqMetCol.find())
