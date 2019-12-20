@@ -29,77 +29,78 @@
             <div class="col-lg-8 col-md-10">
                 <ul class="nav nav-pills mb-3" id="" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="" data-toggle="pill" href="#add-data" role="tab">Add Data</a>
+                        <a class="nav-link active" id="" data-toggle="pill" href="#enter-user" role="tab">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="pill" href="#sequencing-runs" role="tab">Sequencing Metrics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="pill" href="#other-metrics" role="tab">Other Metrics</a>
+                        <a class="nav-link" id="" data-toggle="pill" href="#add-user" role="tab">Sign Up</a>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
-    
+
+    <section class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                {% with messages = get_flashed_messages() %} {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %} {% endwith %}
-                <p>Please enter you username into the form below:</p>
-                <br>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="enter-user" role="tabpanel">
+                        {% with messages = get_flashed_messages() %} {% if messages %}
+                        <ul class="flashes">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %} {% endwith %}
+                        <p>Please enter you username into the form below:</p>
+                        <br>
 
-                <form method="POST">
-                    <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>username</label>
-                            <input type="text" class="form-control" placeholder="username" name="username" id="username" required data-validation-required-message="Please enter your username.">
-                            <p class="help-block text-danger"></p>
-                        </div>
+                        <form method="POST">
+                            <div class="row">
+                                <div class="form-group col-sm-6 floating-label-form-group controls">
+                                    <label>username</label>
+                                    <input type="text" class="form-control" placeholder="username" name="username" id="username" required data-validation-required-message="Please enter your username.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div id="success"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                            </div>
+                        </form>
                     </div>
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+
+
+                    <div class="tab-pane fade" id="add-user" role="tabpanel">
+                        {% with messages = get_flashed_messages() %} {% if messages %}
+                        <ul class="flashes">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %} {% endwith %}
+                        <p>Please choose a username and enter in the form below:</p>
+                        <br>
+
+                        <form method="POST">
+                            <div class="row">
+                                <div class="form-group col-sm-6 floating-label-form-group controls">
+                                    <!-- <label>Username</label> -->
+                                    <type="text" class="form-control" placeholder="username" name="newUsername" id="newUsername" required data-validation-required-message="Please enter a username.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div id="success"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
 
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-                {% with messages = get_flashed_messages() %} {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %} {% endwith %}
-                <p>Please choose a username and enter in the form below:</p>
-                <br>
-
-                <form method="POST">
-                    <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <!-- <label>Username</label> -->
-                            <type="text" class="form-control" placeholder="username" name="newUsername" id="newUsername" required data-validation-required-message="Please enter a username.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
-                    </div>
-                </form>
-
+                </div>
             </div>
         </div>
     </section>
+
    <!--SEQUENCING-RUNS-->
     <section class="container">
         <h3>Sequencing Run Metrics</h3>
