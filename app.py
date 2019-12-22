@@ -62,10 +62,6 @@ def username(username):
     """Add and display chat messages"""
     metricsdb = mongo.db.seqMetCol
     if request.method == "POST":
-        # session["username"] = request.form["username"]
-        # username = session["username"]
-        # username = request.form.get("name")
-        # name = username
         pool = request.form.get("pool")
         yields = request.form.get("yield")
         clusterDensity = request.form.get("clusterDensity")
@@ -81,12 +77,10 @@ def username(username):
             'q30': q30
             }
         metricsdb.insert(run)
-        # metrics.insert_one(request.form.to_dict())
         return redirect(url_for("username", username=username))
 
     session.clear()
     return render_template("user.html", username=username)
-    # return render_template("user.html")
 
 
 @app.route('/runs')
