@@ -24,7 +24,7 @@
             </div>
         </div>
 
-    <section class="container">
+    <!-- <section class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <ul class="nav nav-pills mb-3" id="" role="tablist">
@@ -32,18 +32,18 @@
                         <a class="nav-link active" id="" data-toggle="pill" href="#enter-user" role="tab">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="pill" href="#add-user" role="tab">Sign Up</a>
+                        <a class="nav-link" id="" data-toggle="pill" href="{{ url_for('signup') }}" role="tab">Sign Up</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="enter-user" role="tabpanel">
+                <!-- <div class="tab-content" id="pills-tabContent"> -->
+                    <!-- <div class="tab-pane fade show active" id="enter-user" role="tabpanel"> -->
                         {% with messages = get_flashed_messages() %} {% if messages %}
                         <ul class="flashes">
                             {% for message in messages %}
@@ -57,8 +57,8 @@
                         <form method="POST">
                             <div class="row">
                                 <div class="form-group col-sm-6 floating-label-form-group controls">
-                                    <label>username</label>
-                                    <input type="text" class="form-control" placeholder="username" name="username" id="username" required data-validation-required-message="Please enter your username.">
+                                    <!-- <label>username</label> -->
+                                    <input type="text" class="form-control" placeholder="" name="username" id="username" required data-validation-required-message="Please enter your username.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -67,10 +67,10 @@
                                 <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
                             </div>
                         </form>
-                    </div>
+                    <!-- </div> -->
 
 
-                    <div class="tab-pane fade" id="add-user" role="tabpanel">
+                    <!-- <div class="tab-pane fade" id="add-user" role="tabpanel">
                         {% with messages = get_flashed_messages() %} {% if messages %}
                         <ul class="flashes">
                             {% for message in messages %}
@@ -78,13 +78,13 @@
                             {% endfor %}
                         </ul>
                         {% endif %} {% endwith %}
-                        <p>Please choose a username and enter in the form below:</p>
+                        <p>Please enter a username into the form below:</p>
                         <br>
 
                         <form method="POST">
                             <div class="row">
                                 <div class="form-group col-sm-6 floating-label-form-group controls">
-                                    <!-- <label>Username</label> -->
+                                    <label>Username</label>
                                     <type="text" class="form-control" placeholder="username" name="newUsername" id="newUsername" required data-validation-required-message="Please enter a username.">
                                     <p class="help-block text-danger"></p>
                                 </div>
@@ -94,9 +94,9 @@
                                 <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </section>
