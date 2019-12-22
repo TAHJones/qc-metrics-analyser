@@ -14,15 +14,6 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 
 mongo = PyMongo(app)
 
-"""
-@app.route('/', methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        flash("Thanks {}, your data has been entered successfully".format(
-            request.form["name"]))
-
-    return render_template("index.html", metrics=mongo.db.seqMetCol.find())
-"""
 
 @app.route("/", methods=["GET", "POST"])
 def index():
