@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "my_password"
@@ -37,22 +38,23 @@ def index():
 
     return render_template("index.html", metrics=mongo.db.seqMetCol.find())
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     """ Add new user to database """
-    metricsdb = mongo.db.seqMetCol
-    users = metricsdb.find({}, {'user:1', '_id:0'})
+    date = datetime.now().strftime("%Y-%m-%d")
+    time = datetime.now().strftime("%H:%M:%S")
+    users = mongo.db.users
+    allUsers = users.find({}, {'user:1', '_id:0'})
     if request.method == "POST":
-        for user in users:
+        for user in allUsers:
             if user == request.form.get("username"):
                 print("username already exists, please enter a unique username")
             else:
-                newuser = {'user': request.form.get('newUsername')}
-                metricsdb.insert_one(newuser)
+                newuser = request.form.get('newUsername')
+                users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
                 return redirect(url_for('index'))
     return render_template("signup.html")
-
-
 
 
 @app.route("/user/<username>", methods=["GET", "POST"])
