@@ -36,11 +36,11 @@ def signup():
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     users = mongo.db.users
-    allUsers = users.find({}, {'user:1', '_id:0'})
     if request.method == "POST":
-        for user in allUsers:
-            if user == request.form.get("username"):
+        for user in users.find({}, {'user': 1, '_id': 0}):
+            if user.get('user') == request.form.get("newUsername"):
                 print("username already exists, please enter a unique username")
+                return redirect(url_for('index'))                
             else:
                 newuser = request.form.get('newUsername')
                 users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
@@ -67,7 +67,7 @@ def username(username):
             'passFilter': passFilter,
             'q30': q30
             }
-        metricsdb.insert(run)
+        metricsdb.insert_one(run)
         return redirect(url_for("username", username=username))
 
     session.clear()
