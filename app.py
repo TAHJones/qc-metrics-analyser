@@ -14,9 +14,29 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 
 mongo = PyMongo(app)
 
+def analyseRuns(runParameter):
+    PrefixDollarToRunParameter = "${}".format(runParameter)
+    data = mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                runParameter: {'$exists': 'true'}
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null', 
+                'total': {'$sum': PrefixDollarToRunParameter},
+                'average': {'$avg': PrefixDollarToRunParameter},
+                'minimum': {'$min': PrefixDollarToRunParameter},
+                'maximum': {'$max': PrefixDollarToRunParameter}
+            }
+        }  
+    ])
+    return data
+
 @app.route("/", methods=["GET", "POST"])
 def index():
-    runs = mongo.db.seqMetCol
+    runs = analyseRuns("clusterDensity")
     """Main page with instructions"""
     # mycount = mongo.db.seqMetCol.find().count()
     # print("The number of collections in {}".format(mycount))
