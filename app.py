@@ -14,10 +14,12 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 
 mongo = PyMongo(app)
 
-
 @app.route("/", methods=["GET", "POST"])
 def index():
+    runs = mongo.db.seqMetCol
     """Main page with instructions"""
+    # mycount = mongo.db.seqMetCol.find().count()
+    # print("The number of collections in {}".format(mycount))
     if request.method == "POST":
         flash("Thanks {}, your data has been entered successfully".format(
             request.form["username"]
@@ -27,7 +29,8 @@ def index():
     if "username" in session:
         return redirect(url_for("username", username=session["username"]))
 
-    return render_template("index.html", metrics=mongo.db.seqMetCol.find())
+    # return render_template("index.html", metrics=mongo.db.seqMetCol.find().count())
+    return render_template("index.html", runs=runs)
 
 
 @app.route("/signup", methods=["GET", "POST"])
