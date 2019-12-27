@@ -8,13 +8,10 @@
                 <h3>Enter Your Sequencing QC Data</h3>
                 <hr>
                 {% for run in runs %}
-                    {{ run.run }}
-                    {{ run.pool }}
-                    {{ run.user }}
-                    {{ run.yield }}
-                    {{ run.clusterDensity }}
-                    {{ run.passFilter }}
-                    {{ run.q30 }}
+                    {{ run.total|int() }}
+                    {{ run.average|int() }}
+                    {{ run.minimum|int() }}
+                    {{ run.maximum|int() }}
                 {% endfor %}
             </div>
         </div>
