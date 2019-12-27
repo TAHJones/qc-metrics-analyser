@@ -7,20 +7,15 @@
 
                 <h3>Enter Your Sequencing QC Data</h3>
                 <hr>
-        
-                {% for metric in metrics %}
-                    <p>{{ metric.run }}</p>
-                    <p>{{ metric.user }}</p>
-                    <p>{{ metric.pool }}</p>
-                    <p>{{ metric.experiment }}</p>
-                    <p>{{ metric.chemistry }}</p>
-                    <p>{{ metric.yield }}</p>
-                    <p>{{ metric.clusterDensity }}</p>
-                    <p>{{ metric.passFilter }}</p>
-                    <p>{{ metric.q30 }}</p>
-                    <br>
+                {% for run in runs %}
+                    {{ run.run }}
+                    {{ run.pool }}
+                    {{ run.user }}
+                    {{ run.yield }}
+                    {{ run.clusterDensity }}
+                    {{ run.passFilter }}
+                    {{ run.q30 }}
                 {% endfor %}
-
             </div>
         </div>
 
