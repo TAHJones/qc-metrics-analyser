@@ -92,7 +92,7 @@ def signup():
 @app.route("/user/<username>", methods=["GET", "POST"])
 def username(username):
     """Add and display chat messages"""
-    metricsdb = mongo.db.seqMetCol
+    runs = mongo.db.seqMetCol
     if request.method == "POST":
         pool = request.form.get("pool")
         yields = request.form.get("yield")
@@ -108,7 +108,7 @@ def username(username):
             'passFilter': passFilter,
             'q30': q30
             }
-        metricsdb.insert_one(run)
+        runs.insert_one(run)
         return redirect(url_for("username", username=username))
 
     userData = getUserData("clusterDensity", username)
