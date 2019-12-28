@@ -6,6 +6,13 @@
             <div class="col-lg-8 col-md-10">
                 <h1>Welcome {{ username }}</h1>
                 <hr>
+                <ul>
+                {% for data in userData %}
+                    <li>{{ data.count|int() }}</li>
+                    <li>{{ data.average|int() }}</li>
+                    <li>{{ data.minimum|int() }}</li>
+                    <li>{{ data.maximum|int() }}</li>
+                {% endfor %}
                 <!-- {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
                     {% for message in messages %}
