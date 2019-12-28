@@ -114,8 +114,9 @@ def username(username):
         metricsdb.insert_one(run)
         return redirect(url_for("username", username=username))
 
+    userData = getUserData("clusterDensity", username)
     session.clear()
-    return render_template("user.html", username=username)
+    return render_template("user.html", username=username, userData=userData)
 
 
 @app.route('/runs')
