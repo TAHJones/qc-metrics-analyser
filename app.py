@@ -59,8 +59,6 @@ def getUserData(runParameter, user):
 def index():
     runs = getAllData("clusterDensity")
     """Main page with instructions"""
-    # mycount = mongo.db.seqMetCol.find().count()
-    # print("The number of collections in {}".format(mycount))
     if request.method == "POST":
         flash("Thanks {}, your data has been entered successfully".format(
             request.form["username"]
@@ -70,7 +68,6 @@ def index():
     if "username" in session:
         return redirect(url_for("username", username=session["username"]))
 
-    # return render_template("index.html", metrics=mongo.db.seqMetCol.find().count())
     return render_template("index.html", runs=runs)
 
 
