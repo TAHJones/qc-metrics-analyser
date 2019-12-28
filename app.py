@@ -14,16 +14,13 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 
 mongo = PyMongo(app)
 
-def countRuns():
-    count = mongo.db.seqMetCol
 
-def analyseRuns(runParameter):
+def getAllData(runParameter):
     PrefixDollarToRunParameter = "${}".format(runParameter)
     data = mongo.db.seqMetCol.aggregate([
         {
             '$match': {
-                'user': 'Thomas'
-                # runParameter: {'$exists': 'true'}
+                'user': {'$exists': 'true'}
             }
         },
         {
@@ -40,7 +37,7 @@ def analyseRuns(runParameter):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    runs = analyseRuns("clusterDensity")
+    runs = getAllData("clusterDensity")
     """Main page with instructions"""
     # mycount = mongo.db.seqMetCol.find().count()
     # print("The number of collections in {}".format(mycount))
