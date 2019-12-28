@@ -35,6 +35,26 @@ def getAllData(runParameter):
     ])
     return data
 
+def getUserData(runParameter, user):
+    PrefixDollarToRunParameter = "${}".format(runParameter)
+    data = mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                'user': user
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+                'average': {'$avg': PrefixDollarToRunParameter},
+                'minimum': {'$min': PrefixDollarToRunParameter},
+                'maximum': {'$max': PrefixDollarToRunParameter}
+            }
+        }  
+    ])
+    return data
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     runs = getAllData("clusterDensity")
