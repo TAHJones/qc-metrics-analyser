@@ -7,12 +7,14 @@
 
                 <h3>Enter Your Sequencing QC Data</h3>
                 <hr>
+                <ul>
                 {% for run in runs %}
-                    {{ run.total|int() }}
-                    {{ run.average|int() }}
-                    {{ run.minimum|int() }}
-                    {{ run.maximum|int() }}
+                    <li>{{ run.count|int() }}</li>
+                    <li>{{ run.average|int() }}</li>
+                    <li>{{ run.minimum|int() }}</li>
+                    <li>{{ run.maximum|int() }}</li>
                 {% endfor %}
+                </ul>
             </div>
         </div>
 
