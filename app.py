@@ -14,18 +14,22 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 
 mongo = PyMongo(app)
 
+def countRuns():
+    count = mongo.db.seqMetCol
+
 def analyseRuns(runParameter):
     PrefixDollarToRunParameter = "${}".format(runParameter)
     data = mongo.db.seqMetCol.aggregate([
         {
             '$match': {
-                runParameter: {'$exists': 'true'}
+                'user': 'Thomas'
+                # runParameter: {'$exists': 'true'}
             }
         },
         {
             '$group': {
-                '_id': 'null', 
-                'total': {'$sum': PrefixDollarToRunParameter},
+                '_id': 'null',
+                'count': { '$sum': 1 },
                 'average': {'$avg': PrefixDollarToRunParameter},
                 'minimum': {'$min': PrefixDollarToRunParameter},
                 'maximum': {'$max': PrefixDollarToRunParameter}
