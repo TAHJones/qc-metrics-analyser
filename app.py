@@ -60,8 +60,17 @@ def getUserData(runParameter, user):
 def index():
     """Display data for all users"""
     # session.clear()
-    runs = getAllData("clusterDensity")
-    return render_template("index.html", runs=runs)
+    yields = getAllData("yield")
+    clusterDensity = getAllData("clusterDensity")
+    passFilter = getAllData("passFilter")
+    q30 = getAllData("q30")
+    return render_template(
+        "index.html", 
+        yields=yields, 
+        clusterDensity=clusterDensity, 
+        passFilter=passFilter, 
+        q30=q30
+    )
 
 
 @app.route("/login", methods=["GET", "POST"])
