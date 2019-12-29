@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} {% endwith %}
+                <p>Please enter you username into the form below:</p>
+                <br>
+
+                <form method="POST">
+                    <div class="row">
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <!-- <label>username</label> -->
+                            <input type="text" class="form-control" placeholder="" name="username" id="username" required data-validation-required-message="Please enter your username.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
