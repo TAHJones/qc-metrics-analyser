@@ -118,6 +118,9 @@ def username(username):
         clusterDensity = request.form.get("clusterDensity")
         passFilter = request.form.get("passFilter")
         q30 = request.form.get("q30")
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        comment = request.form.get("comment")
         session.clear()
         run = {
             'user': username,
@@ -125,8 +128,11 @@ def username(username):
             'yield': yields,
             'clusterDensity': clusterDensity,
             'passFilter': passFilter,
-            'q30': q30
-            }
+            'q30': q30,
+            'experiment': experiment,
+            'chemistry': chemistry,
+            'comment': comment
+        }
         runs.insert_one(run)
         return redirect(url_for("username", username=username))
 
