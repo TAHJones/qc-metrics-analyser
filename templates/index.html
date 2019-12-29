@@ -4,19 +4,54 @@
     <!--ENTER-SEQUENCING-QC-DATA-->
     <section class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
+            <div class="col-xs-12">
                 <h3> QC Metrics - Overview</h3>
                 <hr>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-3">
                 <ul>
-                    <h4>Cluster Density</h4>
-                    {% for run in runs %}
-                        <li>{{ run.count|int() }}</li>
-                        <li>Average: {{ run.average|int() }}</li>
-                        <li>Minimum: {{ run.minimum|int() }}</li>
-                        <li>Maximum: {{ run.maximum|int() }}</li>
+                    <h4>Yield - Gigabases</h4>
+                    {% for data in yields %}
+                        <li>{{ data.count|int() }}</li>
+                        <li>Average: {{ data.average|int() }}</li>
+                        <li>Minimum: {{ data.minimum|int() }}</li>
+                        <li>Maximum: {{ data.maximum|int() }}</li>
                     {% endfor %}
                 </ul>
             </div>
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <ul>
+                    <h4>Cluster Density - K/mm2</h4>
+                    {% for data in clusterDensity %}
+                        <!-- <li>{{ data.count|int() }}</li> -->
+                        <li>Average: {{ data.average|int() }}</li>
+                        <li>Minimum: {{ data.minimum|int() }}</li>
+                        <li>Maximum: {{ data.maximum|int() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <ul>
+                    <h4>Pass Filter - %</h4>
+                    {% for data in passFilter %}
+                        <!-- <li>{{ data.count|int() }}</li> -->
+                        <li>Average: {{ data.average|int() }}</li>
+                        <li>Minimum: {{ data.minimum|int() }}</li>
+                        <li>Maximum: {{ data.maximum|int() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <ul>
+                    <h4>Q30 Score - %</h4>
+                    {% for data in q30 %}
+                        <!-- <li>{{ data.count|int() }}</li> -->
+                        <li>Average: {{ data.average|int() }}</li>
+                        <li>Minimum: {{ data.minimum|int() }}</li>
+                        <li>Maximum: {{ data.maximum|int() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>  
         </div>
     </section>
 
