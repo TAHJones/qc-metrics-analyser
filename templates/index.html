@@ -8,12 +8,13 @@
                 <h3> QC Metrics - Overview</h3>
                 <hr>
                 <ul>
-                {% for run in runs %}
-                    <li>{{ run.count|int() }}</li>
-                    <li>{{ run.average|int() }}</li>
-                    <li>{{ run.minimum|int() }}</li>
-                    <li>{{ run.maximum|int() }}</li>
-                {% endfor %}
+                    <h4>Cluster Density</h4>
+                    {% for run in runs %}
+                        <li>{{ run.count|int() }}</li>
+                        <li>Average: {{ run.average|int() }}</li>
+                        <li>Minimum: {{ run.minimum|int() }}</li>
+                        <li>Maximum: {{ run.maximum|int() }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
