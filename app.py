@@ -56,27 +56,19 @@ def getUserData(runParameter, user):
     ])
     return data
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
     """Display data for all users"""
-    session.clear()
-    users = mongo.db.users
+    # session.clear()
     runs = getAllData("clusterDensity")
-    if request.method == "POST":
-        username = request.form.get("username")
-        for user in users.find({}, {'user': 1, '_id': 0}):
-            if user.get('user') == username:
-                session["username"] = username
-        if "username" in session:
-            return redirect(url_for("username", username=session["username"]))
-        else:
-            flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("index.html", runs=runs)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """ Log in with username """
+    # session.clear()
+    users = mongo.db.users
     if request.method == "POST":
         username = request.form.get("username")
         for user in users.find({}, {'user': 1, '_id': 0}):
