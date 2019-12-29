@@ -71,8 +71,22 @@ def index():
             return redirect(url_for("username", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
-
     return render_template("index.html", runs=runs)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """ Log in with username """
+    if request.method == "POST":
+        username = request.form.get("username")
+        for user in users.find({}, {'user': 1, '_id': 0}):
+            if user.get('user') == username:
+                session["username"] = username
+        if "username" in session:
+            return redirect(url_for("username", username=session["username"]))
+        else:
+            flash("The username '{}' doesn't exist, please try a different username".format(username))
+    return render_template("login.html")
 
 
 @app.route("/signup", methods=["GET", "POST"])
