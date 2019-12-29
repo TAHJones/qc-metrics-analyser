@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
 
+
 app = Flask(__name__)
 app.secret_key = "my_password"
 
@@ -67,7 +68,6 @@ def index():
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
-            flash("Thanks {}, your username has been entered successfully".format(username))
             return redirect(url_for("username", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
