@@ -8,11 +8,30 @@
                 <h3> QC Metrics - Overview</h3>
                 <hr>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <ul>
+                    <h4>Experiments</h4>
+                        <li>Genome: {{ qcData.genome }}</li>
+                        <li>Exome: {{ qcData.exome }}</li>
+                        <li>Capture: {{ qcData.capture }}</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <ul>
+                    <h4>Chemistry</h4>
+                        <li>High300: {{ qcData.high300 }}</li>
+                        <li>Mid300: {{ qcData.mid300 }}</li>
+                        <li>Mid150: {{ qcData.mid150 }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-6 col-lg-3">
                 <ul>
                     <h4>Yield - Gigabases</h4>
-                    {% for data in yields %}
-                        <li>{{ data.count|int() }}</li>
+                    {% for data in qcData.yields %}
                         <li>Average: {{ data.average|int() }}</li>
                         <li>Minimum: {{ data.minimum|int() }}</li>
                         <li>Maximum: {{ data.maximum|int() }}</li>
@@ -22,8 +41,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-3">
                 <ul>
                     <h4>Cluster Density - K/mm2</h4>
-                    {% for data in clusterDensity %}
-                        <!-- <li>{{ data.count|int() }}</li> -->
+                    {% for data in qcData.clusterDensity %}
                         <li>Average: {{ data.average|int() }}</li>
                         <li>Minimum: {{ data.minimum|int() }}</li>
                         <li>Maximum: {{ data.maximum|int() }}</li>
@@ -33,8 +51,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-3">
                 <ul>
                     <h4>Pass Filter - %</h4>
-                    {% for data in passFilter %}
-                        <!-- <li>{{ data.count|int() }}</li> -->
+                    {% for data in qcData.passFilter %}
                         <li>Average: {{ data.average|int() }}</li>
                         <li>Minimum: {{ data.minimum|int() }}</li>
                         <li>Maximum: {{ data.maximum|int() }}</li>
@@ -44,8 +61,7 @@
             <div class="col-xs-12 col-sm-6 col-lg-3">
                 <ul>
                     <h4>Q30 Score - %</h4>
-                    {% for data in q30 %}
-                        <!-- <li>{{ data.count|int() }}</li> -->
+                    {% for data in qcData.q30 %}
                         <li>Average: {{ data.average|int() }}</li>
                         <li>Minimum: {{ data.minimum|int() }}</li>
                         <li>Maximum: {{ data.maximum|int() }}</li>
