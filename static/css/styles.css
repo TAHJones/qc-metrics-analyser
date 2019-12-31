@@ -352,17 +352,21 @@ h4.homepage-subtitle {
 	text-transform: uppercase;
 }
 
+.qc-data > h4 > span {
+    font-size: 10px;
+}
+
 .qc-data > ul {
-	border: 12px solid #405a74;
+	border: 12px solid #7269C2;
     border-radius: 10px;
-	background-color: #7fb7ed;
+	background-color: #392569;
 	margin: 0 auto;
 	padding: 40px 0;
 	width: 75%;
 }
 
 .qc-data > ul > li {
-    color: #fff;
+    color: #EF9B3F;
 	font-size: 14px;
 	list-style: none;
 	margin-bottom: 10px;
