@@ -29,7 +29,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Yield - Gigabases</h4>
+                <h4>Yield<span> - GB</span></h4>
                 <ul>
                 {% for data in qcData.yields %}
                     <li>Average: {{ data.average|int() }}</li>
@@ -39,7 +39,7 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Cluster Density - K/mm2</h4>
+                <h4>Cluster Density<span> - K/mm2<span></h4>
                 <ul>
                 {% for data in qcData.clusterDensity %}
                     <li>Average: {{ data.average|int() }}</li>
@@ -49,7 +49,7 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Pass Filter - %</h4>
+                <h4>Pass Filter<span> - %</span></h4>
                 <ul>
                 {% for data in qcData.passFilter %}
                     <li>Average: {{ data.average|int() }}</li>
@@ -59,7 +59,7 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Q30 Score - %</h4>
+                <h4>Q30 Score<span> - %</span></h4>
                 <ul>
                     {% for data in qcData.q30 %}
                         <li>Average: {{ data.average|int() }}</li>
