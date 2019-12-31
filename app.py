@@ -16,6 +16,45 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 mongo = PyMongo(app)
 
 
+def getExperiment(experimentParameter):
+    data =list(mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                # 'experiment': {'$exists': 'true'}
+                'experiment': experimentParameter
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+                # 'genome': { '$sum': 'Genome' },
+                # 'exome': { '$sum': 'Exome' },
+                # 'capture': { '$sum': 'Capture' },
+
+            }
+        }
+    ]))
+    return data
+
+
+def getChemistry(chemistryParameter):
+    data = list(mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                'chemistry': chemistryParameter
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+            }
+        }
+    ]))
+    return data
+
+
 def getAllData(runParameter):
     PrefixDollarToRunParameter = "${}".format(runParameter)
     data = mongo.db.seqMetCol.aggregate([
@@ -59,17 +98,46 @@ def getUserData(runParameter, user):
 @app.route("/")
 def index():
     """Display data for all users"""
-    # session.clear()
+    genome = getExperiment("Genome")[0]['count']
+    # print(genome)
+    exome = getExperiment("Exome")[0]['count']
+    capture = getExperiment("Capture")[0]['count']
+    high300=getChemistry("High300")[0]['count']
+    mid300=getChemistry("Mid300")[0]['count']
+    mid150=getChemistry("Mid150")[0]['count']
     yields = getAllData("yield")
+    # print(yields)
     clusterDensity = getAllData("clusterDensity")
     passFilter = getAllData("passFilter")
     q30 = getAllData("q30")
+
+    qcData = {
+        'genome': genome,
+        'exome': exome,
+        'capture': capture,
+        'high300': high300,
+        'mid300': mid300,
+        'mid150': mid150,
+        'yields': yields,
+        'clusterDensity': clusterDensity,
+        'passFilter': passFilter,
+        'q30': q30
+    }
+
     return render_template(
         "index.html", 
-        yields=yields, 
-        clusterDensity=clusterDensity, 
-        passFilter=passFilter, 
-        q30=q30
+        # experiments=experiments,
+        # genome=genome,
+        # exome=exome,
+        # capture=capture,
+        # high300=high300,
+        # mid300=mid300,
+        # mid150=mid150,
+        # yields=yields, 
+        # clusterDensity=clusterDensity, 
+        # passFilter=passFilter, 
+        # q30=q30
+        qcData=qcData
     )
 
 
@@ -110,7 +178,7 @@ def signup():
 
 @app.route("/user/<username>", methods=["GET", "POST"])
 def username(username):
-    """Add and display chat messages"""
+    """ Displays data for individual users & adds new runs """
     runs = mongo.db.seqMetCol
     if request.method == "POST":
         pool = request.form.get("pool")
