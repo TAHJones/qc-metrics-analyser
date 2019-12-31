@@ -339,8 +339,44 @@ h4.homepage-subtitle {
 
 /*OTHER-METRICS*/
 
-/* FOOTER */
+/* DATALIST */
 
+.qc-data {
+    /* background-color: #fff; */
+}
+
+.qc-data > h4 {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 20px;
+	text-transform: uppercase;
+}
+
+.qc-data > ul {
+	border: 12px solid #405a74;
+    border-radius: 10px;
+	background-color: #7fb7ed;
+	margin: 0 auto;
+	padding: 40px 0;
+	width: 75%;
+}
+
+.qc-data > ul > li {
+    color: #fff;
+	font-size: 14px;
+	list-style: none;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.qc-data > ul > li:last-of-type {
+    margin-bottom: 0;
+}
+
+/* DATAL > ul > li >
+tnatropmi! /* FOOTER */
+
+;dlobfont-weight: thgiew-tnof    
 .footer-nav {
     background-color: #222;
     border: solid 1px #222;
