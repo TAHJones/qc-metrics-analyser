@@ -29,6 +29,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-6 col-lg-3">
+
                 <div id="yieldModal" class="modal fade">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content qc-data">
@@ -50,37 +51,71 @@
                         </div>
                     </div>
                 </div>
+                <div id="clusterDensityModal" class="modal fade">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content qc-data">
+                            <div class="modal-header qc-data-header">
+                                <h4 class="modal-title">Cluster Density - K/mm2</h4>
+                            </div>
+                            <div class="modal-body qc-data-list">
+                                <ul>
+                                {% for data in qcData.clusterDensity %}
+                                    <li>Average: {{ data.average|int() }}</li>
+                                    <li>Minimum: {{ data.minimum|int() }}</li>
+                                    <li>Maximum: {{ data.maximum|int() }}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="modal-footer qc-data-footer">
+                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="passFilterModal" class="modal fade">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content qc-data">
+                            <div class="modal-header qc-data-header">
+                                <h4 class="modal-title">Pass Filter - %</h4>
+                            </div>
+                            <div class="modal-body qc-data-list">
+                                <ul>
+                                {% for data in qcData.passFilter %}
+                                    <li>Average: {{ data.average|int() }}</li>
+                                    <li>Minimum: {{ data.minimum|int() }}</li>
+                                    <li>Maximum: {{ data.maximum|int() }}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="modal-footer qc-data-footer">
+                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="q30Modal" class="modal fade">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content qc-data">
+                            <div class="modal-header qc-data-header">
+                                <h4 class="modal-title">Q30 Score - %</h4>
+                            </div>
+                            <div class="modal-body qc-data-list">
+                                <ul>
+                                {% for data in qcData.q30 %}
+                                    <li>Average: {{ data.average|int() }}</li>
+                                    <li>Minimum: {{ data.minimum|int() }}</li>
+                                    <li>Maximum: {{ data.maximum|int() }}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="modal-footer qc-data-footer">
+                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Cluster Density<span> - K/mm2<span></h4>
-                <ul>
-                {% for data in qcData.clusterDensity %}
-                    <li>Average: {{ data.average|int() }}</li>
-                    <li>Minimum: {{ data.minimum|int() }}</li>
-                    <li>Maximum: {{ data.maximum|int() }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Pass Filter<span> - %</span></h4>
-                <ul>
-                {% for data in qcData.passFilter %}
-                    <li>Average: {{ data.average|int() }}</li>
-                    <li>Minimum: {{ data.minimum|int() }}</li>
-                    <li>Maximum: {{ data.maximum|int() }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-lg-3 qc-data">
-                <h4>Q30 Score<span> - %</span></h4>
-                <ul>
-                    {% for data in qcData.q30 %}
-                        <li>Average: {{ data.average|int() }}</li>
-                        <li>Minimum: {{ data.minimum|int() }}</li>
-                        <li>Maximum: {{ data.maximum|int() }}</li>
-                    {% endfor %}
-                </ul>
-            </div>  
         </div>
     </section>
 
