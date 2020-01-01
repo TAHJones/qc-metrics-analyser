@@ -238,6 +238,25 @@
             </div>
         </div>
 
+        <div id="experimentModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title">Experiment</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                            <li>Genome: {{ qcData.genome }}</li>
+                            <li>Exome: {{ qcData.exome }}</li>
+                            <li>Capture: {{ qcData.capture }}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
 
