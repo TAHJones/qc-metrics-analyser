@@ -343,40 +343,39 @@ h4.homepage-subtitle {
 /* DATALIST */
 
 .qc-data {
-    /* background-color: #fff; */
+	border: 12px solid #222;
+    border-radius: 10px;
+	background-color: #d1dce7;
+	margin: 0 auto;
+	padding: 40px;
 }
 
-.qc-data > h4 {
+.qc-data-header {
+    border-bottom: 3px solid #3776B3;
+}
+
+.qc-data-header > h4 {
     color: #3776B3;
 	font-size: 14px;
 	font-weight: bold;
-	margin: 0 0 20px;
 	text-transform: uppercase;
 }
 
-.qc-data > h4 > span {
-    font-size: 10px;
-}
-
-.qc-data > ul {
-	border: 12px solid #7269C2;
-    border-radius: 10px;
-	background-color: #392569;
-	margin: 0 auto;
-	padding: 40px 0;
-	width: 75%;
-}
-
-.qc-data > ul > li {
-    color: #EF9B3F;
-	font-size: 14px;
-	list-style: none;
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.qc-data > ul > li:last-of-type {
+.qc-data-list > ul {
+	padding-left: 0;
     margin-bottom: 0;
+}
+
+.qc-data-list > ul > li {
+	list-style: none;
+}
+
+.qc-data-list > ul > li:last-of-type {
+    margin-bottom: 0;
+}
+
+.qc-data-footer {
+    border-top: 3px solid #3776B3;
 }
 
 /* DATALIST-END */
