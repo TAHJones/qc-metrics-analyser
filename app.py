@@ -28,10 +28,6 @@ def getExperiment(experimentParameter):
             '$group': {
                 '_id': 'null',
                 'count': { '$sum': 1 },
-                # 'genome': { '$sum': 'Genome' },
-                # 'exome': { '$sum': 'Exome' },
-                # 'capture': { '$sum': 'Capture' },
-
             }
         }
     ]))
