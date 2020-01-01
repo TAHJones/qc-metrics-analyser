@@ -34,6 +34,26 @@ def getExperiment(experimentParameter):
     return data
 
 
+def getUserExperiment(experiment, user):
+    data = list(mongo.db.seqMetCol.aggregate([
+    # data = mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                '$and': [ {'user': user}, {'experiment': experiment} ]
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+            }
+        }
+    ]))
+    if data == []:
+        data = [{'count': 0}]
+    return data
+
+
 def getChemistry(chemistryParameter):
     data = list(mongo.db.seqMetCol.aggregate([
         {
@@ -184,9 +204,31 @@ def username(username):
         runs.insert_one(run)
         return redirect(url_for("username", username=username))
 
-    userData = getUserData("clusterDensity", username)
+    genome = getUserExperiment("Genome", username)[0]['count']
+    exome = getUserExperiment("Exome", username)[0]['count']
+    capture = getUserExperiment("Capture", username)[0]['count']
+    high300=getChemistry("High300")[0]['count']
+    mid300=getChemistry("Mid300")[0]['count']
+    mid150=getChemistry("Mid150")[0]['count']
+    yields = getAllData("yield")
+    clusterDensity = getUserData("clusterDensity", username)
+    passFilter = getUserData("passFilter", username)
+    q30 = getUserData("q30", username)
+
+    qcData = {
+        'genome': genome,
+        'exome': exome,
+        'capture': capture,
+        'high300': high300,
+        'mid300': mid300,
+        'mid150': mid150,
+        'yields': yields,
+        'clusterDensity': clusterDensity,
+        'passFilter': passFilter,
+        'q30': q30
+    }
     session.clear()
-    return render_template("user.html", username=username, userData=userData)
+    return render_template("user.html", username=username, qcData=qcData)
 
 
 @app.route('/runs')
