@@ -85,6 +85,7 @@
                 </a>
             </div>
         </div>
+
         <div id="yieldModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
@@ -106,6 +107,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="clusterDensityModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
@@ -127,6 +129,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="passFilterModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
@@ -148,6 +151,7 @@
                 </div>
             </div>
         </div>
+
         <div id="q30Modal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
@@ -213,6 +217,27 @@
                 </a>
             </div> -->
         </div>
+
+        <div id="chemistryModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title">Chemistry</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                            <li>High300: {{ qcData.high300 }}</li>
+                            <li>Mid300: {{ qcData.mid300 }}</li>
+                            <li>Mid150: {{ qcData.mid150 }}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
 
