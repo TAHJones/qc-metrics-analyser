@@ -99,14 +99,12 @@ def getUserData(runParameter, user):
 def index():
     """Display data for all users"""
     genome = getExperiment("Genome")[0]['count']
-    # print(genome)
     exome = getExperiment("Exome")[0]['count']
     capture = getExperiment("Capture")[0]['count']
     high300=getChemistry("High300")[0]['count']
     mid300=getChemistry("Mid300")[0]['count']
     mid150=getChemistry("Mid150")[0]['count']
     yields = getAllData("yield")
-    # print(yields)
     clusterDensity = getAllData("clusterDensity")
     passFilter = getAllData("passFilter")
     q30 = getAllData("q30")
@@ -124,21 +122,7 @@ def index():
         'q30': q30
     }
 
-    return render_template(
-        "index.html", 
-        # experiments=experiments,
-        # genome=genome,
-        # exome=exome,
-        # capture=capture,
-        # high300=high300,
-        # mid300=mid300,
-        # mid150=mid150,
-        # yields=yields, 
-        # clusterDensity=clusterDensity, 
-        # passFilter=passFilter, 
-        # q30=q30
-        qcData=qcData
-    )
+    return render_template("index.html", qcData=qcData)
 
 
 @app.route("/login", methods=["GET", "POST"])
