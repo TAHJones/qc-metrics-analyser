@@ -378,6 +378,21 @@ h4.homepage-subtitle {
     border-top: 3px solid #3776B3;
 }
 
+.qc-data-btn {
+	background-color: #202020;
+	border-radius: 4px;
+    color: #ff9f1e;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 18px;
+}
+
+.qc-data-btn:hover {
+	background-color: #000;
+	color: #FF4C04;
+	transition: all .5s ease-in-out;
+}
+
 /* DATALIST-END */
 
 /* FOOTER */
