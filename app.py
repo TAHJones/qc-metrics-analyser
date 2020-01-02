@@ -16,12 +16,12 @@ app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmet
 mongo = PyMongo(app)
 
 
-def getExperiment(experimentParameter):
+def getExperiment(experiment):
     data =list(mongo.db.seqMetCol.aggregate([
         {
             '$match': {
                 # 'experiment': {'$exists': 'true'}
-                'experiment': experimentParameter
+                'experiment': experiment
             }
         },
         {
@@ -54,11 +54,11 @@ def getUserExperiment(experiment, user):
     return data
 
 
-def getChemistry(chemistryParameter):
+def getChemistry(chemistry):
     data = list(mongo.db.seqMetCol.aggregate([
         {
             '$match': {
-                'chemistry': chemistryParameter
+                'chemistry': chemistry
             }
         },
         {
@@ -71,8 +71,8 @@ def getChemistry(chemistryParameter):
     return data
 
 
-def getAllData(runParameter):
-    PrefixDollarToRunParameter = "${}".format(runParameter)
+def getDataSummary(param):
+    dollarParam = "${}".format(param)
     data = mongo.db.seqMetCol.aggregate([
         {
             '$match': {
@@ -83,16 +83,16 @@ def getAllData(runParameter):
             '$group': {
                 '_id': 'null',
                 'count': { '$sum': 1 },
-                'average': {'$avg': PrefixDollarToRunParameter},
-                'minimum': {'$min': PrefixDollarToRunParameter},
-                'maximum': {'$max': PrefixDollarToRunParameter}
+                'average': {'$avg': dollarParam},
+                'minimum': {'$min': dollarParam},
+                'maximum': {'$max': dollarParam}
             }
         }  
     ])
     return data
 
-def getUserData(runParameter, user):
-    PrefixDollarToRunParameter = "${}".format(runParameter)
+def getUserDataSummary(param, user):
+    dollarParam = "${}".format(param)
     data = mongo.db.seqMetCol.aggregate([
         {
             '$match': {
@@ -103,9 +103,9 @@ def getUserData(runParameter, user):
             '$group': {
                 '_id': 'null',
                 'count': { '$sum': 1 },
-                'average': {'$avg': PrefixDollarToRunParameter},
-                'minimum': {'$min': PrefixDollarToRunParameter},
-                'maximum': {'$max': PrefixDollarToRunParameter}
+                'average': {'$avg': dollarParam},
+                'minimum': {'$min': dollarParam},
+                'maximum': {'$max': dollarParam}
             }
         }  
     ])
@@ -120,10 +120,10 @@ def index():
     high300=getChemistry("High300")[0]['count']
     mid300=getChemistry("Mid300")[0]['count']
     mid150=getChemistry("Mid150")[0]['count']
-    yields = getAllData("yield")
-    clusterDensity = getAllData("clusterDensity")
-    passFilter = getAllData("passFilter")
-    q30 = getAllData("q30")
+    yields = getDataSummary("yield")
+    clusterDensity = getDataSummary("clusterDensity")
+    passFilter = getDataSummary("passFilter")
+    q30 = getDataSummary("q30")
 
     qcData = {
         'genome': genome,
@@ -144,14 +144,38 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """ Log in with username """
-    # session.clear()
     users = mongo.db.users
     if request.method == "POST":
+        session.clear()
         username = request.form.get("username")
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
+            pool = request.form.get("pool")
+            minYield = request.form.get("minYield")
+            maxYield = request.form.get("maxYield")
+            minClusterDensity = request.form.get("minClusterDensity")
+            maxClusterDensity = request.form.get("maxClusterDensity")
+            minPassFilter = request.form.get("minPassFilter")
+            maxPassFilter = request.form.get("maxPassFilter")
+            minq30 = request.form.get("minq30")
+            maxq30 = request.form.get("maxq30")
+            experiment = request.form.get("experiment")
+            chemistry = request.form.get("chemistry")
+            # session.clear()
+            run = {
+                'user': username,
+                'pool': pool,
+                'yield': yields,
+                'clusterDensity': clusterDensity,
+                'passFilter': passFilter,
+                'q30': q30,
+                'experiment': experiment,
+                'chemistry': chemistry,
+                'comment': comment
+            }
+
             return redirect(url_for("username", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
@@ -211,10 +235,10 @@ def username(username):
     high300=getChemistry("High300")[0]['count']
     mid300=getChemistry("Mid300")[0]['count']
     mid150=getChemistry("Mid150")[0]['count']
-    yields = getAllData("yield")
-    clusterDensity = getUserData("clusterDensity", username)
-    passFilter = getUserData("passFilter", username)
-    q30 = getUserData("q30", username)
+    yields = getDataSummary("yield")
+    clusterDensity = getUserDataSummary("clusterDensity", username)
+    passFilter = getUserDataSummary("passFilter", username)
+    q30 = getUserDataSummary("q30", username)
 
     qcData = {
         'genome': genome,
