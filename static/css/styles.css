@@ -342,7 +342,7 @@ h4.homepage-subtitle {
     /*text-align: center;*/
 }
 
-/*OTHER-METRICS*/
+/*OTHER-METRICS-END*/
 
 /* DATALIST */
 
@@ -398,6 +398,39 @@ h4.homepage-subtitle {
 }
 
 /* DATALIST-END */
+
+/* TAB-LIST */
+
+.nav-pills .nav-link {
+	background-color: #ccc;
+	border-radius: 4px;
+	color: #2366a8;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 15px;
+	margin: 15px 2px 0;
+}
+
+.nav-pills .nav-link:hover {
+	background-color: #999;
+	color: #073b6e;
+	transition: all .5s ease-in-out;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	background-color: #3776b3;
+    color: #fff;
+}
+
+.nav-pills .nav-link.active:hover, .nav-pills .show > .nav-link:hover {
+	background-color: #195692;
+    color: #d8d8d8;
+    transition: all .5s ease-in-out;
+
+}
+
+/* TAB-LIST-END */
+
 
 /* FOOTER */
 
