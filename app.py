@@ -168,31 +168,41 @@ def login():
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
-            pool = request.form.get("pool")
-            minYield = request.form.get("minYield")
-            maxYield = request.form.get("maxYield")
-            minClusterDensity = request.form.get("minClusterDensity")
-            maxClusterDensity = request.form.get("maxClusterDensity")
-            minPassFilter = request.form.get("minPassFilter")
-            maxPassFilter = request.form.get("maxPassFilter")
-            minq30 = request.form.get("minq30")
-            maxq30 = request.form.get("maxq30")
-            experiment = request.form.get("experiment")
-            chemistry = request.form.get("chemistry")
-            # session.clear()
-            run = {
-                'user': username,
-                'pool': pool,
-                'yield': yields,
-                'clusterDensity': clusterDensity,
-                'passFilter': passFilter,
-                'q30': q30,
-                'experiment': experiment,
-                'chemistry': chemistry,
-                'comment': comment
-            }
-
-            return redirect(url_for("username", username=session["username"]))
+            # pool = request.form.get("pool")
+            minYield = int(request.form.get("minYield"))
+            print(minYield)
+            maxYield = int(request.form.get("maxYield"))
+            print(type(maxYield))
+            minClusterDensity = int(request.form.get("minClusterDensity"))
+            print(minClusterDensity)
+            maxClusterDensity = int(request.form.get("maxClusterDensity"))
+            minPassFilter = int(request.form.get("minPassFilter"))
+            maxPassFilter = int(request.form.get("maxPassFilter"))
+            minq30 = int(request.form.get("minq30"))
+            maxq30 = int(request.form.get("maxq30"))
+            # experiment = request.form.get("experiment")
+            # chemistry = request.form.get("chemistry")
+            userData = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': username},
+                    {'$and': [ {'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]}
+                    # {'experiment': experiment},
+                    # {'chemistry': chemistry}
+                ]
+            }, { '_id': 0 }))
+            print(userData[0]['user'])
+            print(userData[0]['yield'])
+            print(userData[0]['clusterDensity'])
+            print(userData[0]['passFilter'])
+            print(userData[0]['q30'])
+            # print(userData[0]['experiment'])
+            # print(userData[0]['chemistry'])
+            # print(userData[0]['user'])
+            myUserData = userData[0]
+            return redirect(url_for("username", username=session["username"], userData=myUserData))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("login.html")
@@ -216,8 +226,9 @@ def signup():
     return render_template("signup.html")
 
 
-@app.route("/user/<username>", methods=["GET", "POST"])
-def username(username):
+@app.route("/user/<userData>", methods=["GET", "POST"])
+def username(userData):
+    username = userData.user
     """ Displays data for individual users & adds new runs """
     title = "WELCOME {}".format(username.upper())
     runs = mongo.db.seqMetCol
@@ -269,7 +280,7 @@ def username(username):
         'q30': q30
     }
     session.clear()
-    return render_template("user.html", title=title, qcData=qcData)
+    return render_template("user.html", title=title, qcData=qcData, userData=userData)
 
 
 @app.route('/runs')
