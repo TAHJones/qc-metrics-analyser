@@ -179,6 +179,7 @@ def signup():
 @app.route("/user/<username>", methods=["GET", "POST"])
 def username(username):
     """ Displays data for individual users & adds new runs """
+    title = "WELCOME {}".format(username.upper())
     runs = mongo.db.seqMetCol
     if request.method == "POST":
         pool = request.form.get("pool")
@@ -228,7 +229,7 @@ def username(username):
         'q30': q30
     }
     session.clear()
-    return render_template("user.html", username=username, qcData=qcData)
+    return render_template("user.html", title=title, qcData=qcData)
 
 
 @app.route('/runs')
