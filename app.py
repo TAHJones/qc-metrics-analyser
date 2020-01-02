@@ -36,7 +36,6 @@ def getExperiment(experiment):
 
 def getUserExperiment(experiment, user):
     data = list(mongo.db.seqMetCol.aggregate([
-    # data = mongo.db.seqMetCol.aggregate([
         {
             '$match': {
                 '$and': [ {'user': user}, {'experiment': experiment} ]
@@ -70,6 +69,23 @@ def getChemistry(chemistry):
     ]))
     return data
 
+def getUserChemistry(chemistry, user):
+    data = list(mongo.db.seqMetCol.aggregate([
+        {
+            '$match': {
+                '$and': [ {'user': user}, {'chemistry': chemistry} ]
+            }
+        },
+        {
+            '$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+            }
+        }
+    ]))
+    if data == []:
+        data = [{'count': 0}]
+    return data
 
 def getDataSummary(param):
     dollarParam = "${}".format(param)
@@ -232,9 +248,9 @@ def username(username):
     genome = getUserExperiment("Genome", username)[0]['count']
     exome = getUserExperiment("Exome", username)[0]['count']
     capture = getUserExperiment("Capture", username)[0]['count']
-    high300=getChemistry("High300")[0]['count']
-    mid300=getChemistry("Mid300")[0]['count']
-    mid150=getChemistry("Mid150")[0]['count']
+    high300=getUserChemistry("High300", username)[0]['count']
+    mid300=getUserChemistry("Mid300", username)[0]['count']
+    mid150=getUserChemistry("Mid150", username)[0]['count']
     yields = getDataSummary("yield")
     clusterDensity = getUserDataSummary("clusterDensity", username)
     passFilter = getUserDataSummary("passFilter", username)
