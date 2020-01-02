@@ -401,13 +401,22 @@ h4.homepage-subtitle {
 
 /* TAB-LIST */
 
+.nav-item {
+	margin: 0 auto;
+	width: 25%;
+}
+
+.nav-item > a {
+	text-align: center;
+}
+
 .nav-pills .nav-link {
 	background-color: #ccc;
 	border-radius: 4px;
 	color: #2366a8;
 	font-size: 14px;
 	font-weight: bold;
-	padding: 10px 15px;
+	padding: 20px 0;
 	margin: 15px 2px 0;
 }
 
