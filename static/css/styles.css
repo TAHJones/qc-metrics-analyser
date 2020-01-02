@@ -383,17 +383,17 @@ h4.homepage-subtitle {
 }
 
 .qc-data-btn {
-	background-color: #202020;
+	background-color: #3776b3;
 	border-radius: 4px;
-    color: #3399f3;
+    color: #fff;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 8px 18px;
 }
 
 .qc-data-btn:hover {
-	background-color: #000;
-	color: #FF4C04;
+	background-color: #195692;
+	color: #d8d8d8;
 	transition: all .5s ease-in-out;
 }
 
