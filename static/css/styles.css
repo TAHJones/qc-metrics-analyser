@@ -421,7 +421,7 @@ h4.homepage-subtitle {
 }
 
 .nav-pills .nav-link:hover {
-	background-color: #999;
+	background-color: #b4b4b4;
 	color: #073b6e;
 	transition: all .5s ease-in-out;
 }
