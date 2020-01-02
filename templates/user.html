@@ -323,12 +323,31 @@
                     <!-- NEW-DATA-END -->
 
                     <!-- VIEW-DATA -->
-                    <div class="tab-pane fade" id="view-runs" role="tabpanel">
+                    <div class="tab-pane fade" id="view-data" role="tabpanel">
+                        <section class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-10">
+                                    <h3>{{ username }}'s Sequencing Runs</h3>
+                                    <div class="" id="">
+                                        {% for data in userData %}
+                                            {{ data.run }}
+                                            {{ data.pool }}
+                                            {{ data.user }}
+                                            {{ data.yield }}
+                                            {{ data.clusterDensity }}
+                                            {{ data.passFilter }}
+                                            {{ data.q30 }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
                     </div>
                     <!-- VIEW-DATA-END -->
 
                     <!-- DELETE-DATA -->
-                    <div class="tab-pane fade" id="delete-runs" role="tabpanel">
+                    <div class="tab-pane fade" id="delete-data" role="tabpanel">
                     </div>
                     <!-- DELETE-DATA-END -->
 
