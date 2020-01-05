@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
@@ -17,156 +18,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Username</label>
-                            <input type="text" class="form-control" placeholder="Name" name="username" id="username" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Pool Number</label>
-                            <input type="text" class="form-control" placeholder="Pool" name="pool" id="pool" value="All" required data-validation-required-message="Please enter pool number.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Min Yield</label>
-                            <select name="minYield" class="form-control" id="minYield">
-                                <option value="1" selected>1</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Max Yield</label>
-                            <select name="maxYield" class="form-control" id="maxYield">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                                <option value="100" selected>100</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Min Cluster Density</label>
-                            <select name="minClusterDensity" class="form-control" id="minClusterDensity">
-                                <option value="50" selected>50</option>
-                                <option value="75">75</option>
-                                <option value="100">100</option>
-                                <option value="125">125</option>
-                                <option value="150">150</option>
-                                <option value="175">175</option>
-                                <option value="200">200</option>
-                                <option value="225">225</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Max Cluster Density</label>
-                            <select name="maxClusterDensity" class="form-control" id="maxClusterDensity">
-                                <option value="75">75</option>
-                                <option value="100">100</option>
-                                <option value="125">125</option>
-                                <option value="150">150</option>
-                                <option value="175">175</option>
-                                <option value="200">200</option>
-                                <option value="225">225</option>
-                                <option value="250" selected>250</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Min Pass Filter</label>
-                            <select name="minPassFilter" class="form-control" id="minPassFilter">
-                                <option value="1" selected>1</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Max Pass Filter</label>
-                            <select name="maxPassFilter" class="form-control" id="maxPassFilter">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                                <option value="100" selected>100</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Min Q30</label>
-                            <select name="minq30" class="form-control" id="minq30">
-                                <option value="1" selected>1</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Max Q30</label>
-                            <select name="maxq30" class="form-control" id="maxq30">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                                <option value="100" selected>100</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label for="experiment">Experiment</label>
-                            <select name="experiment" class="form-control" id="experiment">
-                                <option value="All" selected>All</option>
-                                <option value="Genome">Genome</option>
-                                <option value="Exome">Exome</option>
-                                <option value="Capture">Capture</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label for="chemistry">Chemistry</label>
-                            <select name="chemistry" class="form-control" id="chemistry">
-                                <option value="All" selected>All</option>
-                                <option value="High300">High300</option>
-                                <option value="Mid300">Mid300</option>
-                                <option value="Mid150">Mid150</option>
-                            </select>
+                            <input type="text" class="form-control" name="username" id="username" required data-validation-required-message="Please enter your username.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -179,4 +31,5 @@
             </div>
         </div>
     </section>
+
 {% endblock %}
