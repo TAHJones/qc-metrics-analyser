@@ -168,41 +168,9 @@ def login():
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
-            # pool = request.form.get("pool")
-            minYield = int(request.form.get("minYield"))
-            print(minYield)
-            maxYield = int(request.form.get("maxYield"))
-            print(type(maxYield))
-            minClusterDensity = int(request.form.get("minClusterDensity"))
-            print(minClusterDensity)
-            maxClusterDensity = int(request.form.get("maxClusterDensity"))
-            minPassFilter = int(request.form.get("minPassFilter"))
-            maxPassFilter = int(request.form.get("maxPassFilter"))
-            minq30 = int(request.form.get("minq30"))
-            maxq30 = int(request.form.get("maxq30"))
-            # experiment = request.form.get("experiment")
-            # chemistry = request.form.get("chemistry")
-            userData = list(mongo.db.seqMetCol.find({
-                '$and': [
-                    {'user': username},
-                    {'$and': [ {'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]}
-                    # {'experiment': experiment},
-                    # {'chemistry': chemistry}
-                ]
-            }, { '_id': 0 }))
-            print(userData[0]['user'])
-            print(userData[0]['yield'])
-            print(userData[0]['clusterDensity'])
-            print(userData[0]['passFilter'])
-            print(userData[0]['q30'])
-            # print(userData[0]['experiment'])
-            # print(userData[0]['chemistry'])
-            # print(userData[0]['user'])
-            myUserData = userData[0]
-            return redirect(url_for("username", username=session["username"], userData=myUserData))
+            # return redirect(url_for("username"))
+            return redirect(url_for("username", username=session["username"]))
+            # return redirect(url_for('username', username=username))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("login.html")
@@ -226,9 +194,10 @@ def signup():
     return render_template("signup.html")
 
 
-@app.route("/user/<userData>", methods=["GET", "POST"])
-def username(userData):
-    username = userData.user
+# @app.route("/user/<username>", methods=["GET", "POST"])
+@app.route("/user", methods=["GET", "POST"])
+def username():    
+    username = request.args.get("username")
     """ Displays data for individual users & adds new runs """
     title = "WELCOME {}".format(username.upper())
     runs = mongo.db.seqMetCol
@@ -241,7 +210,7 @@ def username(userData):
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
-        session.clear()
+        # session.clear()
         run = {
             'user': username,
             'pool': pool,
@@ -254,7 +223,7 @@ def username(userData):
             'comment': comment
         }
         runs.insert_one(run)
-        return redirect(url_for("username", username=username))
+        return redirect(url_for("username"))
 
     genome = getUserExperiment("Genome", username)[0]['count']
     exome = getUserExperiment("Exome", username)[0]['count']
@@ -280,27 +249,54 @@ def username(userData):
         'q30': q30
     }
     session.clear()
-    return render_template("user.html", title=title, qcData=qcData, userData=userData)
+    return render_template("user.html", title=title, qcData=qcData)
 
 
-@app.route('/runs')
-def runs():
-    return render_template("runs.html", metrics=mongo.db.seqMetCol.find())
+@app.route("/view-user-runs", methods=["GET", "POST"])
+def viewUserRuns():
+    if request.method == "POST":
+        username = request.form.get("username")
+        minYield = int(request.form.get("minYield"))
+        maxYield = int(request.form.get("maxYield"))
+        minClusterDensity = int(request.form.get("minClusterDensity"))
+        maxClusterDensity = int(request.form.get("maxClusterDensity"))
+        minPassFilter = int(request.form.get("minPassFilter"))
+        maxPassFilter = int(request.form.get("maxPassFilter"))
+        minq30 = int(request.form.get("minq30"))
+        maxq30 = int(request.form.get("maxq30"))
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        userData = list(mongo.db.seqMetCol.find({
+            '$and': [
+                {'user': username},
+                {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                {'experiment': experiment},
+                {'chemistry': chemistry}
+            ]
+        }, { '_id': 0 }))
+        if userData == []:
+            flash('No Runs Were Found')
+            userData = [{'run': 'No Runs Were Found'}]
+
+        # for data in userData:
+        #     print(data['user'])
+        # return redirect(url_for("viewUserRuns", username=session["username"], userData=userData))
+        # return redirect(url_for("viewUserRuns", userData=userData))
+        return render_template("view-user-runs.html", userData=userData)
+    return render_template("view-user-runs.html")
 
 
-@app.route('/chemistry')
-def chemistry():
-    return render_template("chemistry.html")
+@app.route("/add-user-run")
+def addUserRun():
+    return render_template("add-user-run.html")
 
 
-@app.route('/experiments')
-def experiments():
-    return render_template("experiments.html")
-
-
-@app.route('/users')
-def users():
-    return render_template("users.html")
+@app.route("/delete-user-run")
+def deleteUserRun():
+    return render_template("delete-user-run.html")
 
 
 if __name__ == "__main__":
