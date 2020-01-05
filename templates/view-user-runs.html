@@ -189,8 +189,8 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-sm-10">
-                <h3>{{ username }}'s Sequencing Runs</h3>
                 <div class="user-runs" id="userRuns">
+                    <h3>{{ username }}'s Sequencing Runs</h3>
                     {% for data in userData %}
                     <ul>
                         <li>Run: {{ data.run|int() }}</li>
