@@ -440,6 +440,16 @@ h4.homepage-subtitle {
 
 /* TAB-LIST-END */
 
+/* VIEW-USER-RUNS */
+
+.user-runs li {
+	display: inline-block;
+	/* padding-bottom: 0; */
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+/* VIEW-USER-RUNS-END */
 
 /* FOOTER */
 
