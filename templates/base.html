@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('viewUserRuns') }}">View Runs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('viewUserRuns', username=username, title=title) }}">View Runs</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('addUserRun') }}"> Add Runs</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('deleteUserRun') }}">Delete Runs</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
@@ -73,7 +73,7 @@
                         <a class="d-none d-md-inline-block" href="#">Top of Page</a>
                     </li>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('viewUserRuns') }}">View Runs</a></li>
+                    <li><a href="{{ url_for('viewUserRuns', username=username, title=title) }}">View Runs</a></li>
                     <li class="d-none d-sm-inline-block"><a href="{{ url_for('addUserRun') }}">Add Run</a></li>
                     <li><a href="{{ url_for('deleteUserRun') }}">Delete Run</a></li>
                 </ul>
