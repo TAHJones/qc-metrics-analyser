@@ -326,14 +326,6 @@ def viewUserRuns():
                         'q30': 0
                         }]
 
-        # if userData == []:
-        #     flash('No Runs Were Found')
-        #     userData = [{'run': 'No Runs Were Found'}]
-
-        # for data in userData:
-        #     print(data['user'])
-        # return redirect(url_for("viewUserRuns", username=session["username"], userData=userData))
-        # return redirect(url_for("viewUserRuns", _anchor="userRuns", userData=userData))
         return render_template("view-user-runs.html",
                                 username=username,
                                 title=title,
@@ -343,8 +335,6 @@ def viewUserRuns():
                             username=username,
                             title=title,
                             pageLocation=json.dumps("userForm"))
-    # return render_template("view-user-runs.html", pageLocation=json.dumps(""))
-    # return render_template("view-user-runs.html")
 
 
 @app.route("/add-user-run")
