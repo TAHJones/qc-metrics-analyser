@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash, session
+from flask import Flask, render_template, redirect, request, url_for, flash, session, json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
+# import json
 
 
 app = Flask(__name__)
@@ -210,7 +211,6 @@ def username():
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
-        # session.clear()
         run = {
             'user': username,
             'pool': pool,
@@ -249,13 +249,14 @@ def username():
         'q30': q30
     }
     session.clear()
-    return render_template("user.html", title=title, qcData=qcData)
+    return render_template("user.html", title=title, qcData=qcData, username=username)
 
 
 @app.route("/view-user-runs", methods=["GET", "POST"])
 def viewUserRuns():
+    username = request.args.get("username")
+    title = request.args.get("title")
     if request.method == "POST":
-        username = request.form.get("username")
         minYield = int(request.form.get("minYield"))
         maxYield = int(request.form.get("maxYield"))
         minClusterDensity = int(request.form.get("minClusterDensity"))
@@ -266,27 +267,84 @@ def viewUserRuns():
         maxq30 = int(request.form.get("maxq30"))
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
-        userData = list(mongo.db.seqMetCol.find({
-            '$and': [
-                {'user': username},
-                {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
-                {'experiment': experiment},
-                {'chemistry': chemistry}
-            ]
-        }, { '_id': 0 }))
+
+        if chemistry == "All" and experiment == "All":
+            userData = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': username},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]}
+                ]
+            }, { '_id': 0 }))
+        elif chemistry != "All" and experiment == "All":
+            userData = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': username},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'chemistry': chemistry }
+                ]
+            }, { '_id': 0 }))
+        elif chemistry == "All" and experiment != "All":
+            userData = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': username},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'experiment': experiment }
+                ]
+            }, { '_id': 0 }))
+        elif chemistry != "All" and experiment != "All":
+            userData = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': username},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'experiment': experiment },
+                    {'chemistry': chemistry } 
+                ]
+            }, { '_id': 0 }))
+
+        print(userData)
         if userData == []:
-            flash('No Runs Were Found')
-            userData = [{'run': 'No Runs Were Found'}]
+            print('No Runs Were Found')
+            flash('No Runs of that type were found')
+            userData = [{
+                        'run': 0,
+                        'pool': 0,
+                        'yield': 0,
+                        'clusterDensity': 0,
+                        'passFilter': 0,
+                        'q30': 0
+                        }]
+
+        # if userData == []:
+        #     flash('No Runs Were Found')
+        #     userData = [{'run': 'No Runs Were Found'}]
 
         # for data in userData:
         #     print(data['user'])
         # return redirect(url_for("viewUserRuns", username=session["username"], userData=userData))
-        # return redirect(url_for("viewUserRuns", userData=userData))
-        return render_template("view-user-runs.html", userData=userData)
-    return render_template("view-user-runs.html")
+        # return redirect(url_for("viewUserRuns", _anchor="userRuns", userData=userData))
+        return render_template("view-user-runs.html",
+                                username=username,
+                                title=title,
+                                userData=userData,
+                                pageLocation=json.dumps("userRuns"))
+    return render_template("view-user-runs.html",
+                            username=username,
+                            title=title,
+                            pageLocation=json.dumps("userForm"))
+    # return render_template("view-user-runs.html", pageLocation=json.dumps(""))
+    # return render_template("view-user-runs.html")
 
 
 @app.route("/add-user-run")
