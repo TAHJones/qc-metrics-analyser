@@ -337,9 +337,35 @@ def viewUserRuns():
                             pageLocation=json.dumps("userForm"))
 
 
-@app.route("/add-user-run")
+@app.route("/add-user-run", methods=["GET", "POST"])
 def addUserRun():
-    return render_template("add-user-run.html")
+    username = request.args.get("username")
+    """ Displays data for individual users & adds new runs """
+    title = "WELCOME {}".format(username.upper())
+    runs = mongo.db.seqMetCol
+    if request.method == "POST":
+        pool = request.form.get("pool")
+        yields = request.form.get("yield")
+        clusterDensity = request.form.get("clusterDensity")
+        passFilter = request.form.get("passFilter")
+        q30 = request.form.get("q30")
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        comment = request.form.get("comment")
+        run = {
+            'user': username,
+            'pool': pool,
+            'yield': yields,
+            'clusterDensity': clusterDensity,
+            'passFilter': passFilter,
+            'q30': q30,
+            'experiment': experiment,
+            'chemistry': chemistry,
+            'comment': comment
+        }
+        runs.insert_one(run)
+        return redirect(url_for("addUserRun"))
+    return render_template("add-user-run.html", username=username, title=title)
 
 
 @app.route("/delete-user-run")
