@@ -18,28 +18,29 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                <!-- {% with messages = get_flashed_messages() %} {% if messages %}
+                {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
                     {% for message in messages %}
                     <li>{{ message }}</li>
                     {% endfor %}
                 </ul>
-                {% endif %} {% endwith %} -->
-                <h3>Please enter you username into the form below:</h3>
+                {% endif %} {% endwith %}
+                <a href="#" id="userForms"></a>
+                <h3>Please enter you run below:</h3>
                 <br>
 
                 <form method="POST">
                     <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <!-- <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Username</label>
                             <input type="text" class="form-control" placeholder="Name" name="username" id="username" required data-validation-required-message="Please enter your name.">
                             <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        </div> -->
+                        <!-- <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Pool Number</label>
                             <input type="text" class="form-control" placeholder="Pool" name="pool" id="pool" value="All" required data-validation-required-message="Please enter pool number.">
                             <p class="help-block text-danger"></p>
-                        </div>
+                        </div> -->
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Min Yield</label>
                             <select name="minYield" class="form-control" id="minYield">
@@ -189,13 +190,13 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-sm-10">
-                <div class="user-runs" id="userRuns">
+                <div class="user-runs">
+                    <a href="#" id="userRuns"></a>
                     <h3>{{ username }}'s Sequencing Runs</h3>
                     {% for data in userData %}
                     <ul>
                         <li>Run: {{ data.run|int() }}</li>
                         <li>Pool: {{ data.pool|int() }}</li>
-                        <!-- <li>User: {{ data.user|int() }}</li> -->
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
                         <li>Pass Filter: {{ data.passFilter|int() }}</li>
@@ -207,4 +208,20 @@
         </div>
     </section>
 <!-- VIEW-USER-DATA-END -->
-{% endblock %}
+
+{% block javascript %}
+<script>
+    var pageLocation = JSON.parse({{ pageLocation|tojson }});
+
+    function jumpto(anchor){
+        window.location.href = "#"+anchor;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        jumpto(pageLocation);
+    });
+</script>
+{% endblock javascript %}
+
+{% endblock content %}
+
