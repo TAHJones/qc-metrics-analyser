@@ -19,9 +19,23 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <a href="#" id="userForm"></a>
-                <h3>Please enter you run below:</h3>
+                <h3>Find User Run:</h3>
                 <br>
+                <form method="POST">
+                    <div class="row">
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Pool Number</label>
+                            <input type="number" class="form-control" placeholder="poolNumber" name="poolNumber" id="poolNumber" required data-validation-required-message="Please enter your pool number.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="formButton" value="userRun" class="btn btn-primary" id="sendFormButton">Send</button>
+                        </div>
+                    </div>
+                </form>
 
+                <h3>Display User Run:</h3>
+                <br>
                 <form method="POST">
                     <div class="row">
                         <!-- <div class="form-group col-sm-6 floating-label-form-group controls">
@@ -168,10 +182,9 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                    </div>
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="sendFormButton">Send</button>
+                        <div class="form-group">
+                            <button type="submit" name="formButton" value="userRuns" class="btn btn-primary" id="sendFormButton">Send</button>
+                        </div>
                     </div>
                 </form>
 
@@ -193,6 +206,18 @@
                         {% endfor %}
                     </ul>
                     {% endif %} {% endwith %}
+                    {% for data in userRun %}
+                    <ul>
+                        <li>Run: {{ data.run|int() }}</li>
+                        <li>Pool: {{ data.pool|int() }}</li>
+                        <li>Yield: {{ data.yield|int() }}</li>
+                        <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
+                        <li>Pass Filter: {{ data.passFilter|int() }}</li>
+                        <li>Q30: {{ data.q30|int() }}</li>
+                        <li>Experiment: {{ data.experiment }}</li>
+                        <li>Chemistry: {{ data.chemistry }}</li>
+                    </ul>
+                    {% endfor %}
                     {% for data in userData %}
                     <ul>
                         <li>Run: {{ data.run|int() }}</li>
