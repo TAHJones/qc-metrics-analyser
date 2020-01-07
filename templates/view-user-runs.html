@@ -15,10 +15,10 @@
     </section> -->
     <!-- USER-NAV-END -->
 
-    <section class="container">
+    <section class="container" id="userFormBg">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                <a href="#" id="userForms"></a>
+                <a href="#" id="userForm"></a>
                 <h3>Please enter you run below:</h3>
                 <br>
 
@@ -171,7 +171,7 @@
                     </div>
                     <div id="success"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                        <button type="submit" class="btn btn-primary" id="sendFormButton">Send</button>
                     </div>
                 </form>
 
@@ -180,7 +180,7 @@
     </section>
 
     <!-- VIEW-USER-DATA -->
-    <section class="container">
+    <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <div class="user-runs">
@@ -204,6 +204,7 @@
                     </ul>
                     {% endfor %}
                 </div>
+                <button type="submit" class="btn btn-primary" id="returnToForm">Return</button>
             </div>
         </div>
     </section>
@@ -212,13 +213,24 @@
 {% block javascript %}
 <script>
     var pageLocation = JSON.parse({{ pageLocation|tojson }});
+    var userForm = document.getElementById("userFormBg");
+    var userRuns = document.getElementById("userRunsBg");
+    var returnToForm = document.getElementById("returnToForm");
 
-    function jumpto(anchor){
-        window.location.href = "#"+anchor;
+    function hidePageSection(pageSection){
+        if(pageSection=="userRuns"){
+            userRuns.classList.remove("hide");
+            userForm.classList.add("hide");
+        }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        jumpto(pageLocation);
+        hidePageSection(pageLocation);
+    });
+
+   returnToForm.addEventListener("click", function(){
+        userRuns.classList.add("hide");
+        userForm.classList.remove("hide");
     });
 </script>
 {% endblock javascript %}
