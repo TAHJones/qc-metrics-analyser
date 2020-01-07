@@ -455,6 +455,14 @@ h4.homepage-subtitle {
 
 /* VIEW-USER-RUNS-END */
 
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* FOOTER */
 
 .footer-nav {
