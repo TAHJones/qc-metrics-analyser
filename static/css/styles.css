@@ -442,14 +442,22 @@ h4.homepage-subtitle {
 
 /* VIEW-USER-RUNS */
 
-.user-runs > h3 {
+.user-data-lists > h3 {
     font-size: 20px;
     margin: 0 0 20px;
 }
 
-.user-runs > ul > li {
+.user-run, .user-runs {
+    padding-left: 0;
+}
+
+.user-run > li {
+    list-style: none;
+}
+
+.user-runs > li {
 	display: inline-block;
-	font-size: 14px;
+	font-size: 12px;
 	margin-right: 10px;
 }
 
