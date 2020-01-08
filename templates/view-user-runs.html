@@ -171,7 +171,7 @@
     <!-- VIEW-USER-DATA -->
     <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <div class="user-data-lists">
                     <a href="#" id="userDataList"></a>
                     <h3>{{ username }}'s Sequencing Runs</h3> 
@@ -184,7 +184,7 @@
                     {% endif %} {% endwith %}
                     {% for data in userRun %}
                     <ul class="user-run">
-                        <li>Run: {{ data.run|int() }}</li>
+                        <!-- <li>Run: {{ data.run|int() }}</li> -->
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
@@ -196,7 +196,7 @@
                     {% endfor %}
                     {% for data in userData %}
                     <ul class="user-runs">
-                        <li>Run: {{ data.run|int() }}</li>
+                        <!-- <li>Run: {{ data.run|int() }}</li> -->
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
