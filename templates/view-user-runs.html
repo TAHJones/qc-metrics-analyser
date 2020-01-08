@@ -183,7 +183,7 @@
                     </ul>
                     {% endif %} {% endwith %}
                     {% for data in userRun %}
-                    <ul>
+                    <ul class="userRun">
                         <li>Run: {{ data.run|int() }}</li>
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
@@ -195,7 +195,7 @@
                     </ul>
                     {% endfor %}
                     {% for data in userData %}
-                    <ul>
+                    <ul class="userRuns">
                         <li>Run: {{ data.run|int() }}</li>
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
