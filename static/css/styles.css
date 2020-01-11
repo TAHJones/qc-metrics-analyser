@@ -462,10 +462,18 @@ h4.homepage-subtitle {
     margin-bottom: 20px;
 }
 
+#userRunButton {
+    margin-top: 31px;
+}
+
 .user-runs > li {
 	display: inline-block;
 	font-size: 12px;
 	margin-right: 10px;
+}
+
+#userRunsButton {
+    margin-left: 16px;
 }
 
 /* VIEW-USER-RUNS-END */
