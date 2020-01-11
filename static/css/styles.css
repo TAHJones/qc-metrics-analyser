@@ -458,8 +458,8 @@ h4.homepage-subtitle {
     margin-bottom: 10px;
 }
 
-.user-run > li:last-of-type {
-    margin-bottom: 20px;
+.user-run {
+    margin-bottom: 25px;
 }
 
 #userRunButton {
@@ -470,6 +470,10 @@ h4.homepage-subtitle {
 	display: inline-block;
 	font-size: 12px;
 	margin-right: 10px;
+}
+
+.user-runs:last-of-type {
+	margin-bottom: 25px;
 }
 
 #userRunsButton {
