@@ -386,5 +386,10 @@ def deleteUserRun():
     return render_template("delete-user-run.html")
 
 
+@app.route("/update-user-run")
+def updateUserRun():
+    return render_template("update-user-run.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
