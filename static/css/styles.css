@@ -397,6 +397,24 @@ h4.homepage-subtitle {
 	transition: all .5s ease-in-out;
 }
 
+.qc-data-btn--delete {
+    background-color: #dc3545;
+}
+
+.qc-data-btn--delete:hover {
+    background-color: #c82333;
+}
+
+.qc-data-btn--update {
+    background-color: #ffc107;
+}
+
+.qc-data-btn--update:hover {
+    background-color: #e0a800;
+}
+
+
+
 /* DATALIST-END */
 
 /* TAB-LIST */
