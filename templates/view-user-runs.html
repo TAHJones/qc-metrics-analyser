@@ -184,7 +184,6 @@
                     {% endif %} {% endwith %}
                     {% for data in userRun %}
                     <ul class="user-run">
-                        <!-- <li>Run: {{ data.run|int() }}</li> -->
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
@@ -196,7 +195,6 @@
                     {% endfor %}
                     {% for data in userData %}
                     <ul class="user-runs">
-                        <!-- <li>Run: {{ data.run|int() }}</li> -->
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
