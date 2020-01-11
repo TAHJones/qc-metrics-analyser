@@ -444,16 +444,22 @@ h4.homepage-subtitle {
 
 .user-data-lists > h3 {
 	font-size: 20px;
-	margin: 30px 0 20px;
+	margin: 50px 0 20px;
 	text-align: left;
 }
 
 .user-run, .user-runs {
+    margin-bottom: 20px;
     padding-left: 0;
 }
 
 .user-run > li {
     list-style: none;
+    margin-bottom: 10px;
+}
+
+.user-run > li:last-of-type {
+    margin-bottom: 20px;
 }
 
 .user-runs > li {
