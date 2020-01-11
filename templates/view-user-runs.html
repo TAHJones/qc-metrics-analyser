@@ -206,8 +206,8 @@
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
-                <button type="submit" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</button>
-                <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="deleteRun">Update</button>
+                <button type="submit" class="btn qc-data-btn qc-data-btn--delete hide" id="deleteRun">Delete</button>
+                <button type="submit" class="btn qc-data-btn qc-data-btn--update hide" id="updateRun">Update</button>
             </div>
         </div>
     </section>
@@ -219,9 +219,16 @@
     var userForm = document.getElementById("userFormBg");
     var userRuns = document.getElementById("userRunsBg");
     var returnToForm = document.getElementById("returnToForm");
+    var deleteRun = document.getElementById("deleteRun");
+    var updateRun = document.getElementById("updateRun");
 
     function hidePageSection(pageSection){
-        if(pageSection=="userDataList"){
+        if(pageSection=="userRun"){
+            userRuns.classList.remove("hide");
+            userForm.classList.add("hide");
+            deleteRun.classList.remove("hide");
+            updateRun.classList.remove("hide");            
+        } else if(pageSection=="userRuns") {
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
         }
@@ -234,6 +241,8 @@
    returnToForm.addEventListener("click", function(){
         userRuns.classList.add("hide");
         userForm.classList.remove("hide");
+        deleteRun.classList.add("hide");
+        updateRun.classList.add("hide");
     });
 </script>
 {% endblock javascript %}
