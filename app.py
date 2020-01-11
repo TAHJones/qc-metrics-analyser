@@ -169,9 +169,7 @@ def login():
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
-            # return redirect(url_for("username"))
             return redirect(url_for("username", username=session["username"]))
-            # return redirect(url_for('username', username=username))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("login.html")
@@ -195,7 +193,6 @@ def signup():
     return render_template("signup.html")
 
 
-# @app.route("/user/<username>", methods=["GET", "POST"])
 @app.route("/user", methods=["GET", "POST"])
 def username():    
     username = request.args.get("username")
