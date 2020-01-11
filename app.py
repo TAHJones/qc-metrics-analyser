@@ -267,7 +267,7 @@ def viewUserRuns():
                                     username=username,
                                     title=title,
                                     userRun=userRun,
-                                    pageLocation=json.dumps("userDataList"))
+                                    pageLocation=json.dumps("userRun"))
 
         elif request.form['formButton'] == 'userRuns':
             minYield = int(request.form.get("minYield"))
@@ -343,7 +343,7 @@ def viewUserRuns():
                                     username=username,
                                     title=title,
                                     userData=userData,
-                                    pageLocation=json.dumps("userDataList"))
+                                    pageLocation=json.dumps("userRuns"))
     return render_template("view-user-runs.html",
                             username=username,
                             title=title,
