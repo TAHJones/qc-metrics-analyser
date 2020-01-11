@@ -257,7 +257,6 @@ def viewUserRuns():
             poolNumber = int(request.form.get("poolNumber"))
             print(type(poolNumber))
             userRun = list(mongo.db.seqMetCol.find(
-                # '$and': [{'user': username}, {'pool': poolNumber}]
                 {'user': username, 'pool': poolNumber}, { '_id': 0 }))
             return render_template("view-user-runs.html",
                                     username=username,
