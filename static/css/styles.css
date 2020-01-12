@@ -510,6 +510,10 @@ h4.homepage-subtitle {
     display: block;
 }
 
+.invisible {
+    visibility: hidden;
+}
+
 /* FOOTER */
 
 .footer-nav {
