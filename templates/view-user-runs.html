@@ -207,8 +207,9 @@
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
-                <a href="{{ url_for('deleteUserRun') }}" class="btn qc-data-btn qc-data-btn--delete hide" id="deleteRun">Delete</a>
-                <a type="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update hide" id="updateRun">Update</a>
+                <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
+                <a href="{{ url_for('updateUserRun', userData=userData) }}" class="btn qc-data-btn qc-data-btn--update hide" id="updateRun">Update</a>
+
             </div>
         </div>
     </section>
