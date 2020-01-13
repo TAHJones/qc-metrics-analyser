@@ -207,8 +207,8 @@
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
-                <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
-                <a href="{{ url_for('updateUserRun', userData=userData) }}" class="btn qc-data-btn qc-data-btn--update hide" id="updateRun">Update</a>
+                <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
+                <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
 
             </div>
         </div>
@@ -228,8 +228,8 @@
         if(pageSection=="userRun"){
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
-            deleteRun.classList.remove("hide");
-            updateRun.classList.remove("hide");            
+            deleteRun.classList.remove("invisible");
+            updateRun.classList.remove("invisible");            
         } else if(pageSection=="userRuns") {
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
@@ -243,8 +243,8 @@
    returnToForm.addEventListener("click", function(){
         userRuns.classList.add("hide");
         userForm.classList.remove("hide");
-        deleteRun.classList.add("hide");
-        updateRun.classList.add("hide");
+        deleteRun.classList.add("invisible");
+        updateRun.classList.add("invisible");
     });
 </script>
 {% endblock javascript %}
