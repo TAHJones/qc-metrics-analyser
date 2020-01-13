@@ -247,7 +247,7 @@ def username():
     session.clear()
     return render_template("user.html", title=title, qcData=qcData, username=username)
 
-# userRun = None
+
 @app.route("/view-user-runs", methods=["GET", "POST"])
 def viewUserRuns():
     username = request.args.get("username")
@@ -255,9 +255,11 @@ def viewUserRuns():
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
-            print(type(poolNumber))
+            # print(type(poolNumber))
             userRun = list(mongo.db.seqMetCol.find(
                 {'user': username, 'pool': poolNumber}, { '_id': 0 }))
+            session["userRun"] = userRun[0]
+            # print(session["userRun"])
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=title,
@@ -382,14 +384,14 @@ def deleteUserRun():
     username = request.args.get("username")
     poolNumber = int(request.args.get("poolNumber"))
     # print(userRun['run'])
-    print(type(username))
-    print(type(poolNumber))
+    # print(type(username))
+    # print(type(poolNumber))
     # for data in userRun:
         # print(data['run'])
         # print(data)
     # print(runNumber)
     list(mongo.db.seqMetCol.remove({'user': username, 'pool': poolNumber}))
-    print("run deleted!!!")
+    # print("run deleted!!!")
     return render_template("delete-user-run.html")
     # return redirect(url_for("deleteUserRun"))
 
@@ -400,7 +402,7 @@ def updateUserRun():
     #     print(pool)
     #     return redirect(url_for("viewUserRuns", username=username))
 
-    return render_template("update-user-run.html")
+    return render_template("update-user-run.html", userRun=json.dumps(session.get("userRun")))
 
 
 if __name__ == "__main__":
