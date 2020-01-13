@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- UPDATE-DATA -->
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-lg-10">
+                <div id="formContainer"></div>
+            </div>
+        </div>
+    </section>
+    <!-- UPDATE-DATA-END -->
+
+{% block javascript %}
+
+    <script>
+        var userRun = JSON.parse({{ userRun|tojson }});
+        var formContainer = document.getElementById("formContainer");
+        console.log(userRun);
+
+        var experiment = ["Genome", "Exome", "Capture"];
+        var selectedExperiment;
+        var unselectedExperiment1;
+        var unselectedExperiment2;
+
+        for(var i=0; i<experiment.length; i++) {
+            if(experiment[i] == userRun.experiment) {
+            selectedExperiment = experiment[i];
+            } else if(experiment[i] != userRun.experiment) {
+                if(typeof(unselectedExperiment1) == "string") {
+                    unselectedExperiment2 = experiment[i];
+                } else {
+                    unselectedExperiment1 = experiment[i];
+                }
+            }
+        }   
+
+        var chemistry = ["High300", "Mid300", "Mid150"];
+        var selectedChemistry;
+        var unselectedChemistry1;
+        var unselectedChemistry2;
+
+        for(var i=0; i<chemistry.length; i++) {
+            if(chemistry[i] == userRun.chemistry) {
+            selectedChemistry = chemistry[i];
+            } else if(chemistry[i] != userRun.chemistry) {
+                if(typeof(unselectedChemistry1) == "string") {
+                    unselectedChemistry2 = chemistry[i];
+                } else {
+                    unselectedChemistry1 = chemistry[i];
+                }
+            }
+        }
+
+        var formTemplate = `<form method="POST">
+            <div class="row">
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Name</label>
+                    <input type="text" class="form-control" value="${userRun.user}" placeholder="${userRun.user}" name="name" id="name" required data-validation-required-message="Please enter your name.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Pool Number</label>
+                    <input type="text" class="form-control" value="${userRun.pool}" placeholder="${userRun.pool}" name="pool" id="pool" required data-validation-required-message="Please enter pool number.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Yield - Gigabases</label>
+                    <input type="number" class="form-control" value="${userRun.yield}" placeholder="${userRun.yield}" name="yield" id="yield" required data-validation-required-message="Please enter run yield.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Cluster Density - K/mm2</label>
+                    <input type="number" class="form-control" value="${userRun.clusterDensity}" placeholder="${userRun.clusterDensity}" name="clusterDensity" id="clusterDensity" required data-validation-required-message="Please enter cluster density.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Clusters Passing Filter - %</label>
+                    <input type="number" class="form-control" value="${userRun.passFilter}" placeholder="${userRun.passFilter}" name="passFilter" id="passFilter" required data-validation-required-message="Please enter clusters passing filter.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label>Q30 Score - %</label>
+                    <input type="number" class="form-control" value="${userRun.q30}" placeholder="${userRun.q30}" name="q30" id="q30" required data-validation-required-message="Please enter Q30 score.">
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label for="experiment">Experiment</label>
+                    <select name="experiment" class="form-control" id="experiment">
+                        <option value="${selectedExperiment}" selected>${selectedExperiment}</option>
+                        <option value="${unselectedExperiment1}">${unselectedExperiment1}</option>
+                        <option value="${unselectedExperiment2}">${unselectedExperiment2}</option>
+                    </select>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-6 floating-label-form-group controls">
+                    <label for="chemistry">Chemistry</label>
+                    <select name="chemistry" class="form-control" id="chemistry">
+                        <option value="${selectedChemistry}" selected>${selectedChemistry}</option>
+                        <option value="${unselectedChemistry1}">${unselectedChemistry1}</option>
+                        <option value="${unselectedChemistry2}">${unselectedChemistry2}</option>
+                    </select>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group col-sm-12 floating-label-form-group controls">
+                    <label>Additional Comments</label>
+                    <textarea rows="5" class="form-control" value="${userRun.comment}" placeholder="${userRun.comment}" name="comment" id="comment" required data-validation-required-message="Please enter any addition information."></textarea>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div id="success"></div>
+                <div class="form-group">
+                    <button type="submit" class="btn qc-data-btn" id="sendMessageButton">Update</button>
+                </div>
+            </div>
+        </form>`;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            formContainer.innerHTML = formTemplate;
+        });
+
+    </script>
+
+{% endblock javascript %}
+
+{% endblock content %}
