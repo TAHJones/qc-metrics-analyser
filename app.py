@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session, json
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+# from bson.objectid import ObjectId
 from datetime import datetime
 
 
@@ -168,7 +168,8 @@ def login():
             if user.get('user') == username:
                 session["username"] = username
         if "username" in session:
-            return redirect(url_for("username", username=session["username"]))
+            print(session["username"])
+            return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("login.html")
@@ -192,10 +193,10 @@ def signup():
     return render_template("signup.html")
 
 
-@app.route("/user", methods=["GET", "POST"])
-def username():    
-    username = request.args.get("username")
+@app.route("/user/<username>", methods=["GET", "POST"])
+def user(username):
     """ Displays data for individual users & adds new runs """
+    username = username 
     title = "WELCOME {}".format(username.upper())
     runs = mongo.db.seqMetCol
     if request.method == "POST":
@@ -219,7 +220,7 @@ def username():
             'comment': comment
         }
         runs.insert_one(run)
-        return redirect(url_for("username"))
+        return redirect(url_for("user", username=username))
 
     genome = getUserExperiment("Genome", username)[0]['count']
     exome = getUserExperiment("Exome", username)[0]['count']
@@ -244,7 +245,7 @@ def username():
         'passFilter': passFilter,
         'q30': q30
     }
-    session.clear()
+    # session.clear()
     return render_template("user.html", title=title, qcData=qcData, username=username)
 
 
@@ -397,10 +398,51 @@ def deleteUserRun():
 
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
-    # if request.method == "POST":
-    #     pool = request.form.get("pool")
-    #     print(pool)
-    #     return redirect(url_for("viewUserRuns", username=username))
+    # print(session["username"])
+    # print(session["userRun"].get("chemistry"))
+    # username = request.args.get("username")
+    title = request.args.get("title")
+    # username = session["username"]
+    runs = mongo.db.seqMetCol 
+    user = session["userRun"].get("user")
+    print(username)
+    existingPoolNumber = int(session["userRun"].get("pool"))
+    print(existingPoolNumber)
+    if request.method == "POST":
+        newPoolNumber = int(request.form.get("pool"))
+        yields = int(request.form.get("yield"))
+        clusterDensity = int(request.form.get("clusterDensity"))
+        passFilter = int(request.form.get("passFilter"))
+        q30 = int(request.form.get("q30"))
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        comment = request.form.get("comment")
+        # updateRun = {
+        #     'pool': newPoolNumber,
+        #     'yield': yields,
+        #     'clusterDensity': clusterDensity,
+        #     'passFilter': passFilter,
+        #     'q30': q30,
+        #     'experiment': experiment,
+        #     'chemistry': chemistry,
+        #     'comment': comment
+        # }
+        # runs.update_one({'user': user, 'pool': pool}, {'$set': updateRun})
+        # runs.update_one({'user': 'Thomas', 'pool': 195}, {'$set': updateRun})
+        # runs.update({'user': 'Thomas', 'pool': 195}, {'$set': 
+        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': 
+        {
+            'pool': newPoolNumber,
+            'yield': yields,
+            'clusterDensity': clusterDensity,
+            'passFilter': passFilter,
+            'q30': q30,
+            'experiment': experiment,
+            'chemistry': chemistry,
+            'comment': comment
+        }       
+        })
+        return redirect(url_for("viewUserRuns", title=title))
 
     return render_template("update-user-run.html", userRun=json.dumps(session.get("userRun")))
 
