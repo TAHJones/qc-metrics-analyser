@@ -208,7 +208,7 @@
                 </div>
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
                 <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
-                <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
+                <a href="{{ url_for('updateUserRun', username=username, title=title) }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
 
             </div>
         </div>
