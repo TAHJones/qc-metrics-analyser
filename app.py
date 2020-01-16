@@ -129,7 +129,7 @@ def getUserDataSummary(param, user):
 
 @app.route("/")
 def index():
-    """Display data for all users"""
+    """Display summary run data for all users"""
     genome = getExperiment("Genome")[0]['count']
     exome = getExperiment("Exome")[0]['count']
     capture = getExperiment("Capture")[0]['count']
@@ -195,7 +195,7 @@ def signup():
 
 @app.route("/user/<username>")
 def user(username):
-    """ Displays data for individual users & adds new runs """
+    """ Display summary of run data for individual users """
     username = username 
     title = "WELCOME {}".format(username.upper())
     session["title"] = title
@@ -226,6 +226,7 @@ def user(username):
 
 @app.route("/view-user-runs", methods=["GET", "POST"])
 def viewUserRuns():
+    """  view all user runs or select individual run to delete or update """
     username = session["username"]
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
@@ -362,6 +363,7 @@ def addUserRun():
 
 @app.route("/delete-user-run")
 def deleteUserRun():
+    """  Delete selected run from database """
     username = session["username"]
     poolNumber = session["poolNumber"]
     runs=mongo.db.seqMetCol
@@ -371,6 +373,7 @@ def deleteUserRun():
 
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
+    """  Update selected run from database """
     username = session["username"]
     runs = mongo.db.seqMetCol
     existingPoolNumber = int(session["userRun"].get("pool"))
