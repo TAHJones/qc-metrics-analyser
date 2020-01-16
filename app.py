@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session, json
 from flask_pymongo import PyMongo
-# from bson.objectid import ObjectId
 from datetime import datetime
 
 
@@ -20,7 +19,6 @@ def getExperiment(experiment):
     data =list(mongo.db.seqMetCol.aggregate([
         {
             '$match': {
-                # 'experiment': {'$exists': 'true'}
                 'experiment': experiment
             }
         },
@@ -140,7 +138,6 @@ def index():
     clusterDensity = getDataSummary("clusterDensity")
     passFilter = getDataSummary("passFilter")
     q30 = getDataSummary("q30")
-
     qcData = {
         'genome': genome,
         'exome': exome,
@@ -153,7 +150,6 @@ def index():
         'passFilter': passFilter,
         'q30': q30
     }
-
     return render_template("index.html", qcData=qcData)
 
 
