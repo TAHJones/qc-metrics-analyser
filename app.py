@@ -362,11 +362,11 @@ def addUserRun():
 
 @app.route("/delete-user-run")
 def deleteUserRun():
-    username = request.args.get("username")
+    username = session["username"]
     poolNumber = int(request.args.get("poolNumber"))
     runs=mongo.db.seqMetCol
     runs.remove({'user': username, 'pool': poolNumber})
-    return render_template("delete-user-run.html")
+    return render_template("delete-user-run.html", title=session["title"])
 
 
 @app.route("/update-user-run", methods=["GET", "POST"])
