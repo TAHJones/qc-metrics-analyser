@@ -333,8 +333,7 @@ def viewUserRuns():
 @app.route("/add-user-run", methods=["GET", "POST"])
 def addUserRun():
     """  Add new run to database """
-    username = request.args.get("username")
-    title = request.args.get("title")
+    username = session["username"]
     runs = mongo.db.seqMetCol
     if request.method == "POST":
         pool = request.form.get("pool")
@@ -357,8 +356,8 @@ def addUserRun():
             'comment': comment
         }
         runs.insert_one(run)
-        return redirect(url_for("addUserRun", username=username, title=title))
-    return render_template("add-user-run.html", username=username, title=title)
+        return redirect(url_for("addUserRun", username=username, title=session["title"]))
+    return render_template("add-user-run.html", username=username, title=session["title"])
 
 
 @app.route("/delete-user-run")
