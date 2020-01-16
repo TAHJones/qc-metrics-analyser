@@ -198,6 +198,7 @@ def user(username):
     """ Displays data for individual users & adds new runs """
     username = username 
     title = "WELCOME {}".format(username.upper())
+    session["title"] = title
     runs = mongo.db.seqMetCol
     if request.method == "POST":
         pool = request.form.get("pool")
@@ -398,16 +399,10 @@ def deleteUserRun():
 
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
-    # print(session["username"])
-    # print(session["userRun"].get("chemistry"))
-    # username = request.args.get("username")
+    username = session["username"]
     title = request.args.get("title")
-    # username = session["username"]
-    runs = mongo.db.seqMetCol 
-    user = session["userRun"].get("user")
-    print(username)
+    runs = mongo.db.seqMetCol
     existingPoolNumber = int(session["userRun"].get("pool"))
-    print(existingPoolNumber)
     if request.method == "POST":
         newPoolNumber = int(request.form.get("pool"))
         yields = int(request.form.get("yield"))
@@ -417,21 +412,7 @@ def updateUserRun():
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
-        # updateRun = {
-        #     'pool': newPoolNumber,
-        #     'yield': yields,
-        #     'clusterDensity': clusterDensity,
-        #     'passFilter': passFilter,
-        #     'q30': q30,
-        #     'experiment': experiment,
-        #     'chemistry': chemistry,
-        #     'comment': comment
-        # }
-        # runs.update_one({'user': user, 'pool': pool}, {'$set': updateRun})
-        # runs.update_one({'user': 'Thomas', 'pool': 195}, {'$set': updateRun})
-        # runs.update({'user': 'Thomas', 'pool': 195}, {'$set': 
-        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': 
-        {
+        updateRun = {
             'pool': newPoolNumber,
             'yield': yields,
             'clusterDensity': clusterDensity,
@@ -440,8 +421,8 @@ def updateUserRun():
             'experiment': experiment,
             'chemistry': chemistry,
             'comment': comment
-        }       
-        })
+        }
+        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
         return redirect(url_for("viewUserRuns", title=title))
 
     return render_template("update-user-run.html", userRun=json.dumps(session.get("userRun")))
