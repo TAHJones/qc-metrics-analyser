@@ -364,17 +364,10 @@ def addUserRun():
 def deleteUserRun():
     username = request.args.get("username")
     poolNumber = int(request.args.get("poolNumber"))
-    # print(userRun['run'])
-    # print(type(username))
-    # print(type(poolNumber))
-    # for data in userRun:
-        # print(data['run'])
-        # print(data)
-    # print(runNumber)
-    list(mongo.db.seqMetCol.remove({'user': username, 'pool': poolNumber}))
-    # print("run deleted!!!")
+    runs=mongo.db.seqMetCol
+    runs.remove({'user': username, 'pool': poolNumber})
     return render_template("delete-user-run.html")
-    # return redirect(url_for("deleteUserRun"))
+
 
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
