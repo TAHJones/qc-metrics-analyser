@@ -230,6 +230,7 @@ def viewUserRuns():
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
+            session["poolNumber"] = poolNumber
             userRun = list(mongo.db.seqMetCol.find(
                 {'user': username, 'pool': poolNumber}, { '_id': 0 }))
             if userRun == []:
@@ -247,7 +248,6 @@ def viewUserRuns():
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
-                                    poolNumber=poolNumber,
                                     userRun=userRun,
                                     pageLocation=json.dumps("userRun"))
 
