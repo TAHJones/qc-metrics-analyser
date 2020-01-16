@@ -193,36 +193,12 @@ def signup():
     return render_template("signup.html")
 
 
-@app.route("/user/<username>", methods=["GET", "POST"])
+@app.route("/user/<username>")
 def user(username):
     """ Displays data for individual users & adds new runs """
     username = username 
     title = "WELCOME {}".format(username.upper())
     session["title"] = title
-    runs = mongo.db.seqMetCol
-    if request.method == "POST":
-        pool = request.form.get("pool")
-        yields = request.form.get("yield")
-        clusterDensity = request.form.get("clusterDensity")
-        passFilter = request.form.get("passFilter")
-        q30 = request.form.get("q30")
-        experiment = request.form.get("experiment")
-        chemistry = request.form.get("chemistry")
-        comment = request.form.get("comment")
-        run = {
-            'user': username,
-            'pool': pool,
-            'yield': yields,
-            'clusterDensity': clusterDensity,
-            'passFilter': passFilter,
-            'q30': q30,
-            'experiment': experiment,
-            'chemistry': chemistry,
-            'comment': comment
-        }
-        runs.insert_one(run)
-        return redirect(url_for("user", username=username))
-
     genome = getUserExperiment("Genome", username)[0]['count']
     exome = getUserExperiment("Exome", username)[0]['count']
     capture = getUserExperiment("Capture", username)[0]['count']
@@ -233,7 +209,6 @@ def user(username):
     clusterDensity = getUserDataSummary("clusterDensity", username)
     passFilter = getUserDataSummary("passFilter", username)
     q30 = getUserDataSummary("q30", username)
-
     qcData = {
         'genome': genome,
         'exome': exome,
@@ -246,7 +221,6 @@ def user(username):
         'passFilter': passFilter,
         'q30': q30
     }
-    # session.clear()
     return render_template("user.html", title=title, qcData=qcData, username=username)
 
 
