@@ -336,11 +336,11 @@ def addUserRun():
     username = session["username"]
     runs = mongo.db.seqMetCol
     if request.method == "POST":
-        pool = request.form.get("pool")
-        yields = request.form.get("yield")
-        clusterDensity = request.form.get("clusterDensity")
-        passFilter = request.form.get("passFilter")
-        q30 = request.form.get("q30")
+        pool = int(request.form.get("pool"))
+        yields = int(request.form.get("yield"))
+        clusterDensity = int(request.form.get("clusterDensity"))
+        passFilter = int(request.form.get("passFilter"))
+        q30 = int(request.form.get("q30"))
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
