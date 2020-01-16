@@ -372,7 +372,6 @@ def deleteUserRun():
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
     username = session["username"]
-    title = request.args.get("title")
     runs = mongo.db.seqMetCol
     existingPoolNumber = int(session["userRun"].get("pool"))
     if request.method == "POST":
@@ -395,9 +394,8 @@ def updateUserRun():
             'comment': comment
         }
         runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
-        return redirect(url_for("viewUserRuns", title=title))
-
-    return render_template("update-user-run.html", userRun=json.dumps(session.get("userRun")))
+        return redirect(url_for("viewUserRuns", title=session["title"]))
+    return render_template("update-user-run.html", title=session["title"], userRun=json.dumps(session.get("userRun")))
 
 
 if __name__ == "__main__":
