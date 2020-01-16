@@ -184,7 +184,7 @@ def signup():
     if request.method == "POST":
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == request.form.get("newUsername"):
-                print("username already exists, please enter a unique username")
+                flash("username already exists, please enter a unique username")
                 return redirect(url_for('index'))                
             else:
                 newuser = request.form.get('newUsername')
