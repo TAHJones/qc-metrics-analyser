@@ -226,19 +226,27 @@ def user(username):
 
 @app.route("/view-user-runs", methods=["GET", "POST"])
 def viewUserRuns():
-    username = request.args.get("username")
-    title = request.args.get("title")
+    username = session["username"]
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
-            # print(type(poolNumber))
             userRun = list(mongo.db.seqMetCol.find(
                 {'user': username, 'pool': poolNumber}, { '_id': 0 }))
+            if userRun == []:
+                flash('No Runs of that type were found')
+                userRun = [{
+                            'pool': 0,
+                            'yield': 0,
+                            'clusterDensity': 0,
+                            'passFilter': 0,
+                            'q30': 0,
+                            'experiment': 0,
+                            'chemistry': 0
+                            }]
             session["userRun"] = userRun[0]
-            # print(session["userRun"])
             return render_template("view-user-runs.html",
                                     username=username,
-                                    title=title,
+                                    title=session["title"],
                                     poolNumber=poolNumber,
                                     userRun=userRun,
                                     pageLocation=json.dumps("userRun"))
@@ -300,9 +308,7 @@ def viewUserRuns():
                     ]
                 }, { '_id': 0 }))
 
-            print(userData)
             if userData == []:
-                print('No Runs Were Found')
                 flash('No Runs of that type were found')
                 userData = [{
                             'run': 0,
@@ -315,12 +321,12 @@ def viewUserRuns():
 
             return render_template("view-user-runs.html",
                                     username=username,
-                                    title=title,
+                                    title=session["title"],
                                     userData=userData,
                                     pageLocation=json.dumps("userRuns"))
     return render_template("view-user-runs.html",
                             username=username,
-                            title=title,
+                            title=session["title"],
                             pageLocation=json.dumps("userForm"))
 
 
