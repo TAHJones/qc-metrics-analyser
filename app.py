@@ -171,6 +171,13 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/logout")
+def logout():
+    """ log out user and return to homepage """
+    session.clear()
+    return redirect(url_for('index'))
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     """ Add new user to database """
