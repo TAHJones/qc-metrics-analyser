@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QC Metrics Analyser</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/dc.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.6.3/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <!-- <script src="{{ url_for('static', filename='js/d3.min.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='js/crossfilter.min.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='js/dc.min.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='js/queue.min.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='js/runs-graphs.js') }}"></script> -->
+</head>
+
+<body>
+    <header>
+        <!--NAVBAR-->
+        <nav class="navbar navbar-expand-sm navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/qc-metrics-analyser-logo.png') }}" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigation">
+                {% include '/partials/user-navbar.html' %}
+            </div>
+        </nav>
+        <!--NAVBAR-END-->
+
+        <!--BANNER-->
+        <div class="bg-banner" id="home">
+            <div class="bg-banner-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="banner-title">QC Metrics Analyser</h1>
+                            <h2 class="banner-subtitle">
+                                {{ title|default("NEXT GENERATION SEQUENCING", true) }}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--BANNER-END-->
+    </header>
+
+    <!-- MAIN CONTENT -->
+    {% block content %} {% endblock %}
+    <!-- MAIN CONTENT-END -->
+
+    <!--FOOTER-->
+    <footer>
+        <div class="row no-gutters footer-nav">
+            <div class="col-12">
+                <ul>
+                    <li>
+                        <a class="d-block d-md-none" href="#">Top</a>
+                        <a class="d-none d-md-inline-block" href="#">Top of Page</a>
+                    </li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('viewUserRuns', username=username, title=title) }}">View Runs</a></li>
+                    <li class="d-none d-sm-inline-block"><a href="{{ url_for('addUserRun', username=username, title=title) }}">Add Run</a></li>
+                    <li><a href="{{ url_for('deleteUserRun') }}">Delete Run</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row footer-copyright">
+            <div class="col-12">
+                <p>2018 -<script>document.write(new Date().getFullYear());</script> &copy; Thomas Jones - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <!--FOOTER-END-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
