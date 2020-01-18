@@ -217,7 +217,7 @@ def adminViewRuns():
     username = session["username"]
     users = mongo.db.users
     userList = list(users.find({}, {'user': 1, '_id': 0}))
-    session["userList"] = userList[0]
+    session["userList"] = userList
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
