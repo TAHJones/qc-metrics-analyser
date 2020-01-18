@@ -102,8 +102,8 @@ h4 .fa {
     width: 60px;
 }
 
-.navbar-nav>li>a {
-    /* color: #ddd; */
+.navbar-nav > li > a {
+    color: #ddd;
     font-size: 16px;
     margin: 0 5px;
 }
