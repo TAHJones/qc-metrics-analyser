@@ -3,7 +3,7 @@
 
     <section class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
+            <div class="col-sm-8 col-md-8 col-lg-8">
                 {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
                     {% for message in messages %}
@@ -16,7 +16,7 @@
 
                 <form method="POST">
                     <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-sm-9 floating-label-form-group controls">
                             <label>Username</label>
                             <input type="text" class="form-control" name="username" id="username" required data-validation-required-message="Please enter your username.">
                             <p class="help-block text-danger"></p>
