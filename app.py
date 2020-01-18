@@ -198,6 +198,15 @@ def signup():
     return render_template("signup.html")
 
 
+@app.route("/admin/<username>")
+def user(username):
+    """ admin page for removing & updating user & sequencing run data """
+    username = username 
+    title = "WELCOME {}".format(username.upper())
+    session["title"] = title
+    return render_template("admin.html", title=title, username=username)
+
+
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
