@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="container">
+        <h3>Admin Page</h3>
+        <hr>
+        <div class="row justify-content-center other-metrics">
+            <!-- <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Chemistry</h4>
+                <a data-toggle="modal" data-target="#chemistryModal">
+                <div class="overlay-container-5">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Chemistry</div>
+                    </div>
+                </div>
+                </a>
+            </div> -->
+
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Manage Runs</h4>
+                <!-- <a data-toggle="modal" data-target="#experimentModal"> -->
+                <a href="{{ url_for('adminViewRuns') }}">
+                <div class="overlay-container-6">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Runs</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+                <h4 class="homepage-subtitle">Manage Users</h4>
+                <!-- <a href=" url_for('adminViewUsers') "></a> -->
+                <div class="overlay-container-7">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
+                    <div class="overlay">
+                    <div class="overlay-text">Sequencing Users</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
