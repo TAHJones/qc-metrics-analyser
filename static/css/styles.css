@@ -329,6 +329,15 @@ h4.homepage-subtitle {
 
 /* HOMEPAGE-END */
 
+/* LOGIN/SIGNUP */
+
+.login-form, .signup-form {
+    font-size: 24px;
+    text-align: left;
+}
+
+/* LOGIN/SIGNUP-END */
+
 /*OTHER-METRICS*/
 
 .other-metrics .overlay {
@@ -514,7 +523,7 @@ h4.homepage-subtitle {
     margin-bottom: 25px;
 }
 
-#sendMessageButton, #userRunButton {
+#userRunButton {
     margin-top: 31px;
 }
 
