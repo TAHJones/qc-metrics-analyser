@@ -77,6 +77,29 @@ h4 .fa {
     transform: translate(-50%, -50%);
 }
 
+.nav-item > .nav-link.custom-btn {
+	background-color: #3776b3;
+	border-radius: 4px;
+    color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 18px;
+}
+
+.nav-item > .nav-link.custom-btn:hover {
+	background-color: #195692;
+	color: #d8d8d8;
+	transition: all .5s ease-in-out;
+}
+
+.nav-item > .nav-link.signup-btn {
+    background-color: #28a745;
+}
+
+.nav-item > .nav-link.signup-btn:hover {
+    background-color: #218838;
+}
+
 /* GENERAL-END */
 
 /* NAVBAR */
@@ -100,6 +123,10 @@ h4 .fa {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60px;
+}
+
+.navbar-nav > li:not(:last-child) {
+	margin: 0 20px 0 0;
 }
 
 .navbar-nav > li > a {
