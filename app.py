@@ -160,11 +160,13 @@ def login():
     if request.method == "POST":
         session.clear()
         username = request.form.get("username")
-        for user in users.find({}, {'user': 1, '_id': 0}):
+        for user in users.find({}, {'user': 1, 'member': 1, '_id': 0}):
             if user.get('user') == username:
                 session["username"] = username
-        if "username" in session:
-            print(session["username"])
+                member = user.get('member')
+        if "username" in session and member is 'admin':
+            return redirect(url_for("admin", username=session["username"]))
+        elif "username" in session and member is 'user':    
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
