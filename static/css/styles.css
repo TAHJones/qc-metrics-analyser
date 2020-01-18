@@ -514,7 +514,7 @@ h4.homepage-subtitle {
     margin-bottom: 25px;
 }
 
-#userRunButton {
+#sendMessageButton, #userRunButton {
     margin-top: 31px;
 }
 
