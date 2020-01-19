@@ -239,7 +239,7 @@
             userForm.classList.add("hide");
             deleteRun.classList.remove("invisible");
             updateRun.classList.remove("invisible");            
-        } else if(pageSection=="userRuns") {
+        } else if(pageSection=="userRuns"){
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
         }
@@ -254,9 +254,7 @@
         return userList
     }
 
-    console.log(displayUserList(userData));
-
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function(){
         hidePageSection(pageLocation);
         userListContainer.innerHTML = displayUserList(userData);
     });
