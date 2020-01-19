@@ -211,19 +211,24 @@ def admin(username):
     return render_template("admin.html", title=title, username=username)
 
 
-@app.route("/admin-view-runs")
+@app.route("/admin-view-runs", methods=["GET", "POST"])
 def adminViewRuns():
     """ view, remove & update user runs """
     username = session["username"]
     users = mongo.db.users
     userList = list(users.find({}, {'user': 1, '_id': 0}))
     session["userList"] = userList
+    print(session["userList"])
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
+            selectedUser = request.form.get("username")
+            print(selectedUser)
             poolNumber = int(request.form.get("poolNumber"))
+            print(poolNumber)
             session["poolNumber"] = poolNumber
             userRun = list(mongo.db.seqMetCol.find(
-                {'user': username, 'pool': poolNumber}, { '_id': 0 }))
+                {'user': selectedUser, 'pool': poolNumber}, { '_id': 0 }))
+            print(userRun)
             if userRun == []:
                 flash('No Runs of that type were found')
                 userRun = [{
@@ -240,9 +245,10 @@ def adminViewRuns():
                                     username=username,
                                     title=session["title"],
                                     userRun=userRun,
-                                    pageLocation=json.dumps("userRun"))
-
+                                    pageLocation=json.dumps("userRun"),
+                                    userList=json.dumps(session["userList"]))
         elif request.form['formButton'] == 'userRuns':
+            selectedUser = request.form.get("username")
             minYield = int(request.form.get("minYield"))
             maxYield = int(request.form.get("maxYield"))
             minClusterDensity = int(request.form.get("minClusterDensity"))
@@ -257,7 +263,7 @@ def adminViewRuns():
             if chemistry == "All" and experiment == "All":
                 userData = list(mongo.db.seqMetCol.find({
                     '$and': [
-                        {'user': username},
+                        {'user': selectedUser},
                         {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
                         {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
                         {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
@@ -314,12 +320,14 @@ def adminViewRuns():
                                     username=username,
                                     title=session["title"],
                                     userData=userData,
-                                    pageLocation=json.dumps("userRuns"))
+                                    pageLocation=json.dumps("userRuns"),
+                                    userList=json.dumps(session["userList"]))
     return render_template("admin-view-runs.html",
                             username=username,
                             title=session["title"],
                             pageLocation=json.dumps("userForm"),
-                            userList=json.dumps(session["userList"]))    
+                            userList=json.dumps(session["userList"])
+                            )    
 
 
 @app.route("/user/<username>")
