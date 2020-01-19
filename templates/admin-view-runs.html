@@ -13,18 +13,16 @@
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Username</label>
-                            <!-- <input type="text" class="form-control" name="username" id="username" required data-validation-required-message="Please enter your username."> -->
-                            <!-- <p class="help-block text-danger"></p> -->
-                            <select name="username" class="form-control" id="userListContainer"></select>
+                            <select name="username" class="form-control" id="userListContainer1"></select>
                         </div>
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Pool Number</label>
                             <input type="number" class="form-control" name="poolNumber" id="poolNumber" required data-validation-required-message="Please enter your pool number.">
                             <p class="help-block text-danger"></p>
                         </div>
-                        <!-- <div class="form-group"> -->
+                        <div class="form-group">
                             <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn" id="userRunButton">Send</button>
-                        <!-- </div> -->
+                        </div>
                     </div>
                 </form>
 
@@ -166,8 +164,12 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
+                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                            <label>Username</label>
+                            <select name="username" class="form-control" id="userListContainer2"></select>
+                        </div>
                         <div class="form-group">
-                            <button type="submit" name="formButton" value="userRuns" class="btn qc-data-btn" id="userRunsButton">Send</button>
+                            <button type="submit" name="formButton" value="userRuns" class="btn qc-data-btn" id="userRunsButton-admin">Send</button>
                         </div>
                     </div>
                 </form>
@@ -176,7 +178,6 @@
         </div>
     </section>
     <!-- USER-DATA-FORM-END -->
-
 
     <!-- VIEW-USER-DATA -->
     <section class="container hide" id="userRunsBg">
@@ -214,8 +215,8 @@
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
-                <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
-                <a href="{{ url_for('updateUserRun', username=username, title=title) }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
+                <a href="{{ url_for('deleteUserRun') }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
+                <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
 
             </div>
         </div>
@@ -231,7 +232,8 @@
     var returnToForm = document.getElementById("returnToForm");
     var deleteRun = document.getElementById("deleteRun");
     var updateRun = document.getElementById("updateRun");
-    var userListContainer = document.getElementById("userListContainer");
+    var userListContainer1 = document.getElementById("userListContainer1");
+    var userListContainer2 = document.getElementById("userListContainer2");
 
     function hidePageSection(pageSection){
         if(pageSection=="userRun"){
@@ -255,8 +257,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", function(){
+        userListContainer1.innerHTML = displayUserList(userData);
+        userListContainer2.innerHTML = displayUserList(userData);
         hidePageSection(pageLocation);
-        userListContainer.innerHTML = displayUserList(userData);
     });
 
    returnToForm.addEventListener("click", function(){
