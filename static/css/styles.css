@@ -523,8 +523,13 @@ h4.homepage-subtitle {
     margin-bottom: 25px;
 }
 
-#userRunButton {
+#userRunButton  {
     margin-top: 31px;
+}
+
+#userRunButton-admin  {
+    margin-top: 0;
+    margin-left: 16px;
 }
 
 .user-runs > li {
@@ -538,6 +543,11 @@ h4.homepage-subtitle {
 }
 
 #userRunsButton {
+    margin-left: 16px;
+}
+
+#userRunsButton-admin  {
+    margin-top: 31px;
     margin-left: 16px;
 }
 
