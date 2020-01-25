@@ -401,6 +401,15 @@ h4.homepage-subtitle {
 	text-transform: uppercase;
 }
 
+.data-lists {
+    color: #3776B3;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 50px 0 20px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
 .qc-data-list > ul {
 	padding-left: 0;
     margin-bottom: 0;
@@ -503,11 +512,11 @@ h4.homepage-subtitle {
 
 /* VIEW-USER-RUNS */
 
-.user-data-lists > h3 {
+/* .user-data-lists > h3 {
 	font-size: 20px;
 	margin: 50px 0 20px;
 	text-align: left;
-}
+} */
 
 .user-run, .user-runs {
     margin-bottom: 20px;
