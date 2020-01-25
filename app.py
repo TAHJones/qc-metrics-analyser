@@ -165,12 +165,8 @@ def login():
                 session["username"] = username
                 member = users.find_one({'user': username}, { '_id': 0 }).get("member")
         if "username" in session and member == "admin":
-            print(member)
-            print(session["username"])
             return redirect(url_for("admin", username=session["username"]))
         elif "username" in session and member == "user":    
-            print(member)
-            print(session["username"])
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
@@ -205,129 +201,122 @@ def signup():
 @app.route("/admin/<username>")
 def admin(username):
     """ admin page for removing & updating user & sequencing run data """
-    username = username 
+    username = username
     title = "WELCOME {}".format(username.upper())
     session["title"] = title
     return render_template("admin.html", title=title, username=username)
 
 
-@app.route("/admin-view-runs", methods=["GET", "POST"])
-def adminViewRuns():
-    """ view, remove & update user runs """
+@app.route("/admin-select-runs", methods=["GET", "POST"])
+def adminSelectRuns():
+    """ select user runs to view, remove & update """
     username = session["username"]
+    if request.method == "POST" and request.form['formButton'] == 'userRuns':
+        selectedUser = request.form.get("username")
+        minYield = int(request.form.get("minYield"))
+        maxYield = int(request.form.get("maxYield"))
+        minClusterDensity = int(request.form.get("minClusterDensity"))
+        maxClusterDensity = int(request.form.get("maxClusterDensity"))
+        minPassFilter = int(request.form.get("minPassFilter"))
+        maxPassFilter = int(request.form.get("maxPassFilter"))
+        minq30 = int(request.form.get("minq30"))
+        maxq30 = int(request.form.get("maxq30"))
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        if chemistry == "All" and experiment == "All":
+            userRuns = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': selectedUser},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]}
+                ]
+            }, { '_id': 0 }))
+        elif chemistry != "All" and experiment == "All":
+            userRuns = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': selectedUser},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'chemistry': chemistry }
+                ]
+            }, { '_id': 0 }))
+        elif chemistry == "All" and experiment != "All":
+            userRuns = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': selectedUser},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'experiment': experiment }
+                ]
+            }, { '_id': 0 }))
+        elif chemistry != "All" and experiment != "All":
+            userRuns = list(mongo.db.seqMetCol.find({
+                '$and': [
+                    {'user': selectedUser},
+                    {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
+                    {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
+                    {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
+                    {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
+                    {'experiment': experiment },
+                    {'chemistry': chemistry } 
+                ]
+            }, { '_id': 0 }))
+        session["selectedUser"] = selectedUser
+        session["userRuns"] = userRuns
+
+        if userRuns == []:
+            flash('No Runs of that type were found')
+            userRuns = [{
+                        'run': 0,
+                        'pool': 0,
+                        'yield': 0,
+                        'clusterDensity': 0,
+                        'passFilter': 0,
+                        'q30': 0
+                        }]
+        return render_template("admin-select-runs.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("userRuns"),
+                                selectedUser=selectedUser,
+                                userRuns=userRuns)
+    elif request.method == "POST" and request.form['formButton'] == 'userRun':
+        selectedPoolNumber = int(request.form.get("selectedPoolNumber"))
+        selectedUser = session["selectedUser"]
+        userRun = list(mongo.db.seqMetCol.find(
+            {'user': selectedUser, 'pool': selectedPoolNumber}, { '_id': 0 }))
+        if userRun == []:
+            flash('No Runs of that type were found')
+            userRun = [{
+                        'pool': 0,
+                        'yield': 0,
+                        'clusterDensity': 0,
+                        'passFilter': 0,
+                        'q30': 0,
+                        'experiment': 0,
+                        'chemistry': 0
+                        }]
+        return render_template("admin-select-runs.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("userRun"),
+                                selectedPoolNumber=selectedPoolNumber,
+                                selectedUser=selectedUser,
+                                userRun=userRun)
     users = mongo.db.users
     userList = list(users.find({}, {'user': 1, '_id': 0}))
     session["userList"] = userList
-    print(session["userList"])
-    if request.method == "POST":
-        if request.form['formButton'] == "userRun":
-            selectedUser = request.form.get("username")
-            print(selectedUser)
-            poolNumber = int(request.form.get("poolNumber"))
-            print(poolNumber)
-            session["poolNumber"] = poolNumber
-            userRun = list(mongo.db.seqMetCol.find(
-                {'user': selectedUser, 'pool': poolNumber}, { '_id': 0 }))
-            print(userRun)
-            if userRun == []:
-                flash('No Runs of that type were found')
-                userRun = [{
-                            'pool': 0,
-                            'yield': 0,
-                            'clusterDensity': 0,
-                            'passFilter': 0,
-                            'q30': 0,
-                            'experiment': 0,
-                            'chemistry': 0
-                            }]
-            session["userRun"] = userRun[0]
-            return render_template("admin-view-runs.html",
-                                    username=username,
-                                    title=session["title"],
-                                    userRun=userRun,
-                                    pageLocation=json.dumps("userRun"),
-                                    userList=json.dumps(session["userList"]))
-        elif request.form['formButton'] == 'userRuns':
-            selectedUser = request.form.get("username")
-            minYield = int(request.form.get("minYield"))
-            maxYield = int(request.form.get("maxYield"))
-            minClusterDensity = int(request.form.get("minClusterDensity"))
-            maxClusterDensity = int(request.form.get("maxClusterDensity"))
-            minPassFilter = int(request.form.get("minPassFilter"))
-            maxPassFilter = int(request.form.get("maxPassFilter"))
-            minq30 = int(request.form.get("minq30"))
-            maxq30 = int(request.form.get("maxq30"))
-            experiment = request.form.get("experiment")
-            chemistry = request.form.get("chemistry")
-
-            if chemistry == "All" and experiment == "All":
-                userData = list(mongo.db.seqMetCol.find({
-                    '$and': [
-                        {'user': selectedUser},
-                        {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                        {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                        {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                        {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]}
-                    ]
-                }, { '_id': 0 }))
-            elif chemistry != "All" and experiment == "All":
-                userData = list(mongo.db.seqMetCol.find({
-                    '$and': [
-                        {'user': username},
-                        {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                        {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                        {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                        {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
-                        {'chemistry': chemistry }
-                    ]
-                }, { '_id': 0 }))
-            elif chemistry == "All" and experiment != "All":
-                userData = list(mongo.db.seqMetCol.find({
-                    '$and': [
-                        {'user': username},
-                        {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                        {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                        {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                        {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
-                        {'experiment': experiment }
-                    ]
-                }, { '_id': 0 }))
-            elif chemistry != "All" and experiment != "All":
-                userData = list(mongo.db.seqMetCol.find({
-                    '$and': [
-                        {'user': username},
-                        {'$and': [{'yield': {'$gt': minYield}}, {'yield': {'$lt': maxYield}}]},
-                        {'$and': [{'clusterDensity': {'$gt': minClusterDensity}}, {'clusterDensity': {'$lt': maxClusterDensity}}]},
-                        {'$and': [{'passFilter': {'$gt': minPassFilter}}, {'passFilter': {'$lt': maxPassFilter}}]},
-                        {'$and': [{'q30': {'$gt': minq30}}, {'q30': {'$lt': maxq30}}]},
-                        {'experiment': experiment },
-                        {'chemistry': chemistry } 
-                    ]
-                }, { '_id': 0 }))
-
-            if userData == []:
-                flash('No Runs of that type were found')
-                userData = [{
-                            'run': 0,
-                            'pool': 0,
-                            'yield': 0,
-                            'clusterDensity': 0,
-                            'passFilter': 0,
-                            'q30': 0
-                            }]
-
-            return render_template("admin-view-runs.html",
-                                    username=username,
-                                    title=session["title"],
-                                    userData=userData,
-                                    pageLocation=json.dumps("userRuns"),
-                                    userList=json.dumps(session["userList"]))
-    return render_template("admin-view-runs.html",
-                            username=username,
-                            title=session["title"],
-                            pageLocation=json.dumps("userForm"),
-                            userList=json.dumps(session["userList"])
-                            )    
+    return render_template("admin-select-runs.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("userForm"),
+                                userList=userList)
 
 
 @app.route("/user/<username>")
