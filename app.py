@@ -319,14 +319,33 @@ def adminSelectRuns():
                                 pageLocation=json.dumps("userForm"),
                                 userList=userList)
 
+def createDropDownList(dataList, currentSelection):
+    dropDownList = {}
+    for data in dataList:
+        if data == currentSelection:
+            dropDownList["selectedItem"] = data
+        elif data != currentSelection and "unselectedItem1" not in dropDownList:
+                dropDownList["unselectedItem1"] = data
+        else:
+            dropDownList["unselectedItem2"] = data
+    return dropDownList
+
 
 @app.route("/admin-update-run", methods=["GET", "POST"])
 def adminUpdateRun():
     """  Allows administrator to update runs for selected user """
     selectedUser = session["selectedUser"]
     existingPoolNumber = session["selectedPoolNumber"]
-    runs = mongo.db.seqMetCol
+    selectedUserRun = session["selectedUserRun"]
+    existingExperiment = selectedUserRun[0].get("experiment")
+    existingChemistry = selectedUserRun[0].get("chemistry")
+    experiments = ["Genome", "Exome", "Capture"]
+    chemistries = ["High300", "Mid300", "Mid150"]
+    experimentList = createDropDownList(experiments, existingExperiment)
+    chemistryList = createDropDownList(chemistries, existingChemistry)
+
     if request.method == "POST":
+        newUserName = request.form.get("name")
         newPoolNumber = int(request.form.get("pool"))
         yields = int(request.form.get("yield"))
         clusterDensity = int(request.form.get("clusterDensity"))
@@ -336,6 +355,7 @@ def adminUpdateRun():
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
         updateRun = {
+            'user': newUserName,
             'pool': newPoolNumber,
             'yield': yields,
             'clusterDensity': clusterDensity,
@@ -345,10 +365,14 @@ def adminUpdateRun():
             'chemistry': chemistry,
             'comment': comment
         }
+        selectedUserRun = [updateRun]
+        runs = mongo.db.seqMetCol
         runs.update_one( {'user': selectedUser, 'pool': existingPoolNumber }, {'$set': updateRun })
-        return redirect(url_for("adminUpdateRun", title=session["title"]))
-    selectedUserRun = session["selectedUserRun"]
-    return render_template("admin-update-run.html", title=session["title"], userRun=json.dumps(selectedUserRun[0]))
+        flash("Pool_{} has been successfully updated".format(existingPoolNumber))
+        experimentList = createDropDownList(experiments, experiment)
+        chemistryList = createDropDownList(chemistries, chemistry)
+        return render_template("admin-update-run.html", title=session["title"], existingPoolNumber=existingPoolNumber, userRun=selectedUserRun, chemistryList=chemistryList, experimentList=experimentList, pageLocation=json.dumps("userRun"))
+    return render_template("admin-update-run.html", title=session["title"], existingPoolNumber=existingPoolNumber, userRun=selectedUserRun, chemistryList=chemistryList, experimentList=experimentList, pageLocation=json.dumps("userForm"))
 
 
 @app.route("/user/<username>")
@@ -560,4 +584,6 @@ def updateUserRun():
 
 
 if __name__ == "__main__":
+    # app.jinja_env.auto_reload = True
+    # app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
