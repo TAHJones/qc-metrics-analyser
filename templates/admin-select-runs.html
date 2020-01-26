@@ -10,7 +10,6 @@
                     <h4 class="data-lists">Select User:</h4>
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Username</label>
                             <select name="username" class="form-control" id="userListContainer">
                                 {% for user in userList %}
                                     <option  value="{{ user.user }}">{{ user.user }}</option>
