@@ -268,7 +268,6 @@ def adminSelectRuns():
                 ]
             }, { '_id': 0 }))
         session["selectedUser"] = selectedUser
-        session["userRuns"] = userRuns
 
         if userRuns == []:
             flash('No Runs of that type were found')
@@ -288,12 +287,13 @@ def adminSelectRuns():
                                 userRuns=userRuns)
     elif request.method == "POST" and request.form['formButton'] == 'userRun':
         selectedPoolNumber = int(request.form.get("selectedPoolNumber"))
+        session["selectedPoolNumber"] = selectedPoolNumber
         selectedUser = session["selectedUser"]
-        userRun = list(mongo.db.seqMetCol.find(
+        selectedUserRun = list(mongo.db.seqMetCol.find(
             {'user': selectedUser, 'pool': selectedPoolNumber}, { '_id': 0 }))
-        if userRun == []:
+        if selectedUserRun == []:
             flash('No Runs of that type were found')
-            userRun = [{
+            selectedUserRun = [{
                         'pool': 0,
                         'yield': 0,
                         'clusterDensity': 0,
@@ -302,13 +302,14 @@ def adminSelectRuns():
                         'experiment': 0,
                         'chemistry': 0
                         }]
+        session["selectedUserRun"] = selectedUserRun
         return render_template("admin-select-runs.html",
                                 username=username,
                                 title=session["title"],
                                 pageLocation=json.dumps("userRun"),
                                 selectedPoolNumber=selectedPoolNumber,
                                 selectedUser=selectedUser,
-                                userRun=userRun)
+                                selectedUserRun=selectedUserRun)
     users = mongo.db.users
     userList = list(users.find({}, {'user': 1, '_id': 0}))
     session["userList"] = userList
@@ -317,6 +318,37 @@ def adminSelectRuns():
                                 title=session["title"],
                                 pageLocation=json.dumps("userForm"),
                                 userList=userList)
+
+
+@app.route("/admin-update-run", methods=["GET", "POST"])
+def adminUpdateRun():
+    """  Allows administrator to update runs for selected user """
+    selectedUser = session["selectedUser"]
+    existingPoolNumber = session["selectedPoolNumber"]
+    runs = mongo.db.seqMetCol
+    if request.method == "POST":
+        newPoolNumber = int(request.form.get("pool"))
+        yields = int(request.form.get("yield"))
+        clusterDensity = int(request.form.get("clusterDensity"))
+        passFilter = int(request.form.get("passFilter"))
+        q30 = int(request.form.get("q30"))
+        experiment = request.form.get("experiment")
+        chemistry = request.form.get("chemistry")
+        comment = request.form.get("comment")
+        updateRun = {
+            'pool': newPoolNumber,
+            'yield': yields,
+            'clusterDensity': clusterDensity,
+            'passFilter': passFilter,
+            'q30': q30,
+            'experiment': experiment,
+            'chemistry': chemistry,
+            'comment': comment
+        }
+        runs.update_one( {'user': selectedUser, 'pool': existingPoolNumber }, {'$set': updateRun })
+        return redirect(url_for("adminUpdateRun", title=session["title"]))
+    selectedUserRun = session["selectedUserRun"]
+    return render_template("admin-update-run.html", title=session["title"], userRun=json.dumps(selectedUserRun[0]))
 
 
 @app.route("/user/<username>")
