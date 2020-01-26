@@ -22,6 +22,11 @@
         var unselectedExperiment1;
         var unselectedExperiment2;
 
+        var chemistry = ["High300", "Mid300", "Mid150"];
+        var selectedChemistry;
+        var unselectedChemistry1;
+        var unselectedChemistry2;
+
         for(var i=0; i<experiment.length; i++) {
             if(experiment[i] == userRun.experiment) {
             selectedExperiment = experiment[i];
@@ -33,11 +38,6 @@
                 }
             }
         }   
-
-        var chemistry = ["High300", "Mid300", "Mid150"];
-        var selectedChemistry;
-        var unselectedChemistry1;
-        var unselectedChemistry2;
 
         for(var i=0; i<chemistry.length; i++) {
             if(chemistry[i] == userRun.chemistry) {
