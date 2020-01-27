@@ -13,7 +13,6 @@
                     {% endfor %}
                 </ul>
                 {% endif %} {% endwith %}
-                <!-- <div id="formContainer"> -->
                 <form method="POST">
                     <div class="row">
                         {% for data in userRun %}
@@ -72,11 +71,12 @@
                         </div>
                         {% endfor %}
                         <div class="form-group">
-                            <button type="submit" class="btn qc-data-btn" id="sendMessageButton">Update</button>
+                            <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
+                            <a href="{{ url_for('adminSelectRuns') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
                         </div>
-                    <!-- </div> -->
+                    </div>
                 </form>                
-                </div>
+
             </div>
         </div>
     </section>
