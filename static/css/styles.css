@@ -551,13 +551,15 @@ h4.homepage-subtitle {
 	margin-bottom: 25px;
 }
 
-#userRunsButton {
-    margin-left: 16px;
+#updateRunButton {
+	margin-left: 16px;
+	margin-right: 5px;
 }
 
-#userRunsButton-admin  {
+/* #userRunsButton-admin  {
     margin-left: 16px;
-}
+} */
+
 
 /* VIEW-USER-RUNS-END */
 
