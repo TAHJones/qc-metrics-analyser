@@ -383,7 +383,9 @@ def adminSelectUser():
     if request.method == "POST":
         user = request.form.get("user")
         selectedUser = list(users.find({'user': user}, { '_id': 0 }))
+        session["selectedUser"] = selectedUser
         selectedUserName = selectedUser[0].get("user")
+        session["selectedUserName"] = selectedUserName
         return render_template("admin-select-user.html",
                                     username=username,
                                     title=session["title"],
@@ -396,6 +398,37 @@ def adminSelectUser():
                                 title=session["title"],
                                 pageLocation=json.dumps("userForm"),
                                 userList=userList)
+
+
+@app.route("/admin-update-user", methods=["GET", "POST"])
+def adminUpdateUser():
+    """ select user to view, delete & update """
+    username = session["username"]
+    selectedUser = session["selectedUser"]
+    users = mongo.db.users
+    selectedUserName = session["selectedUserName"]
+    if request.method == "POST":
+        user = request.form.get("user")
+        member = request.form.get("member")
+        date = request.form.get("date")
+        time = request.form.get("time")
+        updateUser = {
+            'user': user,
+            'member': member,
+            'joined': {'date': date, 'time': time}
+        }
+        users.update_one( {'user': selectedUserName}, {'$set': updateUser})
+        flash("User account for {} has been successfully updated".format(selectedUserName))
+
+        selectedUser = [updateUser]
+        return render_template("admin-update-user.html",
+                                    username=username,
+                                    title=session["title"],
+                                    selectedUser=selectedUser)
+    return render_template("admin-update-user.html",
+                                username=username,
+                                title=session["title"],
+                                selectedUser=selectedUser)
 
 
 @app.route("/user/<username>")
