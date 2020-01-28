@@ -1,0 +1,90 @@
+{% extends 'user-base.html' %}
+{% block content %}
+
+    <!-- SELECT-USER -->
+    <section class="container" id="userFormBg">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-8">
+
+                <form method="POST">
+                    <h4 class="data-lists">Select User:</h4>
+                    <div class="row">
+                        <div class="form-group col-10 col-sm-8 floating-label-form-group controls">
+                            <select name="user" class="form-control" id="userListContainer">
+                                {% for user in userList %}
+                                    <option  value="{{ user.user }}">{{ user.user }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-sm-2">
+                            <!-- <button type="submit" name="formButton" value="selectedUser" class="btn qc-data-btn" id="selectedUserButton">Send</button> -->
+                            <button type="submit" class="btn qc-data-btn" id="selectedUserButton">Send</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    <!-- SELECT-USER-END -->
+
+    <!-- VIEW-USER -->
+    <section class="container" id="viewUserBg">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-7 col-lg-6">
+                <div class="user-data-lists">
+                    <h4 class="data-lists">User: {{ selectedUserName }}</h4> 
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %} {% endwith %}
+                    {% for data in selectedUser %}
+                    <ul class="user-run">
+                        <li>Membership: {{ data.member|capitalize }}</li>
+                        <li>Date Joined: {{ data.joined.date }}</li>
+                        <li>Time Joined: {{ data.joined.time }}</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+    
+                <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
+                <!-- <a href=" url_for('adminDeleteUser') " class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a> -->
+                <!-- <a href=" url_for('adminUpdateUser') " class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a> -->
+                <a href="" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
+                <a href="" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
+
+            </div>
+        </div>
+    </section>
+    <!-- VIEW-USER-END -->
+
+{% block javascript %}
+
+    <script>
+        var pageLocation = JSON.parse({{ pageLocation|tojson }});
+        var userForm = document.getElementById("userFormBg");
+        var viewUser = document.getElementById("viewUserBg");
+
+        console.log(pageLocation);
+
+        function hidePageSection(pageSection){
+            if(pageSection=="viewUser"){
+                viewUser.classList.remove("hide");
+                userForm.classList.add("hide");
+            } else if(pageSection=="userForm") {
+                viewUser.classList.add("hide");
+                userForm.classList.remove("hide");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            hidePageSection(pageLocation);
+        });
+
+    </script>
+
+{% endblock javascript %}
+{% endblock %}
