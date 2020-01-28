@@ -375,6 +375,29 @@ def adminUpdateRun():
     return render_template("admin-update-run.html", title=session["title"], existingPoolNumber=existingPoolNumber, userRun=selectedUserRun, chemistryList=chemistryList, experimentList=experimentList, pageLocation=json.dumps("userForm"))
 
 
+@app.route("/admin-select-user", methods=["GET", "POST"])
+def adminSelectUser():
+    """ select users to view, remove & update """
+    username = session["username"]
+    users = mongo.db.users
+    if request.method == "POST":
+        user = request.form.get("user")
+        selectedUser = list(users.find({'user': user}, { '_id': 0 }))
+        selectedUserName = selectedUser[0].get("user")
+        return render_template("admin-select-user.html",
+                                    username=username,
+                                    title=session["title"],
+                                    pageLocation=json.dumps("viewUser"),
+                                    selectedUser=selectedUser,
+                                    selectedUserName=selectedUserName)
+    userList = list(users.find({}, {'user': 1, '_id': 0}))
+    return render_template("admin-select-user.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("userForm"),
+                                userList=userList)
+
+
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
