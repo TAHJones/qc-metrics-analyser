@@ -17,7 +17,6 @@
                             </select>
                         </div>
                         <div class="form-group col-12 col-sm-2">
-                            <!-- <button type="submit" name="formButton" value="selectedUser" class="btn qc-data-btn" id="selectedUserButton">Send</button> -->
                             <button type="submit" class="btn qc-data-btn" id="selectedUserButton">Send</button>
                         </div>
                     </div>
@@ -53,7 +52,6 @@
                 <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
                 <a href="{{ url_for('adminUpdateUser') }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
                 <a href="" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
-                <!-- <a href="" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a> -->
 
             </div>
         </div>
@@ -67,13 +65,11 @@
         var userForm = document.getElementById("userFormBg");
         var viewUser = document.getElementById("viewUserBg");
 
-        console.log(pageLocation);
-
         function hidePageSection(pageSection){
             if(pageSection=="viewUser"){
                 viewUser.classList.remove("hide");
                 userForm.classList.add("hide");
-            } else if(pageSection=="userForm") {
+            } else if(pageSection=="userForm"){
                 viewUser.classList.add("hide");
                 userForm.classList.remove("hide");
             }
@@ -82,7 +78,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             hidePageSection(pageLocation);
         });
-
     </script>
 
 {% endblock javascript %}
