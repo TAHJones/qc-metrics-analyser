@@ -19,7 +19,6 @@
 
             <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Manage Runs</h4>
-                <!-- <a data-toggle="modal" data-target="#experimentModal"> -->
                 <a href="{{ url_for('adminSelectRuns') }}">
                 <div class="overlay-container-6">
                     <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
@@ -32,7 +31,7 @@
 
             <div class="col-sm-4">
                 <h4 class="homepage-subtitle">Manage Users</h4>
-                <!-- <a href=" url_for('adminViewUsers') "></a> -->
+                <a href="{{ url_for('adminSelectUser') }}">
                 <div class="overlay-container-7">
                     <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
                     <div class="overlay">
