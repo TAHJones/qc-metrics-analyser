@@ -12,8 +12,8 @@
                     {% endfor %}
                 </ul>
                 {% endif %} {% endwith %}
-                <div class="user-data-lists">
-                    <h4 class="data-lists">User: {{ selectedUserName }}</h4> 
+                <div class="user-data-list">
+                    <h4 class="data-lists delete-user">User: {{ selectedUserName }}</h4> 
                     {% for data in selectedUser %}
                     <ul class="user-run">
                         <li>Membership: {{ data.member|capitalize }}</li>
