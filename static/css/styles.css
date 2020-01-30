@@ -424,6 +424,23 @@ input[type="radio"] {
     margin-right: 5px;
 }
 
+.flashes {
+	background-color: #c2e390;
+	padding: 15px;
+	text-align: center;
+	margin-top: 30px;
+	width: 250px;
+}
+
+.flashes > li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: green;
+	font-size: 15px;
+	font-weight: bold;
+}
+
 .qc-data-list > ul {
 	padding-left: 0;
     margin-bottom: 0;
