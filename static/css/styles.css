@@ -410,6 +410,20 @@ h4.homepage-subtitle {
 	text-transform: uppercase;
 }
 
+.delete-user {
+	display: inline-block;
+	margin: 20px 0 30px 0;
+}
+
+.radio-inline {
+    font-size: 16px;
+    margin-left: 12px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
 .qc-data-list > ul {
 	padding-left: 0;
     margin-bottom: 0;
