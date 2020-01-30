@@ -431,6 +431,39 @@ def adminUpdateUser():
                                 selectedUser=selectedUser)
 
 
+@app.route("/admin-delete-user", methods=["GET", "POST"])
+def adminDeleteUser():
+    """ select user to view, delete & update """
+    username = session["username"]
+    selectedUser = session["selectedUser"]
+    selectedUserName = session["selectedUserName"]
+    
+    if request.method == "POST":
+        radio = request.form.get("radio")
+        print(radio)
+        if radio == 'yes':
+            updateUser = {
+                'user': 'Deleted',
+                'member': 'Deleted',
+                'joined': {'date': 'Deleted', 'time': 'Deleted'}
+            }
+            selectedUser = [updateUser]
+            users = mongo.db.users
+            # users.remove({'user': selectedUserName})
+            flash("User account for {} has been successfully deleted".format(selectedUserName))
+        elif radio == 'no':
+            flash("To delete user account for {} select 'Yes' then click 'Delete'".format(selectedUserName))
+        return render_template("admin-delete-user.html",
+                                    username=username,
+                                    title=session["title"],
+                                    selectedUser=selectedUser,
+                                    selectedUserName=selectedUserName)
+    return render_template("admin-delete-user.html",
+                                username=username,
+                                title=session["title"],
+                                selectedUser=selectedUser,
+                                selectedUserName=selectedUserName)
+
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
