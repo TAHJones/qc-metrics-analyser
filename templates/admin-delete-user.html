@@ -1,0 +1,39 @@
+{% extends 'user-base.html' %}
+{% block content %}
+
+    <!-- DELETE-USER -->
+    <section class="container" id="viewUserBg">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-7 col-lg-6">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} {% endwith %}
+                <div class="user-data-lists">
+                    <h4 class="data-lists">User: {{ selectedUserName }}</h4> 
+                    {% for data in selectedUser %}
+                    <ul class="user-run">
+                        <li>Membership: {{ data.member|capitalize }}</li>
+                        <li>Date Joined: {{ data.joined.date }}</li>
+                        <li>Time Joined: {{ data.joined.time }}</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+                <form method="POST" id="deleteUser">
+                    <h4 class="data-lists delete-user">Delete User: </h4> 
+                    <label class="radio-inline"><input type="radio" name="radio" value="yes" checked>Yes</label>
+                    <label class="radio-inline"><input type="radio" name="radio" value="no">No</label>
+                </form>
+    
+                <button form="deleteUser" type="submit" name="formButton" value="userRun" class="btn qc-data-btn qc-data-btn--delete">Delete</button>
+                <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
+
+            </div>
+        </div>
+    </section>
+    <!-- DELETE-USER-END -->
+
+{% endblock %}
