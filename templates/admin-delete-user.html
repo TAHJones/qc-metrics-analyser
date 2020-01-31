@@ -22,18 +22,41 @@
                     </ul>
                     {% endfor %}
                 </div>
-                <form method="POST" id="deleteUser">
+                <form method="POST" id="deleteUserForm">
                     <h4 class="data-lists delete-user">Delete User: </h4> 
                     <label class="radio-inline"><input type="radio" name="radio" value="yes" checked>Yes</label>
                     <label class="radio-inline"><input type="radio" name="radio" value="no">No</label>
                 </form>
     
-                <button form="deleteUser" type="submit" name="formButton" value="userRun" class="btn qc-data-btn qc-data-btn--delete">Delete</button>
+                <button form="deleteUserForm" type="submit" name="deleteUserButton" value="deleteUser" class="btn qc-data-btn qc-data-btn--delete" id="deleteUserButton">Delete</button>
                 <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
 
             </div>
         </div>
     </section>
     <!-- DELETE-USER-END -->
+
+{% block javascript %}
+<script>
+    var pageLocation = JSON.parse({{ pageLocation|tojson }});
+    var deleteUserForm = document.getElementById("deleteUserForm");
+    var deleteUserButton = document.getElementById("deleteUserButton");
+
+    function hidePageSection(pageSection){
+        if(pageLocation == "userDeleted"){
+            deleteUserForm.classList.add("hide");
+            deleteUserButton.classList.add("hide");
+        } else if(pageLocation == "deleteUserForm") {
+            deleteUserForm.classList.remove("hide");
+            deleteUserButton.classList.remove("hide");
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        hidePageSection(pageLocation);
+    });
+
+</script>
+{% endblock javascript %}
 
 {% endblock %}
