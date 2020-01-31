@@ -448,19 +448,23 @@ def adminDeleteUser():
                 'joined': {'date': 'Deleted', 'time': 'Deleted'}
             }
             selectedUser = [updateUser]
-            users = mongo.db.users
+            # users = mongo.db.users
             # users.remove({'user': selectedUserName})
+            pageLocation=json.dumps("userDeleted")
             flash("User account for {} has been successfully deleted".format(selectedUserName))
         elif radio == 'no':
             flash("To delete user account for {} select 'Yes' then click 'Delete'".format(selectedUserName))
+            pageLocation=json.dumps("deleteUserForm")
         return render_template("admin-delete-user.html",
                                     username=username,
                                     title=session["title"],
+                                    pageLocation=pageLocation,
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName)
     return render_template("admin-delete-user.html",
                                 username=username,
                                 title=session["title"],
+                                pageLocation=json.dumps("deleteUserForm"),
                                 selectedUser=selectedUser,
                                 selectedUserName=selectedUserName)
 
