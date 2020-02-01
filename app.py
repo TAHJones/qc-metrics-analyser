@@ -211,9 +211,7 @@ def adminOrUser(username):
 def admin(username):
     """ admin page for removing & updating user & sequencing run data """
     username = username
-    title = "WELCOME {}".format(username.upper())
-    session["title"] = title
-    return render_template("admin.html", title=title, username=username)
+    return render_template("admin.html", title=session["title"], username=username)
 
 
 @app.route("/admin-select-runs", methods=["GET", "POST"])
