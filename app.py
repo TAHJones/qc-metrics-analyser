@@ -173,16 +173,6 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/admin-or-user/<username>")
-def adminOrUser(username):
-    """ If user had admin rights give option to login as admin or user """
-    username = username
-    title = "WELCOME {}".format(username.upper())
-    session["title"] = title
-    # return render_template("admin.html", title=title, username=username)
-    return render_template("admin-or-user.html", title=title, username=username)
-
-
 @app.route("/logout")
 def logout():
     """ log out user and return to homepage """
@@ -206,6 +196,15 @@ def signup():
                 users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
                 return redirect(url_for('index'))
     return render_template("signup.html")
+
+
+@app.route("/admin-or-user/<username>")
+def adminOrUser(username):
+    """ If user had admin rights give option to login as admin or user """
+    username = username
+    title = "WELCOME {}".format(username.upper())
+    session["title"] = title
+    return render_template("admin-or-user.html", title=title, username=username)
 
 
 @app.route("/admin/<username>")
