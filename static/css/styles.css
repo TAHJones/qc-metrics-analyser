@@ -219,12 +219,20 @@ h4 .fa {
 
 /* HOMEPAGE */
 
-h4.homepage-subtitle {
+.homepage-subtitle {
     color: rgb(55, 118, 179);
     font-size: 25px;
+    font-weight: bold;
     margin: 30px 0 30px;
     text-align: center;
-    /* text-transform: capitalize;     */
+}
+
+.image-title {
+    color: rgb(55, 118, 179);
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px 0 30px;
+    text-align: center;
 }
 
 /*.homepage-subtitle ~ hr {
@@ -260,7 +268,7 @@ h4.homepage-subtitle {
     left: 0%;
     right: 0%;
     height: 100%;
-    max-width: 80%;
+    max-width: 100%;
     opacity: 0;
     transition: .5s ease-in-out;
     background-color: rgba(0, 0, 0, .6);
@@ -303,7 +311,7 @@ h4.homepage-subtitle {
 
 .overlay-text {
     color: #3399f3;
-    font-size: 40px;
+    font-size: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -368,7 +376,7 @@ h4.homepage-subtitle {
 
 .other-metrics .overlay-text {
     /*color: #FF9404;*/
-    font-size: 16px;
+    font-size: 25px;
     /*position: absolute;*/
     /*top: 50%;*/
     /*left: 50%;*/
