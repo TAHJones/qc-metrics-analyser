@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="container">
+        <h3>Continue As:</h3>
+        <hr>
+        <div class="row justify-content-center">
+ 
+            <div class="col-sm-5">
+                <h4 class="image-title">User</h4>
+                <a href="{{ url_for('user', username=username) }}">
+                <div class="overlay-container-1">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
+                    <div class="overlay">
+                    <div class="overlay-text">Continue as User</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-5">
+                <h4 class="image-title">Admin</h4>
+                <a href="{{ url_for('admin', username=username) }}">
+                <div class="overlay-container-2">
+                    <img class="homepage-img" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
+                    <div class="overlay">
+                    <div class="overlay-text">Continue as Admin</div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock content %}
