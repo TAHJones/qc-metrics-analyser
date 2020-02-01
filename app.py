@@ -165,12 +165,22 @@ def login():
                 session["username"] = username
                 member = users.find_one({'user': username}, { '_id': 0 }).get("member")
         if "username" in session and member == "admin":
-            return redirect(url_for("admin", username=session["username"]))
+            return redirect(url_for("adminOrUser", username=session["username"]))
         elif "username" in session and member == "user":    
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
     return render_template("login.html")
+
+
+@app.route("/admin-or-user/<username>")
+def adminOrUser(username):
+    """ If user had admin rights give option to login as admin or user """
+    username = username
+    title = "WELCOME {}".format(username.upper())
+    session["title"] = title
+    # return render_template("admin.html", title=title, username=username)
+    return render_template("admin-or-user.html", title=title, username=username)
 
 
 @app.route("/logout")
