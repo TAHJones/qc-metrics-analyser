@@ -436,6 +436,12 @@ input[type="radio"] {
     margin-right: 5px;
 }
 
+.modal-dialog {
+	max-width: 95%;
+	margin: 10px auto;
+}
+
+
 .flashes {
 	background-color: #c2e390;
 	border: solid 4px green;
