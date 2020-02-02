@@ -167,7 +167,8 @@ def index():
         passFilter.append(data["passFilter"])
         q30.append(data["q30"])
         chemistries.append(data["chemistry"])
-        experiments.append(data["experiment"])    
+        experiments.append(data["experiment"])
+
     labels=json.dumps(pools)
     yields = json.dumps(yields)
     clusterDensity = json.dumps(clusterDensity)
