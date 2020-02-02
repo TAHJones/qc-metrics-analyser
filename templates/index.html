@@ -88,6 +88,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
+                        <canvas id="yield-chart" width="3" height="1"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -110,6 +111,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
+                        <canvas id="clusterDensity-chart" width="3" height="1"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -132,6 +134,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
+                        <canvas id="passFilter-chart" width="3" height="1"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -154,6 +157,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
+                        <canvas id="q30-chart" width="600" height="200"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -192,18 +196,6 @@
                 </div>
                 </a>
             </div>
-
-            <!-- <div class="col-sm-3">
-                <h4 class="homepage-subtitle">Users</h4>
-                <a href="">
-                <div class="overlay-container-7">
-                    <img class="homepage-img" src="{{ url_for('static', filename='images/users.png') }}" alt="users">
-                    <div class="overlay">
-                    <div class="overlay-text">Sequencing Users</div>
-                    </div>
-                </div>
-                </a>
-            </div> -->
         </div>
 
         <div id="chemistryModal" class="modal fade">
@@ -218,6 +210,7 @@
                             <li>Mid300: {{ qcData.mid300 }}</li>
                             <li>Mid150: {{ qcData.mid150 }}</li>
                         </ul>
+                        <canvas id="chemistry-chart" width="400" height="200"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -238,6 +231,7 @@
                             <li>Exome: {{ qcData.exome }}</li>
                             <li>Capture: {{ qcData.capture }}</li>
                         </ul>
+                        <canvas id="experiment-chart" width="400" height="200"></canvas>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -247,5 +241,106 @@
         </div>
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
+
+    {% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+        labels = JSON.parse({{ labels | tojson }});
+        yields = JSON.parse({{ yields | tojson }});
+        clusterDensity = JSON.parse({{ clusterDensity | tojson }});
+        passFilter = JSON.parse({{ passFilter | tojson }});
+        q30 = JSON.parse({{ q30 | tojson }});
+
+        var chemistries = [];
+        chemistries.push(JSON.parse({{ qcData.genome | tojson }}));
+        chemistries.push(JSON.parse({{ qcData.exome | tojson }}));
+        chemistries.push(JSON.parse({{ qcData.capture | tojson }}));
+
+        var experiments = [];
+        experiments.push(JSON.parse({{ qcData.high300 | tojson }}));
+        experiments.push(JSON.parse({{ qcData.mid300 | tojson }}));
+        experiments.push(JSON.parse({{ qcData.mid150 | tojson }}));
+        
+        new Chart(document.getElementById("yield-chart"),{
+            "type":"line",
+            "data":
+                {"labels":labels, 
+                "datasets":[{"label":"Yield - Gigabases",
+                "data":	yields, 
+                "fill":false,
+                "borderColor":"rgb(75, 192, 192)",
+                "lineTension":0.1}]},
+            "options":{}});
+
+        new Chart(document.getElementById("clusterDensity-chart"),{
+            "type":"line",
+            "data":
+                {"labels":labels, 
+                "datasets":[{"label":"Cluster Density - K/mm2",
+                "data":	clusterDensity, 
+                "fill":false,
+                "borderColor":"rgb(75, 192, 192)",
+                "lineTension":0.1}]},
+            "options":{}});
+
+        new Chart(document.getElementById("passFilter-chart"),{
+            "type":"line",
+            "data":
+                {"labels":labels, 
+                "datasets":[{"label":"Clusters Pass Filter - %",
+                "data":	passFilter, 
+                "fill":false,
+                "borderColor":"rgb(75, 192, 192)",
+                "lineTension":0.1}]},
+            "options":{}});
+
+        new Chart(document.getElementById("q30-chart"),{
+            "type":"line",
+            "data":
+                {"labels":labels, 
+                "datasets":[{"label":"q30 - %",
+                "data":	q30, 
+                "fill":false,
+                "borderColor":"rgb(75, 192, 192)",
+                "lineTension":0.1}]},
+            "options":{}});
+
+            new Chart(document.getElementById("chemistry-chart"), {
+                type: 'pie',
+                data: {
+                labels: ["Genome", "Exome", "Capture"],
+                datasets: [{
+                    label: "Sequencing Chemistries",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                    data: chemistries
+                }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Sequencing Chemistries'
+                    }
+                }
+            });
+
+            new Chart(document.getElementById("experiment-chart"), {
+                type: 'pie',
+                data: {
+                labels: ["High300", "Mid300", "Mid150"],
+                datasets: [{
+                    label: "Sequencing Experiments",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                    data: experiments
+                }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Sequencing Experiments'
+                    }
+                }
+            });
+    </script>
+    {% endblock javascript %}
 
 {% endblock %}
