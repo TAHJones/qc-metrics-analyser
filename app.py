@@ -534,7 +534,39 @@ def user(username):
         'passFilter': passFilter,
         'q30': q30
     }
-    return render_template("user.html", title=title, qcData=qcData, username=username)
+    graphData = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, 'chemistry': 1, 'experiment':1, '_id': 0 }))
+    pools = []
+    yields = []
+    clusterDensity = []
+    passFilter = []
+    q30 = []
+    chemistries = []
+    experiments = []
+
+    for data in graphData:
+        poolNumber = "Pool_{}".format(data["pool"])
+        pools.append(poolNumber)
+        yields.append(data["yield"])
+        clusterDensity.append(data["clusterDensity"])
+        passFilter.append(data["passFilter"])
+        q30.append(data["q30"])
+        chemistries.append(data["chemistry"])
+        experiments.append(data["experiment"])
+
+    labels=json.dumps(pools)
+    yields = json.dumps(yields)
+    clusterDensity = json.dumps(clusterDensity)
+    passFilter = json.dumps(passFilter)
+    q30 = json.dumps(q30)
+    return render_template("user.html",
+                            title=title,
+                            username=username,
+                            qcData=qcData,
+                            labels=labels, 
+                            yields=yields,
+                            clusterDensity=clusterDensity,
+                            passFilter=passFilter,
+                            q30=q30)
 
 
 @app.route("/view-user-runs", methods=["GET", "POST"])
