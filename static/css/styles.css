@@ -441,6 +441,9 @@ input[type="radio"] {
 	margin: 10px auto;
 }
 
+.modal-title > span {
+	margin-right: 60px;
+}
 
 .flashes {
 	background-color: #c2e390;
@@ -476,6 +479,7 @@ input[type="radio"] {
 
 .qc-data-footer {
     border-top: 3px solid #3776B3;
+	margin-top: 10px;
 }
 
 .qc-data-btn {
