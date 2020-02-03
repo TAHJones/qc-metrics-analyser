@@ -409,8 +409,20 @@ def adminUpdateRun():
         flash("Pool_{} has been successfully updated".format(existingPoolNumber))
         experimentList = createDropDownList(experiments, experiment)
         chemistryList = createDropDownList(chemistries, chemistry)
-        return render_template("admin-update-run.html", title=session["title"], existingPoolNumber=existingPoolNumber, userRun=selectedUserRun, chemistryList=chemistryList, experimentList=experimentList, pageLocation=json.dumps("userRun"))
-    return render_template("admin-update-run.html", title=session["title"], existingPoolNumber=existingPoolNumber, userRun=selectedUserRun, chemistryList=chemistryList, experimentList=experimentList, pageLocation=json.dumps("userForm"))
+        return render_template("admin-update-run.html",
+                                title=session["title"],
+                                existingPoolNumber=existingPoolNumber,
+                                userRun=selectedUserRun,
+                                chemistryList=chemistryList, 
+                                experimentList=experimentList, 
+                                pageLocation=json.dumps("userRun"))
+    return render_template("admin-update-run.html",
+                            title=session["title"],
+                            existingPoolNumber=existingPoolNumber,
+                            userRun=selectedUserRun,
+                            chemistryList=chemistryList,
+                            experimentList=experimentList,
+                            pageLocation=json.dumps("userForm"))
 
 
 @app.route("/admin-select-user", methods=["GET", "POST"])
