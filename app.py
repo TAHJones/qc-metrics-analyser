@@ -710,9 +710,9 @@ def addUserRun():
 def deleteUserRun():
     """  Delete selected run from database """
     username = session["username"]
-    poolNumber = session["poolNumber"]
+    selectedPoolNumber = session["selectedPoolNumber"]
     runs=mongo.db.seqMetCol
-    runs.remove({'user': username, 'pool': poolNumber})
+    runs.remove({'user': username, 'pool': selectedPoolNumber})
     return render_template("delete-user-run.html", title=session["title"])
 
 
