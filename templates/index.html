@@ -254,7 +254,8 @@
                 "fill":false,
                 "borderColor":"rgb(75, 192, 192)",
                 "lineTension":0.1}]},
-            "options":{}});
+            "options":{}
+        });
 
         new Chart(document.getElementById("clusterDensity-chart"),{
             "type":"line",
@@ -265,7 +266,8 @@
                 "fill":false,
                 "borderColor":"rgb(75, 192, 192)",
                 "lineTension":0.1}]},
-            "options":{}});
+            "options":{}
+        });
 
         new Chart(document.getElementById("passFilter-chart"),{
             "type":"line",
@@ -276,7 +278,8 @@
                 "fill":false,
                 "borderColor":"rgb(75, 192, 192)",
                 "lineTension":0.1}]},
-            "options":{}});
+            "options":{}
+        });
 
         new Chart(document.getElementById("q30-chart"),{
             "type":"line",
@@ -287,43 +290,44 @@
                 "fill":false,
                 "borderColor":"rgb(75, 192, 192)",
                 "lineTension":0.1}]},
-            "options":{}});
+            "options":{}
+        });
 
-            new Chart(document.getElementById("chemistry-chart"), {
-                type: 'pie',
-                data: {
-                labels: ["Genome", "Exome", "Capture"],
-                datasets: [{
-                    label: "Sequencing Chemistries",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-                    data: chemistries
-                }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Sequencing Chemistries'
-                    }
+        new Chart(document.getElementById("chemistry-chart"), {
+            type: 'pie',
+            data: {
+            labels: ["Genome", "Exome", "Capture"],
+            datasets: [{
+                label: "Sequencing Chemistries",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                data: chemistries
+            }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Sequencing Chemistries'
                 }
-            });
+            }
+        });
 
-            new Chart(document.getElementById("experiment-chart"), {
-                type: 'pie',
-                data: {
-                labels: ["High300", "Mid300", "Mid150"],
-                datasets: [{
-                    label: "Sequencing Experiments",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-                    data: experiments
-                }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Sequencing Experiments'
-                    }
+        new Chart(document.getElementById("experiment-chart"), {
+            type: 'pie',
+            data: {
+            labels: ["High300", "Mid300", "Mid150"],
+            datasets: [{
+                label: "Sequencing Experiments",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                data: experiments
+            }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Sequencing Experiments'
                 }
-            });
+            }
+        });
     </script>
     {% endblock javascript %}
 
