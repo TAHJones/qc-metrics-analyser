@@ -490,7 +490,6 @@ def adminDeleteUser():
     
     if request.method == "POST":
         radio = request.form.get("radio")
-        print(radio)
         if radio == 'yes':
             updateUser = {
                 'user': 'Deleted',
@@ -602,7 +601,7 @@ def viewUserRuns():
                             'experiment': 0,
                             'chemistry': 0
                             }]
-            session["userRun"] = userRun[0]
+            session["userRun"] = userRun
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
@@ -718,22 +717,53 @@ def addUserRun():
     return render_template("add-user-run.html", username=username, title=session["title"])
 
 
-@app.route("/delete-user-run")
+@app.route("/delete-user-run", methods=["GET", "POST"])
 def deleteUserRun():
     """  Delete selected run from database """
     username = session["username"]
-    selectedPoolNumber = session["selectedPoolNumber"]
-    runs=mongo.db.seqMetCol
-    runs.remove({'user': username, 'pool': selectedPoolNumber})
-    return render_template("delete-user-run.html", title=session["title"])
+    poolNumber = session["poolNumber"]
+    if request.method == "POST":
+        radio = request.form.get("radio")
+        if radio == 'yes':
+            deletedRun = {
+                'pool': 'Deleted',
+                'yield': 'Deleted',
+                'clusterDensity': 'Deleted',
+                'passFilter': 'Deleted',
+                'q30': 'Deleted',
+                'experiment': 'Deleted',
+                'chemistry': 'Deleted'
+            }
+            userRun = [deletedRun]
+            mongo.db.seqMetCol.remove({'user': username, 'pool': poolNumber})
+            pageLocation=json.dumps("runDeleted")
+            flash("Pool_{} has been successfully deleted".format(poolNumber))
+        elif radio == 'no':
+            flash("To delete Pool_{} select 'Yes' then click 'Delete'".format(poolNumber))
+            pageLocation=json.dumps("deleteRunForm")
+            userRun=session["userRun"]
+        return render_template("delete-user-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    pageLocation=pageLocation,
+                                    userRun=userRun)
+    userRun=session["userRun"]
+    return render_template("delete-user-run.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("deleteRunForm"),
+                                userRun=userRun)
 
 
 @app.route("/update-user-run", methods=["GET", "POST"])
 def updateUserRun():
     """  Update selected run from database """
     username = session["username"]
-    runs = mongo.db.seqMetCol
-    existingPoolNumber = int(session["userRun"].get("pool"))
+    sessionUserRun = session["userRun"]
+    userRun = sessionUserRun[0]
+    print(userRun)
+    existingPoolNumber = int(userRun.get("pool"))
+    print(existingPoolNumber)
     if request.method == "POST":
         newPoolNumber = int(request.form.get("pool"))
         yields = int(request.form.get("yield"))
@@ -753,9 +783,9 @@ def updateUserRun():
             'chemistry': chemistry,
             'comment': comment
         }
-        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
+        mongo.db.seqMetCol.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
         return redirect(url_for("viewUserRuns", title=session["title"]))
-    return render_template("update-user-run.html", title=session["title"], userRun=json.dumps(session.get("userRun")))
+    return render_template("update-user-run.html", title=session["title"], userRun=json.dumps(userRun))
 
 
 if __name__ == "__main__":
