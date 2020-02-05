@@ -37,26 +37,26 @@
     <!-- DELETE-USER-END -->
 
 {% block javascript %}
-<script>
-    var pageLocation = JSON.parse({{ pageLocation|tojson }});
-    var deleteUserForm = document.getElementById("deleteUserForm");
-    var deleteUserButton = document.getElementById("deleteUserButton");
+    <script>
+        var pageLocation = JSON.parse({{ pageLocation|tojson }});
+        var deleteUserForm = document.getElementById("deleteUserForm");
+        var deleteUserButton = document.getElementById("deleteUserButton");
 
-    function hidePageSection(pageSection){
-        if(pageLocation == "userDeleted"){
-            deleteUserForm.classList.add("hide");
-            deleteUserButton.classList.add("hide");
-        } else if(pageLocation == "deleteUserForm") {
-            deleteUserForm.classList.remove("hide");
-            deleteUserButton.classList.remove("hide");
+        function hidePageSection(pageSection){
+            if(pageLocation == "userDeleted"){
+                deleteUserForm.classList.add("hide");
+                deleteUserButton.classList.add("hide");
+            } else if(pageLocation == "deleteUserForm") {
+                deleteUserForm.classList.remove("hide");
+                deleteUserButton.classList.remove("hide");
+            }
         }
-    }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        hidePageSection(pageLocation);
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            hidePageSection(pageLocation);
+        });
 
-</script>
+    </script>
 {% endblock javascript %}
 
 {% endblock %}
