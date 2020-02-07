@@ -425,6 +425,43 @@ def adminUpdateRun():
                             pageLocation=json.dumps("userForm"))
 
 
+@app.route("/admin-delete-run", methods=["GET", "POST"])
+def adminDeleteRun():
+    """  Delete selected run from database """
+    username = session["username"]
+    selectedUserRun = session["selectedUserRun"]
+    selectedPoolNumber = session["selectedPoolNumber"]
+    if request.method == "POST":
+        radio = request.form.get("radio")
+        if radio == 'yes':
+            deletedRun = {
+                'pool': 'Deleted',
+                'yield': 'Deleted',
+                'clusterDensity': 'Deleted',
+                'passFilter': 'Deleted',
+                'q30': 'Deleted',
+                'experiment': 'Deleted',
+                'chemistry': 'Deleted'
+            }
+            # mongo.db.seqMetCol.remove({'pool': selectedUserRun})
+            selectedUserRun = [deletedRun]
+            pageLocation=json.dumps("runDeleted")
+            flash("Pool_{} has been successfully deleted".format(selectedPoolNumber))
+        elif radio == 'no':
+            flash("To delete Pool_{} select 'Yes' then click 'Delete'".format(selectedPoolNumber))
+            pageLocation=json.dumps("deleteRunForm")
+        return render_template("admin-delete-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    pageLocation=pageLocation,
+                                    selectedUserRun=selectedUserRun)
+    return render_template("admin-delete-run.html",
+                                username=username,
+                                title=session["title"],
+                                pageLocation=json.dumps("deleteRunForm"),
+                                selectedUserRun=selectedUserRun)
+
+
 @app.route("/admin-select-user", methods=["GET", "POST"])
 def adminSelectUser():
     """ select users to view, remove & update """
