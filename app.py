@@ -621,6 +621,8 @@ def user(username):
 def viewUserRuns():
     """  view all user runs or select individual run to delete or update """
     username = session["username"]
+    userRunList = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, '_id': 0 }))
+    print(userRunList)
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
@@ -643,7 +645,8 @@ def viewUserRuns():
                                     username=username,
                                     title=session["title"],
                                     userRun=userRun,
-                                    pageLocation=json.dumps("userRun"))
+                                    pageLocation=json.dumps("userRun"),
+                                    userRunList=userRunList)
 
         elif request.form['formButton'] == 'userRuns':
             minYield = int(request.form.get("minYield"))
@@ -717,11 +720,13 @@ def viewUserRuns():
                                     username=username,
                                     title=session["title"],
                                     userData=userData,
-                                    pageLocation=json.dumps("userRuns"))
+                                    pageLocation=json.dumps("userRuns"),
+                                    userRunList=userRunList)
     return render_template("view-user-runs.html",
                             username=username,
                             title=session["title"],
-                            pageLocation=json.dumps("userForm"))
+                            pageLocation=json.dumps("userForm"),
+                            userRunList=userRunList)
 
 
 @app.route("/add-user-run", methods=["GET", "POST"])
