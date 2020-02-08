@@ -6,15 +6,15 @@
     <section class="container" id="userFormBg">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                <a href="#" id="userForm"></a>
-                <h3>Display Individual Run:</h3>
-                <br>
                 <form method="POST">
+                    <h4 class="data-lists">Select Run:</h4>
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
-                            <label>Pool Number</label>
-                            <input type="number" class="form-control" name="poolNumber" id="poolNumber" required data-validation-required-message="Please enter your pool number.">
-                            <p class="help-block text-danger"></p>
+                            <select name="poolNumber" class="form-control" id="poolNumber">
+                                {% for data in userRunList %}
+                                    <option  value="{{ data.pool }}">{{ data.pool }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn" id="userRunButton">Send</button>
@@ -22,9 +22,8 @@
                     </div>
                 </form>
 
-                <h3>Display Multiple Runs:</h3>
-                <br>
                 <form method="POST">
+                    <h4 class="data-lists">Filter Runs:</h4>
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Min Yield</label>
@@ -171,7 +170,6 @@
     </section>
     <!-- USER-DATA-FORM-END -->
 
-
     <!-- VIEW-USER-DATA -->
     <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
@@ -210,6 +208,24 @@
                 <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
                 <a href="{{ url_for('deleteUserRun', username=username, poolNumber=poolNumber) }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
                 <a href="{{ url_for('updateUserRun', username=username, title=title) }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
+    
+                <div id="selectFilteredRunForm" class="hide">
+                    <h4 class="data-lists">Select Run:</h4>
+                    <form method="POST">
+                        <div class="row">
+                            <div class="form-group col-sm-6 floating-label-form-group controls">
+                                <select type="number" name="poolNumber" class="form-control" id="poolListContainer">
+                                    {% for data in userData %}                           
+                                    <option  value="{{ data.pool }}">{{ data.pool }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn">Select</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </div>
@@ -224,16 +240,19 @@
     var returnToForm = document.getElementById("returnToForm");
     var deleteRun = document.getElementById("deleteRun");
     var updateRun = document.getElementById("updateRun");
+    var selectFilteredRunForm = document.getElementById("selectFilteredRunForm");
 
     function hidePageSection(pageSection){
         if(pageSection=="userRun"){
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
+            selectFilteredRunForm.classList.add("hide")
             deleteRun.classList.remove("invisible");
             updateRun.classList.remove("invisible");            
         } else if(pageSection=="userRuns") {
             userRuns.classList.remove("hide");
             userForm.classList.add("hide");
+            selectFilteredRunForm.classList.remove("hide")
         }
     }
 
