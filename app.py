@@ -801,12 +801,16 @@ def deleteUserRun():
 def updateUserRun():
     """  Update selected run from database """
     username = session["username"]
-    sessionUserRun = session["userRun"]
-    userRun = sessionUserRun[0]
-    print(userRun)
-    existingPoolNumber = int(userRun.get("pool"))
-    print(existingPoolNumber)
+    userRun = session["userRun"]
+    existingPoolNumber = int(userRun[0].get("pool"))
+    existingExperiment = userRun[0].get("experiment")
+    existingChemistry = userRun[0].get("chemistry")
+    experiments = ["Genome", "Exome", "Capture"]
+    chemistries = ["High300", "Mid300", "Mid150"]
+    experimentList = createDropDownList(experiments, existingExperiment)
+    chemistryList = createDropDownList(chemistries, existingChemistry)
     if request.method == "POST":
+        newUserName = request.form.get("user")
         newPoolNumber = int(request.form.get("pool"))
         yields = int(request.form.get("yield"))
         clusterDensity = int(request.form.get("clusterDensity"))
@@ -816,6 +820,7 @@ def updateUserRun():
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
         updateRun = {
+            'user': newUserName,
             'pool': newPoolNumber,
             'yield': yields,
             'clusterDensity': clusterDensity,
@@ -825,9 +830,25 @@ def updateUserRun():
             'chemistry': chemistry,
             'comment': comment
         }
-        mongo.db.seqMetCol.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
-        return redirect(url_for("viewUserRuns", title=session["title"]))
-    return render_template("update-user-run.html", title=session["title"], userRun=json.dumps(userRun))
+        userRun = [updateRun]
+        session["userRun"] = userRun
+        runs = mongo.db.seqMetCol
+        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
+        flash("Pool_{} has been successfully updated".format(existingPoolNumber))
+        experimentList = createDropDownList(experiments, experiment)
+        chemistryList = createDropDownList(chemistries, chemistry)
+        return render_template("update-user-run.html",
+                                title=session["title"],
+                                existingPoolNumber=existingPoolNumber,
+                                userRun=userRun,
+                                chemistryList=chemistryList, 
+                                experimentList=experimentList) 
+    return render_template("update-user-run.html",
+                            title=session["title"],
+                            existingPoolNumber=existingPoolNumber,
+                            userRun=userRun,
+                            chemistryList=chemistryList, 
+                            experimentList=experimentList)
 
 
 if __name__ == "__main__":
