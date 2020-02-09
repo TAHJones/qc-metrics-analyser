@@ -125,6 +125,27 @@ h4 .fa {
     width: 60px;
 }
 
+.member-status {
+	background-color: #000;
+	border: #ffffff80 solid 4px;
+	border-radius: 3px;
+	font-size: 14px;
+	margin-left: 10px;
+	padding: 10px 15px;
+}
+
+.member-status.user {
+	color: #698db0;
+}
+
+.member-status.admin {
+	color: red;
+}
+
+.member-status > span {
+	color: #d1dce7;
+}
+
 .navbar-nav > li:not(:last-child) {
 	margin: 0 20px 0 0;
 }
@@ -699,10 +720,10 @@ input[type="radio"] {
 } */
 
 .footer-copyright p {
-	color: rgb(105, 141, 176);
+	color: #d1dce7;
 	font-size: 12px;
 	margin: 0;
-    padding: 20px;
+	padding: 20px;
 }
 
 /*create more space between footer links on small screens above 303px width*/
