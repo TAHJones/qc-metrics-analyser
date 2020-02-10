@@ -8,11 +8,11 @@ const deleteRunList = document.getElementById("deleteRunList");
 * @param {string} pageSection - pageLocation variable which can be string "runDeleted" or "deleteRunForm".
 */
 function hidePageSection(pageSection){
-    if(pageLocation == "runDeleted"){
+    if(pageSection == "runDeleted"){
         deleteRunForm.classList.add("hide");
         deleteRunButton.classList.add("hide");
         deleteRunList.classList.add("deleted");
-    } else if(pageLocation == "deleteRunForm") {
+    } else if(pageSection == "deleteRunForm") {
         deleteRunForm.classList.remove("hide");
         deleteRunButton.classList.remove("hide");
         deleteRunList.classList.remove("deleted");
