@@ -1,5 +1,5 @@
 <script>
-    const pageLocation = JSON.parse({{ pageLocation|tojson }});
+    let pageLocation = JSON.parse({{ pageLocation|tojson }});
     const deleteRunForm = document.getElementById("deleteRunForm");
     const deleteRunButton = document.getElementById("deleteRunButton");
     const deleteRunList = document.getElementById("deleteRunList");
