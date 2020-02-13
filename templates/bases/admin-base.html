@@ -24,7 +24,7 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    {% block content %} {% endblock %}
+    {% block content %} {% endblock content %}
     <!-- MAIN CONTENT-END -->
 
     <!--FOOTER-->
@@ -33,9 +33,9 @@
     </footer>
     <!--FOOTER-END-->
 
-    <!--JAVASCRIPT-FILES -->
-    {% include '/partials/javascript.html' %}
-    <!--JAVASCRIPT-FILES-END -->
+    <!--JAVASCRIPT -->
+    {% block javascript %} {% endblock javascript %}
+    <!--JAVASCRIPT-END -->
 
 </body>
 </html>
