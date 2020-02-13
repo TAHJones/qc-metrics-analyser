@@ -2,7 +2,7 @@
 {% block navbar %}
 
     <nav class="navbar navbar-expand-sm navbar-dark">
-        <div class="member-status admin">Admin: <span>{{ username }}</span></div>
+        <a class="member-status admin" href="{{ url_for('adminOrUser', username=username) }}">Admin: <span>{{ username }}</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
