@@ -142,6 +142,13 @@ h4 .fa {
 	color: red;
 }
 
+.member-status.admin:hover {
+	background-color: #222;
+	border-color: #aaa;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+}
+
 .member-status > span {
 	color: #d1dce7;
 }
