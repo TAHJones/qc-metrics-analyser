@@ -32,22 +32,38 @@ h2 {
 }
 
 h3 {
+    color: #3776b3;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px 0 30px;
+    text-align: center;
+}
+
+/* h3 {
 	font-size: 30px;
 	font-weight: bold;
 	margin: 30px 0 0;
-}
+} */
 
-h3:nth-last-of-type(1) {
+/* h3:nth-last-of-type(1) {
 	margin-top: 100px;
-}
+} */
 
 h4 {
+	color: #3776b3;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 30px 0 30px;
+	text-align: center;
+}
+
+/* h4 {
     color: #222;
     font-size: 18px;
     margin: 30px 30px 20px 0;
     position: relative;
     text-align: center;
-}
+} */
 
 /*shift header to the left to compensate for legend*/
 
@@ -77,6 +93,10 @@ h4 .fa {
     transform: translate(-50%, -50%);
 }
 
+/* GENERAL-END */
+
+/* NAVBAR */
+
 .nav-item > .nav-link.custom-btn {
 	background-color: #3776b3;
 	border-radius: 4px;
@@ -99,10 +119,6 @@ h4 .fa {
 .nav-item > .nav-link.signup-btn:hover {
     background-color: #218838;
 }
-
-/* GENERAL-END */
-
-/* NAVBAR */
 
 .navbar {
     background-image: none;
@@ -247,21 +263,21 @@ h4 .fa {
 
 /* HOMEPAGE */
 
-.homepage-subtitle {
+/* .homepage-subtitle {
     color: rgb(55, 118, 179);
     font-size: 25px;
     font-weight: bold;
     margin: 30px 0 30px;
     text-align: center;
-}
+} */
 
-.image-title {
+/* .image-title {
     color: rgb(55, 118, 179);
     font-size: 25px;
     font-weight: bold;
     margin: 30px 0 30px;
     text-align: center;
-}
+} */
 
 /*.homepage-subtitle ~ hr {
     margin: 20px auto 30px;
