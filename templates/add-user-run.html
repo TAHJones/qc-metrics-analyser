@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-xs-12 col-lg-10">
 
-        <!-- ADD-NEW-DATA -->
+            <!-- ADD-NEW-DATA -->
             <form method="POST">
                 <div class="row">
                     <div class="form-group col-sm-6 floating-label-form-group controls">
@@ -67,14 +67,18 @@
                     <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
                 </div>
             </form>
-        <!-- ADD-NEW-DATA-END -->
+            <!-- ADD-NEW-DATA-END -->
 
             </div>
         </div>
     </section>
 
-
-
-
-
 {% endblock %}
+
+{% block javascript %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+{% endblock javascript %}

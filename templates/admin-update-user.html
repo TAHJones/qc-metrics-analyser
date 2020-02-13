@@ -39,7 +39,7 @@
                         {% endfor %}
                         <div class="form-group">
                             <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
-                            <a href="{{ url_for('adminSelectRuns') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
+                            <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn" id="returnToForm">Return</a>
                         </div>
                     </div>
                 </form>                
@@ -50,3 +50,11 @@
     <!-- UPDATE-USER-END -->
 
 {% endblock content %}
+
+{% block javascript %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+{% endblock javascript %}
