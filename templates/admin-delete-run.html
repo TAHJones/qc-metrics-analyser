@@ -40,30 +40,17 @@
     </section>
     <!-- DELETE-USER-RUN-END -->
 
+{% endblock content %}
+
 {% block javascript %}
+
     <script>
-        var pageLocation = JSON.parse({{ pageLocation|tojson }});
-        var deleteRunForm = document.getElementById("deleteRunForm");
-        var deleteRunButton = document.getElementById("deleteRunButton");
-        var deleteRunList = document.getElementById("deleteRunList");
-
-        function hidePageSection(pageSection){
-            if(pageLocation == "runDeleted"){
-                deleteRunForm.classList.add("hide");
-                deleteRunButton.classList.add("hide");
-                deleteRunList.classList.add("deleted");
-            } else if(pageLocation == "deleteRunForm") {
-                deleteRunForm.classList.remove("hide");
-                deleteRunButton.classList.remove("hide");
-                deleteRunList.classList.remove("deleted");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            hidePageSection(pageLocation);
-        });
-
+        let pageLocation = JSON.parse({{ pageLocation|tojson }});
     </script>
-{% endblock javascript %}
 
-{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/js/deleteRun.js"></script>
+
+{% endblock javascript %}

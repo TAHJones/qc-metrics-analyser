@@ -58,27 +58,17 @@
     </section>
     <!-- VIEW-USER-END -->
 
+{% endblock %}
+
 {% block javascript %}
 
     <script>
-        var pageLocation = JSON.parse({{ pageLocation|tojson }});
-        var userForm = document.getElementById("userFormBg");
-        var viewUser = document.getElementById("viewUserBg");
-
-        function hidePageSection(pageSection){
-            if(pageSection=="viewUser"){
-                viewUser.classList.remove("hide");
-                userForm.classList.add("hide");
-            } else if(pageSection=="userForm"){
-                viewUser.classList.add("hide");
-                userForm.classList.remove("hide");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            hidePageSection(pageLocation);
-        });
+        let pageLocation = JSON.parse({{ pageLocation|tojson }});
     </script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/js/adminSelectUser.js"></script>
+
 {% endblock javascript %}
-{% endblock %}
