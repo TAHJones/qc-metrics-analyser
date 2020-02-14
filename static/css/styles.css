@@ -27,7 +27,7 @@ h1 {
 
 h2 {
     color: #4b93da;
-	font-size: 20px;
+	font-size: 25px;
 	margin-top: 30px;
 }
 
@@ -86,29 +86,6 @@ section {
 
 /* NAVBAR */
 
-.nav-item > .nav-link.login-btn {
-	background-color: #3776b3;
-	border-radius: 4px;
-    color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 8px 18px;
-}
-
-.nav-item > .nav-link.login-btn:hover {
-	background-color: #195692;
-	color: #d8d8d8;
-	transition: all .5s ease-in-out;
-}
-
-.nav-item > .nav-link.signup-btn {
-    background-color: #28a745;
-}
-
-.nav-item > .nav-link.signup-btn:hover {
-    background-color: #218838;
-}
-
 .navbar {
     background-image: none;
     background-color: #222;
@@ -158,22 +135,60 @@ section {
 	color: #d1dce7;
 }
 
-.navbar-nav > li:not(:last-child) {
-	margin: 0 20px 0 0;
+.nav-item > .nav-link.login-btn {
+	background-color: #3776b3;
+	border-radius: 4px;
+    color: #fff;
+	font-weight: bold;
+	padding: 8px 18px;
+    width: 75px
 }
 
-.navbar-nav > li > a {
-    color: #ddd;
-    font-size: 16px;
-    margin: 0 5px;
+.nav-item > .nav-link.login-btn:hover {
+	background-color: #195692;
+	color: #d8d8d8;
+	transition: all .5s ease-in-out;
 }
+
+.nav-item > .nav-link.signup-btn {
+    background-color: #28a745;
+}
+
+.nav-item > .nav-link.signup-btn:hover {
+    background-color: #218838;
+}
+
+
+.navbar-nav > .nav-item > .nav-link {
+	font-size: 12px;
+	margin: 0px 0 0 20px;
+}
+
+.navbar-nav>li:first-of-type {
+    margin-top: 10px;
+} 
 
 .navbar-nav>li:last-of-type {
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
-.navbar-toggler {
-    margin-right: 20px;
+.navbar.navbar-dark > .navbar-toggler {
+	margin-right: 10px;
+	background-color: #000;
+	border: #ffffff80 solid 2px;
+}
+
+.navbar.navbar-dark > .navbar-toggler:hover {
+	background-color: #222;
+	border-color: #aaa;
+	transition: all .3s ease-in-out;
+}
+
+@media (min-width: 576px) {
+    .navbar-nav>li:first-of-type, .navbar-nav>li:last-of-type {
+        margin-top: 0;
+    }
 }
 
 /* NAVBAR-END */
@@ -199,22 +214,22 @@ section {
 @media (min-width:768px) {
 
     h1 {
-        font-size: 50px;
+        font-size: 40px;
     }
 
     h2 {
-        font-size: 40px;
+        font-size: 35px;
     }
 }
 
 @media (min-width:992px) {
 
     h1 {
-        font-size: 60px;
+        font-size: 50px;
     }
 
     h2 {
-        font-size: 50px;
+        font-size: 45px;
     }
 }
 
