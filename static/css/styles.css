@@ -86,7 +86,7 @@ section {
 
 /* NAVBAR */
 
-.nav-item > .nav-link.custom-btn {
+.nav-item > .nav-link.login-btn {
 	background-color: #3776b3;
 	border-radius: 4px;
     color: #fff;
@@ -95,7 +95,7 @@ section {
 	padding: 8px 18px;
 }
 
-.nav-item > .nav-link.custom-btn:hover {
+.nav-item > .nav-link.login-btn:hover {
 	background-color: #195692;
 	color: #d8d8d8;
 	transition: all .5s ease-in-out;
