@@ -11,10 +11,6 @@ body {
     padding: 0;
 }
 
-a {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 h1, h2, h3 {
     color: rgb(55, 118, 179);
     text-align: center;
@@ -70,6 +66,10 @@ h4 {
 /* h4.distribution {
     margin-right: 115px;
 } */
+
+a {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 hr {
     border: solid 2px #405a74;
