@@ -220,36 +220,14 @@ section {
 
 /* BANNER-END */
 
-/* HOMEPAGE */
-
-/* .homepage-subtitle {
-    color: rgb(55, 118, 179);
-    font-size: 25px;
-    font-weight: bold;
-    margin: 30px 0 30px;
-    text-align: center;
-} */
-
-/* .image-title {
-    color: rgb(55, 118, 179);
-    font-size: 25px;
-    font-weight: bold;
-    margin: 30px 0 30px;
-    text-align: center;
-} */
-
-/*.homepage-subtitle ~ hr {
-    margin: 20px auto 30px;
-}*/
+/* OVERLAY */
 
 .overlay-container-1,
 .overlay-container-2,
 .overlay-container-3,
 .overlay-container-4, 
 .overlay-container-5, 
-.overlay-container-6, 
-.overlay-container-7, 
-.overlay-container-8 {
+.overlay-container-6 {
     position: relative;
     width: 100%;
 }
@@ -257,11 +235,9 @@ section {
 .img-overlay {
     display: block;
     max-width: 100%;
-    height: auto;
     margin: 0 auto 20px;
     border: 12px solid slategrey;
     border-radius: 10px;
-    border-style: solid;
 }
 
 .overlay {
@@ -304,17 +280,9 @@ section {
     opacity: 1;
 }
 
-.overlay-container-7:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-8:hover .overlay {
-    opacity: 1;
-}
-
 .overlay-text {
     color: #3399f3;
-    font-size: 30px;
+    font-size: 25px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -324,21 +292,8 @@ section {
     text-align: center;
 }
 
-@media (min-width: 768px) {
-    .homepage-img {
-        max-width: 100%;
-    }
+/* OVERLAY-END */
 
-    .overlay {
-        max-width: 100%;
-    }
-
-    .overlay-text {
-        font-size: 28px;
-    }
-}
-
-/* HOMEPAGE-END */
 
 /* LOGIN/SIGNUP */
 
@@ -348,48 +303,6 @@ section {
 }
 
 /* LOGIN/SIGNUP-END */
-
-/*OTHER-METRICS*/
-
-.other-metrics .overlay {
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0%;*/
-    /*right: 0%;*/
-    /*height: 100%;*/
-    /*max-width: 80%;*/
-    /*opacity: 0;*/
-    /*transition: .5s ease-in-out;*/
-    /*background-color: rgba(0, 0, 0, .6);*/
-    /*margin: 0 auto;*/
-    border-width: 2px;
-    /*border-radius: 10px;*/
-}
-
-.other-metrics .homepage-img {
-    /*display: block;*/
-    /*max-width: 100%;*/
-    /*height: auto;*/
-    /*margin: 0 auto;*/
-    /*border: 20px solid rgb(34, 49, 63);*/
-    /*border-radius: 10px;*/
-    border-width: 10px;
-}
-
-.other-metrics .overlay-text {
-    /*color: #FF9404;*/
-    font-size: 25px;
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*-webkit-transform: translate(-50%, -50%);*/
-    /*-ms-transform: translate(-50%, -50%);*/
-    /*transform: translate(-50%, -50%);*/
-    /*text-align: center;*/
-}
-
-/*OTHER-METRICS-END*/
 
 /* DATALIST */
 
