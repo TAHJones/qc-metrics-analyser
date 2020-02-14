@@ -180,8 +180,7 @@ section {
 
 /* BANNER */
 
-.bg-banner {
-    color: #FFF;
+.banner {
     background-color: rgb(34, 49, 63);
     /* works for github pages*/
     /* background-image: url(/qc-metrics-analyser-3/static/images/banner.jpg); */
@@ -192,57 +191,29 @@ section {
     background-size: cover;
 }
 
-.bg-banner-inner {
+.banner-inner {
 	background-color: rgba(34, 49, 63, 0.8);
-	padding: 60px 0;
+	padding: 80px 0;
 }
-
-/* .banner-title {
-    color: #ddd;
-    position: relative;
-    top: 0px;
-    font-family: 'Cabin', sans-serif;
-    font-size: 35px;
-    max-width: 700px;
-    margin: 0 auto 10px;
-    text-align: center;
-    text-transform: uppercase;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-name: bounceInUp;
-    animation-name: bounceInUp;
-    animation-delay: 1.5s;
-    -webkit-animation-delay: 1.5s;
-} */
-
-/* .banner-subtitle {
-    color: #698db0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 25px;
-    margin: 30px 0 0;
-    text-align: center;
-} */
 
 @media (min-width:768px) {
 
-    .banner-title {
+    h1 {
         font-size: 50px;
     }
 
-    .banner-subtitle {
+    h2 {
         font-size: 40px;
     }
 }
 
 @media (min-width:992px) {
 
-    .banner-title {
+    h1 {
         font-size: 60px;
     }
 
-    .banner-subtitle {
+    h2 {
         font-size: 50px;
     }
 }
