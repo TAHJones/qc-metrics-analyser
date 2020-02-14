@@ -114,10 +114,10 @@ section {
 .nav-item > .nav-link.login-btn {
 	background-color: #3776b3;
 	border-radius: 4px;
-    color: #fff;
+	color: #fff;
 	font-weight: bold;
-	padding: 8px 18px;
-    width: 75px
+	text-align: center;
+	width: 75px;
 }
 
 .nav-item > .nav-link.login-btn:hover {
