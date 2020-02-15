@@ -473,6 +473,12 @@ input[type="radio"] {
     margin-bottom: 10px;
 }
 
+.user-run > li > span {
+	font-style: italic;
+	font-weight: bold;
+	margin-left: 15px;
+}
+
 .user-run {
     margin-bottom: 25px;
     text-align: left;
