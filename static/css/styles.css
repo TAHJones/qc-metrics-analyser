@@ -443,15 +443,15 @@ input[type="radio"] {
 /* DATALIST-END */
 
 
-.navbar-nav > .nav-item > .nav-link.qc-data-btn {
+/* .navbar-nav > .nav-item > .nav-link.qc-data-btn {
 	color: #e1e1e1;
 	text-align: center;
 	padding: 5px 15px;
-}
+} */
 
-.navbar-nav > .nav-item > .nav-link.qc-data-btn:hover {
+/* .navbar-nav > .nav-item > .nav-link.qc-data-btn:hover {
 	color: #fff;
-}
+} */
 
 
 /* VIEW-USER-RUNS */
