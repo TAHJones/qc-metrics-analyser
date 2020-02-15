@@ -316,16 +316,30 @@ section {
 	text-transform: uppercase;
 }
 
-.data-lists {
+.data-form-title, .data-list-title {
 	font-size: 20px;
+    /* margin: 0 0 20px; */
 	text-align: left;
 	text-transform: uppercase;
 }
 
-.user-runs-list {
+.data-form-title {
+    margin: 30px 0 20px;
+}
+
+
+.data-list-title {
+    margin: 0 0 20px;
+}
+
+#selectFilteredRunForm > .data-list-title, #selectRunForm > .data-list-title {
+    margin-top: 50px;
+}
+
+/* .user-runs-list {
 	margin: 40px 0 0;
 	text-align: center;
-}
+} */
 
 /* .delete-user-header {
     margin-top: 20px;
