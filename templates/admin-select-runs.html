@@ -247,13 +247,13 @@
                     {% endif %} {% endwith %}
                     {% for data in selectedUserRun %}
                     <ul class="user-run">
-                        <li>Pool: {{ data.pool }}</li>
-                        <li>Yield: {{ data.yield }}</li>
-                        <li>Cluster Density: {{ data.clusterDensity }}</li>
-                        <li>Pass Filter: {{ data.passFilter }}</li>
-                        <li>Q30: {{ data.q30 }}</li>
-                        <li>Experiment: {{ data.experiment }}</li>
-                        <li>Chemistry: {{ data.chemistry }}</li>
+                        <li>Pool: <span>{{ data.pool }}</span></li>
+                        <li>Yield: <span>{{ data.yield }}</span></li>
+                        <li>Cluster Density: <span>{{ data.clusterDensity }}</span></li>
+                        <li>Pass Filter: <span>{{ data.passFilter }}</span></li>
+                        <li>Q30: <span>{{ data.q30 }}</span></li>
+                        <li>Experiment: <span>{{ data.experiment }}</span></li>
+                        <li>Chemistry: <span>{{ data.chemistry }}</span></li>
                     </ul>
                     {% endfor %}
                 </div>
