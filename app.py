@@ -755,6 +755,7 @@ def addUserRun():
             'comment': comment
         }
         runs.insert_one(run)
+        flash("Pool_{} has been successfully added".format(pool))
         return redirect(url_for("addUserRun", username=username, title=session["title"]))
     return render_template("add-user-run.html", username=username, title=session["title"])
 
