@@ -193,10 +193,10 @@
     <!-- VIEW-USER-DATA -->
     <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
-            <div class="col-sm-12">
-                <div class="user-data-lists">
-                    <h3>{{ username }}'s Sequencing Runs</h3> 
-                    <hr>
+            <div class="col-sm-11">
+                <h3>{{ username }}'s Sequencing Runs</h3> 
+                <hr>
+                <div class="user-runs-list">
                     {% with messages = get_flashed_messages() %} {% if messages %}
                     <ul class="flashes">
                         {% for message in messages %}
