@@ -22,12 +22,12 @@
 
     <!-- USER-DATA-FORM -->
     <section class="container" id="userFormBg">
-        <h3>View User Runs</h3>
+        <h3>View Runs</h3>
         <hr>
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <form method="POST">
-                    <h4 class="data-lists">Select Run:</h4>
+                    <h4 class="data-form-title">Select Run:</h4>
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <select name="poolNumber" class="form-control" id="poolNumber">
@@ -43,7 +43,7 @@
                 </form>
 
                 <form method="POST">
-                    <h4 class="data-lists">Filter Runs:</h4>
+                    <h4 class="data-form-title">Filter Runs:</h4>
                     <div class="row">
                         <div class="form-group col-sm-6 floating-label-form-group controls">
                             <label>Min Yield</label>
@@ -193,10 +193,12 @@
     <!-- VIEW-USER-DATA -->
     <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
-            <div class="col-sm-11">
-                <h3>{{ username }}'s Sequencing Runs</h3> 
-                <hr>
-                <div class="user-runs-list">
+            <div class="col-sm-11 col-md-8 col-lg-8">
+                <!-- <h3>{{ username }}'s Sequencing Runs</h3>  -->
+                <!-- <hr> -->
+                <!-- <div class="user-runs-list"> -->
+                <div class="data-list">
+                    <h4 class="data-list-title">{{ username }}'s Runs:</h4> 
                     {% with messages = get_flashed_messages() %} {% if messages %}
                     <ul class="flashes">
                         {% for message in messages %}
@@ -225,12 +227,13 @@
                     </ul>
                     {% endfor %}
                 </div>
-                <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button>
+                <a href="{{ url_for('viewUserRuns') }}" class="btn qc-data-btn">Return</a>
+                <!-- <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button> -->
                 <a href="{{ url_for('deleteUserRun') }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
                 <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
     
                 <div id="selectFilteredRunForm" class="hide">
-                    <h4 class="data-lists">Select Run:</h4>
+                    <h4 class="data-list-title">Select Run:</h4>
                     <form method="POST">
                         <div class="row">
                             <div class="form-group col-sm-6 floating-label-form-group controls">
