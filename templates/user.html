@@ -21,154 +21,149 @@
 {% block content %}
     
     <section class="container">
+        <!--SEQUENCING-RUNS-->
+        <h3>Sequencing Run Metrics</h3>
+        <hr>
+
         <div class="row justify-content-center">
-            <div class="col-xs-12 col-lg-10">
-
-                <!--SEQUENCING-RUNS-->
-                <h3>Sequencing Run Metrics</h3>
-                <hr>
-
-                <div class="row justify-content-center">
-                    <div class="col-xs-10 col-sm-6 col-md-5">
-                        <h4>Yield</h4>
-                        <a data-toggle="modal" data-target="#yieldModal">
-                            <div class="overlay-container-1">
-                                <img class="img-overlay" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
-                                <div class="overlay">
-                                <div class="overlay-text">Yield</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-10 col-sm-6 col-md-5">
-                        <h4>Cluster Density</h4>
-                        <a data-toggle="modal" data-target="#clusterDensityModal">
-                        <div class="overlay-container-2">
-                            <img class="img-overlay" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
-                            <div class="overlay">
-                            <div class="overlay-text">Cluster Density</div>
-                            </div>
+            <div class="col-xs-10 col-sm-6 col-md-5">
+                <h4>Yield</h4>
+                <a data-toggle="modal" data-target="#yieldModal">
+                    <div class="overlay-container-1">
+                        <img class="img-overlay" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
+                        <div class="overlay">
+                        <div class="overlay-text">Yield</div>
                         </div>
-                        </a>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-10 col-sm-6 col-md-5">
+                <h4>Cluster Density</h4>
+                <a data-toggle="modal" data-target="#clusterDensityModal">
+                <div class="overlay-container-2">
+                    <img class="img-overlay" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
+                    <div class="overlay">
+                    <div class="overlay-text">Cluster Density</div>
                     </div>
                 </div>
+                </a>
+            </div>
+        </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-xs-10 col-sm-6 col-md-5">
-                        <h4>Pass Filter</h4>
-                        <a data-toggle="modal" data-target="#passFilterModal">
-                        <div class="overlay-container-3">
-                            <img class="img-overlay" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
-                            <div class="overlay">
-                            <div class="overlay-text">Clusters Passing Filter</div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-10 col-sm-6 col-md-5">
-                        <h4>Q30 Score</h4>
-                        <a data-toggle="modal" data-target="#q30Modal">
-                        <div class="overlay-container-4">
-                            <img class="img-overlay" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
-                            <div class="overlay">
-                            <div class="overlay-text">Q30 Score</div>
-                            </div>
-                        </div>
-                        </a>
+        <div class="row justify-content-center">
+            <div class="col-xs-10 col-sm-6 col-md-5">
+                <h4>Pass Filter</h4>
+                <a data-toggle="modal" data-target="#passFilterModal">
+                <div class="overlay-container-3">
+                    <img class="img-overlay" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
+                    <div class="overlay">
+                    <div class="overlay-text">Clusters Passing Filter</div>
                     </div>
                 </div>
+                </a>
+            </div>
 
-                <div id="yieldModal" class="modal fade">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content qc-data">
-                            <div class="modal-header qc-data-header">
-                                <h4 class="modal-title"><span>User: {{ username }}</span>Yield - Gigabases</h4>
-                            </div>
-                            <div class="modal-body qc-data-list">
-                                <ul>
-                                {% for data in qcData.yields %}
-                                    <li>Average: {{ data.average|int() }}</li>
-                                    <li>Minimum: {{ data.minimum|int() }}</li>
-                                    <li>Maximum: {{ data.maximum|int() }}</li>
-                                {% endfor %}
-                                </ul>
-                            <canvas id="yield-chart" width="3" height="1"></canvas>
-                            </div>
-                            <div class="modal-footer qc-data-footer">
-                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+            <div class="col-xs-10 col-sm-6 col-md-5">
+                <h4>Q30 Score</h4>
+                <a data-toggle="modal" data-target="#q30Modal">
+                <div class="overlay-container-4">
+                    <img class="img-overlay" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
+                    <div class="overlay">
+                    <div class="overlay-text">Q30 Score</div>
                     </div>
                 </div>
-                
-                <div id="clusterDensityModal" class="modal fade">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content qc-data">
-                            <div class="modal-header qc-data-header">
-                                <h4 class="modal-title"><span>User: {{ username }}</span>Cluster Density - K/mm2</h4>
-                            </div>
-                            <div class="modal-body qc-data-list">
-                                <ul>
-                                {% for data in qcData.clusterDensity %}
-                                    <li>Average: {{ data.average|int() }}</li>
-                                    <li>Minimum: {{ data.minimum|int() }}</li>
-                                    <li>Maximum: {{ data.maximum|int() }}</li>
-                                {% endfor %}
-                                </ul>
-                            <canvas id="clusterDensity-chart" width="3" height="1"></canvas>
-                            </div>
-                            <div class="modal-footer qc-data-footer">
-                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="passFilterModal" class="modal fade">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content qc-data">
-                            <div class="modal-header qc-data-header">
-                                <h4 class="modal-title"><span>User: {{ username }}</span>Pass Filter - %</h4>
-                            </div>
-                            <div class="modal-body qc-data-list">
-                                <ul>
-                                {% for data in qcData.passFilter %}
-                                    <li>Average: {{ data.average|int() }}</li>
-                                    <li>Minimum: {{ data.minimum|int() }}</li>
-                                    <li>Maximum: {{ data.maximum|int() }}</li>
-                                {% endfor %}
-                                </ul>
-                            <canvas id="passFilter-chart" width="3" height="1"></canvas>
-                            </div>
-                            <div class="modal-footer qc-data-footer">
-                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </a>
+            </div>
+        </div>
 
-                <div id="q30Modal" class="modal fade">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content qc-data">
-                            <div class="modal-header qc-data-header">
-                                <h4 class="modal-title"><span>User: {{ username }}</span>Q30 Score - %</h4>
-                            </div>
-                            <div class="modal-body qc-data-list">
-                                <ul>
-                                {% for data in qcData.q30 %}
-                                    <li>Average: {{ data.average|int() }}</li>
-                                    <li>Minimum: {{ data.minimum|int() }}</li>
-                                    <li>Maximum: {{ data.maximum|int() }}</li>
-                                {% endfor %}
-                                </ul>
-                            <canvas id="q30-chart" width="600" height="200"></canvas>
-                            </div>
-                            <div class="modal-footer qc-data-footer">
-                                <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+        <div id="yieldModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title"><span>User: {{ username }}</span>Yield - Gigabases</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                        {% for data in qcData.yields %}
+                            <li>Average: {{ data.average|int() }}</li>
+                            <li>Minimum: {{ data.minimum|int() }}</li>
+                            <li>Maximum: {{ data.maximum|int() }}</li>
+                        {% endfor %}
+                        </ul>
+                    <canvas id="yield-chart" width="3" height="1"></canvas>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="clusterDensityModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title"><span>User: {{ username }}</span>Cluster Density - K/mm2</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                        {% for data in qcData.clusterDensity %}
+                            <li>Average: {{ data.average|int() }}</li>
+                            <li>Minimum: {{ data.minimum|int() }}</li>
+                            <li>Maximum: {{ data.maximum|int() }}</li>
+                        {% endfor %}
+                        </ul>
+                    <canvas id="clusterDensity-chart" width="3" height="1"></canvas>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="passFilterModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title"><span>User: {{ username }}</span>Pass Filter - %</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                        {% for data in qcData.passFilter %}
+                            <li>Average: {{ data.average|int() }}</li>
+                            <li>Minimum: {{ data.minimum|int() }}</li>
+                            <li>Maximum: {{ data.maximum|int() }}</li>
+                        {% endfor %}
+                        </ul>
+                    <canvas id="passFilter-chart" width="3" height="1"></canvas>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="q30Modal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content qc-data">
+                    <div class="modal-header qc-data-header">
+                        <h4 class="modal-title"><span>User: {{ username }}</span>Q30 Score - %</h4>
+                    </div>
+                    <div class="modal-body qc-data-list">
+                        <ul>
+                        {% for data in qcData.q30 %}
+                            <li>Average: {{ data.average|int() }}</li>
+                            <li>Minimum: {{ data.minimum|int() }}</li>
+                            <li>Maximum: {{ data.maximum|int() }}</li>
+                        {% endfor %}
+                        </ul>
+                    <canvas id="q30-chart" width="600" height="200"></canvas>
+                    </div>
+                    <div class="modal-footer qc-data-footer">
+                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </section>
