@@ -194,9 +194,6 @@
     <section class="container hide" id="userRunsBg">
         <div class="row justify-content-center">
             <div class="col-sm-10 col-md-8 col-lg-8">
-                <!-- <h3>{{ username }}'s Sequencing Runs</h3>  -->
-                <!-- <hr> -->
-                <!-- <div class="user-runs-list"> -->
                 <div class="data-list">
                     <h4 class="data-list-title">{{ username }}'s Run Data:</h4> 
                     {% with messages = get_flashed_messages() %} {% if messages %}
@@ -228,7 +225,6 @@
                     {% endfor %}
                 </div>
                 <a href="{{ url_for('viewUserRuns') }}" class="btn qc-data-btn">Return</a>
-                <!-- <button type="submit" class="btn qc-data-btn" id="returnToForm">Return</button> -->
                 <a href="{{ url_for('deleteUserRun') }}" class="btn qc-data-btn qc-data-btn--delete invisible" id="deleteRun">Delete</a>
                 <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update invisible" id="updateRun">Update</a>
     
