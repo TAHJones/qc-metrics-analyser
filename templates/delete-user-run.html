@@ -31,8 +31,8 @@
                     {% endfor %}
                 </ul>
                 {% endif %} {% endwith %}
-                <div class="user-data-list">
-                    <h4 class="data-lists delete-user">User: {{ username }}</h4> 
+                <div class="data-list">
+                    <h4 class="data-list-title delete-user">User: {{ username }}</h4> 
                     {% for data in userRun %}
                     <ul id="deleteRunList" class="user-run">
                         <li>Pool: <span>{{ data.pool }}</span></li>
@@ -46,7 +46,7 @@
                     {% endfor %}
                 </div>
                 <form method="POST" id="deleteRunForm">
-                    <h4 class="data-lists delete-user">Delete Run: </h4> 
+                    <h4 class="data-list-title delete-user">Delete Run: </h4> 
                     <label class="radio-inline"><input type="radio" name="radio" value="yes">Yes</label>
                     <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
                 </form>
