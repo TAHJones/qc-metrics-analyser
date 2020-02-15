@@ -322,6 +322,11 @@ section {
 	text-transform: uppercase;
 }
 
+.user-runs-list {
+	margin: 40px 0 0;
+	text-align: center;
+}
+
 /* .delete-user-header {
     margin-top: 20px;
 } */
@@ -418,7 +423,7 @@ input[type="radio"] {
 }
 
 #returnToForm {
-	margin-right: 50px;
+	margin: 0 50px;
 }
 
 /* DATALIST-END */
@@ -444,7 +449,7 @@ input[type="radio"] {
 } */
 
 .user-run, .user-runs {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-left: 0;
 }
 
@@ -455,6 +460,8 @@ input[type="radio"] {
 
 .user-run {
     margin-bottom: 25px;
+    text-align: left;
+    margin-left: 50px;
 }
 
 #userRunButton  {
