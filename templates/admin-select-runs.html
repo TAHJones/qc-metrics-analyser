@@ -189,7 +189,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-11 col-md-8 col-lg-8">
                 <div class="data-list">
-                    <h4 class="data-list-title">{{ selectedUser }}'s Runs:</h4> 
+                    <h4 class="data-list-title">User: {{ selectedUser }}</h4> 
                     {% with messages = get_flashed_messages() %} {% if messages %}
                     <ul class="flashes">
                         {% for message in messages %}
