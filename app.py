@@ -188,7 +188,7 @@ def index():
 def login():
     """ Log in with username. If username doesn't exist user is prompted to try another username.
     If user exists & has admin privileges they are directed to 'adminOrUser' page. If user exists
-    & only has user privileges they are directed to the 'user' page """
+    & only has user privileges they are directed to 'user' page """
     users = mongo.db.users
     if request.method == "POST":
         session.clear()
@@ -215,7 +215,8 @@ def logout():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    """ Add new user to database.  """
+    """ Add new user to database. Check if username exists, if it does then user is prompted
+    to try another username. If username doesn't exist add to database """
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     users = mongo.db.users
