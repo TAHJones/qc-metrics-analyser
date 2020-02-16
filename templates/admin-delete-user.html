@@ -30,8 +30,8 @@
                     {% endfor %}
                 </ul>
                 {% endif %} {% endwith %}
-                <div class="user-data-list">
-                    <h4 class="data-lists delete-user">User: {{ selectedUserName }}</h4> 
+                <div class="data-list">
+                    <h4 class="data-list-title delete-user">User: {{ selectedUserName }}</h4> 
                     {% for data in selectedUser %}
                     <ul id="deleteUserList" class="user-run">
                         <li>Membership: <span>{{ data.member|capitalize }}</span></li>
@@ -41,7 +41,7 @@
                     {% endfor %}
                 </div>
                 <form method="POST" id="deleteUserForm">
-                    <h4 class="data-lists delete-user">Delete User: </h4> 
+                    <h4 class="data-list-title delete-user">Delete User: </h4> 
                     <label class="radio-inline"><input type="radio" name="radio" value="yes">Yes</label>
                     <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
                 </form>
