@@ -221,11 +221,11 @@ def signup():
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == request.form.get("newUsername"):
                 flash("username already exists, please enter a unique username")
-                return redirect(url_for('index'))                
+                return redirect(url_for('signup'))                
             else:
                 newuser = request.form.get('newUsername')
                 users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
-                return redirect(url_for('index'))
+                return redirect(url_for('signup'))
     return render_template("signup.html")
 
 
