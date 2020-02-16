@@ -586,11 +586,11 @@ input[type="radio"] {
     text-align: left;
 }
 
-#userRunButton  {
+#userRunButton {
     margin-top: 31px;
 }
 
-#userRunButton-admin  {
+#userRunButton-admin {
     margin-top: 31px;
     margin-left: 16px;
 }
@@ -639,6 +639,21 @@ input[type="radio"] {
 }
 
 /* VIEW-USER-RUNS-END */
+
+/* FORMS */
+
+label {
+    font-size: 12px;
+}
+
+@media (min-width: 576px){
+    label {
+        font-size: 16px;
+    }
+}
+
+/* FORMS-END */
+
 
 .hide {
     display: none;
