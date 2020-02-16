@@ -666,9 +666,21 @@ input[type="radio"] {
 
 .footer-copyright p {
 	color: #d1dce7;
-	font-size: 12px;
+	font-size: 11px;
 	margin: 0;
 	padding: 20px;
+}
+
+@media (min-width: 576px) {
+    .footer-copyright p {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-copyright p {
+        font-size: 14px;
+    }
 }
 
 /*create more space between footer links on small screens above 303px width*/
