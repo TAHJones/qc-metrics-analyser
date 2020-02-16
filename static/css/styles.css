@@ -604,7 +604,7 @@ input[type="radio"] {
 
 /* FOOTER */
 
-.footer-nav {
+/* .footer-nav {
     background-color: #222;
     border: solid 1px #222;
     border-bottom-color: blue;
@@ -635,7 +635,7 @@ input[type="radio"] {
 .footer-nav ul > li > a:hover {
     color: #ffffffb3;
     text-decoration: none;
-}
+} */
 
 .footer-copyright {
 	text-align: center;
