@@ -565,7 +565,7 @@ input[type="radio"] {
 } */
 
 .user-run, .user-runs {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     padding-left: 0;
 }
 
@@ -596,9 +596,8 @@ input[type="radio"] {
 }
 
 .user-runs > li {
-	display: inline-block;
-	font-size: 12px;
-	margin-right: 7px;
+	display: block;
+	font-size: 14px;
 }
 
 .user-runs:last-of-type {
@@ -614,6 +613,30 @@ input[type="radio"] {
     margin-left: 16px;
 } */
 
+@media (min-width: 576px){
+    .user-runs {
+        margin-bottom: 15px;
+    }
+
+   .user-runs > li {
+        display:inline-block;
+        font-size: 12px;
+        margin-right: 7px;
+    }
+}
+@media (min-width: 768px){
+    .user-runs > li {
+        font-size: 15px;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 992px){
+    .user-runs > li {
+        font-size: 16px;
+        margin-right: 12px;
+    }
+}
 
 /* VIEW-USER-RUNS-END */
 
