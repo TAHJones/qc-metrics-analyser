@@ -53,9 +53,9 @@
                     <h4 class="data-list-title">User: {{ selectedUserName }}</h4> 
                     {% for data in selectedUser %}
                     <ul class="user-run">
-                        <li>Membership: {{ data.member|capitalize }}</li>
-                        <li>Date Joined: {{ data.joined.date }}</li>
-                        <li>Time Joined: {{ data.joined.time }}</li>
+                        <li>Membership: <span>{{ data.member|capitalize }}</span></li>
+                        <li>Date Joined: <span>{{ data.joined.date }}</span></li>
+                        <li>Time Joined: <span>{{ data.joined.time }}</span></li>
                     </ul>
                     {% endfor %}
                 </div>
