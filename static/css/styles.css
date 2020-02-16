@@ -73,14 +73,11 @@ section {
     text-shadow: none;
 }
 
-.navbar-brand>img {
-    color: #fff;
-    height: 60px;
-    left: 50px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
+.navbar-brand > img {
+	color: #fff;
+	height: 50px;
+	width: 50px;
+	margin-left: 15px;
 }
 
 .member-status {
@@ -196,6 +193,13 @@ section {
     h2 {
         font-size: 25px;
     }
+
+    .navbar-brand > img {
+        height: 60px;
+        width: 60px;
+        margin-left: 20px;
+    }
+
     .navbar-nav > .nav-item > .nav-link {
         font-size: 12px;
     }
