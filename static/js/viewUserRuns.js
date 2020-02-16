@@ -22,10 +22,3 @@ function hidePageSection(pageSection){
 document.addEventListener("DOMContentLoaded", function() {
     hidePageSection(pageLocation);
 });
-
-returnToForm.addEventListener("click", function(){
-    userRuns.classList.add("hide");
-    userForm.classList.remove("hide");
-    deleteRun.classList.add("invisible");
-    updateRun.classList.add("invisible");
-});
