@@ -622,7 +622,6 @@ def viewUserRuns():
     """  view all user runs or select individual run to delete or update """
     username = session["username"]
     userRunList = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, '_id': 0 }))
-    print(userRunList)
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             poolNumber = int(request.form.get("poolNumber"))
@@ -735,6 +734,10 @@ def addUserRun():
     username = session["username"]
     runs = mongo.db.seqMetCol
     if request.method == "POST":
+        for run in runs.find({}, { 'pool': 1, '_id': 0 }):
+            if run.get('pool') == int(request.form.get('pool')):
+                flash("Pool already exists, please enter a unique pool number")
+                return redirect(url_for("addUserRun", username=username, title=session["title"]))
         pool = int(request.form.get("pool"))
         yields = int(request.form.get("yield"))
         clusterDensity = int(request.form.get("clusterDensity"))
@@ -743,7 +746,7 @@ def addUserRun():
         experiment = request.form.get("experiment")
         chemistry = request.form.get("chemistry")
         comment = request.form.get("comment")
-        run = {
+        newRun = {
             'user': username,
             'pool': pool,
             'yield': yields,
@@ -754,7 +757,7 @@ def addUserRun():
             'chemistry': chemistry,
             'comment': comment
         }
-        runs.insert_one(run)
+        runs.insert_one(newRun)
         flash("Pool_{} has been successfully added".format(pool))
         return redirect(url_for("addUserRun", username=username, title=session["title"]))
     return render_template("add-user-run.html", username=username, title=session["title"])
