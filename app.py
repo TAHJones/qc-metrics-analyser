@@ -446,7 +446,7 @@ def adminDeleteRun():
                 'experiment': 'Deleted',
                 'chemistry': 'Deleted'
             }
-            # mongo.db.seqMetCol.remove({'pool': selectedUserRun})
+            mongo.db.seqMetCol.remove({'pool': selectedUserRun})
             selectedUserRun = [deletedRun]
             pageLocation=json.dumps("runDeleted")
             flash("Pool_{} has been successfully deleted".format(selectedPoolNumber))
@@ -537,8 +537,8 @@ def adminDeleteUser():
                 'joined': {'date': 'Deleted', 'time': 'Deleted'}
             }
             selectedUser = [updateUser]
-            # users = mongo.db.users
-            # users.remove({'user': selectedUserName})
+            users = mongo.db.users
+            users.remove({'user': selectedUserName})
             pageLocation=json.dumps("userDeleted")
             flash("User account for {} has been successfully deleted".format(selectedUserName))
         elif radio == 'no':
