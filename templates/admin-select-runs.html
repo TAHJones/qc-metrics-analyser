@@ -24,12 +24,12 @@
         <h3>View User Runs</h3>
         <hr>
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
+            <div class="col-12 col-md-10 col-lg-8">
 
                 <form method="POST">
                     <h4 class="data-form-title">Select User:</h4>
                     <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <select name="username" class="form-control" id="userListContainer">
                                 {% for user in userList %}
                                     <option  value="{{ user.user }}">{{ user.user }}</option>
@@ -42,7 +42,7 @@
                     </div>
                     <h4 class="data-form-title">Filter Runs:</h4>
                     <div class="row">
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Min Yield</label>
                             <select name="minYield" class="form-control" id="minYield">
                                 <option value="1" selected>1</option>
@@ -53,7 +53,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Max Yield</label>
                             <select name="maxYield" class="form-control" id="maxYield">
                                 <option value="50">50</option>
@@ -64,7 +64,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Min Cluster Density</label>
                             <select name="minClusterDensity" class="form-control" id="minClusterDensity">
                                 <option type="number"  value="50" selected>50</option>
@@ -78,7 +78,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Max Cluster Density</label>
                             <select name="maxClusterDensity" class="form-control" id="maxClusterDensity">
                                 <option value="75">75</option>
@@ -92,7 +92,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Min Pass Filter</label>
                             <select name="minPassFilter" class="form-control" id="minPassFilter">
                                 <option value="1" selected>1</option>
@@ -108,7 +108,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Max Pass Filter</label>
                             <select name="maxPassFilter" class="form-control" id="maxPassFilter">
                                 <option value="10">10</option>
@@ -124,7 +124,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Min Q30</label>
                             <select name="minq30" class="form-control" id="minq30">
                                 <option value="1" selected>1</option>
@@ -140,7 +140,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label>Max Q30</label>
                             <select name="maxq30" class="form-control" id="maxq30">
                                 <option value="10">10</option>
@@ -156,7 +156,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label for="experiment">Experiment</label>
                             <select name="experiment" class="form-control" id="experiment">
                                 <option value="All" selected>All</option>
@@ -166,7 +166,7 @@
                             </select>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="form-group col-sm-6 floating-label-form-group controls">
+                        <div class="form-group col-6 floating-label-form-group controls">
                             <label for="chemistry">Chemistry</label>
                             <select name="chemistry" class="form-control" id="chemistry">
                                 <option value="All" selected>All</option>
