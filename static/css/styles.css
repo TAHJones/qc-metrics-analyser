@@ -196,6 +196,9 @@ section {
     h2 {
         font-size: 25px;
     }
+    .navbar-nav > .nav-item > .nav-link {
+        font-size: 12px;
+    }
 }
 @media (min-width:768px) {
 
@@ -205,6 +208,16 @@ section {
 
     h2 {
         font-size: 30px;
+    }
+
+    .navbar-nav > .nav-item > .nav-link {
+        font-size: 14px;
+    }
+    .nav-item > .nav-link.login-btn {
+        width: 80px;
+    }
+    .navbar-nav > li:last-of-type {
+        margin-right: 25px;
     }
 }
 
@@ -216,6 +229,12 @@ section {
 
     h2 {
         font-size: 40px;
+    }
+    .navbar-nav > .nav-item > .nav-link {
+        font-size: 16px;
+    }
+    .nav-item > .nav-link.login-btn {
+        width: 90px;
     }
 }
 
