@@ -23,7 +23,6 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-lg-10">
-                <h4 class="data-lists">Update Pool {{ existingPoolNumber }}</h4> 
                 {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
                     {% for message in messages %}
@@ -31,6 +30,7 @@
                     {% endfor %}
                 </ul>
                 {% endif %} {% endwith %}
+                <h4 class="data-lists">Update Pool {{ existingPoolNumber }}</h4> 
                 <form method="POST">
                     <div class="row">
                         {% for user in selectedUser %}
