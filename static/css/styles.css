@@ -385,8 +385,14 @@ section {
 /* LOGIN/SIGNUP */
 
 .login-form, .signup-form {
-    font-size: 24px;
+    font-size: 18px;
     text-align: left;
+}
+
+@media (min-width: 576px){
+    .login-form, .signup-form {
+        font-size: 24px;
+    }
 }
 
 /* LOGIN/SIGNUP-END */
