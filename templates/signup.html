@@ -22,7 +22,7 @@
 
     <section class="container">
         <div class="row justify-content-center">
-            <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="col-10 col-md-8 col-lg-6">
 
                 {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
@@ -36,12 +36,12 @@
 
                 <form method="POST">
                     <div class="row">
-                        <div class="form-group col-sm-8 floating-label-form-group controls">
+                        <div class="form-group col-8 floating-label-form-group controls">
                             <input type="text" class="form-control" placeholder="select a username" name="newUsername" id="newUsername" required data-validation-required-message="Please enter a username.">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div id="success"></div>
-                        <div class="form-group  col-sm-2 floating-label-form-group controls">
+                        <div class="form-group  col-2 floating-label-form-group controls">
                             <button type="submit" class="btn qc-data-btn" id="sendMessageButton">Send</button>
                         </div>
                     </div>
