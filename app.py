@@ -845,12 +845,14 @@ def updateUserRun():
         experimentList = createDropDownList(experiments, experiment)
         chemistryList = createDropDownList(chemistries, chemistry)
         return render_template("update-user-run.html",
+                                username=username,
                                 title=session["title"],
                                 existingPoolNumber=existingPoolNumber,
                                 userRun=userRun,
                                 chemistryList=chemistryList, 
                                 experimentList=experimentList) 
     return render_template("update-user-run.html",
+                            username=username,
                             title=session["title"],
                             existingPoolNumber=existingPoolNumber,
                             userRun=userRun,
