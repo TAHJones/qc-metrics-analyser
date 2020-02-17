@@ -203,8 +203,8 @@
                         {% endfor %}
                     </ul>
                     {% endif %} {% endwith %}
-                    <ul class="user-runs">
                     {% for data in userData %}
+                    <ul class="user-runs">
                         <li>Pool: {{ data.pool|int() }}</li>
                         <li>Yield: {{ data.yield|int() }}</li>
                         <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
