@@ -646,8 +646,16 @@ label {
     font-size: 12px;
 }
 
+.form-control {
+    font-size: 12px;
+}
+
 @media (min-width: 576px){
     label {
+        font-size: 16px;
+    }
+
+    .form-control {
         font-size: 16px;
     }
 }
