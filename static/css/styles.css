@@ -621,7 +621,7 @@ input[type="radio"] {
    .user-runs > li {
         display:inline-block;
         font-size: 12px;
-        margin-right: 7px;
+        margin-right: 5px;
     }
 }
 @media (min-width: 768px){
