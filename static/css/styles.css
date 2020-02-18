@@ -684,11 +684,12 @@ label {
 /* FOOTER */
 
 .footer-nav {
-    background-color: #222;
-    border: solid 1px #222;
-    border-bottom-color: blue;
-    margin-bottom: 0;
-    padding: 20px 0 5px;;
+	background-color: #222;
+	border: solid 1px #222;
+	border-bottom-color: blue;
+	margin: 0;
+	padding: 20px 0 50px;
+	max-height: 500px;
 }
 
 .footer-nav ul {
