@@ -101,6 +101,24 @@
 
 {% endblock content %}
 
+{% block footer-navbar %}
+
+    <div class="row no-gutters footer-nav">
+        <div class="col-12">
+            <ul>
+                <li>
+                    <a class="d-block d-md-none" href="#">Top</a>
+                    <a class="d-none d-md-inline-block" href="#">Top of Page</a>
+                </li>
+                <li><a href="{{ url_for('user', username=username) }}">View Runs</a></li>
+                <li><a href="{{ url_for('viewUserRuns') }}">Manage Runs</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock footer-navbar %}
+
 {% block javascript %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

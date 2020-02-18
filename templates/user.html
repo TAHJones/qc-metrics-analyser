@@ -247,6 +247,25 @@
 
 {% endblock content %}
 
+{% block footer_navbar %}
+
+    <div class="row no-gutters footer-nav">
+        <div class="col-12">
+            <ul>
+                <li>
+                    <a class="d-block d-md-none" href="#">Top</a>
+                    <a class="d-none d-md-inline-block" href="#">Top of Page</a>
+                </li>
+                <li><a href="{{ url_for('user', username=username) }}">View Runs</a></li>
+                <li><a href="{{ url_for('addUserRun') }}">Add Run</a></li>
+                <li><a href="{{ url_for('viewUserRuns') }}">Manage Runs</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock footer_navbar %}
+
 {% block javascript %}
     <script>
         let labels = JSON.parse({{ labels|tojson }});
