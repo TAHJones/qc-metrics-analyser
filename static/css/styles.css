@@ -718,7 +718,7 @@ label {
 
 .footer-copyright {
 	text-align: center;
-	margin: 0 auto 80px;
+	margin: 0 auto;
     background-color: rgb(34, 49, 63);
 	background-image: url(/static/images/banner.jpg);
     background-repeat: no-repeat;
