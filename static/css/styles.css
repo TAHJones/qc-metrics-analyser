@@ -685,11 +685,7 @@ label {
 
 .footer-nav {
 	background-color: #222;
-	border: solid 1px #222;
-	border-bottom-color: blue;
-	margin: 0;
 	padding: 20px 0 50px;
-	max-height: 500px;
 }
 
 .footer-nav ul {
@@ -699,22 +695,51 @@ label {
 
 .footer-nav ul > li {
     display: block;
-    width: 15%;
     float: right;
+    margin-right: 10px;
 }
 
 .footer-nav ul > li:first-of-type {
     float: left;
+    margin-left: 20px;
+}
+
+.footer-nav ul > li .login-btn {
+	background-color: #3776b3;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: bold;
+    /* margin-right: 10px; */
+	/* text-align: center; */
+	padding: 5px 10px;
+}
+
+.footer-nav ul > li .login-btn :hover{
+	background-color: #195692;
+}
+
+.footer-nav ul > li .signup-btn {
+	background-color: #28a745;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: bold;
+    /* margin-right: 10px; */
+	text-align: center;
+	padding: 5px 10px;
+}
+
+.footer-nav ul > li .signup-btn:hover {
+	background-color: #218838;
 }
 
 .footer-nav ul > li > a {
     color: #ffffff80;
     font-size: 14px;
-    margin: 0 2px;
+    /* margin: 0 5px; */
     transition: all .25s ease-in-out;
-    -webkit-transition: all .25s ease-in-out;
+    /* -webkit-transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
-    -o-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out; */
 }
 
 .footer-nav ul > li > a:hover {
