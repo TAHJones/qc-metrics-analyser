@@ -691,16 +691,21 @@ label {
 .footer-nav ul {
     text-align: center;
     padding: 0;
+    float: left;
+}
+
+.footer-nav ul:last-of-type {
+    text-align: center;
+    padding: 0;
+    float: right;
 }
 
 .footer-nav ul > li {
-    display: block;
-    float: right;
-    margin-right: 10px;
+	display: inline-block;
+	margin-right: 20px;
 }
 
 .footer-nav ul > li:first-of-type {
-    float: left;
     margin-left: 20px;
 }
 
