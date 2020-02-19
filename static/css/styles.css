@@ -704,8 +704,7 @@ label {
     margin-left: 20px;
 }
 
-.footer-nav ul > li .login-btn {
-	background-color: #3776b3;
+.footer-nav ul > li .footer-btn {
 	border-radius: 4px;
 	color: #fff;
 	font-weight: bold;
@@ -714,21 +713,19 @@ label {
 	padding: 5px 10px;
 }
 
-.footer-nav ul > li .login-btn :hover{
+.footer-nav ul > li > .footer-login-btn {
+	background-color: #3776b3;
+}
+
+.footer-nav ul > li > .footer-login-btn:hover{
 	background-color: #195692;
 }
 
-.footer-nav ul > li .signup-btn {
+.footer-nav ul > li > .footer-signup-btn {
 	background-color: #28a745;
-	border-radius: 4px;
-	color: #fff;
-	font-weight: bold;
-    /* margin-right: 10px; */
-	text-align: center;
-	padding: 5px 10px;
 }
 
-.footer-nav ul > li .signup-btn:hover {
+.footer-nav ul > li > .footer-signup-btn:hover {
 	background-color: #218838;
 }
 
