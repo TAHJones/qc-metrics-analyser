@@ -736,7 +736,7 @@ label {
 
 .footer-nav ul > li > a {
     color: #ffffff80;
-    font-size: 14px;
+    font-size: 11px;
     /* margin: 0 5px; */
     transition: all .25s ease-in-out;
     /* -webkit-transition: all .25s ease-in-out;
@@ -799,69 +799,22 @@ label {
     }
 }
 
-/*create more space between footer links on small screens above 303px width*/
-
-@media (min-width:303px) {
-    .bg-footer ul li a {
+@media (min-width:500px) {
+    .footer-nav ul > li > a {
         font-size: 14px;
-        margin: 0 6px;
     }
 }
-
-/*increase size and space around footer links on small screens above 480px width*/
-
-@media (min-width:480px) {
-    .bg-footer ul li a {
-        font-size: 15px;
-        margin: 0 10px;
-    }
-}
-
-.bg-footer ul li a:hover {
-    color: rgb(51, 153, 243);
-    text-decoration: none;
-}
-
-/* .border-right {
-    border-right: 1px solid rgb(105, 141, 176);
-} */
-
-/*remove link divider on third visible link for small screen*/
-
-/* .border-right:nth-of-type(4) {
-    border-right: none;
-} */
 
 @media (min-width:768px) {
     .bg-footer .copyright {
         text-align: right;
         margin: 0 20px 15px 0;
     }
-
-    .border-right {
-        border-right: 1px solid rgb(105, 141, 176);
-    }
-
-    /*add link divider on fourth visible link for medium screen*/
-    .border-right:nth-of-type(4) {
-        border-right: 1px solid rgb(105, 141, 176);
-
-    }
-
-    .bg-footer ul li a {
-        font-size: 12px;
-        margin: 0 2px;
-    }
 }
 
 @media (min-width:992px) {
     .copyright {
         font-size: 14px;
-    }
-
-    .bg-footer ul li a {
-        font-size: 16px;
-        margin: 0 4px;
     }
 }
 
