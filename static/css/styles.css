@@ -749,6 +749,10 @@ label {
     text-decoration: none;
 }
 
+.fa {
+    margin-right: 5px;
+}
+
 .footer-copyright {
 	text-align: center;
 	margin: 0 auto;
