@@ -375,6 +375,7 @@ def createDropDownList(dataList, currentSelection):
 @app.route("/admin-update-run", methods=["GET", "POST"])
 def adminUpdateRun():
     """  Allows administrator to update runs for selected user """
+    username = session["username"]
     selectedUser = session["selectedUser"]
     existingPoolNumber = session["selectedPoolNumber"]
     selectedUserRun = session["selectedUserRun"]
@@ -413,6 +414,7 @@ def adminUpdateRun():
         experimentList = createDropDownList(experiments, experiment)
         chemistryList = createDropDownList(chemistries, chemistry)
         return render_template("admin-update-run.html",
+                                username=username,
                                 title=session["title"],
                                 existingPoolNumber=existingPoolNumber,
                                 userRun=selectedUserRun,
@@ -420,6 +422,7 @@ def adminUpdateRun():
                                 experimentList=experimentList, 
                                 pageLocation=json.dumps("userRun"))
     return render_template("admin-update-run.html",
+                            username=username,
                             title=session["title"],
                             existingPoolNumber=existingPoolNumber,
                             userRun=selectedUserRun,
