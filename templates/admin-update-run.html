@@ -111,7 +111,8 @@
                 <li><a href="#"><i class="fa fa-arrow-circle-up fa-1x"></i>Top</a></li>
             </ul>
             <ul>
-                <li><a href="{{ url_for('admin', username=username) }}">View Runs</a></li>
+                <li><a href="{{ url_for('admin', username=username) }}"><i class="fa fa-user-plus fa-1x"></i>Admin</a></li>
+                <li><a href="{{ url_for('adminSelectRuns') }}"><i class="fa fa-bar-chart fa-1x"></i>Manage Runs</a></li>
                 <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
