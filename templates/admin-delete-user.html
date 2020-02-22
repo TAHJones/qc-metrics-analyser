@@ -61,13 +61,12 @@
     <div class="row no-gutters footer-nav">
         <div class="col-12">
             <ul>
-                <li>
-                    <a class="d-block d-md-none" href="#">Top</a>
-                    <a class="d-none d-md-inline-block" href="#">Top of Page</a>
-                </li>
-                <li><a href="{{ url_for('admin', username=username) }}">View Runs</a></li>
-                <li><a href="{{ url_for('adminSelectUser') }}">Manage Users</a></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="#"><i class="fa fa-arrow-circle-up fa-1x"></i>Top</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ url_for('admin', username=username) }}"><i class="fa fa-user-plus fa-1x"></i>Admin</a></li>
+                <li><a href="{{ url_for('adminSelectUser') }}"><i class="fa fa-users fa-1x"></i>Manage Users</a></li>
+                <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
     </div>
