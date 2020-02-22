@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('admin', username=username) }}">View Runs</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminSelectRuns') }}">Manage Runs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('admin', username=username) }}"><i class="fa fa-user-plus fa-1x"></i>Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminSelectRuns') }}"><i class="fa fa-bar-chart fa-1x"></i>Manage Runs</a></li>
                 <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
