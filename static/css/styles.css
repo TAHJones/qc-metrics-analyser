@@ -403,7 +403,7 @@ section {
 	border: 12px solid #222;
     border-radius: 10px;
 	background-color: #d1dce7;
-	margin: 0 auto;
+	margin-top: 10%;
 	padding: 40px;
 }
 
@@ -462,7 +462,7 @@ input[type="radio"] {
 }
 
 .modal-dialog {
-	max-width: 95%;
+	max-width: 75%;
 	margin: 10px auto;
 }
 
@@ -810,3 +810,14 @@ label {
 }
 
 /* FOOTER-END */
+
+/* CHARTS */
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 30vh;
+  width: 50vw;
+}
+
+/* CHARTS-END */
