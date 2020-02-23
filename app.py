@@ -160,7 +160,7 @@ def index():
     experiments = []
 
     for data in graphData:
-        poolNumber = "Pool_{}".format(data["pool"])
+        poolNumber = data["pool"]
         pools.append(poolNumber)
         yields.append(data["yield"])
         clusterDensity.append(data["clusterDensity"])
@@ -598,7 +598,7 @@ def user(username):
     experiments = []
 
     for data in graphData:
-        poolNumber = "Pool_{}".format(data["pool"])
+        poolNumber = data["pool"]
         pools.append(poolNumber)
         yields.append(data["yield"])
         clusterDensity.append(data["clusterDensity"])
