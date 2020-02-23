@@ -1,3 +1,70 @@
+var lineChartOptions = {
+    legend: {
+        display: false,
+        position: 'top',
+        labels: {
+        boxWidth: 40,
+        fontColor: "#3776b3",
+        fontSize: 20
+        }
+    },
+    scales: {
+        xAxes: [{
+        gridLines: {
+            display: false
+        },
+        scaleLabel: {
+            display: true,
+            labelString: "Pool Number",
+            padding: 10,
+            fontColor:  "#3776b3",
+            fontSize: 18,
+            fontStyle: "italic"
+
+        }
+        }],
+        yAxes: [{
+        gridLines: {
+            color: "#3776b3",
+            borderDash: [5, 10],
+        },
+        scaleLabel: {
+            display: true,
+            labelString: "Yield - Gigabases",
+            padding: 10,
+            fontColor:  "#3776b3",
+            fontSize: 18,
+            fontStyle: "italic"
+        }
+        }]
+    },
+    layout: {
+        padding: {
+            left: 0,
+            right: 0,
+            top: 30,
+            bottom: 10
+        }
+    },
+    maintainAspectRatio: false
+};
+
+var pieChartOptions = {
+    legend: {
+        display: true,
+        position: "right"
+    },
+    layout: {
+        padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 10
+        }
+    },
+    maintainAspectRatio: false
+};
+
 new Chart(document.getElementById("yield-chart"),{
     "type":"line",
     "data":
@@ -7,7 +74,7 @@ new Chart(document.getElementById("yield-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{ maintainAspectRatio: false }
+    "options": lineChartOptions
 });
 
 new Chart(document.getElementById("clusterDensity-chart"),{
@@ -19,7 +86,7 @@ new Chart(document.getElementById("clusterDensity-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{ maintainAspectRatio: false }
+    "options": lineChartOptions
 });
 
 new Chart(document.getElementById("passFilter-chart"),{
@@ -31,7 +98,7 @@ new Chart(document.getElementById("passFilter-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{ maintainAspectRatio: false }
+    "options": lineChartOptions
 });
 
 new Chart(document.getElementById("q30-chart"),{
@@ -43,7 +110,7 @@ new Chart(document.getElementById("q30-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{ maintainAspectRatio: false }
+    "options": lineChartOptions
 });
 
 new Chart(document.getElementById("chemistry-chart"), {
@@ -56,13 +123,7 @@ new Chart(document.getElementById("chemistry-chart"), {
         data: chemistries
     }]
     },
-    options: {
-        title: {
-            display: true,
-            text: 'Sequencing Chemistries'
-        },
-        maintainAspectRatio: false 
-    }
+    options: pieChartOptions
 });
 
 new Chart(document.getElementById("experiment-chart"), {
@@ -75,11 +136,5 @@ new Chart(document.getElementById("experiment-chart"), {
         data: experiments
     }]
     },
-    options: {
-        title: {
-            display: true,
-            text: 'Sequencing Experiments'
-        },
-        maintainAspectRatio: false 
-    }
+    options: pieChartOptions
 });
