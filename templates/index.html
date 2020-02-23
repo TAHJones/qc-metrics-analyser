@@ -91,7 +91,9 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <canvas id="yield-chart" width="3" height="1"></canvas>
+                        <div class="chart-container">
+                            <canvas id="yield-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -114,7 +116,9 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <canvas id="clusterDensity-chart" width="3" height="1"></canvas>
+                        <div class="chart-container">
+                            <canvas id="clusterDensity-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -137,7 +141,9 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <canvas id="passFilter-chart" width="3" height="1"></canvas>
+                        <div class="chart-container">
+                            <canvas id="passFilter-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -160,7 +166,9 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <canvas id="q30-chart" width="600" height="200"></canvas>
+                        <div class="chart-container">
+                            <canvas id="q30-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -213,7 +221,9 @@
                             <li>Mid300: {{ qcData.mid300 }}</li>
                             <li>Mid150: {{ qcData.mid150 }}</li>
                         </ul>
-                        <canvas id="chemistry-chart" width="400" height="200"></canvas>
+                        <div class="chart-container">
+                            <canvas id="chemistry-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
@@ -234,7 +244,9 @@
                             <li>Exome: {{ qcData.exome }}</li>
                             <li>Capture: {{ qcData.capture }}</li>
                         </ul>
-                        <canvas id="experiment-chart" width="400" height="200"></canvas>
+                        <div class="chart-container">
+                            <canvas id="experiment-chart"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer qc-data-footer">
                         <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
