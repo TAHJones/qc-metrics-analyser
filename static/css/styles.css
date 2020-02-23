@@ -403,7 +403,7 @@ section {
 	border: 12px solid #222;
     border-radius: 10px;
 	background-color: #d1dce7;
-	margin-top: 10%;
+	margin-top: 6%;
 	padding: 40px;
 }
 
@@ -816,8 +816,8 @@ label {
 .chart-container {
   position: relative;
   margin: auto;
-  height: 30vh;
-  width: 50vw;
+  height: 45vh;
+  width: 45vw;
 }
 
 /* CHARTS-END */
