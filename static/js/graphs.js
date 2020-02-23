@@ -7,7 +7,7 @@ new Chart(document.getElementById("yield-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{}
+    "options":{ maintainAspectRatio: false }
 });
 
 new Chart(document.getElementById("clusterDensity-chart"),{
@@ -19,7 +19,7 @@ new Chart(document.getElementById("clusterDensity-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{}
+    "options":{ maintainAspectRatio: false }
 });
 
 new Chart(document.getElementById("passFilter-chart"),{
@@ -31,7 +31,7 @@ new Chart(document.getElementById("passFilter-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{}
+    "options":{ maintainAspectRatio: false }
 });
 
 new Chart(document.getElementById("q30-chart"),{
@@ -43,7 +43,7 @@ new Chart(document.getElementById("q30-chart"),{
         "fill":false,
         "borderColor":"rgb(75, 192, 192)",
         "lineTension":0.1}]},
-    "options":{}
+    "options":{ maintainAspectRatio: false }
 });
 
 new Chart(document.getElementById("chemistry-chart"), {
@@ -60,7 +60,8 @@ new Chart(document.getElementById("chemistry-chart"), {
         title: {
             display: true,
             text: 'Sequencing Chemistries'
-        }
+        },
+        maintainAspectRatio: false 
     }
 });
 
@@ -78,6 +79,7 @@ new Chart(document.getElementById("experiment-chart"), {
         title: {
             display: true,
             text: 'Sequencing Experiments'
-        }
+        },
+        maintainAspectRatio: false 
     }
 });
