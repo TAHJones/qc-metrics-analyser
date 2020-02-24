@@ -116,7 +116,7 @@ new Chart(document.getElementById("q30-chart"),{
 new Chart(document.getElementById("chemistry-chart"), {
     type: 'pie',
     data: {
-    labels: ["Genome", "Exome", "Capture"],
+    labels: ["High300", "Mid300", "Mid150"],
     datasets: [{
         label: "Sequencing Chemistries",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
@@ -129,7 +129,7 @@ new Chart(document.getElementById("chemistry-chart"), {
 new Chart(document.getElementById("experiment-chart"), {
     type: 'pie',
     data: {
-    labels: ["High300", "Mid300", "Mid150"],
+    labels: ["Genome", "Exome", "Capture"],
     datasets: [{
         label: "Sequencing Experiments",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
