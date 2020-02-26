@@ -415,6 +415,7 @@ section {
     color: #3776B3;
 	font-size: 14px;
 	font-weight: bold;
+    margin-top: 0;
 	text-transform: uppercase;
 }
 
@@ -496,15 +497,15 @@ input[type="radio"] {
 
 .qc-data-list > ul > li {
 	list-style: none;
+	font-size: 14px;
 }
 
 .qc-data-list > ul > li:last-of-type {
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .qc-data-footer {
     border-top: 3px solid #3776B3;
-	margin-top: 10px;
 }
 
 .qc-data-btn {
@@ -545,7 +546,22 @@ input[type="radio"] {
 @media (min-width: 768px) {
     .qc-data {
         margin-top: 6%;
-        padding: 40px;
+        padding: 0 20px;
+    }
+
+    .qc-data-list > ul > li {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 992px) {
+    .qc-data {
+        margin-top: 6%;
+        padding: 20px;
+    }
+
+    .qc-data-list > ul > li {
+        font-size: 16px;
     }
 }
 
@@ -822,8 +838,8 @@ label {
 .chart-container {
   position: relative;
   margin: auto;
-  height: 45vh;
-  width: 45vw;
+  height: 40vh;
+  width: 60vw;
 }
 
 /* CHARTS-END */
