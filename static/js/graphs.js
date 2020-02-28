@@ -111,10 +111,12 @@ function getLineChart(chartData) {
     });
 }
 
-getLineChart(yieldData);
-getLineChart(clusterDensityData);
-getLineChart(passFilterData);
-getLineChart(q30Data);
+document.addEventListener("DOMContentLoaded", function() {
+    getLineChart(yieldData);
+    getLineChart(clusterDensityData);
+    getLineChart(passFilterData);
+    getLineChart(q30Data);
+});
 
 
 new Chart(document.getElementById("chemistry-chart"), {
