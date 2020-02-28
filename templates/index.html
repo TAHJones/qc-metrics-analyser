@@ -134,7 +134,7 @@
                         <h4 class="modal-title">Pass Filter - %</h4>
                     </div>
                     <div class="modal-body qc-data-list">
-                        <ul>
+                        <ul class="d-none d-md-block">
                         {% for data in qcData.passFilter %}
                             <li>Average: {{ data.average|int() }}</li>
                             <li>Minimum: {{ data.minimum|int() }}</li>
