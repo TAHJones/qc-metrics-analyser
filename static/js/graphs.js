@@ -139,7 +139,7 @@ window.addEventListener('resize', function() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(function(){
     window.location.reload();
-  }, 1500);
+  }, 500);
 });
 
 /**
