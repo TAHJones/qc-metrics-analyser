@@ -110,6 +110,7 @@ function getLineChart(chartData) {
     });
 }
 
+
 /**
  * function creates pie charts using chartjs library. If takes chartData object as parameter to generation individual charts using charts js 'chart' function.   
  * @param {object} chartData - contains canvas element id, chart labels and chart data to generate individual pie charts
@@ -143,6 +144,7 @@ function getPieChart(chartData) {
     });
 }
 
+
 /**
  * Reloads page on resize event so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
@@ -152,6 +154,7 @@ window.addEventListener('resize', function() {
     window.location.reload();
   }, 500);
 });
+
 
 /**
  * get line and pie charts when page is fully loaded
