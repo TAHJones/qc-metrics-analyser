@@ -42,6 +42,10 @@ function getResponsiveStyles() {
 }
 
 
+/**
+ * function creates line charts using chartjs library. If takes chartData object as parameter & calls getResponsiveStyles function to generation individual responsive charts using charts js 'chart' function.   
+ * @param {object} chartData - contains canvas element id, chart labels and chart data to generate individual line charts
+ */
 function getLineChart(chartData) {
     let responsiveStyles = getResponsiveStyles();
     new Chart(document.getElementById(chartData.chartID),{
