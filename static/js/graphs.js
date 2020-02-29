@@ -144,7 +144,7 @@ function getPieChart(chartData) {
 }
 
 /**
- * Function is called on resize event and reloads page so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
+ * Reloads page on resize event so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
 window.addEventListener('resize', function() {
   clearTimeout(resizeTimeout);
