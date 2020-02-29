@@ -4,7 +4,7 @@ let passFilterData = {chartID:"passFilter-chart", label:"Pass Filter - %", data:
 let q30Data = {chartID:"q30-chart", label:"q30 Score - %", data:q30}
 let chemistryData = {chartID:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
 let experimentData = {chartID:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
-
+let resizeTimeout;
 
 function getResponsiveStyles() {
     let responsiveStyles = {};
@@ -134,7 +134,6 @@ function getPieChart(chartData) {
 /**
  * Function is called on resize event and reloads page so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
-let resizeTimeout;
 window.addEventListener('resize', function() {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(function(){
