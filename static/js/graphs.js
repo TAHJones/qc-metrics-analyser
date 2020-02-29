@@ -1,7 +1,7 @@
-let yieldData = {chartID:"yield-chart", label:"Yield - Gigabases", data:yields}
-let clusterDensityData = {chartID:"clusterDensity-chart", label:"Cluster Density - K/mm2", data:clusterDensity}
-let passFilterData = {chartID:"passFilter-chart", label:"Clusters Pass Filter - %", data:passFilter}
-let q30Data = {chartID:"q30-chart", label:"q30 - %", data:q30}
+let yieldData = {chartID:"yield-chart", label:"Yield - Gb", data:yields}
+let clusterDensityData = {chartID:"clusterDensity-chart", label:"Clusters - K/mm2", data:clusterDensity}
+let passFilterData = {chartID:"passFilter-chart", label:"Pass Filter - %", data:passFilter}
+let q30Data = {chartID:"q30-chart", label:"q30 Score - %", data:q30}
 let chemistryData = {chartID:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
 let experimentData = {chartID:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 
