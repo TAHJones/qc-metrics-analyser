@@ -110,6 +110,10 @@ function getLineChart(chartData) {
     });
 }
 
+/**
+ * function creates pie charts using chartjs library. If takes chartData object as parameter to generation individual charts using charts js 'chart' function.   
+ * @param {object} chartData - contains canvas element id, chart labels and chart data to generate individual pie charts
+ */
 function getPieChart(chartData) {
     new Chart(document.getElementById(chartData.chartID), {
         type: 'pie',
