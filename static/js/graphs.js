@@ -111,6 +111,17 @@ function getLineChart(chartData) {
     });
 }
 
+/**
+ * Function is called on resize event and reloads page so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
+ */
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function(){
+    window.location.reload();
+  }, 1500);
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     getLineChart(yieldData);
     getLineChart(clusterDensityData);
