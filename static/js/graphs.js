@@ -6,6 +6,10 @@ let chemistryData = {chartID:"chemistry-chart", labels:["High300", "Mid300", "Mi
 let experimentData = {chartID:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
 
+
+/**
+ * function detects media-queries using matchMedia & adds appropriate resonsive style values for linecharts. Values are returned as responsiveStylesobject. 
+ */
 function getResponsiveStyles() {
     let responsiveStyles = {};
     let xs = window.matchMedia("(min-width: 1px) and (max-width: 575px)");
