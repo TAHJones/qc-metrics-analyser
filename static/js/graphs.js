@@ -14,19 +14,23 @@ function getResponsiveStyles() {
     let lg = window.matchMedia("(min-width: 992px)");
 
     if(xs.matches) {
-        responsiveStyles.axisFontSize = 12;
+        responsiveStyles.xAxisFontSize = 12;
+        responsiveStyles.yAxisFontSize = 10;
         responsiveStyles.padding = 0;
         console.log(responsiveStyles.axisFontSize);
     } else if(sm.matches) {
-        responsiveStyles.axisFontSize = 14;
+        responsiveStyles.xAxisFontSize = 14;
+        responsiveStyles.yAxisFontSize = 12;
         responsiveStyles.padding = 10;
         console.log(responsiveStyles.axisFontSize);
     } else if(md.matches) {
-        responsiveStyles.axisFontSize = 16;
+        responsiveStyles.xAxisFontSize = 16;
+        responsiveStyles.yAxisFontSize = 16;
         responsiveStyles.padding = 15;
         console.log(responsiveStyles.axisFontSize);
     } else if(lg.matches) {
-        responsiveStyles.axisFontSize = 18;
+        responsiveStyles.xAxisFontSize = 18;
+        responsiveStyles.yAxisFontSize = 18;
         responsiveStyles.padding = 20;
         console.log(responsiveStyles.axisFontSize);
     }
@@ -65,7 +69,7 @@ function getLineChart(chartData) {
                     labelString: "Pool Number",
                     padding: 5,
                     fontColor:  "#3776b3",
-                    fontSize: responsiveStyles.axisFontSize,
+                    fontSize: responsiveStyles.xAxisFontSize,
                     fontStyle: "italic"
                 }
                 }],
@@ -79,7 +83,7 @@ function getLineChart(chartData) {
                     labelString: chartData.label,
                     padding: 10,
                     fontColor:  "#3776b3",
-                    fontSize: responsiveStyles.axisFontSize,
+                    fontSize: responsiveStyles.yAxisFontSize,
                     fontStyle: "italic"
                 }
                 }]
