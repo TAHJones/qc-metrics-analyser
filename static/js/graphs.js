@@ -122,6 +122,9 @@ window.addEventListener('resize', function() {
   }, 1500);
 });
 
+/**
+ * get line and pie charts when page is fully loaded
+ */
 document.addEventListener("DOMContentLoaded", function() {
     getLineChart(yieldData);
     getLineChart(clusterDensityData);
