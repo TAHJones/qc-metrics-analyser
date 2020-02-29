@@ -1,18 +1,10 @@
-var pieChartOptions = {
-    legend: {
-        display: true,
-        position: "right"
-    },
-    layout: {
-        padding: {
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 10
-        }
-    },
-    maintainAspectRatio: false
-};
+let yieldData = {chartID:"yield-chart", label:"Yield - Gigabases", data:yields}
+let clusterDensityData = {chartID:"clusterDensity-chart", label:"Cluster Density - K/mm2", data:clusterDensity}
+let passFilterData = {chartID:"passFilter-chart", label:"Clusters Pass Filter - %", data:passFilter}
+let q30Data = {chartID:"q30-chart", label:"q30 - %", data:q30}
+let chemistryData = {chartID:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
+let experimentData = {chartID:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
+
 
 function getResponsiveStyles() {
     let responsiveStyles = {};
@@ -41,11 +33,6 @@ function getResponsiveStyles() {
     return responsiveStyles;
 }
 
-
-let yieldData = {chartID:"yield-chart", label:"Yield - Gigabases", data:yields}
-let clusterDensityData = {chartID:"clusterDensity-chart", label:"Cluster Density - K/mm2", data:clusterDensity}
-let passFilterData = {chartID:"passFilter-chart", label:"Clusters Pass Filter - %", data:passFilter}
-let q30Data = {chartID:"q30-chart", label:"q30 - %", data:q30}
 
 function getLineChart(chartData) {
     let responsiveStyles = getResponsiveStyles();
@@ -111,6 +98,35 @@ function getLineChart(chartData) {
     });
 }
 
+function getPieChart(chartData) {
+    new Chart(document.getElementById(chartData.chartID), {
+        type: 'pie',
+        data: {
+        labels: chartData.labels,
+        datasets: [{
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+            data: chartData.data
+        }]
+        },
+        options: {
+            legend: {
+                display: true,
+                position: "right"
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 10
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
 /**
  * Function is called on resize event and reloads page so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
@@ -130,31 +146,6 @@ document.addEventListener("DOMContentLoaded", function() {
     getLineChart(clusterDensityData);
     getLineChart(passFilterData);
     getLineChart(q30Data);
-});
-
-
-new Chart(document.getElementById("chemistry-chart"), {
-    type: 'pie',
-    data: {
-    labels: ["High300", "Mid300", "Mid150"],
-    datasets: [{
-        label: "Sequencing Chemistries",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-        data: chemistries
-    }]
-    },
-    options: pieChartOptions
-});
-
-new Chart(document.getElementById("experiment-chart"), {
-    type: 'pie',
-    data: {
-    labels: ["Genome", "Exome", "Capture"],
-    datasets: [{
-        label: "Sequencing Experiments",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-        data: experiments
-    }]
-    },
-    options: pieChartOptions
+    getPieChart(chemistryData);
+    getPieChart(experimentData);
 });
