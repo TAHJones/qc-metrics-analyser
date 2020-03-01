@@ -10,7 +10,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i>User</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('addUserRun') }}"><i class="fas fa-plus-circle"></i>Add Run</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('viewUserRuns') }}"><i class="fas fa-bar-chart"></i>Manage Runs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('viewUserRuns') }}"><i class="fas fa-sort-amount-up"></i>Manage Runs</a></li>
                 <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
@@ -281,7 +281,7 @@
             <ul>
                 <li><a href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i>User</a></li>
                 <li><a href="{{ url_for('addUserRun') }}"><i class="fas fa-plus-circle"></i>Add Run</a></li>
-                <li><a href="{{ url_for('viewUserRuns') }}"><i class="fas fa-bar-chart"></i>Manage Runs</a></li>
+                <li><a href="{{ url_for('viewUserRuns') }}"><i class="fas fa-sort-amount-up"></i>Manage Runs</a></li>
                 <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
