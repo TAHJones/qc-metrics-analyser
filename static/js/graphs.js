@@ -1,7 +1,7 @@
-let yieldChartContainer = document.getElementById("yieldChartContainer");
-let clusterChartContainer = document.getElementById("clusterChartContainer");
-let passFilterChartContainer = document.getElementById("passFilterChartContainer");
-let q30ChartContainer = document.getElementById("q30ChartContainer");
+const yieldChartContainer = document.getElementById("yieldChartContainer");
+const clusterChartContainer = document.getElementById("clusterChartContainer");
+const passFilterChartContainer = document.getElementById("passFilterChartContainer");
+const q30ChartContainer = document.getElementById("q30ChartContainer");
 let yieldData = {chartId:"yield-chart", chartParentId:yieldChartContainer, label:"Yield - Gb", data:yields}
 let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterChartContainer, label:"Clusters - K/mm2", data:clusterDensity}
 let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data:passFilter}
