@@ -91,7 +91,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <div class="chart-container">
+                        <div id="yieldChartContainer" class="chart-container">
                             <canvas id="yield-chart"></canvas>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <div class="chart-container">
+                        <div id="clusterChartContainer" class="chart-container">
                             <canvas id="clusterDensity-chart"></canvas>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <div class="chart-container">
+                        <div id="passFilterChartContainer" class="chart-container">
                             <canvas id="passFilter-chart"></canvas>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                             <li>Maximum: {{ data.maximum|int() }}</li>
                         {% endfor %}
                         </ul>
-                        <div class="chart-container">
+                        <div id="q30ChartContainer" class="chart-container">
                             <canvas id="q30-chart"></canvas>
                         </div>
                     </div>
