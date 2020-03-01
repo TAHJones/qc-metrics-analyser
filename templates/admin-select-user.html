@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('admin', username=username) }}"><i class="fa fa-user-plus fa-1x"></i>Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminSelectUser') }}"><i class="fa fa-users fa-1x"></i>Manage Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminSelectUser') }}"><i class="fas fa-users"></i>Manage Users</a></li>
                 <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
@@ -76,11 +76,11 @@
     <div class="row no-gutters footer-nav">
         <div class="col-12">
             <ul>
-                <li><a href="#"><i class="fa fa-arrow-circle-up fa-1x"></i>Top</a></li>
+                <li><a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a></li>
             </ul>
             <ul>
-                <li><a href="{{ url_for('admin', username=username) }}"><i class="fa fa-user-plus fa-1x"></i>Admin</a></li>
-                <li><a href="{{ url_for('adminSelectUser') }}"><i class="fa fa-users fa-1x"></i>Manage Users</a></li>
+                <li><a href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
+                <li><a href="{{ url_for('adminSelectUser') }}"><i class="fas fa-users"></i>Manage Users</a></li>
                 <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
