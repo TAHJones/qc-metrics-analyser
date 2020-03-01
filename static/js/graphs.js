@@ -21,22 +21,18 @@ function getResponsiveStyles() {
         responsiveStyles.xAxisFontSize = 12;
         responsiveStyles.yAxisFontSize = 10;
         responsiveStyles.padding = 0;
-        console.log(responsiveStyles.axisFontSize);
     } else if(sm.matches) {
         responsiveStyles.xAxisFontSize = 14;
         responsiveStyles.yAxisFontSize = 12;
         responsiveStyles.padding = 10;
-        console.log(responsiveStyles.axisFontSize);
     } else if(md.matches) {
         responsiveStyles.xAxisFontSize = 16;
         responsiveStyles.yAxisFontSize = 16;
         responsiveStyles.padding = 15;
-        console.log(responsiveStyles.axisFontSize);
     } else if(lg.matches) {
         responsiveStyles.xAxisFontSize = 18;
         responsiveStyles.yAxisFontSize = 18;
         responsiveStyles.padding = 20;
-        console.log(responsiveStyles.axisFontSize);
     }
     return responsiveStyles;
 }
