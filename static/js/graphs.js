@@ -1,9 +1,13 @@
-let yieldData = {chartID:"yield-chart", label:"Yield - Gb", data:yields}
-let clusterDensityData = {chartID:"clusterDensity-chart", label:"Clusters - K/mm2", data:clusterDensity}
-let passFilterData = {chartID:"passFilter-chart", label:"Pass Filter - %", data:passFilter}
-let q30Data = {chartID:"q30-chart", label:"q30 Score - %", data:q30}
-let chemistryData = {chartID:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
-let experimentData = {chartID:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
+let yieldChartContainer = document.getElementById("yieldChartContainer");
+let clusterChartContainer = document.getElementById("clusterChartContainer");
+let passFilterChartContainer = document.getElementById("passFilterChartContainer");
+let q30ChartContainer = document.getElementById("q30ChartContainer");
+let yieldData = {chartId:"yield-chart", label:"Yield - Gb", data:yields}
+let clusterDensityData = {chartId:"clusterDensity-chart", label:"Clusters - K/mm2", data:clusterDensity}
+let passFilterData = {chartId:"passFilter-chart", label:"Pass Filter - %", data:passFilter}
+let q30Data = {chartId:"q30-chart", label:"q30 Score - %", data:q30}
+let chemistryData = {chartId:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
+let experimentData = {chartId:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
 
 
@@ -44,7 +48,7 @@ function getResponsiveStyles() {
  */
 function getLineChart(chartData) {
     let responsiveStyles = getResponsiveStyles();
-    new Chart(document.getElementById(chartData.chartID),{
+    new Chart(document.getElementById(chartData.chartId),{
         "type":"line",
         "data":
             {"labels":labels, 
@@ -112,7 +116,7 @@ function getLineChart(chartData) {
  * @param {object} chartData - contains canvas element id, chart labels and chart data to generate individual pie charts
  */
 function getPieChart(chartData) {
-    new Chart(document.getElementById(chartData.chartID), {
+    new Chart(document.getElementById(chartData.chartId), {
         type: 'pie',
         data: {
         labels: chartData.labels,
@@ -141,13 +145,18 @@ function getPieChart(chartData) {
 }
 
 
+    // yieldChartContainer.innerHTML = `<canvas id="yield-chart"></canvas>`;
+
+
 /**
  * Reloads page on resize event so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
 window.addEventListener('resize', function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(function(){
-    window.location.reload();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function(){
+    yieldChartContainer.innerHTML = `<canvas id="yield-chart"></canvas>`;
+    getLineChart(yieldData);
+    // window.location.reload();
   }, 500);
 });
 
