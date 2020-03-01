@@ -2,10 +2,10 @@ let yieldChartContainer = document.getElementById("yieldChartContainer");
 let clusterChartContainer = document.getElementById("clusterChartContainer");
 let passFilterChartContainer = document.getElementById("passFilterChartContainer");
 let q30ChartContainer = document.getElementById("q30ChartContainer");
-let yieldData = {chartId:"yield-chart", label:"Yield - Gb", data:yields}
-let clusterDensityData = {chartId:"clusterDensity-chart", label:"Clusters - K/mm2", data:clusterDensity}
-let passFilterData = {chartId:"passFilter-chart", label:"Pass Filter - %", data:passFilter}
-let q30Data = {chartId:"q30-chart", label:"q30 Score - %", data:q30}
+let yieldData = {chartId:"yield-chart", chartParentId:yieldChartContainer, label:"Yield - Gb", data:yields}
+let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterChartContainer, label:"Clusters - K/mm2", data:clusterDensity}
+let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data:passFilter}
+let q30Data = {chartId:"q30-chart", chartParentId:q30ChartContainer, label:"q30 Score - %", data:q30}
 let chemistryData = {chartId:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
 let experimentData = {chartId:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
@@ -44,9 +44,10 @@ function getResponsiveStyles() {
 
 /**
  * function creates line charts using chartjs library. If takes chartData object as parameter & calls getResponsiveStyles function to generation individual responsive charts using charts js 'chart' function.   
- * @param {object} chartData - contains canvas element id, chart labels and chart data to generate individual line charts
+ * @param {object} chartData - contains canvas element id, canvas parent element id, chart labels and chart data to generate individual line charts
  */
 function getLineChart(chartData) {
+    chartData.chartParentId.innerHTML = `<canvas id=${chartData.chartId}></canvas>`;
     let responsiveStyles = getResponsiveStyles();
     new Chart(document.getElementById(chartData.chartId),{
         "type":"line",
@@ -145,18 +146,16 @@ function getPieChart(chartData) {
 }
 
 
-    // yieldChartContainer.innerHTML = `<canvas id="yield-chart"></canvas>`;
-
-
 /**
  * Reloads page on resize event so responsive styles are added to charts. sizeTimeout and clearTimeout are used to prevent firing of multiple resize events. 
  */
 window.addEventListener('resize', function() {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(function(){
-    yieldChartContainer.innerHTML = `<canvas id="yield-chart"></canvas>`;
     getLineChart(yieldData);
-    // window.location.reload();
+    getLineChart(clusterDensityData);
+    getLineChart(passFilterData);
+    getLineChart(q30Data);
   }, 500);
 });
 
