@@ -84,7 +84,7 @@
                         <h4 class="modal-title"><span>User: {{ username }}</span>Yield - Gigabases</h4>
                     </div>
                     <div class="modal-body qc-data-list">
-                        <ul>
+                        <ul class="d-none d-md-block">
                         {% for data in qcData.yields %}
                             <li>Average: {{ data.average|int() }}</li>
                             <li>Minimum: {{ data.minimum|int() }}</li>
@@ -109,7 +109,7 @@
                         <h4 class="modal-title"><span>User: {{ username }}</span>Cluster Density - K/mm2</h4>
                     </div>
                     <div class="modal-body qc-data-list">
-                        <ul>
+                        <ul class="d-none d-md-block">
                         {% for data in qcData.clusterDensity %}
                             <li>Average: {{ data.average|int() }}</li>
                             <li>Minimum: {{ data.minimum|int() }}</li>
@@ -134,7 +134,7 @@
                         <h4 class="modal-title"><span>User: {{ username }}</span>Pass Filter - %</h4>
                     </div>
                     <div class="modal-body qc-data-list">
-                        <ul>
+                        <ul class="d-none d-md-block">
                         {% for data in qcData.passFilter %}
                             <li>Average: {{ data.average|int() }}</li>
                             <li>Minimum: {{ data.minimum|int() }}</li>
@@ -159,7 +159,7 @@
                         <h4 class="modal-title"><span>User: {{ username }}</span>Q30 Score - %</h4>
                     </div>
                     <div class="modal-body qc-data-list">
-                        <ul>
+                        <ul class="d-none d-md-block">
                         {% for data in qcData.q30 %}
                             <li>Average: {{ data.average|int() }}</li>
                             <li>Minimum: {{ data.minimum|int() }}</li>
