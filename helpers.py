@@ -83,23 +83,3 @@ class Helpers:
                 }
             }]
         return database.aggregate(databaseQuery)
-
-# def getUserDataSummary(param, user):
-#     dollarParam = "${}".format(param)
-#     data = mongo.db.seqMetCol.aggregate([
-#         {
-#             '$match': {
-#                 'user': user
-#             }
-#         },
-#         {
-#             '$group': {
-#                 '_id': 'null',
-#                 'count': { '$sum': 1 },
-#                 'average': {'$avg': dollarParam},
-#                 'minimum': {'$min': dollarParam},
-#                 'maximum': {'$max': dollarParam}
-#             }
-#         }  
-#     ])
-#     return data
