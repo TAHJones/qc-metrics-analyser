@@ -1,17 +1,16 @@
 import os
+from os import path
+if path.exists("env.py"):
+    import env
 from flask import Flask, render_template, redirect, request, url_for, flash, session, json
 from flask_pymongo import PyMongo
 from datetime import datetime
 
 
 app = Flask(__name__)
-app.secret_key = "my_password"
-
-
-app.config["MONGO_DBNAME"] = 'sequencingMetricsDB'
-app.config["MONGO_URI"] = 'mongodb+srv://seqMetRoot:seqMetR00tUser@sequencingmetricsdb-kpu2s.mongodb.net/sequencingMetricsDB?retryWrites=true&w=majority'
-
-
+app.secret_key = os.environ.get("SECRET_KEY")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 
 
@@ -864,6 +863,4 @@ def updateUserRun():
 
 
 if __name__ == "__main__":
-    # app.jinja_env.auto_reload = True
-    # app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
