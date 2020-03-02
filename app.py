@@ -18,47 +18,6 @@ mongo = PyMongo(app)
 runs = mongo.db.seqMetCol
 
 
-def getDataSummary(param):
-    dollarParam = "${}".format(param)
-    data = mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                'user': {'$exists': 'true'}
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-                'average': {'$avg': dollarParam},
-                'minimum': {'$min': dollarParam},
-                'maximum': {'$max': dollarParam}
-            }
-        }  
-    ])
-    return data
-
-def getUserDataSummary(param, user):
-    dollarParam = "${}".format(param)
-    data = mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                'user': user
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-                'average': {'$avg': dollarParam},
-                'minimum': {'$min': dollarParam},
-                'maximum': {'$max': dollarParam}
-            }
-        }  
-    ])
-    return data
-
-
 @app.route("/")
 def index():
     """Display summary run data for all users"""
@@ -506,10 +465,10 @@ def user(username):
     mid300= Helpers.getDataCount(runs, "chemistry", "Mid300", username)[0]['count']
     mid150= Helpers.getDataCount(runs, "chemistry", "Mid150", username)[0]['count']
     high300= Helpers.getDataCount(runs, "chemistry", "High300", username)[0]['count']
-    yields = getDataSummary("yield")
-    clusterDensity = getUserDataSummary("clusterDensity", username)
-    passFilter = getUserDataSummary("passFilter", username)
-    q30 = getUserDataSummary("q30", username)
+    yields = Helpers.getDataSummary(runs, "yield", username)
+    clusterDensity = Helpers.getDataSummary(runs, "clusterDensity", username)
+    passFilter = Helpers.getDataSummary(runs, "passFilter", username)
+    q30 = Helpers.getDataSummary(runs, "q30", username)
     qcData = {
         'genome': genome,
         'exome': exome,
