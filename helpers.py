@@ -47,8 +47,9 @@ class Helpers:
         return list(database.aggregate(databaseQuery))
 
 
-    """ Mongodb query that counts the number of experiments for all users that match the parameter 'experiment'.
-    Experiment parameter should be 'Genome', 'Exome' or 'Capture'. """
+    """ Mongodb query that gets the min, max & average values for data that matchs the parameter 'param'.
+    The query can be for a selected user or for all users if no user parameter is given.
+    'param' parameter should be 'yields', 'clusterDensity', 'passFilter' or 'q30'. """
     @staticmethod
     def getDataSummary(database, param, user="N/A"):
         dollarParam = "${}".format(param)
