@@ -12,7 +12,6 @@ class Helpers:
     Experiment parameter should be 'Genome', 'Exome' or 'Capture'. """
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
-        # if experiment == "Genome" or experiment == "Exome" or experiment == "Capture":
         if user == "N/A":
             data = list(database.aggregate([
                 {
@@ -27,7 +26,6 @@ class Helpers:
                     }
                 }
             ]))
-            # return data
         else:
             data = list(database.aggregate([
                 {
@@ -45,8 +43,6 @@ class Helpers:
             if data == []:
                 data = [{'count': 0}]
         return data
-        # else:
-        #     print("Error! Parameter must be 'Genome', 'Exome' or 'Capture'")
 
 
 
