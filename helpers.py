@@ -85,4 +85,27 @@ class Helpers:
                     'maximum': {'$max': dollarParam}
                 }
             }]
-        return database.aggregate(databaseQuery)
+        return list(database.aggregate(databaseQuery))
+
+
+    @staticmethod
+    def getExperimentData(database):
+        experiments = {"experiment": ("Genome", "Exome", "Capture"), "chemistry": ("Mid300", "Mid150", "High300")}
+        experimentData = {}
+        for experiment in experiments:
+            for catergory in experiments[experiment]:
+                catergoryValue = Helpers.getDataCount(database, experiment, catergory)[0]['count']
+                catergoryDict = {catergory:catergoryValue}
+                experimentData.update(catergoryDict)
+        return experimentData
+
+
+    @staticmethod
+    def getRunData(database):
+        metrics = ("yield", "clusterDensity", "passFilter", "q30")
+        metricsData = {}
+        for metric in metrics:
+            metricValue = Helpers.getDataSummary(database, metric)[0]
+            metricDict = {metric:metricValue}
+            metricsData.update(metricDict)
+        return metricsData
