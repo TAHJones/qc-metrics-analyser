@@ -68,10 +68,10 @@ def index():
     mid300= Helpers.getDataCount(runs, "chemistry", "Mid300")[0]['count']
     mid150= Helpers.getDataCount(runs, "chemistry", "Mid150")[0]['count']
     high300= Helpers.getDataCount(runs, "chemistry", "High300")[0]['count']
-    yields = getDataSummary("yield")
-    clusterDensity = getDataSummary("clusterDensity")
-    passFilter = getDataSummary("passFilter")
-    q30 = getDataSummary("q30")
+    yields = Helpers.getDataSummary(runs, "yield")
+    clusterDensity = Helpers.getDataSummary(runs, "clusterDensity")
+    passFilter = Helpers.getDataSummary(runs, "passFilter")
+    q30 = Helpers.getDataSummary(runs, "q30")
     qcData = {
         'genome': genome,
         'exome': exome,
