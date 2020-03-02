@@ -5,6 +5,7 @@ if path.exists("env.py"):
 from flask import Flask, render_template, redirect, request, url_for, flash, session, json
 from flask_pymongo import PyMongo
 from datetime import datetime
+from helpers import Helpers
 
 
 app = Flask(__name__)
@@ -14,21 +15,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 
 
-def getExperiment(experiment):
-    data =list(mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                'experiment': experiment
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-            }
-        }
-    ]))
-    return data
+runs = mongo.db.seqMetCol
 
 
 def getUserExperiment(experiment, user):
@@ -124,15 +111,16 @@ def getUserDataSummary(param, user):
     ])
     return data
 
+
 @app.route("/")
 def index():
     """Display summary run data for all users"""
-    genome = getExperiment("Genome")[0]['count']
-    exome = getExperiment("Exome")[0]['count']
-    capture = getExperiment("Capture")[0]['count']
-    high300=getChemistry("High300")[0]['count']
-    mid300=getChemistry("Mid300")[0]['count']
-    mid150=getChemistry("Mid150")[0]['count']
+    genome = Helpers.getDataCount(runs, "experiment", "Genome")[0]['count']
+    exome = Helpers.getDataCount(runs, "experiment", "Exome")[0]['count']
+    capture = Helpers.getDataCount(runs, "experiment", "Capture")[0]['count']
+    mid300= Helpers.getDataCount(runs, "chemistry", "Mid300")[0]['count']
+    mid150= Helpers.getDataCount(runs, "chemistry", "Mid150")[0]['count']
+    high300= Helpers.getDataCount(runs, "chemistry", "High300")[0]['count']
     yields = getDataSummary("yield")
     clusterDensity = getDataSummary("clusterDensity")
     passFilter = getDataSummary("passFilter")
