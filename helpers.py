@@ -45,79 +45,44 @@ class Helpers:
         return data
 
 
-
-# def getUserExperiment(experiment, user):
-#     data = list(mongo.db.seqMetCol.aggregate([
-#         {
-#             '$match': {
-#                 '$and': [ {'user': user}, {'experiment': experiment} ]
-#             }
-#         },
-#         {
-#             '$group': {
-#                 '_id': 'null',
-#                 'count': { '$sum': 1 },
-#             }
-#         }
-#     ]))
-#     if data == []:
-#         data = [{'count': 0}]
-#     return data
-
-
-# def getChemistry(chemistry):
-#     data = list(mongo.db.seqMetCol.aggregate([
-#         {
-#             '$match': {
-#                 'chemistry': chemistry
-#             }
-#         },
-#         {
-#             '$group': {
-#                 '_id': 'null',
-#                 'count': { '$sum': 1 },
-#             }
-#         }
-#     ]))
-#     return data
-
-# def getUserChemistry(chemistry, user):
-#     data = list(mongo.db.seqMetCol.aggregate([
-#         {
-#             '$match': {
-#                 '$and': [ {'user': user}, {'chemistry': chemistry} ]
-#             }
-#         },
-#         {
-#             '$group': {
-#                 '_id': 'null',
-#                 'count': { '$sum': 1 },
-#             }
-#         }
-#     ]))
-#     if data == []:
-#         data = [{'count': 0}]
-#     return data
-
-# def getDataSummary(param):
-#     dollarParam = "${}".format(param)
-#     data = mongo.db.seqMetCol.aggregate([
-#         {
-#             '$match': {
-#                 'user': {'$exists': 'true'}
-#             }
-#         },
-#         {
-#             '$group': {
-#                 '_id': 'null',
-#                 'count': { '$sum': 1 },
-#                 'average': {'$avg': dollarParam},
-#                 'minimum': {'$min': dollarParam},
-#                 'maximum': {'$max': dollarParam}
-#             }
-#         }  
-#     ])
-#     return data
+    """ Mongodb query that counts the number of experiments for all users that match the parameter 'experiment'.
+    Experiment parameter should be 'Genome', 'Exome' or 'Capture'. """
+    @staticmethod
+    def getDataSummary(database, param, user="N/A"):
+        dollarParam = "${}".format(param)
+        if user == "N/A":
+            databaseQuery = [
+            {
+                '$match': {
+                    'user': {'$exists': 'true'}
+                }
+            },
+            {
+                '$group': {
+                    '_id': 'null',
+                    'count': { '$sum': 1 },
+                    'average': {'$avg': dollarParam},
+                    'minimum': {'$min': dollarParam},
+                    'maximum': {'$max': dollarParam}
+                }
+            }]
+        else:
+            databaseQuery = [
+            {
+                '$match': {
+                    'user': user
+                }
+            },
+            {
+                '$group': {
+                    '_id': 'null',
+                    'count': { '$sum': 1 },
+                    'average': {'$avg': dollarParam},
+                    'minimum': {'$min': dollarParam},
+                    'maximum': {'$max': dollarParam}
+                }
+            }]
+        return database.aggregate(databaseQuery)
 
 # def getUserDataSummary(param, user):
 #     dollarParam = "${}".format(param)
