@@ -18,59 +18,6 @@ mongo = PyMongo(app)
 runs = mongo.db.seqMetCol
 
 
-def getUserExperiment(experiment, user):
-    data = list(mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                '$and': [ {'user': user}, {'experiment': experiment} ]
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-            }
-        }
-    ]))
-    if data == []:
-        data = [{'count': 0}]
-    return data
-
-
-def getChemistry(chemistry):
-    data = list(mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                'chemistry': chemistry
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-            }
-        }
-    ]))
-    return data
-
-def getUserChemistry(chemistry, user):
-    data = list(mongo.db.seqMetCol.aggregate([
-        {
-            '$match': {
-                '$and': [ {'user': user}, {'chemistry': chemistry} ]
-            }
-        },
-        {
-            '$group': {
-                '_id': 'null',
-                'count': { '$sum': 1 },
-            }
-        }
-    ]))
-    if data == []:
-        data = [{'count': 0}]
-    return data
-
 def getDataSummary(param):
     dollarParam = "${}".format(param)
     data = mongo.db.seqMetCol.aggregate([
