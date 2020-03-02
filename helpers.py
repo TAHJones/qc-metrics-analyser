@@ -13,7 +13,7 @@ class Helpers:
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
         if user == "N/A":
-            data = list(database.aggregate([
+            databaseQuery = [
                 {
                     '$match': {
                         dataType: dataCatergory
@@ -25,24 +25,24 @@ class Helpers:
                         'count': { '$sum': 1 },
                     }
                 }
-            ]))
+            ]
         else:
-            data = list(database.aggregate([
-                {
-                    '$match': {
-                        '$and': [ {'user': user}, {dataType: dataCatergory} ]
-                    }
-                },
-                {
-                    '$group': {
-                        '_id': 'null',
-                        'count': { '$sum': 1 },
-                    }
+            databaseQuery = [
+            {
+                '$match': {
+                    '$and': [ {'user': user}, {dataType: dataCatergory} ]
                 }
-            ]))
-            if data == []:
-                data = [{'count': 0}]
-        return data
+            },
+            {
+                '$group': {
+                    '_id': 'null',
+                    'count': { '$sum': 1 },
+                }
+            }
+            ]
+        if databaseQuery == []:
+            databaseQuery = [{'count': 0}]
+        return list(database.aggregate(databaseQuery))
 
 
     """ Mongodb query that counts the number of experiments for all users that match the parameter 'experiment'.
