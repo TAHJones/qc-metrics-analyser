@@ -8,8 +8,10 @@ from flask_pymongo import PyMongo
 # from helpers import Helpers
 
 class Helpers:
-    """ Mongodb query that counts the number of experiments for all users that match the parameter 'experiment'.
-    Experiment parameter should be 'Genome', 'Exome' or 'Capture'. """
+    """ Mongodb query that counts the number incidences of each catergory for a given data type for a selected user or for all users if no user parameter is given.
+    Data types can either be 'experiment' or 'chemistry'. 
+    For the data type 'experiment' catergories are 'Genome', 'Exome' or 'Capture'.
+    For the data type 'chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
         if user == "N/A":
