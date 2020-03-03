@@ -92,12 +92,15 @@ class Helpers:
     Takes the mongodb connect string as a parameter which is passed to the getDataCount function.
     Returns a dict object containing the number for each catergory for each experiment type """
     @staticmethod
-    def getExperimentData(database):
+    def getExperimentData(database, user="N/A"):
         experiments = {"experiment": ("Genome", "Exome", "Capture"), "chemistry": ("Mid300", "Mid150", "High300")}
         experimentData = {}
         for experiment in experiments:
             for catergory in experiments[experiment]:
-                catergoryValue = Helpers.getDataCount(database, experiment, catergory)[0]['count']
+                if user == "N/A":
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory)[0]['count']
+                else:
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)[0]['count']
                 catergoryDict = {catergory.lower():catergoryValue}
                 experimentData.update(catergoryDict)
         return experimentData
