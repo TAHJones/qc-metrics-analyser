@@ -85,11 +85,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul class="d-none d-md-block">
-                        {% for data in qcData.yields %}
-                            <li>Average: {{ data.average|int() }}</li>
-                            <li>Minimum: {{ data.minimum|int() }}</li>
-                            <li>Maximum: {{ data.maximum|int() }}</li>
-                        {% endfor %}
+                            <li>Average: {{ runData.yields.average|int() }}</li>
+                            <li>Minimum: {{ runData.yields.minimum|int() }}</li>
+                            <li>Maximum: {{ runData.yields.maximum|int() }}</li>
                         </ul>
                         <div id="yieldChartContainer" class="chart-container">
                             <canvas id="yield-chart"></canvas>
@@ -110,11 +108,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul class="d-none d-md-block">
-                        {% for data in qcData.clusterDensity %}
-                            <li>Average: {{ data.average|int() }}</li>
-                            <li>Minimum: {{ data.minimum|int() }}</li>
-                            <li>Maximum: {{ data.maximum|int() }}</li>
-                        {% endfor %}
+                            <li>Average: {{ runData.clusterDensity.average|int() }}</li>
+                            <li>Minimum: {{ runData.clusterDensity.minimum|int() }}</li>
+                            <li>Maximum: {{ runData.clusterDensity.maximum|int() }}</li>
                         </ul>
                         <div id="clusterChartContainer" class="chart-container">
                             <canvas id="clusterDensity-chart"></canvas>
@@ -135,11 +131,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul class="d-none d-md-block">
-                        {% for data in qcData.passFilter %}
-                            <li>Average: {{ data.average|int() }}</li>
-                            <li>Minimum: {{ data.minimum|int() }}</li>
-                            <li>Maximum: {{ data.maximum|int() }}</li>
-                        {% endfor %}
+                            <li>Average: {{ runData.passFilter.average|int() }}</li>
+                            <li>Minimum: {{ runData.passFilter.minimum|int() }}</li>
+                            <li>Maximum: {{ runData.passFilter.maximum|int() }}</li>
                         </ul>
                         <div id="passFilterChartContainer" class="chart-container">
                             <canvas id="passFilter-chart"></canvas>
@@ -160,11 +154,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul class="d-none d-md-block">
-                        {% for data in qcData.q30 %}
-                            <li>Average: {{ data.average|int() }}</li>
-                            <li>Minimum: {{ data.minimum|int() }}</li>
-                            <li>Maximum: {{ data.maximum|int() }}</li>
-                        {% endfor %}
+                            <li>Average: {{ runData.q30.average|int() }}</li>
+                            <li>Minimum: {{ runData.q30.minimum|int() }}</li>
+                            <li>Maximum: {{ runData.q30.maximum|int() }}</li>
                         </ul>
                         <div id="q30ChartContainer" class="chart-container">
                             <canvas id="q30-chart"></canvas>
@@ -217,9 +209,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul>
-                            <li>High300: {{ qcData.high300 }}</li>
-                            <li>Mid300: {{ qcData.mid300 }}</li>
-                            <li>Mid150: {{ qcData.mid150 }}</li>
+                            <li>High300: {{ experimentData.high300 }}</li>
+                            <li>Mid300: {{ experimentData.mid300 }}</li>
+                            <li>Mid150: {{ experimentData.mid150 }}</li>
                         </ul>
                         <div class="chart-container">
                             <canvas id="chemistry-chart"></canvas>
@@ -240,9 +232,9 @@
                     </div>
                     <div class="modal-body qc-data-list">
                         <ul>
-                            <li>Genome: {{ qcData.genome }}</li>
-                            <li>Exome: {{ qcData.exome }}</li>
-                            <li>Capture: {{ qcData.capture }}</li>
+                            <li>Genome: {{ experimentData.genome }}</li>
+                            <li>Exome: {{ experimentData.exome }}</li>
+                            <li>Capture: {{ experimentData.capture }}</li>
                         </ul>
                         <div class="chart-container">
                             <canvas id="experiment-chart"></canvas>
@@ -286,14 +278,14 @@
         let q30 = JSON.parse({{ q30|tojson }});
 
         let chemistries = [];
-        chemistries.push(JSON.parse({{ qcData.genome|tojson }}));
-        chemistries.push(JSON.parse({{ qcData.exome|tojson }}));
-        chemistries.push(JSON.parse({{ qcData.capture|tojson }}));
+        chemistries.push(JSON.parse({{ experimentData.genome|tojson }}));
+        chemistries.push(JSON.parse({{ experimentData.exome|tojson }}));
+        chemistries.push(JSON.parse({{ experimentData.capture|tojson }}));
 
         let experiments = [];
-        experiments.push(JSON.parse({{ qcData.high300|tojson }}));
-        experiments.push(JSON.parse({{ qcData.mid300|tojson }}));
-        experiments.push(JSON.parse({{ qcData.mid150|tojson }}));
+        experiments.push(JSON.parse({{ experimentData.high300|tojson }}));
+        experiments.push(JSON.parse({{ experimentData.mid300|tojson }}));
+        experiments.push(JSON.parse({{ experimentData.mid150|tojson }}));
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
