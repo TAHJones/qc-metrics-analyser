@@ -112,6 +112,8 @@ class Helpers:
         metricsData = {}
         for metric in metrics:
             metricValue = Helpers.getDataSummary(database, metric)
+            if metric == "yield":
+                metric = "yields"
             metricDict = {metric:metricValue}
             metricsData.update(metricDict)
         return metricsData
