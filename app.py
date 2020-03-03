@@ -21,28 +21,7 @@ runs = mongo.db.seqMetCol
 @app.route("/")
 def index():
     """Display summary run data for all users"""
-    genome = Helpers.getDataCount(runs, "experiment", "Genome")[0]['count']
-    exome = Helpers.getDataCount(runs, "experiment", "Exome")[0]['count']
-    capture = Helpers.getDataCount(runs, "experiment", "Capture")[0]['count']
-    mid300= Helpers.getDataCount(runs, "chemistry", "Mid300")[0]['count']
-    mid150= Helpers.getDataCount(runs, "chemistry", "Mid150")[0]['count']
-    high300= Helpers.getDataCount(runs, "chemistry", "High300")[0]['count']
-    yields = Helpers.getDataSummary(runs, "yield")
-    clusterDensity = Helpers.getDataSummary(runs, "clusterDensity")
-    passFilter = Helpers.getDataSummary(runs, "passFilter")
-    q30 = Helpers.getDataSummary(runs, "q30")
-    qcData = {
-        'genome': genome,
-        'exome': exome,
-        'capture': capture,
-        'high300': high300,
-        'mid300': mid300,
-        'mid150': mid150,
-        'yields': yields,
-        'clusterDensity': clusterDensity,
-        'passFilter': passFilter,
-        'q30': q30
-    }
+    qcData = Helpers.getQCData(runs)
     graphData = list(mongo.db.seqMetCol.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, 'chemistry': 1, 'experiment':1, '_id': 0 }))
     pools = []
     yields = []
