@@ -89,7 +89,7 @@ class Helpers:
 
 
     """ Take nested list of experiment types & catergory names & uses a nested loop to feed them into getDataCount function.
-    Takes the mongodb connect string as a parameter which is passed to the getDataCount function.
+    Takes the mongodb connect string as a parameter & user as an optional parameter which are passed to the getDataCount function.
     Returns a dict object containing the number for each catergory for each experiment type """
     @staticmethod
     def getExperimentData(database, user="N/A"):
@@ -107,14 +107,17 @@ class Helpers:
 
 
     """ Take dict list of qc metrics types & uses a loop to feed them into getDataSummary function.
-    Takes the mongodb connect string as a parameter which is passed to the getDataSummary function.
+    Takes the mongodb connect string as a parameter & user as an optional parameter which are passed to the getDataSummary function.
     Returns a dict object containing the min, max & avg values for each qc metrics type """
     @staticmethod
-    def getRunData(database):
+    def getRunData(database, user="N/A"):
         metrics = ("yield", "clusterDensity", "passFilter", "q30")
         metricsData = {}
         for metric in metrics:
-            metricValue = Helpers.getDataSummary(database, metric)
+            if user == "N/A":
+                metricValue = Helpers.getDataSummary(database, metric)
+            else:
+                metricValue = Helpers.getDataSummary(database, metric, user)
             if metric == "yield":
                 metric = "yields"
             metricDict = {metric:metricValue}
