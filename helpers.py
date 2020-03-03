@@ -124,9 +124,7 @@ class Helpers:
     def getQCData(database):
         qcData = {}
         experimentData = Helpers.getExperimentData(database)
-        print(experimentData)
         runData = Helpers.getRunData(database)
-        print(runData)
         experimentData.update(runData)
         qcData = experimentData
         return qcData
