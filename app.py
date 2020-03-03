@@ -21,7 +21,9 @@ runs = mongo.db.seqMetCol
 @app.route("/")
 def index():
     """Display summary run data for all users"""
-    qcData = Helpers.getQCData(runs)
+    runData = Helpers.getRunData(runs)
+    experimentData = Helpers.getExperimentData(runs)
+
     graphData = list(mongo.db.seqMetCol.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, 'chemistry': 1, 'experiment':1, '_id': 0 }))
     pools = []
     yields = []
@@ -48,7 +50,8 @@ def index():
     q30 = json.dumps(q30)
 
     return render_template("index.html",
-                            qcData=qcData,
+                            runData=runData,
+                            experimentData=experimentData,
                             labels=labels, 
                             yields=yields,
                             clusterDensity=clusterDensity,
@@ -435,31 +438,13 @@ def adminDeleteUser():
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
+    runs = mongo.db.seqMetCol
     username = username 
     title = "WELCOME {}".format(username.upper())
     session["title"] = title
-    genome = Helpers.getDataCount(runs, "experiment", "Genome", username)[0]['count']
-    exome = Helpers.getDataCount(runs, "experiment", "Exome", username)[0]['count']
-    capture = Helpers.getDataCount(runs, "experiment", "Capture", username)[0]['count']
-    mid300= Helpers.getDataCount(runs, "chemistry", "Mid300", username)[0]['count']
-    mid150= Helpers.getDataCount(runs, "chemistry", "Mid150", username)[0]['count']
-    high300= Helpers.getDataCount(runs, "chemistry", "High300", username)[0]['count']
-    yields = Helpers.getDataSummary(runs, "yield", username)
-    clusterDensity = Helpers.getDataSummary(runs, "clusterDensity", username)
-    passFilter = Helpers.getDataSummary(runs, "passFilter", username)
-    q30 = Helpers.getDataSummary(runs, "q30", username)
-    qcData = {
-        'genome': genome,
-        'exome': exome,
-        'capture': capture,
-        'high300': high300,
-        'mid300': mid300,
-        'mid150': mid150,
-        'yields': yields,
-        'clusterDensity': clusterDensity,
-        'passFilter': passFilter,
-        'q30': q30
-    }
+    runData = Helpers.getRunData(runs, username)
+    experimentData = Helpers.getExperimentData(runs, username)
+
     graphData = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, 'chemistry': 1, 'experiment':1, '_id': 0 }))
     pools = []
     yields = []
@@ -487,7 +472,8 @@ def user(username):
     return render_template("user.html",
                             title=title,
                             username=username,
-                            qcData=qcData,
+                            runData=runData,
+                            experimentData=experimentData,
                             labels=labels, 
                             yields=yields,
                             clusterDensity=clusterDensity,
