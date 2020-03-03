@@ -91,7 +91,7 @@ class Helpers:
                     catergoryValue = Helpers.getDataCount(database, experiment, catergory)
                     if catergoryValue == []:
                         catergoryValue = [{'_id': 'null', 'count': 0}]
-                elif user and user != "N/A":
+                else:
                     catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)
                     if catergoryValue == []:
                         catergoryValue = [{'_id': 'null', 'count': 0}]
