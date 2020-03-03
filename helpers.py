@@ -1,12 +1,3 @@
-import os
-# from os import path
-# if path.exists("env.py"):
-#     import env
-from flask import Flask, render_template, redirect, request, url_for, flash, session, json
-from flask_pymongo import PyMongo
-# from datetime import datetime
-# from helpers import Helpers
-
 class Helpers:
     """ Mongodb query that counts the number incidences of each catergory for a given data type for a selected user or for all users if no user parameter is given.
     Data types can either be 'experiment' or 'chemistry'. 
@@ -42,9 +33,8 @@ class Helpers:
                 }
             }
             ]
-        if databaseQuery == []:
-            databaseQuery = [{'count': 0}]
-        return list(database.aggregate(databaseQuery))
+        dataCount = list(database.aggregate(databaseQuery))
+        return dataCount
 
 
     """ Mongodb query that gets the min, max & average values for data that matchs the parameter 'param'.
@@ -98,10 +88,14 @@ class Helpers:
         for experiment in experiments:
             for catergory in experiments[experiment]:
                 if user == "N/A":
-                    catergoryValue = Helpers.getDataCount(database, experiment, catergory)[0]['count']
-                else:
-                    catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)[0]['count']
-                catergoryDict = {catergory.lower():catergoryValue}
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                elif user and user != "N/A":
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                catergoryDict = {catergory.lower():catergoryValue[0]["count"]}
                 experimentData.update(catergoryDict)
         return experimentData
 
@@ -120,8 +114,8 @@ class Helpers:
                 metricValue = Helpers.getDataSummary(database, metric, user)
             if metric == "yield":
                 metric = "yields"
-            metricDict = {metric:metricValue}
-            metricsData.update(metricDict)
+            metricsDict = { metric: {"minimum":metricValue[0]["minimum"], "maximum":metricValue[0]["maximum"], "average":metricValue[0]["average"]} }
+            metricsData.update(metricsDict)
         return metricsData
 
 
