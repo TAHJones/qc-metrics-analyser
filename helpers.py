@@ -98,7 +98,7 @@ class Helpers:
         for experiment in experiments:
             for catergory in experiments[experiment]:
                 catergoryValue = Helpers.getDataCount(database, experiment, catergory)[0]['count']
-                catergoryDict = {catergory:catergoryValue}
+                catergoryDict = {catergory.lower():catergoryValue}
                 experimentData.update(catergoryDict)
         return experimentData
 
