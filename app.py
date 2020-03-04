@@ -438,7 +438,6 @@ def adminDeleteUser():
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
-    runs = mongo.db.seqMetCol
     username = username 
     title = "WELCOME {}".format(username.upper())
     session["title"] = title
