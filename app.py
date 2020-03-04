@@ -23,40 +23,11 @@ def index():
     """Display summary run data for all users"""
     runData = Helpers.getRunData(runs)
     experimentData = Helpers.getExperimentData(runs)
-
-    graphData = list(mongo.db.seqMetCol.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, 'chemistry': 1, 'experiment':1, '_id': 0 }))
-    pools = []
-    yields = []
-    clusterDensity = []
-    passFilter = []
-    q30 = []
-    chemistries = []
-    experiments = []
-
-    for data in graphData:
-        poolNumber = data["pool"]
-        pools.append(poolNumber)
-        yields.append(data["yield"])
-        clusterDensity.append(data["clusterDensity"])
-        passFilter.append(data["passFilter"])
-        q30.append(data["q30"])
-        chemistries.append(data["chemistry"])
-        experiments.append(data["experiment"])
-
-    labels=json.dumps(pools)
-    yields = json.dumps(yields)
-    clusterDensity = json.dumps(clusterDensity)
-    passFilter = json.dumps(passFilter)
-    q30 = json.dumps(q30)
-
+    linechartData = Helpers.getLinechartData(runs)
     return render_template("index.html",
                             runData=runData,
                             experimentData=experimentData,
-                            labels=labels, 
-                            yields=yields,
-                            clusterDensity=clusterDensity,
-                            passFilter=passFilter,
-                            q30=q30)
+                            linechartData=linechartData)
 
 
 @app.route("/login", methods=["GET", "POST"])
