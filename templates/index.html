@@ -188,7 +188,7 @@
                 </a>
             </div>
 
-            <div class="col-10 col-sm-5 col-md-5 col-lg-4"">
+            <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 <h4 class="page-subtitle">Experiments</h4>
                 <a data-toggle="modal" data-target="#experimentModal">
                 <div class="overlay-container-6">
@@ -273,9 +273,13 @@
 
     <script>
         let labels = JSON.parse({{ labels|tojson }});
+        console.log("labels": labels);
         let yields = JSON.parse({{ yields|tojson }});
+        console.log("yields": yields);
         let clusterDensity = JSON.parse({{ clusterDensity|tojson }});
+        console.log("clusterDensity": clusterDensity);
         let passFilter = JSON.parse({{ passFilter|tojson }});
+        console.log("passFilter": passFilter);
         let q30 = JSON.parse({{ q30|tojson }});
 
         let chemistries = [];
