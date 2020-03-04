@@ -100,6 +100,27 @@ class Helpers:
         return experimentData
 
 
+    @staticmethod
+    def getExperimentData2(database, user="N/A"):
+        experiments = {"experiment": ("Genome", "Exome", "Capture"), "chemistry": ("Mid300", "Mid150", "High300")}
+        experimentsData = {}
+        for experiment in experiments:
+            experimentData = {}
+            for catergory in experiments[experiment]:
+                if user == "N/A":
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                else:
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                catergoryDict = {catergory.lower():catergoryValue[0]["count"]}
+            experimentData[experiment] += catergoryDict
+        experimentsData += experimentData
+        return experimentsData
+
+
     """ Take dict list of qc metrics types & uses a loop to feed them into getDataSummary function.
     Takes the mongodb connect string as a parameter & user as an optional parameter which are passed to the getDataSummary function.
     Returns a dict object containing the min, max & avg values for each qc metrics type """
@@ -135,3 +156,28 @@ class Helpers:
         qcData = experimentData
         return qcData
 
+
+    @staticmethod
+    def getLinechartData(database):
+        dbChartData = list(database.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, '_id': 0 }))
+        pools = []
+        yields = []
+        clusterDensity = []
+        passFilter = []
+        q30 = []
+
+        for data in dbChartData:
+            pools.append(data["pool"])
+            yields.append(data["yield"])
+            clusterDensity.append(data["clusterDensity"])
+            passFilter.append(data["passFilter"])
+            q30.append(data["q30"])
+        
+        linechartData = {
+            "pools": pools,
+            "yields": yields,
+            "clusterDensity": clusterDensity,
+            "passFilter": passFilter,
+            "q30": q30
+        }
+        return linechartData
