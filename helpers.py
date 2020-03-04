@@ -158,8 +158,12 @@ class Helpers:
 
 
     @staticmethod
-    def getLinechartData(database):
-        dbChartData = list(database.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, '_id': 0 }))
+    def getLinechartData(database, user="N/A"):
+        if user == "N/A":
+            dbChartData = list(database.find({}, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, '_id': 0 }))
+        else:
+            dbChartData = list(database.find({ 'user': user }, { 'pool': 1, 'yield': 1, 'passFilter': 1, 'clusterDensity': 1, 'q30': 1, '_id': 0 }))
+
         pools = []
         yields = []
         clusterDensity = []
