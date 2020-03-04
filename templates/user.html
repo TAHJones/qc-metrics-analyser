@@ -271,21 +271,19 @@
 
 {% block javascript %}
     <script>
-        let labels = JSON.parse({{ labels|tojson }});
-        let yields = JSON.parse({{ yields|tojson }});
-        let clusterDensity = JSON.parse({{ clusterDensity|tojson }});
-        let passFilter = JSON.parse({{ passFilter|tojson }});
-        let q30 = JSON.parse({{ q30|tojson }});
-
+        let labels = [{% for data in linechartData.pools %}{{ data }},{% endfor %}];
+        let yields = [{% for data in linechartData.yields %}{{ data }},{% endfor %}];
+        let clusterDensity = [{% for data in linechartData.clusterDensity %}{{ data }},{% endfor %}];
+        let passFilter = [{% for data in linechartData.passFilter %}{{ data }},{% endfor %}];
+        let q30 = [{% for data in linechartData.q30 %}{{ data }},{% endfor %}];
         let chemistries = [];
-        chemistries.push(JSON.parse({{ experimentData.genome|tojson }}));
-        chemistries.push(JSON.parse({{ experimentData.exome|tojson }}));
-        chemistries.push(JSON.parse({{ experimentData.capture|tojson }}));
-
         let experiments = [];
-        experiments.push(JSON.parse({{ experimentData.high300|tojson }}));
-        experiments.push(JSON.parse({{ experimentData.mid300|tojson }}));
-        experiments.push(JSON.parse({{ experimentData.mid150|tojson }}));
+        chemistries.push({{ experimentData.high300 }});
+        chemistries.push({{ experimentData.mid300 }});
+        chemistries.push({{ experimentData.mid150 }});
+        experiments.push({{ experimentData.genome }});
+        experiments.push({{ experimentData.exome }});
+        experiments.push({{ experimentData.capture }});
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
