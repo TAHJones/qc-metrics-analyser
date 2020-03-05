@@ -1,3 +1,6 @@
+from flask import request, flash, session
+
+
 class Helpers:
     """ Mongodb query that counts the number incidences of each catergory for a given data type for a selected user or for all users if no user parameter is given.
     Data types can either be 'experiment' or 'chemistry'. 
@@ -164,3 +167,56 @@ class Helpers:
             "q30": q30
         }
         return linechartData
+
+
+    """ Gets all form data from post request & adds to req var.
+    Loop through req adding each key:value pair to formData dict
+    Function takes user as a single parameter """
+    @staticmethod
+    def getFilteredFormData(*stringFields):
+        formData = {}
+        missing = list()
+        req = request.form
+        for k, v in req.items():
+            if v == "":
+                missing.append(k)
+            if k in stringFields:
+                formData[k] = v
+            else:
+                formData[k] = int(v)
+        if missing:
+            flash(f"Missing fields for {', '.join(missing)}")
+        return formData
+
+    @staticmethod
+    def getUserRuns(database, user="N/A"):
+        formData = Helpers.getFilteredFormData("username", "formButton", "chemistry", "experiment")
+        if user == "N/A":
+            userQuery = {'user': formData["username"]}
+        else:
+            userQuery = {'user': user}
+        chemistry = formData["chemistry"]
+        experiment = formData["experiment"]
+        yieldsQuery = {'$and': [{'yield': {'$gt': formData["minYield"]}}, {'yield': {'$lt': formData["maxYield"]}}]}
+        clusterDensityQuery = {'$and': [{'clusterDensity': {'$gt': formData["minClusterDensity"]}}, {'clusterDensity': {'$lt': formData["maxClusterDensity"]}}]}
+        passFilterQuery = {'$and': [{'passFilter': {'$gt': formData["minPassFilter"]}}, {'passFilter': {'$lt': formData["maxPassFilter"]}}]}
+        q30Query = {'$and': [{'q30': {'$gt': formData["minq30"]}}, {'q30': {'$lt': formData["maxq30"]}}]}
+        chemistryQuery = {'chemistry': chemistry}
+        experimentQuery = {'experiment': experiment}
+
+        if chemistry == "All" and experiment == "All":
+            dbQuery = {'$and': [userQuery, yieldsQuery, clusterDensityQuery, passFilterQuery, q30Query]}
+        elif chemistry != "All" and experiment == "All":
+            dbQuery = {'$and': [userQuery, yieldsQuery, clusterDensityQuery, passFilterQuery, q30Query, chemistryQuery]}
+        elif chemistry == "All" and experiment != "All":
+            dbQuery = {'$and': [userQuery, yieldsQuery, clusterDensityQuery, passFilterQuery, q30Query, experimentQuery]}
+        elif chemistry != "All" and experiment != "All":
+            dbQuery = {'$and': [userQuery, yieldsQuery, clusterDensityQuery, passFilterQuery, q30Query, chemistryQuery, experimentQuery]}
+
+        userRuns = list(database.find(dbQuery, { '_id': 0 }))
+        if userRuns == []:
+            flash('No Runs of that type were found')
+            userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
+        elif userRuns != [] and user == "N/A":
+            session["selectedUser"] = formData["username"]
+        return userRuns
