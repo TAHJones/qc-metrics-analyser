@@ -185,9 +185,9 @@ class Helpers:
         return formData
 
 
-    """ Gets all form data from post request & adds to req var.
+    """ Gets form data from post request & adds to req var.
     Loops through req adding each key:value pair to formData dict.
-    Checks if any values are missing & sends list of missing values to flash message.
+    Checks if values are missing & sends list of missing values to flash message.
     Checks optional parameters 'stringFields' against values from form, 
     matching values remain as strings, all other form values are converted to integers """
     @staticmethod
