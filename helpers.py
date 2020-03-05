@@ -168,10 +168,28 @@ class Helpers:
         }
         return linechartData
 
+    """ Gets form data from post request & adds to req var.
+    Loops through req adding each key:value pair to formData dict.
+    Checks if values are missing & sends list of missing values to flash message. """
+    @staticmethod
+    def getFormData():
+        formData = {}
+        missing = list()
+        req = request.form
+        for k, v in req.items():
+            if v == "":
+                missing.append(k)
+            formData[k] = v
+        if missing:
+            flash(f"Missing fields for {', '.join(missing)}")
+        return formData
+
 
     """ Gets all form data from post request & adds to req var.
-    Loop through req adding each key:value pair to formData dict
-    Function takes user as a single parameter """
+    Loops through req adding each key:value pair to formData dict.
+    Checks if any values are missing & sends list of missing values to flash message.
+    Checks optional parameters 'stringFields' against values from form, 
+    matching values remain as strings, all other form values are converted to integers """
     @staticmethod
     def getFilteredFormData(*stringFields):
         formData = {}
