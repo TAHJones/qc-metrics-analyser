@@ -16,6 +16,7 @@ mongo = PyMongo(app)
 
 
 runs = mongo.db.seqMetCol
+users = mongo.db.users
 
 
 @app.route("/")
@@ -35,7 +36,6 @@ def login():
     """ Log in with username. If username doesn't exist user is prompted to try another username.
     If user exists & has admin privileges they are directed to 'adminOrUser' page. If user exists
     & only has user privileges they are directed to 'user' page """
-    users = mongo.db.users
     if request.method == "POST":
         session.clear()
         username = request.form.get("username")
