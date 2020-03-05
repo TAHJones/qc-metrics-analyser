@@ -65,7 +65,6 @@ def signup():
     to try another username. If username doesn't exist add to database """
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
-    users = mongo.db.users
     if request.method == "POST":
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == request.form.get("newUsername"):
