@@ -190,6 +190,14 @@ class Helpers:
         return formData
 
 
+    """ Gets list of all runs for an individual user.
+    Takes database collection name & username as parameters  """
+    @staticmethod
+    def getUserRunList(database, user):
+        userRunList = list(database.find({ 'user': user }, { 'pool': 1, '_id': 0 }))
+        return userRunList
+
+
     """ Gets form data from post request & adds to req var.
     Loops through req adding each key:value pair to formData dict.
     Checks if values are missing & sends list of missing values to flash message.
