@@ -197,13 +197,13 @@ class Helpers:
         userRunList = list(database.find({ 'user': user }, { 'pool': 1, '_id': 0 }))
         return userRunList
 
+
     """ Gets list of all users from database users collection.
     Takes database collection name as parameter  """
     @staticmethod
     def getUserList(database):
         userList = list(database.find({}, {'user': 1, '_id': 0}))
         return userList
-
 
 
     """ Gets form data from post request & adds to req var.
@@ -279,3 +279,21 @@ class Helpers:
             flash('No runs of that type were found')
             runs = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
         return runs
+
+
+    """ Generates list of dropdown options from update run form.
+    dataList parameter is either list of chemistry or experiment catergories.
+    currentSelection parameter is the currently selected catergory item 
+    & is made dropdown list default value. """
+    @staticmethod
+    def createDropDownList(dataList, currentSelection):
+        dropDownList = {}
+        for data in dataList:
+            if data == currentSelection:
+                dropDownList["selectedItem"] = data
+            elif data != currentSelection and "unselectedItem1" not in dropDownList:
+                    dropDownList["unselectedItem1"] = data
+            else:
+                dropDownList["unselectedItem2"] = data
+        return dropDownList
+
