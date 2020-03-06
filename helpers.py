@@ -1,4 +1,4 @@
-from flask import request, flash, session
+from flask import request, flash
 
 
 class Helpers:
@@ -251,9 +251,4 @@ class Helpers:
             dbQuery = {'$and': [userQuery, yieldsQuery, clusterDensityQuery, passFilterQuery, q30Query, chemistryQuery, experimentQuery]}
 
         userRuns = list(database.find(dbQuery, { '_id': 0 }))
-        if userRuns == []:
-            flash('No Runs of that type were found')
-            userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
-        elif userRuns != [] and user == "N/A":
-            session["selectedUser"] = formData["username"]
         return userRuns
