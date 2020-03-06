@@ -357,7 +357,7 @@ def user(username):
 def viewUserRuns():
     """  view all user runs or select individual run to delete or update """
     username = session["username"]
-    userRunList = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, '_id': 0 }))
+    userRunList = Helpers.getUserRunList(runs, username)
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             userRun = Helpers.getUserRun(runs, username)          
