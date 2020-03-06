@@ -95,10 +95,15 @@ def admin(username):
 
 @app.route("/admin-select-runs", methods=["GET", "POST"])
 def adminSelectRuns():
-    """ select user runs to view, remove & update """
+    """ select runs for individual users and then view, remove or update individual user runs """
     username = session["username"]
     if request.method == "POST" and request.form['formButton'] == 'userRuns':
         userRuns = Helpers.getUserRuns(runs)
+        if userRuns == []:
+            flash('No runs of that type were found')
+            userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
+        else:
+            session["selectedUser"] = userRuns[0]["user"]
         return render_template("admin-select-runs.html",
                                 username=username,
                                 title=session["title"],
@@ -106,23 +111,15 @@ def adminSelectRuns():
                                 selectedUser=session["selectedUser"],
                                 userRuns=userRuns)
     elif request.method == "POST" and request.form['formButton'] == 'userRun':
-        selectedPoolNumber = int(request.form.get("selectedPoolNumber"))
-        session["selectedPoolNumber"] = selectedPoolNumber
         selectedUser = session["selectedUser"]
-        selectedUserRun = list(mongo.db.seqMetCol.find(
-            {'user': selectedUser, 'pool': selectedPoolNumber}, { '_id': 0 }))
+        selectedUserRun = Helpers.getUserRun(runs, selectedUser)
+        selectedPoolNumber = selectedUserRun[0]["pool"]
+        session["selectedPoolNumber"] = selectedPoolNumber
         if selectedUserRun == []:
-            flash('No Runs of that type were found')
-            selectedUserRun = [{
-                        'pool': 0,
-                        'yield': 0,
-                        'clusterDensity': 0,
-                        'passFilter': 0,
-                        'q30': 0,
-                        'experiment': 0,
-                        'chemistry': 0
-                        }]
-        session["selectedUserRun"] = selectedUserRun
+            flash('No run of that type was found')
+            selectedUserRun = [{'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0,'experiment': 0,'chemistry': 0}]
+        else:
+            session["selectedUserRun"] = selectedUserRun
         return render_template("admin-select-runs.html",
                                 username=username,
                                 title=session["title"],
