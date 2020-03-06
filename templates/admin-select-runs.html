@@ -214,7 +214,7 @@
                     <form method="POST">
                         <div class="row">
                             <div class="form-group col-6 floating-label-form-group controls">
-                                <select type="number" name="selectedPoolNumber" class="form-control" id="poolListContainer">
+                                <select type="number" name="poolNumber" class="form-control" id="poolListContainer">
                                     {% for data in userRuns %}                                
                                     <option  value="{{ data.pool }}">{{ data.pool }}</option>
                                     {% endfor %}
