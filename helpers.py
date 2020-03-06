@@ -214,13 +214,13 @@ class Helpers:
 
     @staticmethod
     def getUserRun(database, user="N/A"):
-        formData = Helpers.getFormData("selectedPoolNumber")
+        formData = Helpers.getFormData("poolNumber")
         if user == "N/A":
             userQuery = formData["username"]
         else:
             userQuery = user
-        selectedPoolNumber = formData["selectedPoolNumber"]
-        dbQuery = {'user': userQuery, 'pool': selectedPoolNumber}
+        poolNumber = formData["poolNumber"]
+        dbQuery = {'user': userQuery, 'pool': poolNumber}
         userRun = list(database.find(dbQuery, { '_id': 0 }))
         return userRun
 
