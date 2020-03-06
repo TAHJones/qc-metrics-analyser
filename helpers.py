@@ -211,6 +211,20 @@ class Helpers:
             flash(f"Missing fields for {', '.join(missing)}")
         return formData
 
+
+    @staticmethod
+    def getUserRun(database, user="N/A"):
+        formData = Helpers.getFormData("selectedPoolNumber")
+        if user == "N/A":
+            userQuery = formData["username"]
+        else:
+            userQuery = user
+        selectedPoolNumber = formData["selectedPoolNumber"]
+        dbQuery = {'user': userQuery, 'pool': selectedPoolNumber}
+        userRun = list(database.find(dbQuery, { '_id': 0 }))
+        return userRun
+
+
     @staticmethod
     def getUserRuns(database, user="N/A"):
         formData = Helpers.getFilteredFormData("username", "formButton", "chemistry", "experiment")
