@@ -121,8 +121,7 @@ def adminSelectRuns():
                                 selectedPoolNumber=selectedPoolNumber,
                                 selectedUser=selectedUser,
                                 selectedUserRun=selectedUserRun)
-    users = mongo.db.users
-    userList = list(users.find({}, {'user': 1, '_id': 0}))
+    userList = Helpers.getUserList(users)
     session["userList"] = userList
     return render_template("admin-select-runs.html",
                                 username=username,
