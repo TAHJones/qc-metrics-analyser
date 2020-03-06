@@ -260,3 +260,14 @@ class Helpers:
 
         userRuns = list(database.find(dbQuery, { '_id': 0 }))
         return userRuns
+
+
+    """ Checks if database query returns empty list. If true it replaces empty 
+    list with list containing key:value pairs where all values are zero.
+    Takes results of database query as a function parameter """
+    @staticmethod
+    def checkUserRuns(runs):
+        if runs == []:
+            flash('No runs of that type were found')
+            runs = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
+        return runs
