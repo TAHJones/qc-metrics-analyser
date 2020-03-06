@@ -197,6 +197,14 @@ class Helpers:
         userRunList = list(database.find({ 'user': user }, { 'pool': 1, '_id': 0 }))
         return userRunList
 
+    """ Gets list of all users from database users collection.
+    Takes database collection name as parameter  """
+    @staticmethod
+    def getUserList(database):
+        userList = list(database.find({}, {'user': 1, '_id': 0}))
+        return userList
+
+
 
     """ Gets form data from post request & adds to req var.
     Loops through req adding each key:value pair to formData dict.
