@@ -190,6 +190,14 @@ class Helpers:
         return formData
 
 
+    """ Gets list of all runs from all users.
+    Takes database collection name as parameter  """
+    @staticmethod
+    def getRunList(database):
+        runList = database.find({}, { 'pool': 1, '_id': 0 })
+        return runList
+
+
     """ Gets list of all runs for an individual user.
     Takes database collection name & username as parameters  """
     @staticmethod
@@ -268,6 +276,24 @@ class Helpers:
 
         userRuns = list(database.find(dbQuery, { '_id': 0 }))
         return userRuns
+
+
+    @staticmethod
+    def addUserRun(database, user):
+        userRun = "userRun"
+        runList = Helpers.getRunList(database)
+        formData = Helpers.getFilteredFormData("user", "chemistry", "experiment", "comment")
+        if user != formData["user"]:
+            userRun = "wrongUser"
+        elif user == formData["user"]:
+            for run in runList:
+                if run["pool"] == formData["pool"]:
+                    userRun = "runExists"
+            if userRun == "userRun":
+                database.insert_one(formData)
+                userRun = "runAdded" 
+        return userRun
+
 
 
     """ Checks if database query returns empty list. If true it replaces empty 
