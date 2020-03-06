@@ -372,34 +372,17 @@ def viewUserRuns():
 def addUserRun():
     """  Add new run to database """
     username = session["username"]
-    runs = mongo.db.seqMetCol
     if request.method == "POST":
-        for run in runs.find({}, { 'pool': 1, '_id': 0 }):
-            if run.get('pool') == int(request.form.get('pool')):
-                flash("Pool already exists, please enter a unique pool number")
-                return redirect(url_for("addUserRun", username=username, title=session["title"]))
-        pool = int(request.form.get("pool"))
-        yields = int(request.form.get("yield"))
-        clusterDensity = int(request.form.get("clusterDensity"))
-        passFilter = int(request.form.get("passFilter"))
-        q30 = int(request.form.get("q30"))
-        experiment = request.form.get("experiment")
-        chemistry = request.form.get("chemistry")
-        comment = request.form.get("comment")
-        newRun = {
-            'user': username,
-            'pool': pool,
-            'yield': yields,
-            'clusterDensity': clusterDensity,
-            'passFilter': passFilter,
-            'q30': q30,
-            'experiment': experiment,
-            'chemistry': chemistry,
-            'comment': comment
-        }
-        runs.insert_one(newRun)
-        flash("Pool_{} has been successfully added".format(pool))
-        return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        userRun = Helpers.addUserRun(runs, username)
+        if userRun == "wrongUser":
+            flash("Username is incorrect")
+            return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        elif userRun == "runExists":
+            flash("Pool already exists, please enter a unique pool number")
+            return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        elif userRun == "runAdded":
+            flash("New run has been successfully added")
+            return redirect(url_for("addUserRun", username=username, title=session["title"]))
     return render_template("add-user-run.html", username=username, title=session["title"])
 
 
