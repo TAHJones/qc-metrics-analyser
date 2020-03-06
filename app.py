@@ -99,10 +99,8 @@ def adminSelectRuns():
     username = session["username"]
     if request.method == "POST" and request.form['formButton'] == 'userRuns':
         userRuns = Helpers.getUserRuns(runs)
-        if userRuns == []:
-            flash('No runs of that type were found')
-            userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
-        else:
+        Helpers.checkUserRuns(userRuns)
+        if userRuns != []:
             session["selectedUser"] = userRuns[0]["user"]
         return render_template("admin-select-runs.html",
                                 username=username,
@@ -113,13 +111,9 @@ def adminSelectRuns():
     elif request.method == "POST" and request.form['formButton'] == 'userRun':
         selectedUser = session["selectedUser"]
         selectedUserRun = Helpers.getUserRun(runs, selectedUser)
+        session["selectedUserRun"] = selectedUserRun
         selectedPoolNumber = selectedUserRun[0]["pool"]
         session["selectedPoolNumber"] = selectedPoolNumber
-        if selectedUserRun == []:
-            flash('No run of that type was found')
-            selectedUserRun = [{'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0,'experiment': 0,'chemistry': 0}]
-        else:
-            session["selectedUserRun"] = selectedUserRun
         return render_template("admin-select-runs.html",
                                 username=username,
                                 title=session["title"],
@@ -362,11 +356,11 @@ def viewUserRuns():
         if request.form['formButton'] == "userRun":
             userRun = Helpers.getUserRun(runs, username)          
             session["poolNumber"] = userRun[0]["pool"]
-            if userRun == []:
-                flash('No run of that type was found')
-                userRun = [{'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0,'experiment': 0,'chemistry': 0}]
-            else:
-                session["userRun"] = userRun
+            # if userRun == []:
+            #     flash('No run of that type was found')
+            #     userRun = [{'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0,'experiment': 0,'chemistry': 0}]
+            # else:
+            session["userRun"] = userRun
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
@@ -376,9 +370,10 @@ def viewUserRuns():
 
         elif request.form['formButton'] == 'userRuns':
             userRuns = Helpers.getUserRuns(runs, username)          
-            if userRuns == []:
-                flash('No runs of that type were found')
-                userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
+            Helpers.checkUserRuns(userRuns)
+            # if userRuns == []:
+            #     flash('No runs of that type were found')
+            #     userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
