@@ -188,17 +188,17 @@ class Helpers:
     """ Gets form data from post request & adds to req var.
     Loops through req adding each key:value pair to formData dict.
     Checks if values are missing & sends list of missing values to flash message.
-    Checks optional parameters 'stringFields' against values from form, 
+    Checks optional parameters 'strArgs' against values from form, 
     matching values remain as strings, all other form values are converted to integers """
     @staticmethod
-    def getFilteredFormData(*stringFields):
+    def getFilteredFormData(*strArgs):
         formData = {}
         missing = list()
         req = request.form
         for k, v in req.items():
             if v == "":
                 missing.append(k)
-            if k in stringFields:
+            if k in strArgs:
                 formData[k] = v
             else:
                 formData[k] = int(v)
