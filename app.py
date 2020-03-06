@@ -129,17 +129,6 @@ def adminSelectRuns():
                                 pageLocation=json.dumps("userForm"),
                                 userList=userList)
 
-def createDropDownList(dataList, currentSelection):
-    dropDownList = {}
-    for data in dataList:
-        if data == currentSelection:
-            dropDownList["selectedItem"] = data
-        elif data != currentSelection and "unselectedItem1" not in dropDownList:
-                dropDownList["unselectedItem1"] = data
-        else:
-            dropDownList["unselectedItem2"] = data
-    return dropDownList
-
 
 @app.route("/admin-update-run", methods=["GET", "POST"])
 def adminUpdateRun():
@@ -152,8 +141,8 @@ def adminUpdateRun():
     existingChemistry = selectedUserRun[0].get("chemistry")
     experiments = ["Genome", "Exome", "Capture"]
     chemistries = ["High300", "Mid300", "Mid150"]
-    experimentList = createDropDownList(experiments, existingExperiment)
-    chemistryList = createDropDownList(chemistries, existingChemistry)
+    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
+    chemistryList = Helpers.createDropDownList(chemistries, existingChemistry)
 
     if request.method == "POST":
         newUserName = request.form.get("name")
@@ -180,8 +169,8 @@ def adminUpdateRun():
         runs = mongo.db.seqMetCol
         runs.update_one( {'user': selectedUser, 'pool': existingPoolNumber }, {'$set': updateRun })
         flash("Pool_{} has been successfully updated".format(existingPoolNumber))
-        experimentList = createDropDownList(experiments, experiment)
-        chemistryList = createDropDownList(chemistries, chemistry)
+        experimentList = Helpers.createDropDownList(experiments, experiment)
+        chemistryList = Helpers.createDropDownList(chemistries, chemistry)
         return render_template("admin-update-run.html",
                                 username=username,
                                 title=session["title"],
@@ -469,8 +458,8 @@ def updateUserRun():
     existingChemistry = userRun[0].get("chemistry")
     experiments = ["Genome", "Exome", "Capture"]
     chemistries = ["High300", "Mid300", "Mid150"]
-    experimentList = createDropDownList(experiments, existingExperiment)
-    chemistryList = createDropDownList(chemistries, existingChemistry)
+    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
+    chemistryList = Helpers.createDropDownList(chemistries, existingChemistry)
     if request.method == "POST":
         newUserName = request.form.get("user")
         newPoolNumber = int(request.form.get("pool"))
@@ -497,8 +486,8 @@ def updateUserRun():
         runs = mongo.db.seqMetCol
         runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
         flash("Pool_{} has been successfully updated".format(existingPoolNumber))
-        experimentList = createDropDownList(experiments, experiment)
-        chemistryList = createDropDownList(chemistries, chemistry)
+        experimentList = Helpers.createDropDownList(experiments, experiment)
+        chemistryList = Helpers.createDropDownList(chemistries, chemistry)
         return render_template("update-user-run.html",
                                 username=username,
                                 title=session["title"],
