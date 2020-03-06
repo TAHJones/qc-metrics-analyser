@@ -360,22 +360,13 @@ def viewUserRuns():
     userRunList = list(mongo.db.seqMetCol.find({ 'user': username }, { 'pool': 1, '_id': 0 }))
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
-            poolNumber = int(request.form.get("poolNumber"))
-            session["poolNumber"] = poolNumber
-            userRun = list(mongo.db.seqMetCol.find(
-                {'user': username, 'pool': poolNumber}, { '_id': 0 }))
+            userRun = Helpers.getUserRun(runs, username)          
+            session["poolNumber"] = userRun[0]["pool"]
             if userRun == []:
-                flash('No Runs of that type were found')
-                userRun = [{
-                            'pool': 0,
-                            'yield': 0,
-                            'clusterDensity': 0,
-                            'passFilter': 0,
-                            'q30': 0,
-                            'experiment': 0,
-                            'chemistry': 0
-                            }]
-            session["userRun"] = userRun
+                flash('No run of that type was found')
+                userRun = [{'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0,'experiment': 0,'chemistry': 0}]
+            else:
+                session["userRun"] = userRun
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
@@ -385,6 +376,9 @@ def viewUserRuns():
 
         elif request.form['formButton'] == 'userRuns':
             userRuns = Helpers.getUserRuns(runs, username)          
+            if userRuns == []:
+                flash('No runs of that type were found')
+                userRuns = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
