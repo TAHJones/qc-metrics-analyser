@@ -10,17 +10,8 @@ class Helpers:
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
         if user == "N/A":
             databaseQuery = [
-                {
-                    '$match': {
-                        dataType: dataCatergory
-                    }
-                },
-                {
-                    '$group': {
-                        '_id': 'null',
-                        'count': { '$sum': 1 },
-                    }
-                }
+                { '$match': { dataType: dataCatergory } },
+                { '$group': { '_id': 'null', 'count': { '$sum': 1 }, }}
             ]
         else:
             databaseQuery = [
