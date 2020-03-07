@@ -220,7 +220,7 @@ class Helpers:
     Checks optional parameters 'strArgs' against values from form, 
     matching values remain as strings, all other form values are converted to integers """
     @staticmethod
-    def getFilteredFormData(*strArgs):
+    def getRunData(*strArgs):
         formData = {}
         missing = list()
         req = request.form
@@ -249,12 +249,12 @@ class Helpers:
         userRun = list(database.find(dbQuery, { '_id': 0 }))
         return userRun
 
-    """ Takes data from getFilteredFormData function & generates database 
+    """ Takes data from getRunData function & generates database 
     query to get data for a selection or all runs for active user.
     Takes database query & username as parameters """
     @staticmethod
     def getUserRuns(database, user="N/A"):
-        formData = Helpers.getFilteredFormData("username", "formButton", "chemistry", "experiment")
+        formData = Helpers.getRunData("username", "formButton", "chemistry", "experiment")
         if user == "N/A":
             userQuery = {'user': formData["username"]}
         else:
@@ -315,7 +315,7 @@ class Helpers:
     @staticmethod
     def addUserRun(database, user):
         runList = Helpers.getRunList(database)
-        formData = Helpers.getFilteredFormData("user", "chemistry", "experiment", "comment")
+        formData = Helpers.getRunData("user", "chemistry", "experiment", "comment")
         message = Helpers.checkMetricValues(formData)
         poolNumber = formData["pool"]
         formName = formData["user"]
