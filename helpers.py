@@ -8,7 +8,7 @@ class Helpers:
     For the data type 'chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
-        singleUser = {'$match': {dataType: dataCatergory} }
+        singleUser = {'$match': {dataType: dataCatergory}}
         allUsers = {'$match': {'$and': [{'user': user}, {dataType: dataCatergory}]}}
         dataCount = {'$group': { '_id': 'null','count': {'$sum': 1},}}
         if user == "N/A":
@@ -27,27 +27,18 @@ class Helpers:
         dollarParam = "${}".format(param)
         if user == "N/A":
             databaseQuery = [
-            {
-                '$match': {
-                    'user': {'$exists': 'true'}
-                }
-            },
-            {
-                '$group': {
-                    '_id': 'null',
-                    'count': { '$sum': 1 },
-                    'average': {'$avg': dollarParam},
-                    'minimum': {'$min': dollarParam},
-                    'maximum': {'$max': dollarParam}
-                }
+            {'$match': {'user': {'$exists': 'true'}}},
+            {'$group': {
+                '_id': 'null',
+                'count': { '$sum': 1 },
+                'average': {'$avg': dollarParam},
+                'minimum': {'$min': dollarParam},
+                'maximum': {'$max': dollarParam}
+            }
             }]
         else:
             databaseQuery = [
-            {
-                '$match': {
-                    'user': user
-                }
-            },
+            {'$match': {'user': user}},
             {
                 '$group': {
                     '_id': 'null',
