@@ -278,21 +278,50 @@ class Helpers:
         return userRuns
 
 
+    """ Checks qc metric values are within accepted range when a new run is added.
+    Checks each qc metric value in turn & returns a message for the 1st value outside of range.
+    If all values are within accepted range then the message 'pass' is returned
+    Takes data from 'add user run' form as a parameter  """
+    @staticmethod
+    def checkMetricValues(data):
+        yields = data["yield"]
+        clusterDensity = data["clusterDensity"]
+        passFilter = data["passFilter"]
+        q30 = data["q30"]
+        if yields < 1 or yields > 250:
+            message = "Yield should be between 1 and 250 but is {}".format(data.yields)
+            return message
+        elif clusterDensity < 50 or clusterDensity > 250:
+            message = "Cluster density should be between 50 and 250 but is {}".format(clusterDensity)
+            return message
+        elif passFilter < 1 or passFilter > 100:
+            message = "Pass filter should be between 1 and 100 but is {}".format(passFilter)
+            return message
+        elif q30 < 1 or q30 > 100:
+            message = "Q30 should be between 1 and 100 but is {}".format(q30)
+            return message
+        else:
+            message = "pass"
+            return message
+
+
     @staticmethod
     def addUserRun(database, user):
-        userRun = "userRun"
+        message = None
         runList = Helpers.getRunList(database)
         formData = Helpers.getFilteredFormData("user", "chemistry", "experiment", "comment")
-        if user != formData["user"]:
-            userRun = "wrongUser"
-        elif user == formData["user"]:
+        poolNumber = formData["pool"]
+        formName = formData["user"]
+        if user != formName:
+            message = "Username '{}' is incorrect".format(formName)
+        elif user == formName:
             for run in runList:
-                if run["pool"] == formData["pool"]:
-                    userRun = "runExists"
-            if userRun == "userRun":
+                if run["pool"] == poolNumber:
+                    message = "Pool_{} already exists, enter a unique number".format(poolNumber)
+            if message == None:
                 database.insert_one(formData)
-                userRun = "runAdded" 
-        return userRun
+                message = "Pool_{} has been successfully added".format(poolNumber)
+        return message
 
 
 
