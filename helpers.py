@@ -168,27 +168,6 @@ class Helpers:
         }
         return linechartData
 
-    """ Gets form data from post request & adds to req var.
-    Loops through req adding each key:value pair to formData dict.
-    Checks if values are missing & sends list of missing values to flash message.
-    Checks optional parameters 'intArgs' against values from form, 
-    matching values are converted to integers, all other form values remain as strings """
-    @staticmethod
-    def getFormData(*intArgs):
-        formData = {}
-        missing = list()
-        req = request.form
-        for k, v in req.items():
-            if v == "":
-                missing.append(k)
-            if k in intArgs:
-                formData[k] = int(v)
-            else:
-                formData[k] = v
-        if missing:
-            flash(f"Missing fields for {', '.join(missing)}")
-        return formData
-
 
     """ Gets list of all runs from all users.
     Takes database collection name as parameter  """
@@ -217,10 +196,32 @@ class Helpers:
     """ Gets form data from post request & adds to req var.
     Loops through req adding each key:value pair to formData dict.
     Checks if values are missing & sends list of missing values to flash message.
+    Checks optional parameters 'intArgs' against values from form, 
+    matching values are converted to integers, all other form values remain as strings """
+    @staticmethod
+    def getFormData(*intArgs):
+        formData = {}
+        missing = list()
+        req = request.form
+        for k, v in req.items():
+            if v == "":
+                missing.append(k)
+            if k in intArgs:
+                formData[k] = int(v)
+            else:
+                formData[k] = v
+        if missing:
+            flash(f"Missing fields for {', '.join(missing)}")
+        return formData
+
+
+    """ Gets form data from post request & adds to req var.
+    Loops through req adding each key:value pair to formData dict.
+    Checks if values are missing & sends list of missing values to flash message.
     Checks optional parameters 'strArgs' against values from form, 
     matching values remain as strings, all other form values are converted to integers """
     @staticmethod
-    def getRunData(*strArgs):
+    def getRunFormData(*strArgs):
         formData = {}
         missing = list()
         req = request.form
@@ -249,12 +250,12 @@ class Helpers:
         userRun = list(database.find(dbQuery, { '_id': 0 }))
         return userRun
 
-    """ Takes data from getRunData function & generates database 
+    """ Takes data from getRunFormData function & generates database 
     query to get data for a selection or all runs for active user.
     Takes database query & username as parameters """
     @staticmethod
     def getUserRuns(database, user="N/A"):
-        formData = Helpers.getRunData("username", "formButton", "chemistry", "experiment")
+        formData = Helpers.getRunFormData("username", "formButton", "chemistry", "experiment")
         if user == "N/A":
             userQuery = {'user': formData["username"]}
         else:
@@ -315,7 +316,7 @@ class Helpers:
     @staticmethod
     def addUserRun(database, user):
         runList = Helpers.getRunList(database)
-        formData = Helpers.getRunData("user", "chemistry", "experiment", "comment")
+        formData = Helpers.getRunFormData("user", "chemistry", "experiment", "comment")
         message = Helpers.checkMetricValues(formData)
         poolNumber = formData["pool"]
         formName = formData["user"]
