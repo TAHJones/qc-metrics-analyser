@@ -373,16 +373,16 @@ def addUserRun():
     """  Add new run to database """
     username = session["username"]
     if request.method == "POST":
-        userRun = Helpers.addUserRun(runs, username)
-        if userRun == "wrongUser":
-            flash("Username is incorrect")
-            return redirect(url_for("addUserRun", username=username, title=session["title"]))
-        elif userRun == "runExists":
-            flash("Pool already exists, please enter a unique pool number")
-            return redirect(url_for("addUserRun", username=username, title=session["title"]))
-        elif userRun == "runAdded":
-            flash("New run has been successfully added")
-            return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        message = Helpers.addUserRun(runs, username)
+        # if userRun == "wrongUser":
+        flash(message)
+        return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        # elif userRun == "runExists":
+        #     flash("Pool already exists, please enter a unique pool number")
+        #     return redirect(url_for("addUserRun", username=username, title=session["title"]))
+        # elif userRun == "runAdded":
+        #     flash("New run has been successfully added")
+        #     return redirect(url_for("addUserRun", username=username, title=session["title"]))
     return render_template("add-user-run.html", username=username, title=session["title"])
 
 
