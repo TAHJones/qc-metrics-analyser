@@ -8,16 +8,13 @@ class Helpers:
     For the data type 'chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
+        singleUser = {'$match': {dataType: dataCatergory} }
+        allUsers = {'$match': {'$and': [{'user': user}, {dataType: dataCatergory}]}}
+        dataCount = {'$group': { '_id': 'null','count': {'$sum': 1},}}
         if user == "N/A":
-            databaseQuery = [
-                {'$match': { dataType: dataCatergory } },
-                {'$group': { '_id': 'null','count': {'$sum': 1},}}
-            ]
+            databaseQuery = [singleUser, dataCount]
         else:
-            databaseQuery = [
-                {'$match': {'$and': [{'user': user},{dataType: dataCatergory} ]}},
-                {'$group': {'_id': 'null','count': { '$sum': 1 },}}
-            ]
+            databaseQuery = [allUsers, dataCount]
         dataCount = list(database.aggregate(databaseQuery))
         return dataCount
 
