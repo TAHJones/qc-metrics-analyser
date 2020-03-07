@@ -235,7 +235,8 @@ class Helpers:
             flash(f"Missing fields for {', '.join(missing)}")
         return formData
 
-
+    """ Takes data from formData function & generates database query to select individual run for active user.
+    Takes database query & username as parameters """
     @staticmethod
     def getUserRun(database, user="N/A"):
         formData = Helpers.getFormData("poolNumber")
