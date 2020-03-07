@@ -25,29 +25,21 @@ class Helpers:
     @staticmethod
     def getDataSummary(database, param, user="N/A"):
         dollarParam = "${}".format(param)
-        if user == "N/A":
-            databaseQuery = [
-            {'$match': {'user': {'$exists': 'true'}}},
-            {'$group': {
+        allUsers = {'$match': {'user': {'$exists': 'true'}}}
+        singleUser = {'$match': {'user': user}}
+        dataSummary = {
+                '$group': {
                 '_id': 'null',
                 'count': { '$sum': 1 },
                 'average': {'$avg': dollarParam},
                 'minimum': {'$min': dollarParam},
                 'maximum': {'$max': dollarParam}
             }
-            }]
+        }
+        if user == "N/A":
+            databaseQuery = [allUsers, dataSummary]
         else:
-            databaseQuery = [
-            {'$match': {'user': user}},
-            {
-                '$group': {
-                    '_id': 'null',
-                    'count': { '$sum': 1 },
-                    'average': {'$avg': dollarParam},
-                    'minimum': {'$min': dollarParam},
-                    'maximum': {'$max': dollarParam}
-                }
-            }]
+            databaseQuery = [singleUser, dataSummary]
         return list(database.aggregate(databaseQuery))
 
 
