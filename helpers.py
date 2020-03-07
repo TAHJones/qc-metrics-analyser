@@ -249,7 +249,9 @@ class Helpers:
         userRun = list(database.find(dbQuery, { '_id': 0 }))
         return userRun
 
-
+    """ Takes data from getFilteredFormData function & generates database 
+    query to get data for a selection or all runs for active user.
+    Takes database query & username as parameters """
     @staticmethod
     def getUserRuns(database, user="N/A"):
         formData = Helpers.getFilteredFormData("username", "formButton", "chemistry", "experiment")
