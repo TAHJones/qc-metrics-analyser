@@ -385,35 +385,24 @@ def deleteUserRun():
     username = session["username"]
     poolNumber = session["poolNumber"]
     if request.method == "POST":
-        radio = request.form.get("radio")
-        if radio == 'yes':
-            deletedRun = {
-                'pool': 'Deleted',
-                'yield': 'Deleted',
-                'clusterDensity': 'Deleted',
-                'passFilter': 'Deleted',
-                'q30': 'Deleted',
-                'experiment': 'Deleted',
-                'chemistry': 'Deleted'
-            }
-            userRun = [deletedRun]
-            mongo.db.seqMetCol.remove({'user': username, 'pool': poolNumber})
-            pageLocation=json.dumps("runDeleted")
-            flash("Pool_{} has been successfully deleted".format(poolNumber))
-        elif radio == 'no':
-            flash("To delete Pool_{} select 'Yes' then click 'Delete'".format(poolNumber))
-            pageLocation=json.dumps("deleteRunForm")
+        deletedRun = Helpers.deleteUserRun(runs, poolNumber, username)
+        userRun = deletedRun["userRun"]
+        if userRun == None:
             userRun=session["userRun"]
+        message = deletedRun["message"]
+        flash(message)
+        pageLocation = deletedRun["pageLocation"]
         return render_template("delete-user-run.html",
                                     username=username,
                                     title=session["title"],
-                                    pageLocation=pageLocation,
+                                    pageLocation=json.dumps(pageLocation),
                                     userRun=userRun)
+    pageLocation =  "deleteRunForm"
     userRun=session["userRun"]
     return render_template("delete-user-run.html",
                                 username=username,
                                 title=session["title"],
-                                pageLocation=json.dumps("deleteRunForm"),
+                                pageLocation=json.dumps(pageLocation),
                                 userRun=userRun)
 
 
