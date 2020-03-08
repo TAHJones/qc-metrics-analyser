@@ -135,7 +135,7 @@ class Helpers:
     Takes database collection name as parameter  """
     @staticmethod
     def getRunList(database):
-        runList = database.find({}, { 'pool': 1, '_id': 0 })
+        runList = list(database.find({}, { 'pool': 1, '_id': 0 }))
         return runList
 
 
@@ -252,7 +252,11 @@ class Helpers:
     Takes data from 'add user run' form as a parameter  """
     @staticmethod
     def checkMetricValues(data):
-        yields = data["yield"]
+        if "yield" in data:
+            yields = data["yield"]
+        elif "yields" in data:
+            yields = data["yields"]
+        # yields = data["yield"] if data["yield"] else yields = data["yields"]
         clusterDensity = data["clusterDensity"]
         passFilter = data["passFilter"]
         q30 = data["q30"]
@@ -328,7 +332,7 @@ class Helpers:
 
     """  Takes checkbox form data & if value is 'yes' it deletes selected run from database
     It returns dict of qc metrics key:values pairs where values is 'Deleted', pageLocation & message var
-    Takes database collection name, pool number & optional username as parameter """
+    Takes database collection name, pool number & optional username as parameters """
     @staticmethod
     def deleteUserRun(database, poolNumber, user="N/A"):
         deletedRun = {}
@@ -354,3 +358,36 @@ class Helpers:
             deletedRun["pageLocation"] = "deleteRunForm"
             deletedRun["message"] = "To delete Pool_{} select 'Yes' then click 'Delete'".format(poolNumber)
         return deletedRun
+
+
+    """ Gets updated form data & validates it. If incorrect an error message is returned. 
+    If all data is correct it adds updated run to database & returns form data as dict.
+    Takes database collection name, pool number & optional username as parameters """
+    @staticmethod
+    def updateUserRun(database, run, user):
+        updatedRun = {}
+        poolList = Helpers.getRunList(database)
+        formData = Helpers.getRunFormData("user", "chemistry", "experiment", "comment")
+        message = Helpers.checkMetricValues(formData)
+        formName = formData["user"]
+        poolNumber = formData["pool"]
+        if user != formName:
+            message = "Username '{}' is incorrect".format(formName)
+        elif user == formName:
+            for pool in range(len(poolList)): 
+                if poolList[pool]['pool'] == run: 
+                    del poolList[pool] 
+                    break
+            for pool in poolList:
+                if pool["pool"] == poolNumber:
+                    message = "Pool_{} already exists, enter a unique number".format(poolNumber)
+        if message != "pass":
+            updatedRun["message"] = message
+            updatedRun["userRun"] = "error"
+        else:
+            database.update_one({'user': user, 'pool': run}, {'$set': formData})
+            message = "Pool_{} has been successfully updated".format(run)
+            updatedRun["userRun"] = formData
+            updatedRun["message"] = message
+        return updatedRun
+
