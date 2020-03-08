@@ -193,36 +193,26 @@ def adminUpdateRun():
 def adminDeleteRun():
     """  Delete selected run from database """
     username = session["username"]
-    selectedUserRun = session["selectedUserRun"]
     selectedPoolNumber = session["selectedPoolNumber"]
     if request.method == "POST":
-        radio = request.form.get("radio")
-        if radio == 'yes':
-            deletedRun = {
-                'pool': 'Deleted',
-                'yield': 'Deleted',
-                'clusterDensity': 'Deleted',
-                'passFilter': 'Deleted',
-                'q30': 'Deleted',
-                'experiment': 'Deleted',
-                'chemistry': 'Deleted'
-            }
-            mongo.db.seqMetCol.remove({'pool': selectedUserRun})
-            selectedUserRun = [deletedRun]
-            pageLocation=json.dumps("runDeleted")
-            flash("Pool_{} has been successfully deleted".format(selectedPoolNumber))
-        elif radio == 'no':
-            flash("To delete Pool_{} select 'Yes' then click 'Delete'".format(selectedPoolNumber))
-            pageLocation=json.dumps("deleteRunForm")
+        deletedRun = Helpers.deleteUserRun(runs, selectedPoolNumber)
+        selectedUserRun = deletedRun["userRun"]
+        if selectedUserRun == None:
+            selectedUserRun = session["selectedUserRun"]
+        message = deletedRun["message"]
+        flash(message)
+        pageLocation = deletedRun["pageLocation"]
         return render_template("admin-delete-run.html",
                                     username=username,
                                     title=session["title"],
-                                    pageLocation=pageLocation,
+                                    pageLocation=json.dumps(pageLocation),
                                     selectedUserRun=selectedUserRun)
+    pageLocation =  "deleteRunForm"
+    selectedUserRun = session["selectedUserRun"]
     return render_template("admin-delete-run.html",
                                 username=username,
                                 title=session["title"],
-                                pageLocation=json.dumps("deleteRunForm"),
+                                pageLocation=json.dumps(pageLocation),
                                 selectedUserRun=selectedUserRun)
 
 
