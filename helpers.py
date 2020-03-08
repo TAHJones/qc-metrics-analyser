@@ -200,7 +200,7 @@ class Helpers:
 
 
     """ Takes data from formData function & generates database query to select individual run for active user.
-    Takes database query & username as parameters """
+    Takes database collection name & username as parameters """
     @staticmethod
     def getUserRun(database, user="N/A"):
         formData = Helpers.getFormData("poolNumber")
@@ -216,7 +216,7 @@ class Helpers:
 
     """ Takes data from getRunFormData function & generates database 
     query to get data for a selection or all runs for active user.
-    Takes database query & username as parameters """
+    Takes database collection name & username as parameters """
     @staticmethod
     def getUserRuns(database, user="N/A"):
         formData = Helpers.getRunFormData("username", "formButton", "chemistry", "experiment")
@@ -276,7 +276,7 @@ class Helpers:
     """ Gets form data for new user run & checks data is correct with help of getRunList & checkMetricValues functions.
     If data is incorrect returns message var which is passed to flash message function.
     If data is correct adds new run to database and returns message var which is passed to flash message function.
-    Takes database query & username as parameters """
+    Takes database collection name & username as parameters """
     @staticmethod
     def addUserRun(database, user):
         runList = Helpers.getRunList(database)
@@ -325,3 +325,29 @@ class Helpers:
                 dropDownList["unselectedItem2"] = data
         return dropDownList
 
+
+    """  Takes checkbox form data & if value is 'yes' it deletes selected run from database
+    It returns dict of qc metrics key:values pairs where values is 'Deleted', pageLocation & message var
+    Takes database collection name, pool number & username as parameter """
+    @staticmethod
+    def deleteUserRun(database, poolNumber, user):
+        deletedRun = {}
+        radio = request.form.get("radio")
+        if radio == 'yes':
+            deletedRun["userRun"] = [{
+                'pool': 'Deleted',
+                'yield': 'Deleted',
+                'clusterDensity': 'Deleted',
+                'passFilter': 'Deleted',
+                'q30': 'Deleted',
+                'experiment': 'Deleted',
+                'chemistry': 'Deleted'
+            }]
+            database.remove({'user': user, 'pool': poolNumber})
+            deletedRun["pageLocation"] = "runDeleted"
+            deletedRun["message"] = "Pool_{} has been successfully deleted".format(poolNumber)
+        elif radio == 'no':
+            deletedRun["userRun"] = None
+            deletedRun["pageLocation"] = "deleteRunForm"
+            deletedRun["message"] = "To delete Pool_{} select 'Yes' then click 'Delete'".format(poolNumber)
+        return deletedRun
