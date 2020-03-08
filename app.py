@@ -333,15 +333,14 @@ def viewUserRuns():
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
             userRun = Helpers.getUserRun(runs, username)          
-            session["poolNumber"] = userRun[0]["pool"]
             session["userRun"] = userRun
+            session["poolNumber"] = userRun[0]["pool"]
             return render_template("view-user-runs.html",
                                     username=username,
                                     title=session["title"],
                                     userRun=userRun,
                                     pageLocation=json.dumps("userRun"),
                                     userRunList=userRunList)
-
         elif request.form['formButton'] == 'userRuns':
             userRuns = Helpers.getUserRuns(runs, username)          
             Helpers.checkUserRuns(userRuns)
@@ -401,48 +400,41 @@ def updateUserRun():
     """  Update selected run from database """
     username = session["username"]
     userRun = session["userRun"]
-    existingPoolNumber = int(userRun[0].get("pool"))
-    existingExperiment = userRun[0].get("experiment")
-    existingChemistry = userRun[0].get("chemistry")
+    existingPoolNumber = userRun[0]["pool"]
+    existingChemistry = userRun[0]["chemistry"]
+    existingExperiment = userRun[0]["experiment"]
     experiments = ["Genome", "Exome", "Capture"]
     chemistries = ["High300", "Mid300", "Mid150"]
-    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
     chemistryList = Helpers.createDropDownList(chemistries, existingChemistry)
+    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
     if request.method == "POST":
-        newUserName = request.form.get("user")
-        newPoolNumber = int(request.form.get("pool"))
-        yields = int(request.form.get("yield"))
-        clusterDensity = int(request.form.get("clusterDensity"))
-        passFilter = int(request.form.get("passFilter"))
-        q30 = int(request.form.get("q30"))
-        experiment = request.form.get("experiment")
-        chemistry = request.form.get("chemistry")
-        comment = request.form.get("comment")
-        updateRun = {
-            'user': newUserName,
-            'pool': newPoolNumber,
-            'yield': yields,
-            'clusterDensity': clusterDensity,
-            'passFilter': passFilter,
-            'q30': q30,
-            'experiment': experiment,
-            'chemistry': chemistry,
-            'comment': comment
-        }
-        userRun = [updateRun]
-        session["userRun"] = userRun
-        runs = mongo.db.seqMetCol
-        runs.update_one( {'user': username, 'pool': existingPoolNumber }, {'$set': updateRun })
-        flash("Pool_{} has been successfully updated".format(existingPoolNumber))
-        experimentList = Helpers.createDropDownList(experiments, experiment)
-        chemistryList = Helpers.createDropDownList(chemistries, chemistry)
-        return render_template("update-user-run.html",
-                                username=username,
-                                title=session["title"],
-                                existingPoolNumber=existingPoolNumber,
-                                userRun=userRun,
-                                chemistryList=chemistryList, 
-                                experimentList=experimentList) 
+        updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, username)
+        userRun = [updatedRun["userRun"]]
+        message = updatedRun["message"]
+        if userRun[0] == "error":
+            flash(message)
+            userRun = session["userRun"]
+            return render_template("update-user-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    existingPoolNumber=existingPoolNumber,
+                                    userRun=userRun,
+                                    chemistryList=chemistryList, 
+                                    experimentList=experimentList) 
+        else:
+            flash(message)
+            session["userRun"] = userRun
+            chemistry = userRun[0]["chemistry"]
+            experiment = userRun[0]["experiment"]
+            chemistryList = Helpers.createDropDownList(chemistries, chemistry)
+            experimentList = Helpers.createDropDownList(experiments, experiment)
+            return render_template("update-user-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    existingPoolNumber=existingPoolNumber,
+                                    userRun=userRun,
+                                    chemistryList=chemistryList, 
+                                    experimentList=experimentList) 
     return render_template("update-user-run.html",
                             username=username,
                             title=session["title"],
