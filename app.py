@@ -403,10 +403,7 @@ def updateUserRun():
     existingPoolNumber = userRun[0]["pool"]
     existingChemistry = userRun[0]["chemistry"]
     existingExperiment = userRun[0]["experiment"]
-    experiments = ["Genome", "Exome", "Capture"]
-    chemistries = ["High300", "Mid300", "Mid150"]
-    chemistryList = Helpers.createDropDownList(chemistries, existingChemistry)
-    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
+    dropDownLists = Helpers.getDropDownLists(existingChemistry, existingExperiment)
     if request.method == "POST":
         updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, username)
         userRun = [updatedRun["userRun"]]
@@ -419,29 +416,28 @@ def updateUserRun():
                                     title=session["title"],
                                     existingPoolNumber=existingPoolNumber,
                                     userRun=userRun,
-                                    chemistryList=chemistryList, 
-                                    experimentList=experimentList) 
+                                    chemistryList=dropDownLists["chemistryList"], 
+                                    experimentList=dropDownLists["experimentList"]) 
         else:
             flash(message)
             session["userRun"] = userRun
-            chemistry = userRun[0]["chemistry"]
-            experiment = userRun[0]["experiment"]
-            chemistryList = Helpers.createDropDownList(chemistries, chemistry)
-            experimentList = Helpers.createDropDownList(experiments, experiment)
+            newChemistry = userRun[0]["chemistry"]
+            newExperiment = userRun[0]["experiment"]
+            dropDownLists = Helpers.getDropDownLists(newChemistry, newExperiment)
             return render_template("update-user-run.html",
                                     username=username,
                                     title=session["title"],
                                     existingPoolNumber=existingPoolNumber,
                                     userRun=userRun,
-                                    chemistryList=chemistryList, 
-                                    experimentList=experimentList) 
+                                    chemistryList=dropDownLists["chemistryList"], 
+                                    experimentList=dropDownLists["experimentList"]) 
     return render_template("update-user-run.html",
                             username=username,
                             title=session["title"],
                             existingPoolNumber=existingPoolNumber,
                             userRun=userRun,
-                            chemistryList=chemistryList, 
-                            experimentList=experimentList)
+                            chemistryList=dropDownLists["chemistryList"], 
+                            experimentList=dropDownLists["experimentList"]) 
 
 
 if __name__ == "__main__":
