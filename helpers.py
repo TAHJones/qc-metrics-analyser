@@ -328,9 +328,9 @@ class Helpers:
 
     """  Takes checkbox form data & if value is 'yes' it deletes selected run from database
     It returns dict of qc metrics key:values pairs where values is 'Deleted', pageLocation & message var
-    Takes database collection name, pool number & username as parameter """
+    Takes database collection name, pool number & optional username as parameter """
     @staticmethod
-    def deleteUserRun(database, poolNumber, user):
+    def deleteUserRun(database, poolNumber, user="N/A"):
         deletedRun = {}
         radio = request.form.get("radio")
         if radio == 'yes':
@@ -343,7 +343,10 @@ class Helpers:
                 'experiment': 'Deleted',
                 'chemistry': 'Deleted'
             }]
-            database.remove({'user': user, 'pool': poolNumber})
+            if user == "N/A":
+                database.remove({'pool': poolNumber})
+            else:
+                database.remove({'user': user, 'pool': poolNumber})
             deletedRun["pageLocation"] = "runDeleted"
             deletedRun["message"] = "Pool_{} has been successfully deleted".format(poolNumber)
         elif radio == 'no':
