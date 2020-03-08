@@ -256,7 +256,6 @@ class Helpers:
             yields = data["yield"]
         elif "yields" in data:
             yields = data["yields"]
-        # yields = data["yield"] if data["yield"] else yields = data["yields"]
         clusterDensity = data["clusterDensity"]
         passFilter = data["passFilter"]
         q30 = data["q30"]
@@ -328,6 +327,19 @@ class Helpers:
             else:
                 dropDownList["unselectedItem2"] = data
         return dropDownList
+
+
+    """ Generates dropdown lists for chemistry & experiment catergories.
+    Uses createDropDownList function to create lists & adds to dropDownLists dict.
+    Takes currently selected chemistry & experiment catergories as parameters  """
+    @staticmethod
+    def getDropDownLists(selectedChemistry, selectedExperiment):
+        dropDownLists = {}
+        chemistryTypes = ["High300", "Mid300", "Mid150"]
+        experimentTypes = ["Genome", "Exome", "Capture"]
+        dropDownLists["chemistryList"] = Helpers.createDropDownList(chemistryTypes, selectedChemistry)
+        dropDownLists["experimentList"] = Helpers.createDropDownList(experimentTypes, selectedExperiment)
+        return dropDownLists
 
 
     """  Takes checkbox form data & if value is 'yes' it deletes selected run from database
