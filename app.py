@@ -135,58 +135,45 @@ def adminUpdateRun():
     """  Allows administrator to update runs for selected user """
     username = session["username"]
     selectedUser = session["selectedUser"]
-    existingPoolNumber = session["selectedPoolNumber"]
-    selectedUserRun = session["selectedUserRun"]
-    existingExperiment = selectedUserRun[0].get("experiment")
-    existingChemistry = selectedUserRun[0].get("chemistry")
-    experiments = ["Genome", "Exome", "Capture"]
-    chemistries = ["High300", "Mid300", "Mid150"]
-    experimentList = Helpers.createDropDownList(experiments, existingExperiment)
-    chemistryList = Helpers.createDropDownList(chemistries, existingChemistry)
-
+    userRun = session["selectedUserRun"]
+    existingPoolNumber = userRun[0]["pool"]
+    existingChemistry = userRun[0]["chemistry"]
+    existingExperiment = userRun[0]["experiment"]
+    dropDownLists = Helpers.getDropDownLists(existingChemistry, existingExperiment)
     if request.method == "POST":
-        newUserName = request.form.get("name")
-        newPoolNumber = int(request.form.get("pool"))
-        yields = int(request.form.get("yield"))
-        clusterDensity = int(request.form.get("clusterDensity"))
-        passFilter = int(request.form.get("passFilter"))
-        q30 = int(request.form.get("q30"))
-        experiment = request.form.get("experiment")
-        chemistry = request.form.get("chemistry")
-        comment = request.form.get("comment")
-        updateRun = {
-            'user': newUserName,
-            'pool': newPoolNumber,
-            'yield': yields,
-            'clusterDensity': clusterDensity,
-            'passFilter': passFilter,
-            'q30': q30,
-            'experiment': experiment,
-            'chemistry': chemistry,
-            'comment': comment
-        }
-        selectedUserRun = [updateRun]
-        runs = mongo.db.seqMetCol
-        runs.update_one( {'user': selectedUser, 'pool': existingPoolNumber }, {'$set': updateRun })
-        flash("Pool_{} has been successfully updated".format(existingPoolNumber))
-        experimentList = Helpers.createDropDownList(experiments, experiment)
-        chemistryList = Helpers.createDropDownList(chemistries, chemistry)
-        return render_template("admin-update-run.html",
-                                username=username,
-                                title=session["title"],
-                                existingPoolNumber=existingPoolNumber,
-                                userRun=selectedUserRun,
-                                chemistryList=chemistryList, 
-                                experimentList=experimentList, 
-                                pageLocation=json.dumps("userRun"))
-    return render_template("admin-update-run.html",
+        updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, selectedUser)
+        userRun = [updatedRun["userRun"]]
+        message = updatedRun["message"]
+        if userRun[0] == "error":
+            flash(message)
+            userRun = session["userRun"]
+            return render_template("update-user-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    existingPoolNumber=existingPoolNumber,
+                                    userRun=userRun,
+                                    chemistryList=dropDownLists["chemistryList"], 
+                                    experimentList=dropDownLists["experimentList"]) 
+        else:
+            flash(message)
+            session["userRun"] = userRun
+            newChemistry = userRun[0]["chemistry"]
+            newExperiment = userRun[0]["experiment"]
+            dropDownLists = Helpers.getDropDownLists(newChemistry, newExperiment)
+            return render_template("update-user-run.html",
+                                    username=username,
+                                    title=session["title"],
+                                    existingPoolNumber=existingPoolNumber,
+                                    userRun=userRun,
+                                    chemistryList=dropDownLists["chemistryList"], 
+                                    experimentList=dropDownLists["experimentList"]) 
+    return render_template("update-user-run.html",
                             username=username,
                             title=session["title"],
                             existingPoolNumber=existingPoolNumber,
-                            userRun=selectedUserRun,
-                            chemistryList=chemistryList,
-                            experimentList=experimentList,
-                            pageLocation=json.dumps("userForm"))
+                            userRun=userRun,
+                            chemistryList=dropDownLists["chemistryList"], 
+                            experimentList=dropDownLists["experimentList"]) 
 
 
 @app.route("/admin-delete-run", methods=["GET", "POST"])
