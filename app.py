@@ -207,12 +207,10 @@ def adminDeleteRun():
 def adminSelectUser():
     """ select users to view, remove & update """
     username = session["username"]
-    users = mongo.db.users
     if request.method == "POST":
-        user = request.form.get("user")
-        selectedUser = list(users.find({'user': user}, { '_id': 0 }))
+        selectedUser = Helpers.adminSelectUser(users)
         session["selectedUser"] = selectedUser
-        selectedUserName = selectedUser[0].get("user")
+        selectedUserName = selectedUser[0]["user"]
         session["selectedUserName"] = selectedUserName
         return render_template("admin-select-user.html",
                                     username=username,
@@ -220,7 +218,7 @@ def adminSelectUser():
                                     pageLocation=json.dumps("viewUser"),
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName)
-    userList = list(users.find({}, {'user': 1, '_id': 0}))
+    userList = Helpers.getUserList(users)
     return render_template("admin-select-user.html",
                                 username=username,
                                 title=session["title"],
