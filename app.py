@@ -231,22 +231,16 @@ def adminUpdateUser():
     """ select user to view, delete & update """
     username = session["username"]
     selectedUser = session["selectedUser"]
-    users = mongo.db.users
     selectedUserName = session["selectedUserName"]
     if request.method == "POST":
-        user = request.form.get("user")
-        member = request.form.get("member")
-        date = request.form.get("date")
-        time = request.form.get("time")
-        updateUser = {
-            'user': user,
-            'member': member,
-            'joined': {'date': date, 'time': time}
-        }
-        users.update_one( {'user': selectedUserName}, {'$set': updateUser})
-        flash("User account for {} has been successfully updated".format(selectedUserName))
-
-        selectedUser = [updateUser]
+        updateUser = Helpers.adminUpdateUser(users, selectedUserName)
+        userData = updateUser["userData"]
+        selectedUserName = userData["user"]
+        message = updateUser["message"]
+        flash(message)
+        selectedUser = [userData]
+        session["selectedUser"] = selectedUser
+        session["selectedUserName"] = selectedUserName
         return render_template("admin-update-user.html",
                                     username=username,
                                     title=session["title"],
