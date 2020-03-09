@@ -409,3 +409,18 @@ class Helpers:
         formData = Helpers.getFormData()
         selectedUser = list(database.find({'user': formData["user"]}, { '_id': 0 }))
         return selectedUser
+
+
+    @staticmethod
+    def adminUpdateUser(database, user):
+        updateUser = {}
+        formData = Helpers.getFormData()
+        userData = {
+            'user': formData["user"],
+            'member': formData["member"],
+            'joined': {'date': formData["date"], 'time': formData["time"]}
+        }
+        database.update_one( {'user': user}, {'$set': userData})
+        updateUser["message"] = "User account for {} has been successfully updated".format(user)
+        updateUser["userData"] = userData
+        return updateUser
