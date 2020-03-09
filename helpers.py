@@ -414,6 +414,9 @@ class Helpers:
         return selectedUser
 
 
+    """ Gets updated user form data, generates database query 
+    to update selected user & returns form data as dict.
+    Takes database collection name & username as parameters """
     @staticmethod
     def adminUpdateUser(database, user):
         updateUser = {}
