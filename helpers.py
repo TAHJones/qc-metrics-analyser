@@ -404,6 +404,9 @@ class Helpers:
         return updatedRun
 
 
+    """ Takes data from getFormData function & generates 
+    database query to get user data for selected user.
+    Takes database collection name as parameters """
     @staticmethod
     def adminSelectUser(database):
         formData = Helpers.getFormData()
