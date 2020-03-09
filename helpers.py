@@ -403,3 +403,9 @@ class Helpers:
             updatedRun["message"] = message
         return updatedRun
 
+
+    @staticmethod
+    def adminSelectUser(database):
+        formData = Helpers.getFormData()
+        selectedUser = list(database.find({'user': formData["user"]}, { '_id': 0 }))
+        return selectedUser
