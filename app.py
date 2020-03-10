@@ -257,27 +257,20 @@ def adminDeleteUser():
     username = session["username"]
     selectedUser = session["selectedUser"]
     selectedUserName = session["selectedUserName"]
-    
     if request.method == "POST":
-        radio = request.form.get("radio")
-        if radio == 'yes':
-            updateUser = {
-                'user': 'Deleted',
-                'member': 'Deleted',
-                'joined': {'date': 'Deleted', 'time': 'Deleted'}
-            }
-            selectedUser = [updateUser]
-            users = mongo.db.users
-            users.remove({'user': selectedUserName})
-            pageLocation=json.dumps("userDeleted")
-            flash("User account for {} has been successfully deleted".format(selectedUserName))
-        elif radio == 'no':
-            flash("To delete user account for {} select 'Yes' then click 'Delete'".format(selectedUserName))
-            pageLocation=json.dumps("deleteUserForm")
+        deletedUser = Helpers.adminDeleteUser(users, selectedUserName)
+        userData = deletedUser["userData"]
+        if userData == None:
+            selectedUser = session["selectedUser"]
+        else:
+            selectedUser = [userData]
+        message = deletedUser["message"]
+        flash(message)
+        pageLocation = deletedUser["pageLocation"]
         return render_template("admin-delete-user.html",
                                     username=username,
                                     title=session["title"],
-                                    pageLocation=pageLocation,
+                                    pageLocation=json.dumps(pageLocation),
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName)
     return render_template("admin-delete-user.html",
@@ -286,6 +279,7 @@ def adminDeleteUser():
                                 pageLocation=json.dumps("deleteUserForm"),
                                 selectedUser=selectedUser,
                                 selectedUserName=selectedUserName)
+
 
 @app.route("/user/<username>")
 def user(username):
