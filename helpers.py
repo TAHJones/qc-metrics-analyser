@@ -440,16 +440,17 @@ class Helpers:
         deletedUser = {}
         radio = request.form.get("radio")
         if radio == 'yes':
-            deletedUser["userData"] = [{
+            userData = {
                 'user': 'Deleted',
                 'member': 'Deleted',
                 'joined': {'date': 'Deleted', 'time': 'Deleted'}
-            }]
-            database.remove({'user': user})
+            }
+            deletedUser["userData"] = userData
             deletedUser["pageLocation"] = "userDeleted"
             deletedUser["message"] = "User account for {} has been successfully deleted".format(user)
+            database.remove({'user': user})
         elif radio == 'no':
-            deletedUser["userRun"] = None
+            deletedUser["userData"] = None
             deletedUser["pageLocation"] = "deleteUserForm"
             deletedUser["message"] = "To delete user account for {} select 'Yes' then click 'Delete'".format(user)
         return deletedUser
