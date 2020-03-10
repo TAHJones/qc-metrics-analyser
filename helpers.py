@@ -430,3 +430,26 @@ class Helpers:
         updateUser["message"] = "User account for {} has been successfully updated".format(user)
         updateUser["userData"] = userData
         return updateUser
+
+
+    """  Takes checkbox form data & if value is 'yes' it deletes selected user from database
+    It returns dict of user data key:values pairs where values is 'Deleted', pageLocation & message var
+    Takes database collection name & username as parameters """
+    @staticmethod
+    def adminDeleteUser(database, user):
+        deletedUser = {}
+        radio = request.form.get("radio")
+        if radio == 'yes':
+            deletedUser["userData"] = [{
+                'user': 'Deleted',
+                'member': 'Deleted',
+                'joined': {'date': 'Deleted', 'time': 'Deleted'}
+            }]
+            database.remove({'user': user})
+            deletedUser["pageLocation"] = "userDeleted"
+            deletedUser["message"] = "User account for {} has been successfully deleted".format(user)
+        elif radio == 'no':
+            deletedUser["userRun"] = None
+            deletedUser["pageLocation"] = "deleteUserForm"
+            deletedUser["message"] = "To delete user account for {} select 'Yes' then click 'Delete'".format(user)
+        return deletedUser
