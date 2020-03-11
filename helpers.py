@@ -229,10 +229,10 @@ class Helpers:
             userQuery = {'user': user}
         chemistry = formData["chemistry"]
         experiment = formData["experiment"]
-        yieldsQuery = {'$and': [{'yield': {'$gt': formData["minYield"]}}, {'yield': {'$lt': formData["maxYield"]}}]}
-        clusterDensityQuery = {'$and': [{'clusterDensity': {'$gt': formData["minClusterDensity"]}}, {'clusterDensity': {'$lt': formData["maxClusterDensity"]}}]}
-        passFilterQuery = {'$and': [{'passFilter': {'$gt': formData["minPassFilter"]}}, {'passFilter': {'$lt': formData["maxPassFilter"]}}]}
-        q30Query = {'$and': [{'q30': {'$gt': formData["minq30"]}}, {'q30': {'$lt': formData["maxq30"]}}]}
+        yieldsQuery = {'$and': [{'yield': {'$gte': formData["minYield"]}}, {'yield': {'$lte': formData["maxYield"]}}]}
+        clusterDensityQuery = {'$and': [{'clusterDensity': {'$gte': formData["minClusterDensity"]}}, {'clusterDensity': {'$lte': formData["maxClusterDensity"]}}]}
+        passFilterQuery = {'$and': [{'passFilter': {'$gte': formData["minPassFilter"]}}, {'passFilter': {'$lte': formData["maxPassFilter"]}}]}
+        q30Query = {'$and': [{'q30': {'$gte': formData["minq30"]}}, {'q30': {'$lte': formData["maxq30"]}}]}
         chemistryQuery = {'chemistry': chemistry}
         experimentQuery = {'experiment': experiment}
 
