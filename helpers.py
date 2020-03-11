@@ -436,9 +436,9 @@ class Helpers:
         return updateUser
 
 
-    """  Takes checkbox form data & if value is 'yes' it deletes selected user from database
+    """  Takes checkbox form data & if value is 'yes' it deletes selected user & slected users runs from database
     It returns dict of user data key:values pairs where values is 'Deleted', pageLocation & message var
-    Takes database collection name & username as parameters """
+    Takes database user & runs collection names & username as parameters """
     @staticmethod
     def adminDeleteUser(userDatabase, runDatabase, user):
         deletedUser = {}
