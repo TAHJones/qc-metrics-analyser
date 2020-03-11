@@ -233,7 +233,7 @@ def adminUpdateUser():
     selectedUser = session["selectedUser"]
     selectedUserName = session["selectedUserName"]
     if request.method == "POST":
-        updateUser = Helpers.adminUpdateUser(users, selectedUserName)
+        updateUser = Helpers.adminUpdateUser(users, runs, selectedUserName)
         userData = updateUser["userData"]
         selectedUserName = userData["user"]
         message = updateUser["message"]
