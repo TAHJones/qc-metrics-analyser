@@ -436,7 +436,7 @@ class Helpers:
     It returns dict of user data key:values pairs where values is 'Deleted', pageLocation & message var
     Takes database collection name & username as parameters """
     @staticmethod
-    def adminDeleteUser(database, user):
+    def adminDeleteUser(userDatabase, runDatabase, user):
         deletedUser = {}
         radio = request.form.get("radio")
         if radio == 'yes':
@@ -448,7 +448,8 @@ class Helpers:
             deletedUser["userData"] = userData
             deletedUser["pageLocation"] = "userDeleted"
             deletedUser["message"] = "User account for {} has been successfully deleted".format(user)
-            database.remove({'user': user})
+            userDatabase.remove({'user': user})
+            runDatabase.remove({'user': user})
         elif radio == 'no':
             deletedUser["userData"] = None
             deletedUser["pageLocation"] = "deleteUserForm"
