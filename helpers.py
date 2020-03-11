@@ -417,11 +417,11 @@ class Helpers:
         return selectedUser
 
 
-    """ Gets updated user form data, generates database query 
-    to update selected user & returns form data as dict.
-    Takes database collection name & username as parameters """
+    """ Gets updated user form data, generates database queries 
+    to update selected user & users runs then returns form data as dict.
+    Takes database user & runs collection names & username as parameters """
     @staticmethod
-    def adminUpdateUser(database, user):
+    def adminUpdateUser(userDatabase, runDatabase, user):
         updateUser = {}
         formData = Helpers.getFormData()
         userData = {
@@ -429,7 +429,8 @@ class Helpers:
             'member': formData["member"],
             'joined': {'date': formData["date"], 'time': formData["time"]}
         }
-        database.update_one( {'user': user}, {'$set': userData})
+        userDatabase.update_one({'user': user}, {'$set': userData})
+        runDatabase.update_many({'user': user}, {'$set': {'user': formData["user"]}})
         updateUser["message"] = "User account for {} has been successfully updated".format(user)
         updateUser["userData"] = userData
         return updateUser
