@@ -258,7 +258,7 @@ def adminDeleteUser():
     selectedUser = session["selectedUser"]
     selectedUserName = session["selectedUserName"]
     if request.method == "POST":
-        deletedUser = Helpers.adminDeleteUser(users, selectedUserName)
+        deletedUser = Helpers.adminDeleteUser(users, runs, selectedUserName)
         userData = deletedUser["userData"]
         if userData == None:
             selectedUser = session["selectedUser"]
