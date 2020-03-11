@@ -39,8 +39,11 @@ class Helpers:
         if user == "N/A":
             databaseQuery = [allUsers, dataSummary]
         else:
-            databaseQuery = [singleUser, dataSummary]
-        return list(database.aggregate(databaseQuery))
+            databaseQuery = [singleUser, dataSummary]   
+        myresult = list(database.aggregate(databaseQuery))
+        if myresult == []:
+            myresult = [{'_id': 'null', 'count': 0, 'average': 0, 'minimum': 0, 'maximum': 0}]
+        return myresult
 
 
     """ Take nested list of experiment types & catergory names & uses a nested loop to feed them into getDataCount function.
