@@ -1,0 +1,76 @@
+{% extends '/bases/base.html' %}
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='images/qc-metrics-analyser-logo.png') }}" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link login-btn signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+{% endblock navbar %}
+
+{% block content %}
+
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-8 col-lg-6">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %} {% endwith %}
+                <h3 class="signup-form">Select Username:</h3>
+                <br>
+
+                <form method="POST">
+                    <div class="row">
+                        <div class="form-group col-8 floating-label-form-group controls">
+                            <input type="text" class="form-control" placeholder="select a username" name="newUsername" id="newUsername" required data-validation-required-message="Please enter a username.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div id="success"></div>
+                        <div class="form-group col-2 floating-label-form-group controls">
+                            <button type="submit" class="btn qc-data-btn" id="sendMessageButton">Send</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
+
+{% block footer_navbar %}
+
+    <div class="row no-gutters footer-nav">
+        <div class="col-12">
+            <ul>
+                <li><a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a></li>
+            </ul>
+            <ul>
+                <li><a class="footer-btn footer-login-btn" href="{{ url_for('login') }}">Login</a></li>
+                <li><a class="footer-btn footer-signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock footer_navbar %}
+{% block javascript %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+{% endblock javascript %}

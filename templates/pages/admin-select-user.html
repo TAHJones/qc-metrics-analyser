@@ -1,0 +1,101 @@
+{% extends '/bases/base.html' %}
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <a class="member-status admin" href="{{ url_for('adminOrUser', username=username) }}">Admin: <span>{{ username }}</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminSelectUser') }}"><i class="fas fa-users"></i>Manage Users</a></li>
+                <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+{% endblock navbar %}
+
+{% block content %}
+
+    <!-- SELECT-USER -->
+    <section class="container" id="userFormBg">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-6">
+
+                <form method="POST">
+                    <h4 class="data-list-title">Select User:</h4>
+                    <div class="row">
+                        <div class="form-group col-8 floating-label-form-group controls">
+                            <select name="user" class="form-control" id="userListContainer">
+                                {% for user in userList %}
+                                    <option  value="{{ user.user }}">{{ user.user }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-2">
+                            <button type="submit" class="btn qc-data-btn" id="selectedUserButton">Send</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    <!-- SELECT-USER-END -->
+
+    <!-- VIEW-USER -->
+    <section class="container" id="viewUserBg">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-8 col-md-6 col-lg-4">
+                <div class="data-list">
+                    <h4 class="data-list-title">User: {{ selectedUserName }}</h4> 
+                    {% for data in selectedUser %}
+                    <ul class="user-run">
+                        <li>Membership: <span>{{ data.member|capitalize }}</span></li>
+                        <li>Date Joined: <span>{{ data.joined.date }}</span></li>
+                        <li>Time Joined: <span>{{ data.joined.time }}</span></li>
+                    </ul>
+                    {% endfor %}
+                </div>
+    
+                <a href="{{ url_for('adminDeleteUser') }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
+                <a href="{{ url_for('adminUpdateUser') }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
+                <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn">Return</a>
+            </div>
+        </div>
+    </section>
+    <!-- VIEW-USER-END -->
+
+{% endblock content %}
+
+{% block footer_navbar %}
+
+    <div class="row no-gutters footer-nav">
+        <div class="col-12">
+            <ul>
+                <li><a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
+                <li><a href="{{ url_for('adminSelectUser') }}"><i class="fas fa-users"></i>Manage Users</a></li>
+                <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock footer_navbar %}
+
+{% block javascript %}
+
+    <script>
+        let pageLocation = JSON.parse({{ pageLocation|tojson }});
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/js/adminSelectUser.js"></script>
+
+{% endblock javascript %}
