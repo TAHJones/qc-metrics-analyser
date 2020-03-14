@@ -292,12 +292,7 @@ section {
 
 /* OVERLAY */
 
-.overlay-container-1,
-.overlay-container-2,
-.overlay-container-3,
-.overlay-container-4, 
-.overlay-container-5, 
-.overlay-container-6 {
+.overlay-container {
     position: relative;
     width: 100%;
 }
@@ -326,27 +321,7 @@ section {
     border-radius: 10px;    
 }
 
-.overlay-container-1:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-2:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-3:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-4:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-5:hover .overlay {
-    opacity: 1;
-}
-
-.overlay-container-6:hover .overlay {
+.overlay-container:hover .overlay {
     opacity: 1;
 }
 
