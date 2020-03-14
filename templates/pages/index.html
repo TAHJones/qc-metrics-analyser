@@ -1,4 +1,4 @@
-{% extends '/bases/base.html' %}
+{% extends 'layout/base.html' %}
 {% block navbar %}
 
     <nav class="navbar navbar-expand-sm navbar-dark">
@@ -19,7 +19,8 @@
 {% endblock navbar %}
 
 {% block content %}
-
+{% import "components/modals/modal-link.html" as modalLink %}
+{% import "components/modals/modal-graph.html" as modalChart %}
    <!--SEQUENCING-RUNS-->
     <section class="container">
         <h3>Sequencing Run Metrics</h3>
@@ -27,103 +28,30 @@
 
         <div class="row justify-content-center">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Yield</h4>
-                <a data-toggle="modal" data-target="#yieldModal">
-                    <div class="overlay-container-1">
-                        <img class="img-overlay" src="{{ url_for('static', filename='images/yield.jpg') }}" alt="yield">
-                        <div class="overlay">
-                        <div class="overlay-text">Yield</div>
-                        </div>
-                    </div>
-                </a>
+                {{ modalLink.modalLink("Yield", "yields")}}
+                {{ modalChart.modalChart("Yield - Gigabases", "yields", runData)}}
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Cluster Density</h4>
-                <a data-toggle="modal" data-target="#clusterDensityModal">
-                <div class="overlay-container-2">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/clusters.jpg') }}" alt="clusters">
-                    <div class="overlay">
-                    <div class="overlay-text">Cluster Density</div>
-                    </div>
-                </div>
-                </a>
+                {{ modalLink.modalLink("Cluster Density", "clusterDensity")}}
+                {{ modalChart.modalChart("Cluster Density - K/mm2", "clusterDensity", runData)}}               
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Pass Filter</h4>
-                <a data-toggle="modal" data-target="#passFilterModal">
-                <div class="overlay-container-3">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/pass-filter.jpg') }}" alt="clusters passing filter">
-                    <div class="overlay">
-                    <div class="overlay-text">Clusters Passing Filter</div>
-                    </div>
-                </div>
-                </a>
+                {{ modalLink.modalLink("Pass Filter", "passFilter")}}
+                {{ modalChart.modalChart("Pass Filter - %", "passFilter", runData)}}               
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Q30 Score</h4>
-                <a data-toggle="modal" data-target="#q30Modal">
-                <div class="overlay-container-4">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/q30-score2.jpg') }}" alt="homepage-3">
-                    <div class="overlay">
-                    <div class="overlay-text">Q30 Score</div>
-                    </div>
-                </div>
-                </a>
-            </div>
-        </div>
-
-        <div id="yieldModal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Yield - Gigabases</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul class="d-none d-md-block">
-                            <li>Average: {{ runData.yields.average|int() }}</li>
-                            <li>Minimum: {{ runData.yields.minimum|int() }}</li>
-                            <li>Maximum: {{ runData.yields.maximum|int() }}</li>
-                        </ul>
-                        <div id="yieldChartContainer" class="chart-container">
-                            <canvas id="yield-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                {{ modalLink.modalLink("Q30 Score", "q30Score")}}
+                {{ modalChart.modalChart("Q30 Score - %", "q30Score", runData)}}               
             </div>
         </div>
         
-        <div id="clusterDensityModal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Cluster Density - K/mm2</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul class="d-none d-md-block">
-                            <li>Average: {{ runData.clusterDensity.average|int() }}</li>
-                            <li>Minimum: {{ runData.clusterDensity.minimum|int() }}</li>
-                            <li>Maximum: {{ runData.clusterDensity.maximum|int() }}</li>
-                        </ul>
-                        <div id="clusterChartContainer" class="chart-container">
-                            <canvas id="clusterDensity-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         
-        <div id="passFilterModal" class="modal fade">
+        <!-- <div id="passFilterModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
                     <div class="modal-header qc-data-header">
@@ -144,9 +72,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="q30Modal" class="modal fade">
+        <!-- <div id="q30Modal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
                     <div class="modal-header qc-data-header">
@@ -167,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!--SEQUENCING-RUNS-END-->
 
@@ -177,7 +105,10 @@
         <hr>
         <div class="row justify-content-center other-metrics">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Chemistry</h4>
+                {{ modalLink.modalLink("Chemistry", "chemistry")}}
+                {{ modalChart.modalChart("Chemistry", "chemistry", chemistryData)}}               
+
+                <!-- <h4 class="page-subtitle">Chemistry</h4>
                 <a data-toggle="modal" data-target="#chemistryModal">
                 <div class="overlay-container-5">
                     <img class="img-overlay" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
@@ -185,11 +116,14 @@
                     <div class="overlay-text">Sequencing Chemistry</div>
                     </div>
                 </div>
-                </a>
+                </a> -->
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                <h4 class="page-subtitle">Experiments</h4>
+                {{ modalLink.modalLink("Experiments", "experiments")}}
+                {{ modalChart.modalChart("Experiments", "experiments", experimentData)}}               
+
+                <!-- <h4 class="page-subtitle">Experiments</h4>
                 <a data-toggle="modal" data-target="#experimentModal">
                 <div class="overlay-container-6">
                     <img class="img-overlay" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
@@ -197,11 +131,11 @@
                     <div class="overlay-text">Sequencing Experiments</div>
                     </div>
                 </div>
-                </a>
+                </a> -->
             </div>
         </div>
 
-        <div id="chemistryModal" class="modal fade">
+        <!-- <div id="chemistryModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
                     <div class="modal-header qc-data-header">
@@ -222,9 +156,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="experimentModal" class="modal fade">
+        <!-- <div id="experimentModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content qc-data">
                     <div class="modal-header qc-data-header">
@@ -245,7 +179,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
 
@@ -279,9 +213,9 @@
         let q30 = [{% for data in linechartData.q30 %}{{ data }},{% endfor %}];
         let chemistries = [];
         let experiments = [];
-        chemistries.push({{ experimentData.high300 }});
-        chemistries.push({{ experimentData.mid300 }});
-        chemistries.push({{ experimentData.mid150 }});
+        chemistries.push({{ chemistryData.high300 }});
+        chemistries.push({{ chemistryData.mid300 }});
+        chemistries.push({{ chemistryData.mid150 }});
         experiments.push({{ experimentData.genome }});
         experiments.push({{ experimentData.exome }});
         experiments.push({{ experimentData.capture }});
