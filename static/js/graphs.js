@@ -1,13 +1,13 @@
-const yieldChartContainer = document.getElementById("yieldChartContainer");
-const clusterChartContainer = document.getElementById("clusterChartContainer");
+const yieldChartContainer = document.getElementById("yieldsChartContainer");
+const clusterDensityChartContainer = document.getElementById("clusterDensityChartContainer");
 const passFilterChartContainer = document.getElementById("passFilterChartContainer");
-const q30ChartContainer = document.getElementById("q30ChartContainer");
-let yieldData = {chartId:"yield-chart", chartParentId:yieldChartContainer, label:"Yield - Gb", data:yields}
-let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterChartContainer, label:"Clusters - K/mm2", data:clusterDensity}
+const q30ScoreChartContainer = document.getElementById("q30ScoreChartContainer");
+let yieldData = {chartId:"yields-chart", chartParentId:yieldsChartContainer, label:"Yield - Gb", data:yields}
+let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterDensityChartContainer, label:"Clusters - K/mm2", data:clusterDensity}
 let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data:passFilter}
-let q30Data = {chartId:"q30-chart", chartParentId:q30ChartContainer, label:"q30 Score - %", data:q30}
+let q30ScoreData = {chartId:"q30Score-chart", chartParentId:q30ScoreChartContainer, label:"q30 Score - %", data:q30}
 let chemistryData = {chartId:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
-let experimentData = {chartId:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
+let experimentsData = {chartId:"experiments-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
 
 
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
     getLineChart(yieldData);
     getLineChart(clusterDensityData);
     getLineChart(passFilterData);
-    getLineChart(q30Data);
+    getLineChart(q30ScoreData);
     getPieChart(chemistryData);
-    getPieChart(experimentData);
+    getPieChart(experimentsData);
 });
