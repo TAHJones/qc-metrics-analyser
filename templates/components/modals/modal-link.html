@@ -1,0 +1,13 @@
+<!-- <div class="col-10 col-sm-5 col-md-5 col-lg-4"> -->
+{% macro modalLink(metricTitle, metricName) %}
+    <h4 class="page-subtitle">{{ metricTitle }}</h4>
+    <a data-toggle="modal" data-target="#{{ metricName }}Modal">
+        <div class="overlay-container">
+            <img class="img-overlay" src="/static/images/{{ metricName }}.jpg" alt="{{ metricTitle }}">
+            <div class="overlay">
+            <div class="overlay-text">{{ metricTitle }}</div>
+            </div>
+        </div>
+    </a>
+{% endmacro %}
+<!-- </div> -->

@@ -1,0 +1,28 @@
+{% macro modalChart(chartTitle, chartName, chartData) %}
+    <div id="{{ chartName }}Modal" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content qc-data">
+                <div class="modal-header qc-data-header">
+                    <h4 class="modal-title">{{ chartTitle }}</h4>
+                </div>
+                <div class="modal-body qc-data-list">
+                    <ul class="d-none d-md-block">
+                    {% for keys, values in chartData.items() %}
+                        {% if keys == chartName %}
+                            {% for key, value in values.items() %}
+                            <li>{{ key }}: {{ value|int() }}</li>
+                            {%  endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                    <div id="{{ chartName }}ChartContainer" class="chart-container">
+                        <canvas id="{{ chartName }}-chart"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer qc-data-footer">
+                    <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
