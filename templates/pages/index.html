@@ -50,53 +50,6 @@
                 {{ modalChart.modalChart("Q30 Score - %", "q30Score", runData)}}               
             </div>
         </div>
-        
-        
-        <!-- <div id="passFilterModal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Pass Filter - %</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul class="d-none d-md-block">
-                            <li>Average: {{ runData.passFilter.average|int() }}</li>
-                            <li>Minimum: {{ runData.passFilter.minimum|int() }}</li>
-                            <li>Maximum: {{ runData.passFilter.maximum|int() }}</li>
-                        </ul>
-                        <div id="passFilterChartContainer" class="chart-container">
-                            <canvas id="passFilter-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div id="q30Modal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Q30 Score - %</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul class="d-none d-md-block">
-                            <li>Average: {{ runData.q30.average|int() }}</li>
-                            <li>Minimum: {{ runData.q30.minimum|int() }}</li>
-                            <li>Maximum: {{ runData.q30.maximum|int() }}</li>
-                        </ul>
-                        <div id="q30ChartContainer" class="chart-container">
-                            <canvas id="q30-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </section>
     <!--SEQUENCING-RUNS-END-->
 
@@ -108,79 +61,13 @@
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Chemistry", "chemistry") }}
                 {{ modalChart.modalChart("Chemistry", "chemistry", experimentData) }}            
-
-                <!-- <h4 class="page-subtitle">Chemistry</h4>
-                <a data-toggle="modal" data-target="#chemistryModal">
-                <div class="overlay-container-5">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/chemistry.jpg') }}" alt="homepage-5">
-                    <div class="overlay">
-                    <div class="overlay-text">Sequencing Chemistry</div>
-                    </div>
-                </div>
-                </a> -->
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Experiments", "experiment") }}
                 {{ modalChart.modalChart("Experiments", "experiment", experimentData) }}            
-
-                <!-- <h4 class="page-subtitle">Experiments</h4>
-                <a data-toggle="modal" data-target="#experimentModal">
-                <div class="overlay-container-6">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/experiments.jpg') }}" alt="experiments">
-                    <div class="overlay">
-                    <div class="overlay-text">Sequencing Experiments</div>
-                    </div>
-                </div>
-                </a> -->
             </div>
         </div>
-
-        <!-- <div id="chemistryModal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Chemistry</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul>
-                            <li>High300: {{ experimentData.high300 }}</li>
-                            <li>Mid300: {{ experimentData.mid300 }}</li>
-                            <li>Mid150: {{ experimentData.mid150 }}</li>
-                        </ul>
-                        <div class="chart-container">
-                            <canvas id="chemistry-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div id="experimentModal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content qc-data">
-                    <div class="modal-header qc-data-header">
-                        <h4 class="modal-title">Experiment</h4>
-                    </div>
-                    <div class="modal-body qc-data-list">
-                        <ul>
-                            <li>Genome: {{ experimentData.genome }}</li>
-                            <li>Exome: {{ experimentData.exome }}</li>
-                            <li>Capture: {{ experimentData.capture }}</li>
-                        </ul>
-                        <div class="chart-container">
-                            <canvas id="experiment-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="modal-footer qc-data-footer">
-                        <button type="button" class="btn qc-data-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </section>
     <!--OTHER-SEQUENCING-METRICS-END-->
 
