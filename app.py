@@ -23,15 +23,10 @@ users = mongo.db.users
 def index():
     """Display summary run data for all users"""
     runData = Helpers.getRunData(runs)
-    chemistryData = Helpers.getExperimentData(runs, "experiment")
-    experimentData = Helpers.getExperimentData(runs, "chemistry")
-    print(runData)
-    print(chemistryData)
-    print(experimentData)
+    experimentData = Helpers.getExperimentData(runs)
     linechartData = Helpers.getLinechartData(runs)
     return render_template("pages/index.html",
                             runData=runData,
-                            chemistryData=chemistryData,
                             experimentData=experimentData,
                             linechartData=linechartData)
 
