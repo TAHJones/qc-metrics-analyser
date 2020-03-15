@@ -20,7 +20,8 @@
 
 {% block content %}
 {% import "components/modals/modal-link.html" as modalLink %}
-{% import "components/modals/modal-graph.html" as modalChart %}
+{% import "components/modals/modal-chart.html" as modalChart %}
+
    <!--SEQUENCING-RUNS-->
     <section class="container">
         <h3>Sequencing Run Metrics</h3>
@@ -105,8 +106,8 @@
         <hr>
         <div class="row justify-content-center other-metrics">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                {{ modalLink.modalLink("Chemistry", "chemistry")}}
-                {{ modalChart.modalChart("Chemistry", "chemistry", chemistryData)}}               
+                {{ modalLink.modalLink("Chemistry", "chemistry") }}
+                {{ modalChart.modalChart("Chemistry", "chemistry", experimentData) }}            
 
                 <!-- <h4 class="page-subtitle">Chemistry</h4>
                 <a data-toggle="modal" data-target="#chemistryModal">
@@ -120,8 +121,8 @@
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                {{ modalLink.modalLink("Experiments", "experiments")}}
-                {{ modalChart.modalChart("Experiments", "experiments", experimentData)}}               
+                {{ modalLink.modalLink("Experiments", "experiment") }}
+                {{ modalChart.modalChart("Experiments", "experiment", experimentData) }}            
 
                 <!-- <h4 class="page-subtitle">Experiments</h4>
                 <a data-toggle="modal" data-target="#experimentModal">
@@ -213,12 +214,12 @@
         let q30 = [{% for data in linechartData.q30 %}{{ data }},{% endfor %}];
         let chemistries = [];
         let experiments = [];
-        chemistries.push({{ chemistryData.high300 }});
-        chemistries.push({{ chemistryData.mid300 }});
-        chemistries.push({{ chemistryData.mid150 }});
-        experiments.push({{ experimentData.genome }});
-        experiments.push({{ experimentData.exome }});
-        experiments.push({{ experimentData.capture }});
+        chemistries.push({{ experimentData.chemistry.high300 }});
+        chemistries.push({{ experimentData.chemistry.mid300 }});
+        chemistries.push({{ experimentData.chemistry.mid150 }});
+        experiments.push({{ experimentData.experiment.genome }});
+        experiments.push({{ experimentData.experiment.exome }});
+        experiments.push({{ experimentData.experiment.capture }});
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
