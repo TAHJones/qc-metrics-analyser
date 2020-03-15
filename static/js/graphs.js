@@ -1,11 +1,11 @@
 const yieldChartContainer = document.getElementById("yieldsChartContainer");
 const clusterDensityChartContainer = document.getElementById("clusterDensityChartContainer");
 const passFilterChartContainer = document.getElementById("passFilterChartContainer");
-const q30ScoreChartContainer = document.getElementById("q30ScoreChartContainer");
+const q30ScoreChartContainer = document.getElementById("q30ChartContainer");
 let yieldData = {chartId:"yields-chart", chartParentId:yieldsChartContainer, label:"Yield - Gb", data: yields}
 let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterDensityChartContainer, label:"Clusters - K/mm2", data: clusterDensity}
 let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data: passFilter}
-let q30ScoreData = {chartId:"q30Score-chart", chartParentId:q30ScoreChartContainer, label:"q30 Score - %", data: q30}
+let q30ScoreData = {chartId:"q30-chart", chartParentId:q30ScoreChartContainer, label:"q30 Score - %", data: q30Score}
 let chemistryData = {chartId:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
 let experimentData = {chartId:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
