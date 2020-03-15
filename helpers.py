@@ -50,28 +50,23 @@ class Helpers:
     Takes the mongodb connect string as a parameter & user as an optional parameter which are passed to the getDataCount function.
     Returns a dict object containing the number for each catergory for each experiment type """
     @staticmethod
-    def getExperimentData(database, dataType, user="N/A"):
-        experiments = {"experiment": ("Genome", "Exome", "Capture"), "chemistry": ("Mid300", "Mid150", "High300")}
+    def getExperimentData(database, user="N/A"):
+        experiments = {"chemistry": ["Mid300", "Mid150", "High300"], "experiment": ["Genome", "Exome", "Capture"]}
         experimentData = {}
-        dataType = {}
         for experiment in experiments:
-            if experiment == "experiment":
-                print("I was ere!!!!!!!!!!!1111")
-                for catergory in experiments[experiment]:
-                    if user == "N/A":
-                        catergoryValue = Helpers.getDataCount(database, experiment, catergory)
-                        if catergoryValue == []:
-                            catergoryValue = [{'_id': 'null', 'count': 0}]
-                    else:
-                        catergoryValue = Helpers.getDataCount(database, experiment, catergory, user)
-                        if catergoryValue == []:
-                            catergoryValue = [{'_id': 'null', 'count': 0}]
-                    catergoryDict = {catergory.lower():catergoryValue[0]["count"]}
-                    print(catergoryDict)
-                    # experimentData.update(catergoryDict)
-                    # if experiment == dataType:
-                    dataType.update(catergoryDict)
-                    experimentData.update(dataType)
+            catergoryDicts = {}
+            for catergoryName in experiments[experiment]:
+                if user == "N/A":
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergoryName)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                else:
+                    catergoryValue = Helpers.getDataCount(database, experiment, catergoryName, user)
+                    if catergoryValue == []:
+                        catergoryValue = [{'_id': 'null', 'count': 0}]
+                catergoryDict = {catergoryName.lower():catergoryValue[0]["count"]}
+                catergoryDicts.update(catergoryDict)
+            experimentData[experiment] = catergoryDicts
         return experimentData
 
 
