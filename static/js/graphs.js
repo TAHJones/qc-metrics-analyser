@@ -2,12 +2,12 @@ const yieldChartContainer = document.getElementById("yieldsChartContainer");
 const clusterDensityChartContainer = document.getElementById("clusterDensityChartContainer");
 const passFilterChartContainer = document.getElementById("passFilterChartContainer");
 const q30ScoreChartContainer = document.getElementById("q30ScoreChartContainer");
-let yieldData = {chartId:"yields-chart", chartParentId:yieldsChartContainer, label:"Yield - Gb", data:yields}
-let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterDensityChartContainer, label:"Clusters - K/mm2", data:clusterDensity}
-let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data:passFilter}
-let q30ScoreData = {chartId:"q30Score-chart", chartParentId:q30ScoreChartContainer, label:"q30 Score - %", data:q30}
+let yieldData = {chartId:"yields-chart", chartParentId:yieldsChartContainer, label:"Yield - Gb", data: yields}
+let clusterDensityData = {chartId:"clusterDensity-chart", chartParentId:clusterDensityChartContainer, label:"Clusters - K/mm2", data: clusterDensity}
+let passFilterData = {chartId:"passFilter-chart", chartParentId:passFilterChartContainer, label:"Pass Filter - %", data: passFilter}
+let q30ScoreData = {chartId:"q30Score-chart", chartParentId:q30ScoreChartContainer, label:"q30 Score - %", data: q30}
 let chemistryData = {chartId:"chemistry-chart", labels:["High300", "Mid300", "Mid150"], data: chemistries}
-let experimentsData = {chartId:"experiments-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
+let experimentData = {chartId:"experiment-chart", labels:["Genome", "Exome", "Capture"], data: experiments}
 let resizeTimeout;
 
 
@@ -155,7 +155,7 @@ window.addEventListener('resize', function() {
     getLineChart(yieldData);
     getLineChart(clusterDensityData);
     getLineChart(passFilterData);
-    getLineChart(q30Data);
+    getLineChart(q30ScoreData);
   }, 500);
 });
 
@@ -169,5 +169,5 @@ document.addEventListener("DOMContentLoaded", function() {
     getLineChart(passFilterData);
     getLineChart(q30ScoreData);
     getPieChart(chemistryData);
-    getPieChart(experimentsData);
+    getPieChart(experimentData);
 });
