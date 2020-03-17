@@ -1,0 +1,62 @@
+<form method="POST">
+    <div class="row">
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Name</label>
+            <input type="text" class="form-control" value="{{ username }}" placeholder="{{ username }}" name="user" id="user" required data-validation-required-message="Please enter your name.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Pool Number</label>
+            <input type="text" class="form-control" placeholder="Pool Number" name="pool" id="pool" required data-validation-required-message="Please enter pool number.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Yield - Gigabases</label>
+            <input type="number" class="form-control" placeholder="Yield" name="yield" id="yield" required data-validation-required-message="Please enter run yield.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Cluster Density - K/mm2</label>
+            <input type="number" class="form-control" placeholder="Cluster Density" name="clusterDensity" id="clusterDensity" required data-validation-required-message="Please enter cluster density.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Clusters Passing Filter - %</label>
+            <input type="number" class="form-control" placeholder="Clusters Passing Filter" name="passFilter" id="passFilter" required data-validation-required-message="Please enter clusters passing filter.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label>Q30 Score - %</label>
+            <input type="number" class="form-control" placeholder="Q30 Score" name="q30" id="q30" required data-validation-required-message="Please enter Q30 score.">
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label for="experiment">Experiment</label>
+            <select name="experiment" class="form-control" id="experiment">
+                <option value="Genome">Genome</option>
+                <option value="Exome">Exome</option>
+                <option value="Capture">Capture</option>
+            </select>
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-6 floating-label-form-group controls">
+            <label for="chemistry">Chemistry</label>
+            <select name="chemistry" class="form-control" id="chemistry">
+                <option value="High300">High300</option>
+                <option value="Mid300">Mid300</option>
+                <option value="Mid150">Mid150</option>
+            </select>
+            <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group col-sm-12 floating-label-form-group controls">
+            <label>Additional Comments</label>
+            <textarea rows="5" class="form-control" placeholder="Additional Comment" name="comment" id="comment" required data-validation-required-message="Please enter any addition information."></textarea>
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <div id="success"></div>
+    <div class="form-group">
+        <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="sendMessageButton">Add Run</button>
+        <a href="{{ url_for('user', username=username) }}" class="btn qc-data-btn">Return</a>
+    </div>
+</form>
