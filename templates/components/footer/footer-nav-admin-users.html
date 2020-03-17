@@ -1,0 +1,12 @@
+<div class="row no-gutters footer-nav">
+    <div class="col-12">
+        <ul>
+            <li><a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
+            <li><a href="{{ url_for('adminSelectUser') }}"><i class="fas fa-users"></i>Manage Users</a></li>
+            <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+</div>

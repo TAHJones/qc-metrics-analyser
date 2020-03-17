@@ -1,0 +1,13 @@
+    <div class="row no-gutters footer-nav">
+        <div class="col-12">
+            <ul>
+                <li><a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a></li>
+            </ul>
+            <ul>
+                <li><a href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i>User</a></li>
+                <li><a href="{{ url_for('addUserRun') }}"><i class="fas fa-plus-circle"></i>Add Run</a></li>
+                <li><a href="{{ url_for('viewUserRuns') }}"><i class="fas fa-sort-amount-up"></i>Manage Runs</a></li>
+                <li><a class="footer-btn footer-login-btn" href="{{ url_for('index') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
