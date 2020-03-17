@@ -5,13 +5,7 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                {% with messages = get_flashed_messages() %} {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %} {% endwith %}
+                {% include '/components/messages/flash-message.html' %}
                 <h4 class="data-list-title">Update Pool {{ existingPoolNumber }}</h4> 
                 <form method="POST">
                     <div class="row">

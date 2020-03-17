@@ -172,13 +172,7 @@
             <div class="col-11 col-sm-10 col-md-10 col-lg-9 col-xl-7">
                 <div class="data-list">
                     <h4 class="data-list-title">User: {{ selectedUser }}</h4> 
-                    {% with messages = get_flashed_messages() %} {% if messages %}
-                    <ul class="flashes">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %} {% endwith %}
+                    {% include '/components/messages/flash-message.html' %}
                     {% for data in userRuns %}
                     <ul class="user-runs">
                         <li>Pool: {{ data.pool }}</li>
@@ -220,13 +214,7 @@
             <div class="col-11 col-sm-8 col-md-6 col-lg-4">
                 <div class="data-list">
                     <h4 class="data-list-title">User: {{ selectedUser }}</h4> 
-                    {% with messages = get_flashed_messages() %} {% if messages %}
-                    <ul class="flashes">
-                        {% for message in messages %}
-                        <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %} {% endwith %}
+                    {% include '/components/messages/flash-message.html' %}
                     {% for data in selectedUserRun %}
                     <ul class="user-run">
                         <li>Pool: <span>{{ data.pool }}</span></li>
