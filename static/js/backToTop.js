@@ -5,11 +5,6 @@
 
 const backToTop = document.getElementById("backToTop");
 
-/**
- * triggers scrollingButton function on scroll event
- */ 
-window.addEventListener("scroll", scrollingButton, false);
-
 
 /**
  * makes floating button visible once user starts scrolling.
@@ -24,6 +19,38 @@ function scrollingButton() {
 
 
 /**
+ * topFunction function scrolls back to the top of the page
+ */
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+/**
+ * floatButton function fixes floating button in place on screens larger than 1200px
+ * It also unfixes floating button on screens smaller than 120ppx & calls scrollingButton 
+ * function to restore normal scrolling behavior
+ */
+function floatButton() {
+    if (window.innerWidth >= 1200) {
+        backToTop.classList.replace("btn-float", "btn-fixed");
+        backToTop.classList.add("active");
+
+    } else {
+        backToTop.classList.replace("btn-fixed", "btn-float");
+        scrollingButton();
+    }
+}
+
+
+/**
+ * triggers scrollingButton function on scroll event
+ */ 
+window.addEventListener("scroll", scrollingButton, false);
+
+
+/**
  * Calls topFunction function to scroll back to the
  * top of the page when floating button is clicked
  */
@@ -31,9 +58,7 @@ backToTop.addEventListener("click", topFunction, false);
 
 
 /**
- * topFunction function scrolls back to the top of the page
+ * call floatButton function when page is fully loaded or when window size changes
  */
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+document.addEventListener("DOMContentLoaded", floatButton, false);
+window.addEventListener("resize", floatButton, false);
