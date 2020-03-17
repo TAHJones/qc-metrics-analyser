@@ -1,5 +1,7 @@
 {% extends 'layout/base-admin-runs.html' %}
+
 {% block content %}
+{% import "components/forms/data-list-form.html" as dataListForm %}
 
     <!-- USER-DATA-FORM -->
     <section class="container" id="userFormBg">
@@ -187,7 +189,9 @@
     
                 <div id="selectRunForm">
                     <h4 class="data-list-title">Select Run:</h4>
-                    <form method="POST">
+
+                    {{ dataListForm.dataListForm(userRuns, "pool") }}
+                    <!-- <form method="POST">
                         <div class="row">
                             <div class="form-group col-6 floating-label-form-group controls">
                                 <select type="number" name="poolNumber" class="form-control" id="poolListContainer">
@@ -200,7 +204,7 @@
                                 <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn">Select</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
 
             </div>
