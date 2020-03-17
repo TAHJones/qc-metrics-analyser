@@ -1,31 +1,16 @@
 {% extends 'layout/base.html' %}
+
 {% block content %}
+{% import "components/forms/login-form.html" as loginForm %}
 
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-md-8 col-lg-6">
-                {% with messages = get_flashed_messages() %} {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %} {% endwith %}
+                {% include '/components/messages/flash-message.html' %}
+
                 <h3 class="login-form">Enter Username:</h3>
                 <br>
-
-                <form method="POST">
-                    <div class="row">
-                        <div class="form-group col-8 floating-label-form-group controls">
-                            <input type="text" class="form-control" placeholder="username" name="username" id="username" required data-validation-required-message="Please enter your username.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div id="success"></div>
-                        <div class="form-group col-2 floating-label-form-group controls">
-                            <button type="submit" class="btn qc-data-btn" id="sendMessageButton">Send</button>
-                        </div>
-                    </div>
-                </form>
+                {{ loginForm.loginForm("username", "enter a username") }}
 
             </div>
         </div>
