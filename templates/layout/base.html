@@ -15,11 +15,11 @@
 <body>
     <header>
         <!--NAVBAR-->
-        {% block navbar %} {% endblock navbar %}
+        {% include '/components/header/navbar-login.html' %}
         <!--NAVBAR-END-->
 
         <!--BANNER-->
-        {% include '/components/banner.html' %}
+        {% include '/components/header/header-banner.html' %}
         <!--BANNER-END-->
     </header>
 
@@ -29,13 +29,14 @@
 
     <!--FOOTER-->
     <footer>
-        {% include '/components/footer-banner.html' %}
-        {% block footer_navbar %} {% endblock footer_navbar %}
+        {% include '/components/footer/footer-banner.html' %}
+        {% include '/components/footer/footer-nav-login.html' %}
     </footer>
     <!--FOOTER-END-->
 
     <!--JAVASCRIPT -->
     {% block javascript %} {% endblock javascript %}
+    {% include '/components/js/bootstrap-js.html' %}
     <!--JAVASCRIPT-END -->
 
 </body>
