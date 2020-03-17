@@ -1,22 +1,4 @@
 {% extends 'layout/base.html' %}
-{% block navbar %}
-
-    <nav class="navbar navbar-expand-sm navbar-dark">
-        <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='images/qc-metrics-analyser-logo.png') }}" alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('login') }}">Login</a></li>
-                <li class="nav-item"><a class="nav-link login-btn signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
-            </ul>
-        </div>
-    </nav>
-
-{% endblock navbar %}
 
 {% block content %}
 {% import "components/modals/modal-link.html" as modalLink %}
@@ -46,8 +28,8 @@
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
-                {{ modalLink.modalLink("Q30 Score", "q30Score")}}
-                {{ modalChart.modalChart("Q30 Score - %", "q30Score", runData)}}               
+                {{ modalLink.modalLink("Q30 Score", "q30")}}
+                {{ modalChart.modalChart("Q30 Score - %", "q30", runData)}}               
             </div>
         </div>
     </section>
@@ -73,32 +55,13 @@
 
 {% endblock content %}
 
-{% block footer_navbar %}
-
-    <div class="row no-gutters footer-nav">
-        <div class="col-12">
-            <ul>
-                <li>
-                    <a href="#"><i class="fas fa-arrow-circle-up"></i>Top</a>
-                </li>
-            </ul>
-            <ul>
-                <li><a class="footer-btn footer-login-btn" href="{{ url_for('login') }}">Login</a></li>
-                <li><a class="footer-btn footer-signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-
-{% endblock footer_navbar %}
-
 {% block javascript %}
-
     <script>
         let labels = [{% for data in linechartData.pools %}{{ data }},{% endfor %}];
         let yields = [{% for data in linechartData.yields %}{{ data }},{% endfor %}];
         let clusterDensity = [{% for data in linechartData.clusterDensity %}{{ data }},{% endfor %}];
         let passFilter = [{% for data in linechartData.passFilter %}{{ data }},{% endfor %}];
-        let q30 = [{% for data in linechartData.q30 %}{{ data }},{% endfor %}];
+        let q30Score = [{% for data in linechartData.q30 %}{{ data }},{% endfor %}];
         let chemistries = [];
         let experiments = [];
         chemistries.push({{ experimentData.chemistry.high300 }});
@@ -108,11 +71,5 @@
         experiments.push({{ experimentData.experiment.exome }});
         experiments.push({{ experimentData.experiment.capture }});
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="/static/js/graphs.js"></script>
-
+{% include '/components/js/charts-js.html' %}
 {% endblock javascript %}
