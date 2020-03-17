@@ -751,13 +751,7 @@ label {
 }
 
 .footer-nav ul > li > a {
-    color: #ffffff80;
     font-size: 11px;
-    /* margin: 0 5px; */
-    transition: all .25s ease-in-out;
-    /* -webkit-transition: all .25s ease-in-out;
-    -moz-transition: all .25s ease-in-out;
-    -o-transition: all .25s ease-in-out; */
 }
 
 .footer-nav ul > li > a:hover {
@@ -837,3 +831,24 @@ label {
 }
 
 /* CHARTS-END */
+
+#backToTop.active:hover {
+    opacity: 1;
+}
+
+#backToTop.active {
+    pointer-events: auto;
+    opacity: 0.5;
+}
+
+.back-to-top {
+	position: fixed;
+	bottom: 50px;
+	left: 15px;
+	z-index: 1;
+	cursor: pointer;
+	color: #ffffffb3;
+	opacity: 0;
+	background-color: transparent;
+	transition: all .25s ease-in-out;
+}
