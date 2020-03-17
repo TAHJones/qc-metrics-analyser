@@ -29,8 +29,7 @@ function topFunction() {
 
 /**
  * floatButton function fixes floating button in place on screens larger than 1200px
- * It also unfixes floating button on screens smaller than 120ppx & calls scrollingButton 
- * function to restore normal scrolling behavior
+ * It also unfixes floating button on screens smaller than 1200px
  */
 function floatButton() {
     if (window.innerWidth >= 1200) {
@@ -39,7 +38,6 @@ function floatButton() {
 
     } else {
         backToTop.classList.replace("btn-fixed", "btn-float");
-        scrollingButton();
     }
 }
 
