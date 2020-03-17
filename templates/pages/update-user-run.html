@@ -5,78 +5,10 @@
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                {% with messages = get_flashed_messages() %} {% if messages %}
-                <ul class="flashes">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %} {% endwith %}
-                <h4 class="data-list-title">Update Pool {{ existingPoolNumber }}</h4> 
-                <form method="POST">
-                    <div class="row">
-                        {% for data in userRun %}
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Name</label>
-                            <input type="text" class="form-control" value="{{ data.user }}" placeholder="{{ data.user }}" name="user" id="user" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Pool Number</label>
-                            <input type="text" class="form-control" value="{{ data.pool }}" placeholder="{{ data.pool }}" name="pool" id="pool" required data-validation-required-message="Please enter pool number.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Yield - Gigabases</label>
-                            <input type="number" class="form-control" value="{{ data.yield }}" placeholder="{{ data.yield }}" name="yield" id="yield" required data-validation-required-message="Please enter run yield.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Cluster Density - K/mm2</label>
-                            <input type="number" class="form-control" value="{{ data.clusterDensity }}" placeholder="{{ data.clusterDensity }}" name="clusterDensity" id="clusterDensity" required data-validation-required-message="Please enter cluster density.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Clusters Passing Filter - %</label>
-                            <input type="number" class="form-control" value="{{ data.passFilter }}" placeholder="{{ data.passFilter }}" name="passFilter" id="passFilter" required data-validation-required-message="Please enter clusters passing filter.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Q30 Score - %</label>
-                            <input type="number" class="form-control" value="{{ data.q30 }}" placeholder="{{ data.q30 }}" name="q30" id="q30" required data-validation-required-message="Please enter Q30 score.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label for="experiment">Experiment</label>
-                            <select name="experiment" class="form-control" id="experiment">
-                                <option value="{{ experimentList.selectedItem }}" selected>{{ experimentList.selectedItem }}</option>
-                                <option value="{{ experimentList.unselectedItem1 }}">{{ experimentList.unselectedItem1 }}</option>
-                                <option value="{{ experimentList.unselectedItem2 }}">{{ experimentList.unselectedItem2 }}</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label for="chemistry">Chemistry</label>
-                            <select name="chemistry" class="form-control" id="chemistry">
-                                <option value="{{ chemistryList.selectedItem }}" selected>{{ chemistryList.selectedItem }}</option>
-                                <option value="{{ chemistryList.unselectedItem1 }}">{{ chemistryList.unselectedItem1 }}</option>
-                                <option value="{{ chemistryList.unselectedItem2 }}">{{ chemistryList.unselectedItem2 }}</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-sm-12 floating-label-form-group controls">
-                            <label>Additional Comments</label>
-                            <textarea rows="5" class="form-control" name="comment" id="comment" required data-validation-required-message="Please enter any addition information.">{{ data.comment }}</textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
-                            <a href="{{ url_for('viewUserRuns') }}" class="btn qc-data-btn">Return</a>
-                        </div>
-                    </div>
-                </form>                
+                {% include '/components/messages/flash-message.html' %}
 
+                <h4 class="data-list-title">Update Pool {{ existingPoolNumber }}</h4> 
+                {% include '/components/forms/add-run-form.html' %}
             </div>
         </div>
     </section>
