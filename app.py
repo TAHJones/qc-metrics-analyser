@@ -305,7 +305,7 @@ def viewUserRuns():
     userRunList = Helpers.getUserRunList(runs, username)
     if request.method == "POST":
         if request.form['formButton'] == "userRun":
-            userRun = Helpers.getUserRun(runs, username)          
+            userRun = Helpers.getUserRun(runs, username)
             session["userRun"] = userRun
             session["poolNumber"] = userRun[0]["pool"]
             return render_template("pages/view-user-runs.html",
