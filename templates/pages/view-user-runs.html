@@ -2,6 +2,7 @@
 
 {% block content %}
 {% import "components/forms/data-list-form.html" as dataListForm %}
+{% import "components/lists/data-list.html" as dataList %}
 
     <!-- USER-DATA-FORM -->
     <section class="container" id="userFormBg">
@@ -10,159 +11,12 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <h4 class="data-form-title">Select Run:</h4>
-                {{ dataListForm.dataListForm(userRunList, "pool") }}
-                <!-- <form method="POST">
-                    <div class="row">
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <select name="poolNumber" class="form-control" id="poolNumber">
-                                {% for data in userRunList %}
-                                    <option  value="{{ data.pool }}">{{ data.pool }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn">Send</button>
-                        </div>
-                    </div>
-                </form> -->
+                {{ dataListForm.dataListForm(userRunList, "pool", "poolNumber", "userRun") }}
 
                 <h4 class="data-form-title">Filter Runs:</h4>
                 <form method="POST">
                     <div class="row">
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Min Yield</label>
-                            <select name="minYield" class="form-control" id="minYield">
-                                <option value="1" selected>1</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="150">150</option>
-                                <option value="200">200</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Max Yield</label>
-                            <select name="maxYield" class="form-control" id="maxYield">
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="150">150</option>
-                                <option value="200">200</option>
-                                <option value="250" selected>250</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Min Cluster Density</label>
-                            <select name="minClusterDensity" class="form-control" id="minClusterDensity">
-                                <option value="50" selected>50</option>
-                                <option value="75">75</option>
-                                <option value="100">100</option>
-                                <option value="125">125</option>
-                                <option value="150">150</option>
-                                <option value="175">175</option>
-                                <option value="200">200</option>
-                                <option value="225">225</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Max Cluster Density</label>
-                            <select name="maxClusterDensity" class="form-control" id="maxClusterDensity">
-                                <option value="75">75</option>
-                                <option value="100">100</option>
-                                <option value="125">125</option>
-                                <option value="150">150</option>
-                                <option value="175">175</option>
-                                <option value="200">200</option>
-                                <option value="225">225</option>
-                                <option value="250" selected>250</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Min Pass Filter</label>
-                            <select name="minPassFilter" class="form-control" id="minPassFilter">
-                                <option value="1" selected>1</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Max Pass Filter</label>
-                            <select name="maxPassFilter" class="form-control" id="maxPassFilter">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                                <option value="100" selected>100</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Min Q30</label>
-                            <select name="minq30" class="form-control" id="minq30">
-                                <option value="1" selected>1</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Max Q30</label>
-                            <select name="maxq30" class="form-control" id="maxq30">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="60">60</option>
-                                <option value="70">70</option>
-                                <option value="80">80</option>
-                                <option value="90">90</option>
-                                <option value="100" selected>100</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label for="experiment">Experiment</label>
-                            <select name="experiment" class="form-control" id="experiment">
-                                <option value="All" selected>All</option>
-                                <option value="Genome">Genome</option>
-                                <option value="Exome">Exome</option>
-                                <option value="Capture">Capture</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label for="chemistry">Chemistry</label>
-                            <select name="chemistry" class="form-control" id="chemistry">
-                                <option value="All" selected>All</option>
-                                <option value="High300">High300</option>
-                                <option value="Mid300">Mid300</option>
-                                <option value="Mid150">Mid150</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
+                        {% include '/components/forms/filter-run-fields.html' %}
                         <div class="form-group col-6 floating-label-form-group controls">
                             <button type="submit" name="formButton" value="userRuns" class="btn qc-data-btn" id="userRunsButton">Filter Runs</button>
                         </div>
@@ -181,32 +35,11 @@
                 <div class="data-list">
                     <h4 class="data-list-title">{{ username }}'s Run Data:</h4> 
                     {% include '/components/messages/flash-message.html' %}
-                    {% for data in userRuns %}
-                    <ul class="user-runs">
-                        <li>Pool: {{ data.pool|int() }}</li>
-                        <li>Yield: {{ data.yield|int() }}</li>
-                        <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
-                        <li>Pass Filter: {{ data.passFilter|int() }}</li>
-                        <li>Q30: {{ data.q30|int() }}</li>
-                    </ul>
-                    {% endfor %}
+                    {{ dataList.dataList(userRuns, "userRuns") }}
                 </div>    
                 <div id="selectFilteredRunForm" class="">
                     <h4 class="data-list-title">Select Run:</h4>
-                    <form method="POST">
-                        <div class="row">
-                            <div class="form-group col-6 floating-label-form-group controls">
-                                <select type="number" name="poolNumber" class="form-control" id="poolListContainer">
-                                    {% for data in userRuns %}                           
-                                    <option  value="{{ data.pool }}">{{ data.pool }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="form-group col-2">
-                                <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn">Select</button>
-                            </div>
-                        </div>
-                    </form>
+                    {{ dataListForm.dataListForm(userRuns, "pool", "poolNumber", "userRun") }}
                 </div>
 
             </div>
@@ -221,17 +54,7 @@
                 <div class="data-list">
                     <h4 class="data-list-title">{{ username }}'s Run Data:</h4> 
                     {% include '/components/messages/flash-message.html' %}
-                    {% for data in userRun %}
-                    <ul class="user-run">
-                        <li>Pool: <span>{{ data.pool|int() }}</span></li>
-                        <li>Yield: <span>{{ data.yield|int() }}</span></li>
-                        <li>Cluster Density: <span>{{ data.clusterDensity|int() }}</span></li>
-                        <li>Pass Filter: <span>{{ data.passFilter|int() }}</span></li>
-                        <li>Q30: <span>{{ data.q30|int() }}</span></li>
-                        <li>Experiment: <span>{{ data.experiment }}</span></li>
-                        <li>Chemistry: <span>{{ data.chemistry }}</span></li>
-                    </ul>
-                    {% endfor %}
+                    {{ dataList.dataList(userRun, "userRun") }}
                 </div>
                 <a href="{{ url_for('deleteUserRun') }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
                 <a href="{{ url_for('updateUserRun') }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
