@@ -1,31 +1,15 @@
 {% extends 'layout/base-admin-users.html' %}
 
 {% block content %}
-{% import "components/forms/user-list-form.html" as userListForm %}
+{% import "components/forms/data-list-form.html" as dataListForm %}
 
     <!-- SELECT-USER -->
     <section class="container" id="userFormBg">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-6">
 
-                <!-- <h4 class="data-list-title">Select User:</h4> -->
-                {{ userListForm.userListForm(userList, "user") }}
-                <!-- <form method="POST">
-                    <h4 class="data-list-title">Select User:</h4>
-                    <div class="row">
-                        <div class="form-group col-8 floating-label-form-group controls">
-                            <select name="user" class="form-control" id="userListContainer">
-                                {% for user in userList %}
-                                    <option  value="{{ user.user }}">{{ user.user }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group col-2">
-                            <button type="submit" class="btn qc-data-btn" id="selectedUserButton">Send</button>
-                        </div>
-                    </div>
-                </form> -->
-
+                <h4 class="data-list-title">Select User:</h4>
+                {{ dataListForm.dataListForm(userList, "user", "user", "userRuns") }}
             </div>
         </div>
     </section>
