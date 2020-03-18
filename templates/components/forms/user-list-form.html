@@ -1,42 +1,14 @@
-{% macro userListForm(userList, userKey) %}
-<!-- <form method="POST">
-    <div class="row">
-        <div class="form-group col-6 floating-label-form-group controls">
-            <select name="poolNumber" class="form-control" id="poolNumber">
-                {% for user in userList %}
-                    {% for key, value in user.items() %}
-                        {% if key == userKey %}
-                            <option  value="{{ value }}">{{ value }}</option>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <button type="submit" name="formButton" value="userRun" class="btn qc-data-btn">Send</button>
-        </div>
-    </div>
-</form> -->
-
-<form method="POST">
-    <h4 class="data-list-title">Select User:</h4>
-    <div class="row">
-        <div class="form-group col-8 floating-label-form-group controls">
-            <select name="user" class="form-control" id="userListContainer">
-                {% for user in userList %}
-                    {% for key, value in user.items() %}
-                        {% if key == userKey %}
-                            <option  value="{{ value }}">{{ value }}</option>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group col-2">
-            <button type="submit" class="btn qc-data-btn" id="selectedUserButton">Send</button>
-        </div>
-    </div>
-</form>
-
-
+{% macro userListForm(dataList, selectName, buttonValue) %}
+<div class="form-group col-6 floating-label-form-group controls">
+    <select name="{{ selectName }}" class="form-control">
+        {% for data in dataList %}
+            {% for key, value in data.items() %}
+                <option  value="{{ value }}">{{ value }}</option>
+            {% endfor %}
+        {% endfor %}
+    </select>
+</div>
+<div class="form-group">
+    <button type="submit" name="formButton" value="{{ buttonValue }}" class="btn qc-data-btn">Send</button>
+</div>
 {% endmacro %}
