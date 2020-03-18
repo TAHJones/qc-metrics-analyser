@@ -1,0 +1,25 @@
+{% macro dataList(dataList, dataType) %}
+    {% if dataType == "userRuns" %}
+        {% for data in dataList %}
+        <ul class="user-runs">
+            <li>Pool: {{ data.pool|int() }}</li>
+            <li>Yield: {{ data.yield|int() }}</li>
+            <li>Cluster Density: {{ data.clusterDensity|int() }}</li>
+            <li>Pass Filter: {{ data.passFilter|int() }}</li>
+            <li>Q30: {{ data.q30|int() }}</li>
+        </ul>
+        {% endfor %}
+    {% elif dataType == "userRun" %}
+        {% for data in dataList %}
+        <ul class="user-run">
+            <li>Pool: <span>{{ data.pool|int() }}</span></li>
+            <li>Yield: <span>{{ data.yield|int() }}</span></li>
+            <li>Cluster Density: <span>{{ data.clusterDensity|int() }}</span></li>
+            <li>Pass Filter: <span>{{ data.passFilter|int() }}</span></li>
+            <li>Q30: <span>{{ data.q30|int() }}</span></li>
+            <li>Experiment: <span>{{ data.experiment }}</span></li>
+            <li>Chemistry: <span>{{ data.chemistry }}</span></li>
+        </ul>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
