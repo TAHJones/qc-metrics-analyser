@@ -1,6 +1,7 @@
+{% macro updateRunForm(dataList, pageName, chemistryList, experimentList) %}
 <form method="POST">
     <div class="row">
-        {% for data in userRun %}
+        {% for data in dataList %}
         <div class="form-group col-6 floating-label-form-group controls">
             <label>Name</label>
             <input type="text" class="form-control" value="{{ data.user }}" placeholder="{{ data.user }}" name="user" id="user" required data-validation-required-message="Please enter your name.">
@@ -57,7 +58,8 @@
         {% endfor %}
         <div class="form-group">
             <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
-            <a href="{{ url_for('viewUserRuns') }}" class="btn qc-data-btn">Return</a>
+            <a href="/{{ pageName }}" class="btn qc-data-btn">Return</a>
         </div>
     </div>
 </form>
+{% endmacro %}
