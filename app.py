@@ -49,7 +49,7 @@ def login():
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
-    return render_template("pages/login.html")
+    return render_template("pages/auth.html", active="login")
 
 
 @app.route("/logout")
@@ -74,7 +74,7 @@ def signup():
         users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations your username has been added to the database")
         return redirect(url_for('signup'))
-    return render_template("pages/signup.html")
+    return render_template("pages/auth.html", active="signup")
 
 
 @app.route("/admin-or-user/<username>")
@@ -130,50 +130,60 @@ def adminSelectRuns():
                                 userList=userList)
 
 
-@app.route("/admin-update-run", methods=["GET", "POST"])
-def adminUpdateRun():
+@app.route("/update-run", methods=["GET", "POST"])
+def updateRun():
     """  Allows administrator to update runs for selected user """
+    admin = True
     username = session["username"]
-    selectedUser = session["selectedUser"]
     userRun = session["selectedUserRun"]
     existingPoolNumber = userRun[0]["pool"]
     existingChemistry = userRun[0]["chemistry"]
     existingExperiment = userRun[0]["experiment"]
     dropDownLists = Helpers.getDropDownLists(existingChemistry, existingExperiment)
     if request.method == "POST":
-        updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, selectedUser)
+        if request.form["formName"] == "adminForm":
+            selectedUser = session["selectedUser"]
+            updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, selectedUser)
+        elif request.form["formName"] == "userForm":
+            updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, username)
         userRun = [updatedRun["userRun"]]
         message = updatedRun["message"]
         if userRun[0] == "error":
             flash(message)
             userRun = session["userRun"]
-            return render_template("pages/update-user-run.html",
+            return render_template("pages/update-run.html",
                                     username=username,
                                     title=session["title"],
                                     existingPoolNumber=existingPoolNumber,
                                     userRun=userRun,
                                     chemistryList=dropDownLists["chemistryList"], 
-                                    experimentList=dropDownLists["experimentList"]) 
+                                    experimentList=dropDownLists["experimentList"],
+                                    page="update-run",
+                                    admin=admin) 
         else:
             flash(message)
             session["userRun"] = userRun
             newChemistry = userRun[0]["chemistry"]
             newExperiment = userRun[0]["experiment"]
             dropDownLists = Helpers.getDropDownLists(newChemistry, newExperiment)
-            return render_template("pages/update-user-run.html",
+            return render_template("pages/update-run.html",
                                     username=username,
                                     title=session["title"],
                                     existingPoolNumber=existingPoolNumber,
                                     userRun=userRun,
                                     chemistryList=dropDownLists["chemistryList"], 
-                                    experimentList=dropDownLists["experimentList"]) 
-    return render_template("pages/update-user-run.html",
+                                    experimentList=dropDownLists["experimentList"],
+                                    page="update-run",
+                                    admin=admin) 
+    return render_template("pages/update-run.html",
                             username=username,
                             title=session["title"],
                             existingPoolNumber=existingPoolNumber,
                             userRun=userRun,
                             chemistryList=dropDownLists["chemistryList"], 
-                            experimentList=dropDownLists["experimentList"]) 
+                            experimentList=dropDownLists["experimentList"],
+                            page="update-run",
+                            admin=admin) 
 
 
 @app.route("/admin-delete-run", methods=["GET", "POST"])
@@ -194,7 +204,7 @@ def adminDeleteRun():
                                     title=session["title"],
                                     pageLocation=json.dumps(pageLocation),
                                     selectedUserRun=selectedUserRun)
-    pageLocation =  "deleteRunForm"
+    pageLocation = "deleteRunForm"
     selectedUserRun = session["selectedUserRun"]
     return render_template("pages/admin-delete-run.html",
                                 username=username,
@@ -366,51 +376,6 @@ def deleteUserRun():
                                 title=session["title"],
                                 pageLocation=json.dumps(pageLocation),
                                 userRun=userRun)
-
-
-@app.route("/update-user-run", methods=["GET", "POST"])
-def updateUserRun():
-    """  Update selected run from database """
-    username = session["username"]
-    userRun = session["userRun"]
-    existingPoolNumber = userRun[0]["pool"]
-    existingChemistry = userRun[0]["chemistry"]
-    existingExperiment = userRun[0]["experiment"]
-    dropDownLists = Helpers.getDropDownLists(existingChemistry, existingExperiment)
-    if request.method == "POST":
-        updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, username)
-        userRun = [updatedRun["userRun"]]
-        message = updatedRun["message"]
-        if userRun[0] == "error":
-            flash(message)
-            userRun = session["userRun"]
-            return render_template("pages/update-user-run.html",
-                                    username=username,
-                                    title=session["title"],
-                                    existingPoolNumber=existingPoolNumber,
-                                    userRun=userRun,
-                                    chemistryList=dropDownLists["chemistryList"], 
-                                    experimentList=dropDownLists["experimentList"]) 
-        else:
-            flash(message)
-            session["userRun"] = userRun
-            newChemistry = userRun[0]["chemistry"]
-            newExperiment = userRun[0]["experiment"]
-            dropDownLists = Helpers.getDropDownLists(newChemistry, newExperiment)
-            return render_template("pages/update-user-run.html",
-                                    username=username,
-                                    title=session["title"],
-                                    existingPoolNumber=existingPoolNumber,
-                                    userRun=userRun,
-                                    chemistryList=dropDownLists["chemistryList"], 
-                                    experimentList=dropDownLists["experimentList"]) 
-    return render_template("pages/update-user-run.html",
-                            username=username,
-                            title=session["title"],
-                            existingPoolNumber=existingPoolNumber,
-                            userRun=userRun,
-                            chemistryList=dropDownLists["chemistryList"], 
-                            experimentList=dropDownLists["experimentList"]) 
 
 
 if __name__ == "__main__":
