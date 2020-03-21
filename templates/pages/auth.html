@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+{% import "components/forms/login-form.html" as loginForm %}
+
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-8 col-lg-6">
+                {% include '/components/messages/flash-message.html' %}
+                {% if active == "login" %}
+                    {{ loginForm.loginForm("Enter Username:", "username", "enter a username") }}
+                {% elif active == "signup" %}
+                    {{ loginForm.loginForm("Select Username:", "newUsername", "select a username") }}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
