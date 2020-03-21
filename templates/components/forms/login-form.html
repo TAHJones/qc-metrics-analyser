@@ -1,4 +1,5 @@
-{% macro loginForm(name, placeholder) %}
+{% macro loginForm(title, name, placeholder) %}
+    <h3 id="auth-form">{{ title }}</h3>
     <form method="POST">
         <div class="row">
             <div class="form-group col-8 floating-label-form-group controls">
