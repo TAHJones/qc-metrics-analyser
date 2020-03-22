@@ -1,26 +1,16 @@
-{% macro modalLink(metricTitle, metricName) %}
-    <h4>{{ metricTitle }}</h4>
-    <a data-toggle="modal" data-target="#{{ metricName }}Modal">
+{% macro modelImageLink(url, imageLinkTitle, imageLinkName, overlayTitle, username) %}
+    <h4>{{ imageLinkTitle }}</h4>
+    {% if url == "adminSelectRuns"%}
+        <a href="{{ url_for('adminSelectRuns', username=username) }}">
+    {% elif url == "user" %}
+        <a href="{{ url_for('user', username=username) }}">
+    {% endif %}
         <div class="overlay-container">
-            <img class="img-overlay" src="/static/images/{{ metricName }}.jpg" alt="{{ metricTitle }}">
+            <img class="img-overlay" src="/static/images/{{ imageLinkName }}.jpg" alt="{{ imageLinkName }}">
             <div class="overlay">
-            <div class="overlay-text">{{ metricTitle }}</div>
+                <div class="overlay-text">{{ overlayTitle }}</div>
             </div>
         </div>
     </a>
-{% endmacro %}
-
-{% macro imageLink(imageLinkTitle, imageLinkName, overlayTitle) %}
-    <h4>{{ imageLinkTitle }}</h4>
-    <a href="{{ url_for('user', username=username) }}">
-    <div class="overlay-container">
-        <img class="img-overlay" src="/static/images/{{ imageLinkName }}.jpg" alt="{{ imageLinkName }}">
-        <div class="overlay">
-        <div class="overlay-text">{{ overlayTitle }}</div>
-        </div>
-    </div>
-    </a>
 </div>
 {% endmacro %}
-
-href="/{{ pageName }}" 
