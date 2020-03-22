@@ -1,48 +1,36 @@
-{% extends 'layout/base-admin.html' %}
-{% block navbar %}
-
-    <nav class="navbar navbar-expand-sm navbar-dark">
-        <a class="member-status admin" href="{{ url_for('adminOrUser', username=username) }}">Admin: <span>{{ username }}</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link login-btn" href="{{ url_for('logout') }}">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
-
-{% endblock navbar %}
+{% extends 'layout/base.html' %}
 
 {% block content %}
+{% import "components/modals/modal-image-link.html" as modalImageLink %}
 
     <section class="container">
         <h3>Admin Page</h3>
         <hr>
-        <div class="row justify-content-center other-metrics">
+        <div class="row justify-content-center">
             <div class="col-10 col-sm-6 col-md-5 col-lg-4">
-                <h4>Manage Runs</h4>
-                <a href="{{ url_for('adminSelectRuns') }}">
+                {{ modalImageLink.modalImageLink("adminSelectRuns", "Manage Runs", "experiment", "Sequencing Runs", username) }}
+                <!-- <h4>Manage Runs</h4>
+                <a href="{{ url_for('adminSelectRuns', username=username) }}">
                 <div class="overlay-container">
                     <img class="img-overlay" src="{{ url_for('static', filename='images/experiment.jpg') }}" alt="experiments">
                     <div class="overlay">
                     <div class="overlay-text">Sequencing Runs</div>
                     </div>
                 </div>
-                </a>
+                </a> -->
             </div>
 
             <div class="col-10 col-sm-6 col-md-5 col-lg-4">
-                <h4>Manage Users</h4>
-                <a href="{{ url_for('adminSelectUser') }}">
+                {{ modalImageLink.modalImageLink("adminSelectRuns", "Manage Users", "users", "Sequencing Users", username) }}
+                <!-- <h4>Manage Users</h4>
+                <a href="{{ url_for('adminSelectUser', username=username) }}">
                 <div class="overlay-container">
                     <img class="img-overlay" src="{{ url_for('static', filename='images/users.jpg') }}" alt="users">
                     <div class="overlay">
                     <div class="overlay-text">Sequencing Users</div>
                     </div>
                 </div>
-                </a>
+                </a> -->
             </div>
         </div>
     </section>
