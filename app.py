@@ -44,8 +44,10 @@ def login():
                 session["username"] = username
                 member = users.find_one({'user': username}, { '_id': 0 }).get("member")
         if "username" in session and member == "admin":
+            session["admin"] = True
             return redirect(url_for("adminOrUser", username=session["username"]))
         elif "username" in session and member == "user":    
+            session["admin"] = False
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
