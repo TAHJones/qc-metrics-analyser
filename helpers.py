@@ -388,7 +388,7 @@ class Helpers:
     def updateUserRun(database, run, user):
         updatedRun = {}
         poolList = Helpers.getRunList(database)
-        formData = Helpers.getRunFormData("user", "chemistry", "experiment", "comment")
+        formData = Helpers.getRunFormData("user", "chemistry", "experiment", "comment", "formName")
         message = Helpers.checkMetricValues(formData)
         formName = formData["user"]
         poolNumber = formData["pool"]
