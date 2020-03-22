@@ -10,9 +10,9 @@
                 {% include '/components/messages/flash-message.html' %}
                 <h4 class="data-list-title">Update Pool {{ existingPoolNumber }}</h4> 
                 {% if page == "update-run" and admin == True %}
-                    {{ updateRunForm.updateRunForm(userRun, "admin-select-runs", chemistryList, experimentList, "adminForm") }}
+                    {{ updateRunForm.updateRunForm(userRun, chemistryList, experimentList, "adminForm") }}
                 {% elif page == "update-run" and admin == False %}
-                    {{ updateRunForm.updateRunForm(userRun, "view-user-runs", chemistryList, experimentList, "userForm") }}
+                    {{ updateRunForm.updateRunForm(userRun, chemistryList, experimentList, "userForm") }}
                 {% endif %}
             </div>
         </div>
