@@ -159,7 +159,7 @@ def updateRun():
                                     chemistryList=dropDownLists["chemistryList"], 
                                     experimentList=dropDownLists["experimentList"],
                                     page="update-run",
-                                    admin=admin) 
+                                    admin=admin)
         else:
             flash(message)
             session["userRun"] = userRun
@@ -186,31 +186,46 @@ def updateRun():
                             admin=admin) 
 
 
-@app.route("/admin-delete-run", methods=["GET", "POST"])
-def adminDeleteRun():
+@app.route("/delete-run", methods=["GET", "POST"])
+def deleteRun():
+    admin = True
     """  Delete selected run from database """
     username = session["username"]
-    selectedPoolNumber = session["selectedPoolNumber"]
     if request.method == "POST":
-        deletedRun = Helpers.deleteUserRun(runs, selectedPoolNumber)
-        selectedUserRun = deletedRun["userRun"]
-        if selectedUserRun == None:
-            selectedUserRun = session["selectedUserRun"]
+        if request.form["formName"] == "adminForm":
+            selectedPoolNumber = session["selectedPoolNumber"]
+            deletedRun = Helpers.deleteUserRun(runs, selectedPoolNumber)
+            userRun = deletedRun["userRun"]
+            if userRun == None:
+                userRun = session["selectedUserRun"]
+        elif request.form["formName"] == "userForm":
+            poolNumber = session["poolNumber"]
+            deletedRun = Helpers.deleteUserRun(runs, poolNumber, username)
+            userRun = deletedRun["userRun"]
+            if userRun == None:
+                userRun=session["userRun"]                
         message = deletedRun["message"]
         flash(message)
         pageLocation = deletedRun["pageLocation"]
-        return render_template("pages/admin-delete-run.html",
-                                    username=username,
-                                    title=session["title"],
-                                    pageLocation=json.dumps(pageLocation),
-                                    selectedUserRun=selectedUserRun)
+        return render_template("pages/delete-run.html",
+                                        username=username,
+                                        title=session["title"],
+                                        pageLocation=json.dumps(pageLocation),
+                                        userRun=userRun,
+                                        page = "delete-run",
+                                        admin=admin)    
     pageLocation = "deleteRunForm"
-    selectedUserRun = session["selectedUserRun"]
-    return render_template("pages/admin-delete-run.html",
+    if admin == True:
+        userRun = session["selectedUserRun"]
+    else:
+        userRun = session["userRun"]
+    return render_template("pages/delete-run.html",
                                 username=username,
                                 title=session["title"],
                                 pageLocation=json.dumps(pageLocation),
-                                selectedUserRun=selectedUserRun)
+                                userRun=userRun,
+                                page = "delete-run",
+                                admin=admin)
 
 
 @app.route("/admin-select-user", methods=["GET", "POST"])
@@ -349,33 +364,6 @@ def addUserRun():
         flash(message)
         return redirect(url_for("addUserRun", username=username, title=session["title"]))
     return render_template("pages/add-user-run.html", username=username, title=session["title"])
-
-
-@app.route("/delete-user-run", methods=["GET", "POST"])
-def deleteUserRun():
-    """  Delete selected run from database """
-    username = session["username"]
-    poolNumber = session["poolNumber"]
-    if request.method == "POST":
-        deletedRun = Helpers.deleteUserRun(runs, poolNumber, username)
-        userRun = deletedRun["userRun"]
-        if userRun == None:
-            userRun=session["userRun"]
-        message = deletedRun["message"]
-        flash(message)
-        pageLocation = deletedRun["pageLocation"]
-        return render_template("pages/delete-user-run.html",
-                                    username=username,
-                                    title=session["title"],
-                                    pageLocation=json.dumps(pageLocation),
-                                    userRun=userRun)
-    pageLocation =  "deleteRunForm"
-    userRun=session["userRun"]
-    return render_template("pages/delete-user-run.html",
-                                username=username,
-                                title=session["title"],
-                                pageLocation=json.dumps(pageLocation),
-                                userRun=userRun)
 
 
 if __name__ == "__main__":
