@@ -1,0 +1,9 @@
+{% macro deleteRunForm(pageName, formValue) %}
+    <form method="POST" id="deleteRunForm">
+        <h4 class="data-list-title delete-user">Delete Run: </h4> 
+        <label class="radio-inline"><input type="radio" name="radio" value="yes">Yes</label>
+        <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
+    </form>
+    <button form="deleteRunForm" type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRunButton">Delete</button>
+    <a href="/{{ pageName }}" class="btn qc-data-btn">Return</a>
+{% endmacro %}
