@@ -93,7 +93,7 @@ def admin(username):
     return render_template("pages/admin.html", title=session["title"], username=username)
 
 
-@app.route("/admin-select-runs", methods=["GET", "POST"])
+@app.route("/admin/select/runs", methods=["GET", "POST"])
 def adminSelectRuns():
     """ select runs for individual users and then view, remove or update individual user runs """
     username = session["username"]
@@ -130,7 +130,7 @@ def adminSelectRuns():
                                 userList=userList)
 
 
-@app.route("/update-run", methods=["GET", "POST"])
+@app.route("/manage/runs/update", methods=["GET", "POST"])
 def updateRun():
     """  Allows administrator to update runs for selected user """
     admin = True
@@ -186,7 +186,7 @@ def updateRun():
                             admin=admin) 
 
 
-@app.route("/delete-run", methods=["GET", "POST"])
+@app.route("/manage/runs/delete", methods=["GET", "POST"])
 def deleteRun():
     admin = True
     """  Delete selected run from database """
@@ -228,7 +228,7 @@ def deleteRun():
                                 admin=admin)
 
 
-@app.route("/admin-select-user", methods=["GET", "POST"])
+@app.route("/admin/select/user", methods=["GET", "POST"])
 def adminSelectUser():
     """ select users to view, remove & update """
     username = session["username"]
@@ -251,7 +251,7 @@ def adminSelectUser():
                                 userList=userList)
 
 
-@app.route("/admin-update-user", methods=["GET", "POST"])
+@app.route("/admin/update/user", methods=["GET", "POST"])
 def adminUpdateUser():
     """ select user to view, delete & update """
     username = session["username"]
@@ -276,7 +276,7 @@ def adminUpdateUser():
                                 selectedUser=selectedUser)
 
 
-@app.route("/admin-delete-user", methods=["GET", "POST"])
+@app.route("/admin/delete/user", methods=["GET", "POST"])
 def adminDeleteUser():
     """ select user to view, delete & update """
     username = session["username"]
