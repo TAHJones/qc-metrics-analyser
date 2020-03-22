@@ -135,9 +135,11 @@ def adminSelectRuns():
 @app.route("/manage/runs/update", methods=["GET", "POST"])
 def updateRun():
     """  Allows administrator to update runs for selected user """
-    admin = True
+    if session["admin"] == True:
+        userRun = session["selectedUserRun"]
+    elif session["admin"] == False:
+        userRun = session["userRun"]
     username = session["username"]
-    userRun = session["selectedUserRun"]
     existingPoolNumber = userRun[0]["pool"]
     existingChemistry = userRun[0]["chemistry"]
     existingExperiment = userRun[0]["experiment"]
@@ -161,7 +163,7 @@ def updateRun():
                                     chemistryList=dropDownLists["chemistryList"], 
                                     experimentList=dropDownLists["experimentList"],
                                     page="update-run",
-                                    admin=admin)
+                                    admin=session["admin"])
         else:
             flash(message)
             session["userRun"] = userRun
@@ -176,7 +178,7 @@ def updateRun():
                                     chemistryList=dropDownLists["chemistryList"], 
                                     experimentList=dropDownLists["experimentList"],
                                     page="update-run",
-                                    admin=admin) 
+                                    admin=session["admin"]) 
     return render_template("pages/update-run.html",
                             username=username,
                             title=session["title"],
@@ -185,7 +187,7 @@ def updateRun():
                             chemistryList=dropDownLists["chemistryList"], 
                             experimentList=dropDownLists["experimentList"],
                             page="update-run",
-                            admin=admin) 
+                            admin=session["admin"]) 
 
 
 @app.route("/manage/runs/delete", methods=["GET", "POST"])
