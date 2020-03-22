@@ -327,7 +327,7 @@ def user(username):
                             linechartData=linechartData)
 
 
-@app.route("/view-user-runs", methods=["GET", "POST"])
+@app.route("/user/view/runs", methods=["GET", "POST"])
 def viewUserRuns():
     """  view all user runs or select individual run to delete or update """
     username = session["username"]
@@ -359,7 +359,7 @@ def viewUserRuns():
                             userRunList=userRunList)
 
 
-@app.route("/add-user-run", methods=["GET", "POST"])
+@app.route("/user/add/run", methods=["GET", "POST"])
 def addUserRun():
     """  Add new run to database """
     username = session["username"]
