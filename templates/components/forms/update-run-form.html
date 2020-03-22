@@ -1,4 +1,4 @@
-{% macro updateRunForm(dataList, pageName, chemistryList, experimentList, formValue) %}
+{% macro updateRunForm(dataList, chemistryList, experimentList, formValue) %}
     <form method="POST">
         <div class="row">
             {% for data in dataList %}
@@ -58,7 +58,11 @@
             {% endfor %}
             <div class="form-group">
                 <button type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
-                <a href="/{{ pageName }}" class="btn qc-data-btn">Return</a>
+                {% if formValue == "adminForm" %}
+                    <a href="{{ url_for('adminSelectRuns') }}" class="btn qc-data-btn">Return</a>
+                {% elif formValue == "userForm" %}
+                    <a href="{{ url_for('viewUserRuns') }}" class="btn qc-data-btn">Return</a>
+                {% endif %}
             </div>
         </div>
     </form>
