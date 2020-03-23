@@ -234,7 +234,7 @@ def deleteRun(username):
                                             page = "delete-run",
                                             admin=session["admin"])    
         pageLocation = "deleteRunForm"
-        if admin == True:
+        if session["admin"] == True:
             userRun = session["selectedUserRun"]
         else:
             userRun = session["userRun"]
