@@ -88,7 +88,11 @@ def adminOrUser(username):
         loggedIn = True
         title = "WELCOME {}".format(username.upper())
         session["title"] = title
-        return render_template("pages/admin-or-user.html", title=title, username=username, loggedIn=loggedIn)
+        return render_template("pages/admin-or-user.html",
+                                title=title,
+                                username=username,
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
 
 
 @app.route("/admin/<username>")
@@ -139,7 +143,8 @@ def adminSelectRuns(username):
                                     title=session["title"],
                                     pageLocation=json.dumps("userForm"),
                                     userList=userList,
-                                    loggedIn=loggedIn)
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
 
 
 @app.route("/manage/runs/update/<username>", methods=["GET", "POST"])
@@ -175,8 +180,7 @@ def updateRun(username):
                                         userRun=userRun,
                                         chemistryList=dropDownLists["chemistryList"], 
                                         experimentList=dropDownLists["experimentList"],
-                                        page="update-run",
-                                        admin=session["admin"])
+                                        page="update-run")
             else:
                 flash(message)
                 session["userRun"] = userRun
@@ -190,8 +194,7 @@ def updateRun(username):
                                         userRun=userRun,
                                         chemistryList=dropDownLists["chemistryList"], 
                                         experimentList=dropDownLists["experimentList"],
-                                        page="update-run",
-                                        admin=session["admin"]) 
+                                        page="update-run")
         return render_template("pages/update-run.html",
                                 username=username,
                                 title=session["title"],
@@ -200,8 +203,8 @@ def updateRun(username):
                                 chemistryList=dropDownLists["chemistryList"], 
                                 experimentList=dropDownLists["experimentList"],
                                 page="update-run",
-                                admin=session["admin"],
-                                loggedIn=loggedIn) 
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
 
 
 @app.route("/manage/runs/delete/<username>", methods=["GET", "POST"])
@@ -232,8 +235,7 @@ def deleteRun(username):
                                             title=session["title"],
                                             pageLocation=json.dumps(pageLocation),
                                             userRun=userRun,
-                                            page = "delete-run",
-                                            admin=session["admin"])    
+                                            page = "delete-run")
         pageLocation = "deleteRunForm"
         if session["admin"] == True:
             userRun = session["selectedUserRun"]
@@ -245,8 +247,8 @@ def deleteRun(username):
                                     pageLocation=json.dumps(pageLocation),
                                     userRun=userRun,
                                     page = "delete-run",
-                                    admin=session["admin"],
-                                    loggedIn=loggedIn)
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
 
 
 @app.route("/admin/select/user/<username>", methods=["GET", "POST"])
@@ -273,7 +275,8 @@ def adminSelectUser(username):
                                     title=session["title"],
                                     pageLocation=json.dumps("userForm"),
                                     userList=userList,
-                                    loggedIn=loggedIn)
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
 
 
 @app.route("/admin/update/user/<username>", methods=["GET", "POST"])
@@ -302,7 +305,8 @@ def adminUpdateUser(username):
                                     username=username,
                                     title=session["title"],
                                     selectedUser=selectedUser,
-                                    loggedIn=loggedIn)
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
 
 
 @app.route("/admin/delete/user/<username>", methods=["GET", "POST"])
@@ -336,7 +340,8 @@ def adminDeleteUser(username):
                                     pageLocation=json.dumps("deleteUserForm"),
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName,
-                                    loggedIn=loggedIn)
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
 
 
 @app.route("/user/<username>")
@@ -357,7 +362,8 @@ def user(username):
                                 runData=runData,
                                 experimentData=experimentData,
                                 linechartData=linechartData,
-                                loggedIn=loggedIn)
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
 
 
 @app.route("/user/view/runs/<username>", methods=["GET", "POST"])
@@ -393,7 +399,8 @@ def viewUserRuns(username):
                                 title=session["title"],
                                 pageLocation=json.dumps("userForm"),
                                 userRunList=userRunList,
-                                loggedIn=loggedIn)
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
 
 
 @app.route("/user/add/run/<username>", methods=["GET", "POST"])
@@ -408,7 +415,11 @@ def addUserRun(username):
             message = Helpers.addUserRun(runs, username)
             flash(message)
             return redirect(url_for("addUserRun", username=username, title=session["title"]))
-        return render_template("pages/add-user-run.html", username=username, title=session["title"], loggedIn=loggedIn)
+        return render_template("pages/add-user-run.html",
+                                username=username,
+                                title=session["title"],
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
 
 
 @app.route("/permission-denied")
