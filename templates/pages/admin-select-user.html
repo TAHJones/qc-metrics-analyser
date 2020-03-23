@@ -30,9 +30,9 @@
                     {% endfor %}
                 </div>
     
-                <a href="{{ url_for('adminDeleteUser') }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
-                <a href="{{ url_for('adminUpdateUser') }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
-                <a href="{{ url_for('adminSelectUser') }}" class="btn qc-data-btn">Return</a>
+                <a href="{{ url_for('adminDeleteUser', username=username) }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
+                <a href="{{ url_for('adminUpdateUser', username=username) }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
+                <a href="{{ url_for('adminSelectUser', username=username) }}" class="btn qc-data-btn">Return</a>
             </div>
         </div>
     </section>
