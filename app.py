@@ -85,7 +85,6 @@ def adminOrUser(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = username
         title = "WELCOME {}".format(username.upper())
         session["title"] = title
         return render_template("pages/admin-or-user.html", title=title, username=username)
@@ -97,7 +96,6 @@ def admin(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = username
         return render_template("pages/admin.html", title=session["title"], username=username)
 
 
@@ -107,7 +105,6 @@ def adminSelectRuns(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         if request.method == "POST" and request.form['formButton'] == 'userRuns':
             userRuns = Helpers.getUserRuns(runs)
             Helpers.checkUserRuns(userRuns)
@@ -151,7 +148,6 @@ def updateRun(username):
             userRun = session["selectedUserRun"]
         elif session["admin"] == False:
             userRun = session["userRun"]
-        # username = session["username"]
         existingPoolNumber = userRun[0]["pool"]
         existingChemistry = userRun[0]["chemistry"]
         existingExperiment = userRun[0]["experiment"]
@@ -204,12 +200,10 @@ def updateRun(username):
 
 @app.route("/manage/runs/delete/<username>", methods=["GET", "POST"])
 def deleteRun(username):
-    # admin = True
     """  Delete selected run from database """
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         if request.method == "POST":
             if request.form["formName"] == "adminForm":
                 selectedPoolNumber = session["selectedPoolNumber"]
@@ -253,7 +247,6 @@ def adminSelectUser(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         if request.method == "POST":
             selectedUser = Helpers.adminSelectUser(users)
             session["selectedUser"] = selectedUser
@@ -279,7 +272,6 @@ def adminUpdateUser(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         selectedUser = session["selectedUser"]
         selectedUserName = session["selectedUserName"]
         if request.method == "POST":
@@ -307,7 +299,6 @@ def adminDeleteUser(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         selectedUser = session["selectedUser"]
         selectedUserName = session["selectedUserName"]
         if request.method == "POST":
@@ -337,7 +328,6 @@ def adminDeleteUser(username):
 @app.route("/user/<username>")
 def user(username):
     """ Display summary of run data for individual users """
-    # username = username
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
@@ -360,7 +350,6 @@ def viewUserRuns(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        # username = session["username"]
         userRunList = Helpers.getUserRunList(runs, username)
         if request.method == "POST":
             if request.form['formButton'] == "userRun":
