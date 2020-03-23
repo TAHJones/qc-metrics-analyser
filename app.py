@@ -18,10 +18,11 @@ mongo = PyMongo(app)
 runs = mongo.db.seqMetCol
 users = mongo.db.users
 
-
+# @app.route("/logout")
 @app.route("/")
 def index():
     """Display summary run data for all users"""
+    session.clear()
     runData = Helpers.getRunData(runs)
     experimentData = Helpers.getExperimentData(runs)
     linechartData = Helpers.getLinechartData(runs)
@@ -29,6 +30,7 @@ def index():
                             runData=runData,
                             experimentData=experimentData,
                             linechartData=linechartData,
+                            active="index",
                             loggedIn=False)
 
 
@@ -55,11 +57,17 @@ def login():
     return render_template("pages/auth.html", active="login", loggedIn=False)
 
 
-@app.route("/logout")
-def logout():
+@app.route("/logout/<username>")
+def logout(username):
     """ log out user and return to homepage """
-    session.clear()
-    return redirect(url_for('pages/index.html', loggedIn=False))
+    if username != session["username"]:
+        return redirect(url_for('permissionDenied'))
+    else:
+        session.clear()
+        return render_template('pages/logout.html',
+                                username=username,
+                                active="logout",
+                                loggedIn=False)
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -92,6 +100,7 @@ def adminOrUser(username):
         return render_template("pages/admin-or-user.html",
                                 title=title,
                                 username=username,
+                                active="adminOrUser",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
 
@@ -103,7 +112,12 @@ def admin(username):
         return redirect(url_for('permissionDenied'))
     else:
         loggedIn = True
-        return render_template("pages/admin.html", title=session["title"], username=username, loggedIn=loggedIn)
+        return render_template("pages/admin.html",
+        title=session["title"],
+        username=username,
+        active="admin",
+        loggedIn=loggedIn,
+        admin=session["admin"])
 
 
 @app.route("/admin/select/runs/<username>", methods=["GET", "POST"])
@@ -123,7 +137,10 @@ def adminSelectRuns(username):
                                     title=session["title"],
                                     pageLocation=json.dumps("userRuns"),
                                     selectedUser=session["selectedUser"],
-                                    userRuns=userRuns)
+                                    userRuns=userRuns,
+                                    active="adminSelectRuns",
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
         elif request.method == "POST" and request.form['formButton'] == 'userRun':
             selectedUser = session["selectedUser"]
             selectedUserRun = Helpers.getUserRun(runs, selectedUser)
@@ -136,7 +153,10 @@ def adminSelectRuns(username):
                                     pageLocation=json.dumps("userRun"),
                                     selectedPoolNumber=selectedPoolNumber,
                                     selectedUser=selectedUser,
-                                    selectedUserRun=selectedUserRun)
+                                    selectedUserRun=selectedUserRun,
+                                    active="adminSelectRuns",
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
         userList = Helpers.getUserList(users)
         session["userList"] = userList
         return render_template("pages/admin-select-runs.html",
@@ -144,6 +164,7 @@ def adminSelectRuns(username):
                                     title=session["title"],
                                     pageLocation=json.dumps("userForm"),
                                     userList=userList,
+                                    active="adminSelectRuns",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
 
@@ -181,7 +202,10 @@ def updateRun(username):
                                         userRun=userRun,
                                         chemistryList=dropDownLists["chemistryList"], 
                                         experimentList=dropDownLists["experimentList"],
-                                        page="update-run")
+                                        page="update-run",
+                                        active="updateRun",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
             else:
                 flash(message)
                 session["userRun"] = userRun
@@ -195,7 +219,10 @@ def updateRun(username):
                                         userRun=userRun,
                                         chemistryList=dropDownLists["chemistryList"], 
                                         experimentList=dropDownLists["experimentList"],
-                                        page="update-run")
+                                        page="update-run",
+                                        active="updateRun",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
         return render_template("pages/update-run.html",
                                 username=username,
                                 title=session["title"],
@@ -204,6 +231,7 @@ def updateRun(username):
                                 chemistryList=dropDownLists["chemistryList"], 
                                 experimentList=dropDownLists["experimentList"],
                                 page="update-run",
+                                active="updateRun",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
 
@@ -236,7 +264,10 @@ def deleteRun(username):
                                             title=session["title"],
                                             pageLocation=json.dumps(pageLocation),
                                             userRun=userRun,
-                                            page = "delete-run")
+                                            page = "delete-run",
+                                            active="adminSelectUser",
+                                            loggedIn=loggedIn,
+                                            admin=session["admin"])
         pageLocation = "deleteRunForm"
         if session["admin"] == True:
             userRun = session["selectedUserRun"]
@@ -248,6 +279,7 @@ def deleteRun(username):
                                     pageLocation=json.dumps(pageLocation),
                                     userRun=userRun,
                                     page = "delete-run",
+                                    active="deleteRun",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
 
@@ -269,13 +301,17 @@ def adminSelectUser(username):
                                         title=session["title"],
                                         pageLocation=json.dumps("viewUser"),
                                         selectedUser=selectedUser,
-                                        selectedUserName=selectedUserName)
+                                        selectedUserName=selectedUserName,
+                                        active="adminSelectUser",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
         userList = Helpers.getUserList(users)
         return render_template("pages/admin-select-user.html",
                                     username=username,
                                     title=session["title"],
                                     pageLocation=json.dumps("userForm"),
                                     userList=userList,
+                                    active="adminSelectUser",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
 
@@ -301,11 +337,15 @@ def adminUpdateUser(username):
             return render_template("pages/admin-update-user.html",
                                         username=username,
                                         title=session["title"],
-                                        selectedUser=selectedUser)
+                                        selectedUser=selectedUser,
+                                        active="adminUpdateUser",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
         return render_template("pages/admin-update-user.html",
                                     username=username,
                                     title=session["title"],
                                     selectedUser=selectedUser,
+                                    active="adminUpdateUser",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
 
@@ -334,13 +374,17 @@ def adminDeleteUser(username):
                                         title=session["title"],
                                         pageLocation=json.dumps(pageLocation),
                                         selectedUser=selectedUser,
-                                        selectedUserName=selectedUserName)
+                                        selectedUserName=selectedUserName,
+                                        active="adminDeleteUser",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
         return render_template("pages/admin-delete-user.html",
                                     username=username,
                                     title=session["title"],
                                     pageLocation=json.dumps("deleteUserForm"),
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName,
+                                    active="adminDeleteUser",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
 
@@ -363,6 +407,7 @@ def user(username):
                                 runData=runData,
                                 experimentData=experimentData,
                                 linechartData=linechartData,
+                                active="user",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
 
@@ -385,7 +430,10 @@ def viewUserRuns(username):
                                         title=session["title"],
                                         userRun=userRun,
                                         pageLocation=json.dumps("userRun"),
-                                        userRunList=userRunList)
+                                        userRunList=userRunList,
+                                        active="viewUserRuns",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
             elif request.form['formButton'] == 'userRuns':
                 userRuns = Helpers.getUserRuns(runs, username)          
                 Helpers.checkUserRuns(userRuns)
@@ -394,12 +442,16 @@ def viewUserRuns(username):
                                         title=session["title"],
                                         userRuns=userRuns,
                                         pageLocation=json.dumps("userRuns"),
-                                        userRunList=userRunList)
+                                        userRunList=userRunList,
+                                        active="viewUserRuns",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])                          
         return render_template("pages/view-user-runs.html",
                                 username=username,
                                 title=session["title"],
                                 pageLocation=json.dumps("userForm"),
                                 userRunList=userRunList,
+                                active="viewUserRuns",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
 
@@ -419,6 +471,7 @@ def addUserRun(username):
         return render_template("pages/add-user-run.html",
                                 username=username,
                                 title=session["title"],
+                                active="addUserRun",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
 
