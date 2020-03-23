@@ -28,7 +28,8 @@ def index():
     return render_template("pages/index.html",
                             runData=runData,
                             experimentData=experimentData,
-                            linechartData=linechartData)
+                            linechartData=linechartData,
+                            loggedIn=False)
 
 
 @app.route("/pages/login", methods=["GET", "POST"])
@@ -51,14 +52,14 @@ def login():
             return redirect(url_for("user", username=session["username"]))
         else:
             flash("The username '{}' doesn't exist, please try a different username".format(username))
-    return render_template("pages/auth.html", active="login")
+    return render_template("pages/auth.html", active="login", loggedIn=False)
 
 
 @app.route("/logout")
 def logout():
     """ log out user and return to homepage """
     session.clear()
-    return redirect(url_for('pages/index.html'))
+    return redirect(url_for('pages/index.html', loggedIn=False))
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -76,7 +77,7 @@ def signup():
         users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations your username has been added to the database")
         return redirect(url_for('signup'))
-    return render_template("pages/auth.html", active="signup")
+    return render_template("pages/auth.html", active="signup", loggedIn=False)
 
 
 @app.route("/admin-or-user/<username>")
