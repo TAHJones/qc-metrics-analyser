@@ -14,9 +14,9 @@
                     {{ dataList.dataList(userRun, "deleteRun") }}
                 </div>
                 {% if page == "delete-run" and admin == True %}
-                    {{ deleteRunForm.deleteRunForm("admin-select-runs", "adminForm") }}
+                    {{ deleteRunForm.deleteRunForm("adminSelectRuns", "adminForm") }}
                 {% elif page == "delete-run" and admin == False %}
-                    {{ deleteRunForm.deleteRunForm("view-user-runs", "userForm") }}
+                    {{ deleteRunForm.deleteRunForm("viewUserRuns", "userForm") }}
                 {% endif %}
             </div>
         </div>
