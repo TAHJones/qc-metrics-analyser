@@ -1,6 +1,8 @@
 {% macro modalImageLink(urlName, imageLinkTitle, imageLinkName, overlayTitle, username) %}
     <h4>{{ imageLinkTitle }}</h4>
-    {% if urlName == "adminSelectRuns" %}
+    {% if urlName == "index" %}
+        <a href="{{ url_for('index', username=username) }}">
+    {% elif urlName == "adminSelectRuns" %}
         <a href="{{ url_for('adminSelectRuns', username=username) }}">
     {% elif urlName == "adminSelectUser" %}
         <a href="{{ url_for('adminSelectUser', username=username) }}">
