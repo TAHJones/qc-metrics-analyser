@@ -63,7 +63,6 @@ def logout(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
-        session.clear()
         return render_template('pages/logout.html',
                                 username=username,
                                 active="logout",
