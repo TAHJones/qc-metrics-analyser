@@ -411,13 +411,13 @@ section {
     margin: 0 0 20px;
 }
 
-.data-list {
+/* .data-list {
 	background-color: aliceblue;
 	padding: 20px 50px 0px;
 	border: 6px #3776b3 solid;
 	margin-bottom: 20px;
 	text-align: center;
-}
+} */
 
 #selectFilteredRunForm > .data-list-title, #selectRunForm > .data-list-title {
     margin-top: 50px;
