@@ -9,28 +9,9 @@
         <div class="row justify-content-center">
             <div class="col-10 col-sm-6 col-md-5 col-lg-4">
                 {{ modalImageLink.modalImageLink("adminSelectRuns", "Manage Runs", "experiment", "Sequencing Runs", username) }}
-                <!-- <h4>Manage Runs</h4>
-                <a href="{{ url_for('adminSelectRuns', username=username) }}">
-                <div class="overlay-container">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/experiment.jpg') }}" alt="experiments">
-                    <div class="overlay">
-                    <div class="overlay-text">Sequencing Runs</div>
-                    </div>
-                </div>
-                </a> -->
             </div>
-
             <div class="col-10 col-sm-6 col-md-5 col-lg-4">
-                {{ modalImageLink.modalImageLink("adminSelectRuns", "Manage Users", "users", "Sequencing Users", username) }}
-                <!-- <h4>Manage Users</h4>
-                <a href="{{ url_for('adminSelectUser', username=username) }}">
-                <div class="overlay-container">
-                    <img class="img-overlay" src="{{ url_for('static', filename='images/users.jpg') }}" alt="users">
-                    <div class="overlay">
-                    <div class="overlay-text">Sequencing Users</div>
-                    </div>
-                </div>
-                </a> -->
+                {{ modalImageLink.modalImageLink("adminSelectUser", "Manage Users", "users", "Sequencing Users", username) }}
             </div>
         </div>
     </section>
