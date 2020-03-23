@@ -5,5 +5,9 @@
         <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
     </form>
     <button form="deleteRunForm" type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRunButton">Delete</button>
-    <a href="/{{ pageName }}" class="btn qc-data-btn">Return</a>
+    {% if pageName == "adminSelectRuns" %}
+        <a href="{{ url_for('adminSelectRuns', username=username) }}">
+    {% elif pageName == "viewUserRuns" %}
+        <a href="{{ url_for('viewUserRuns', username=username) }}">
+    {% endif %}
 {% endmacro %}
