@@ -56,8 +56,8 @@
                     {% include '/components/messages/flash-message.html' %}
                     {{ dataList.dataList(userRun, "userRun") }}
                 </div>
-                <a href="{{ url_for('deleteRun') }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
-                <a href="{{ url_for('updateRun') }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
+                <a href="{{ url_for('deleteRun', username=username) }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
+                <a href="{{ url_for('updateRun', username=username) }}" class="btn qc-data-btn qc-data-btn--update" id="updateRun">Update</a>
                 <a href="{{ url_for('viewUserRuns', username=username) }}" class="btn qc-data-btn">Return</a>
             </div>
         </div>
