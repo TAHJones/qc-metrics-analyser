@@ -394,6 +394,7 @@ def user(username):
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
+        session["admin"] = False
         loggedIn = True
         title = "WELCOME {}".format(username.upper())
         session["title"] = title
