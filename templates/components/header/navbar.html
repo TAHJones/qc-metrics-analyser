@@ -4,11 +4,9 @@
             <img src="{{ url_for('static', filename='images/qc-metrics-analyser-logo.png') }}" alt="logo">
         </a>
     {% elif loggedIn == True and admin == True %}
-        <!-- <a class="member-status admin" href="{{ url_for('adminOrUser', username=username) }}">Admin: <span>{{ username }}</span></a> -->
         <a class="member-status admin" href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i><span>{{ username }}</span></a></li>
     {% elif loggedIn == True and admin == False %}
-        <!-- <div class="member-status user">User: <span>{{ username }}</span></div> -->
-        <a class="member-status user" href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i>{{ username }}</a>
+        <a class="member-status user" href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i><span>{{ username }}</span></a>
     {% endif %}
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
