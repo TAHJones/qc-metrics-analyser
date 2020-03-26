@@ -182,7 +182,7 @@ class Helpers:
             else:
                 formData[k] = v
         if missing:
-            flash(f"Missing fields for {', '.join(missing)}")
+            flash(f"Missing fields for {', '.join(missing)}", "error")
         return formData
 
 
@@ -204,7 +204,7 @@ class Helpers:
             else:
                 formData[k] = int(v)
         if missing:
-            flash(f"Missing fields for {', '.join(missing)}")
+            flash(f"Missing fields for {', '.join(missing)}", "error")
         return formData
 
 
@@ -291,23 +291,27 @@ class Helpers:
     Takes database collection name & username as parameters """
     @staticmethod
     def addUserRun(database, user):
+        addUserMessage = {}
         runList = Helpers.getRunList(database)
         formData = Helpers.getRunFormData("user", "chemistry", "experiment", "comment")
         message = Helpers.checkMetricValues(formData)
         poolNumber = formData["pool"]
         formName = formData["user"]
         if user != formName:
-            message = "Username '{}' is incorrect".format(formName)
+            addUserMessage["messageInfo"] = "Username '{}' is incorrect".format(formName)
+            addUserMessage["messageType"] = "error"
             return message
         elif user == formName:
             for run in runList:
                 if run["pool"] == poolNumber:
-                    message = "Pool_{} already exists, enter a unique number".format(poolNumber)
+                    addUserMessage["messageInfo"] = "Pool_{} already exists, enter a unique number".format(poolNumber)
+                    addUserMessage["messageType"] = "error"
                     return message
             if message == "pass":
                 database.insert_one(formData)
-                message = "Pool_{} has been successfully added".format(poolNumber)
-        return message
+                addUserMessage["messageInfo"] = "Pool_{} has been successfully added".format(poolNumber)
+                addUserMessage["messageType"] = "success"
+        return addUserMessage
 
 
     """ Checks if database query returns empty list. If true it replaces empty 
@@ -316,7 +320,7 @@ class Helpers:
     @staticmethod
     def checkUserRuns(runs):
         if runs == []:
-            flash('No runs of that type were found')
+            flash('No runs of that type were found', 'error')
             runs = [{'run': 0,'pool': 0,'yield': 0,'clusterDensity': 0,'passFilter': 0,'q30': 0}]
         return runs
 
@@ -374,10 +378,12 @@ class Helpers:
                 database.remove({'user': user, 'pool': poolNumber})
             deletedRun["pageLocation"] = "runDeleted"
             deletedRun["message"] = "Pool_{} has been successfully deleted".format(poolNumber)
+            deletedRun["messageType"] = "success"
         elif radio == 'no':
             deletedRun["userRun"] = None
             deletedRun["pageLocation"] = "deleteRunForm"
             deletedRun["message"] = "To delete Pool_{} select 'Yes' then click 'Delete'".format(poolNumber)
+            deletedRun["messageType"] = "error"
         return deletedRun
 
 
@@ -405,11 +411,13 @@ class Helpers:
         if message != "pass":
             updatedRun["message"] = message
             updatedRun["userRun"] = "error"
+            updatedRun["messageType"] = "error"
         else:
             database.update_one({'user': user, 'pool': run}, {'$set': formData})
             message = "Pool_{} has been successfully updated".format(run)
             updatedRun["userRun"] = formData
             updatedRun["message"] = message
+            updatedRun["messageType"] = "success"
         return updatedRun
 
 
@@ -438,6 +446,7 @@ class Helpers:
         userDatabase.update_one({'user': user}, {'$set': userData})
         runDatabase.update_many({'user': user}, {'$set': {'user': formData["user"]}})
         updateUser["message"] = "User account for {} has been successfully updated".format(user)
+        updateUser["messageType"] = "success"
         updateUser["userData"] = userData
         return updateUser
 
@@ -458,10 +467,12 @@ class Helpers:
             deletedUser["userData"] = userData
             deletedUser["pageLocation"] = "userDeleted"
             deletedUser["message"] = "User account for {} has been successfully deleted".format(user)
+            deletedUser["messageType"] = "success"
             userDatabase.remove({'user': user})
             runDatabase.remove({'user': user})
         elif radio == 'no':
             deletedUser["userData"] = None
             deletedUser["pageLocation"] = "deleteUserForm"
             deletedUser["message"] = "To delete user account for {} select 'Yes' then click 'Delete'".format(user)
+            deletedUser["messageType"] = "error"
         return deletedUser
