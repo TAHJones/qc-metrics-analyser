@@ -100,10 +100,8 @@ class Helpers:
         return qcData
 
 
-    """ Mongodb query that gets qc metric data for all user runs or all runs for a selected user.
-    Loops through returned data & divids data for each qc metric into a separate list. 
-    Each list is then added to a single dict which is then returned by the function.
-    Takes the mongodb collection string as a parameter & user as an optional parameter  """
+    """ Mongodb query that gets qc metric data for 
+    all user runs or all runs for a selected user. """
     @staticmethod
     def getLinechartData(database, user="N/A"):
         if user == "N/A":
