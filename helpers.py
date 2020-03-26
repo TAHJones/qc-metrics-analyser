@@ -265,10 +265,8 @@ class Helpers:
             return message
 
 
-    """ Gets form data for new user run & checks data is correct with help of getRunList & checkMetricValues functions.
-    If data is incorrect returns message var which is passed to flash message function.
-    If data is correct adds new run to database and returns message var which is passed to flash message function.
-    Takes database collection name & username as parameters """
+    """ Gets form data for new user run, checks data then 
+    adds new run to database and returns message var. """
     @staticmethod
     def addUserRun(database, user):
         addUserMessage = {}
