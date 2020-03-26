@@ -192,8 +192,8 @@ class Helpers:
         return formData
 
 
-    """ Takes data from formData function & generates database query to select individual run for active user.
-    Takes database collection name & username as parameters """
+    """ Takes data from formData function & generates 
+    database query to fetch data for individual user run """
     @staticmethod
     def getUserRun(database, user="N/A"):
         formData = Helpers.getFormData("poolNumber")
