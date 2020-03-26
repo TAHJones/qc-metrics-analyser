@@ -238,10 +238,7 @@ class Helpers:
         return userRuns
 
 
-    """ Checks qc metric values are within accepted range when a new run is added.
-    Checks each qc metric value in turn & returns a message for the 1st value outside of range.
-    If all values are within accepted range then the message 'pass' is returned
-    Takes data from 'add user run' form as a parameter  """
+    """ Checks qc metric values are within accepted range when a new run is added. """
     @staticmethod
     def checkMetricValues(data):
         if "yield" in data:
