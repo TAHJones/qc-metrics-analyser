@@ -1,10 +1,10 @@
-//let pageLocation = JSON.parse({{ pageLocation|tojson }});
 const userForm = document.getElementById("userFormBg");
 const userRuns = document.getElementById("userRunsBg");
 const userRun = document.getElementById("userRunBg");
 
 /**
-* Function is called by "DOMContentLoaded" event. It hides or displays different sections of the page depending on whether the 'pageLocation' variable passed from the server contains the string 'runDeleted' or 'deleteRunForm'.
+* Function is called by "DOMContentLoaded" event. It hides or displays different sections of the page depending 
+on whether the 'pageLocation' variable passed from the server contains the string 'runDeleted' or 'deleteRunForm'.
 * @param {string} pageSection - pageLocation variable which can be string "userRuns", "userRun" or "userForm".
 */
 function hidePageSection(pageSection){
