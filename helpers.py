@@ -302,10 +302,7 @@ class Helpers:
         return runs
 
 
-    """ Generates list of dropdown options from update run form.
-    dataList parameter is either list of chemistry or experiment catergories.
-    currentSelection parameter is the currently selected catergory item 
-    & is made dropdown list default value. """
+    """ Generates list of dropdown options from update run form. """
     @staticmethod
     def createDropDownList(dataList, currentSelection):
         dropDownList = {}
