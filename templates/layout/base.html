@@ -14,29 +14,20 @@
 
 <body>
     <header>
-        <!--NAVBAR-->
-        {% include '/components/header/navbar.html' %}
-        <!--NAVBAR-END-->
-
-        <!--BANNER-->
-        {% include '/components/header/header-banner.html' %}
-        <!--BANNER-END-->
+    {% include '/layout/header.html' %}
     </header>
 
     <!-- MAIN CONTENT -->
     {% block content %} {% endblock content %}
     <!-- MAIN CONTENT-END -->
 
-    <!--FOOTER-->
     <footer>
-        {% include '/components/footer/footer-banner.html' %}
-        {% include '/components/footer/footer-nav.html' %}
+    {% include '/layout/footer.html' %}
     </footer>
-    <!--FOOTER-END-->
 
     <!--JAVASCRIPT -->
     {% block javascript %} {% endblock javascript %}
-    {% include '/components/js/bootstrap-js.html' %}
+    {% include '/layout/javascript.html' %}
     <!--JAVASCRIPT-END -->
 
 </body>
