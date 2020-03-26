@@ -208,8 +208,7 @@ class Helpers:
 
 
     """ Takes data from getRunFormData function & generates database 
-    query to get data for a selection or all runs for active user.
-    Takes database collection name & username as parameters """
+    query to get data for a selection or all runs for active user. """
     @staticmethod
     def getUserRuns(database, user="N/A"):
         formData = Helpers.getRunFormData("username", "formButton", "chemistry", "experiment")
