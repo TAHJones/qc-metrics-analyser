@@ -76,12 +76,12 @@ def signup():
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     if request.method == "POST":
-        newuser = request.form.get('newUsername')
+        newUser = request.form.get('newUsername')
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == newUser:
                 flash("username {} already exists, please enter a unique username".format(newUser), "error")
                 return redirect(url_for('signup'))                
-        users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
+        users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
         return redirect(url_for('signup'))
     return render_template("pages/auth.html", active="signup", loggedIn=False)
