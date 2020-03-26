@@ -293,8 +293,7 @@ class Helpers:
 
 
     """ Checks if database query returns empty list. If true it replaces empty 
-    list with list containing key:value pairs where all values are zero.
-    Takes results of database query as a function parameter """
+    list with list containing key:value pairs where all values are zero. """
     @staticmethod
     def checkUserRuns(runs):
         if runs == []:
