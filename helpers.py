@@ -401,8 +401,7 @@ class Helpers:
 
 
     """ Gets updated user form data, generates database queries 
-    to update selected user & users runs then returns form data as dict.
-    Takes database user & runs collection names & username as parameters """
+    to update selected user & users runs then returns form data as dict. """
     @staticmethod
     def adminUpdateUser(userDatabase, runDatabase, user):
         updateUser = {}
@@ -420,9 +419,8 @@ class Helpers:
         return updateUser
 
 
-    """  Takes checkbox form data & if value is 'yes' it deletes selected user & slected users runs from database
-    It returns dict of user data key:values pairs where values is 'Deleted', pageLocation & message var
-    Takes database user & runs collection names & username as parameters """
+    """  Takes checkbox form data & if value is 'yes' it deletes 
+    selected user account & selected users runs from database """
     @staticmethod
     def adminDeleteUser(userDatabase, runDatabase, user):
         deletedUser = {}
