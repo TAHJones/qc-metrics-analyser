@@ -327,7 +327,8 @@ class Helpers:
         return dropDownLists
 
 
-    """  Takes checkbox form data & if value is 'yes' it deletes selected run from database """
+    """  Takes checkbox form data & if value is 
+    'yes' it deletes selected run from database """
     @staticmethod
     def deleteUserRun(database, poolNumber, user="N/A"):
         deletedRun = {}
@@ -391,8 +392,7 @@ class Helpers:
 
 
     """ Takes data from getFormData function & generates 
-    database query to get user data for selected user.
-    Takes database collection name as parameters """
+    database query to fetch user data for selected user. """
     @staticmethod
     def adminSelectUser(database):
         formData = Helpers.getFormData()
