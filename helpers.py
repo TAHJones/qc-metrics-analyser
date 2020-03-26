@@ -327,9 +327,7 @@ class Helpers:
         return dropDownLists
 
 
-    """  Takes checkbox form data & if value is 'yes' it deletes selected run from database
-    It returns dict of qc metrics key:values pairs where values is 'Deleted', pageLocation & message var
-    Takes database collection name, pool number & optional username as parameters """
+    """  Takes checkbox form data & if value is 'yes' it deletes selected run from database """
     @staticmethod
     def deleteUserRun(database, poolNumber, user="N/A"):
         deletedRun = {}
