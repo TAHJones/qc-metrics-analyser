@@ -37,8 +37,7 @@ def index():
 @app.route("/pages/login", methods=["GET", "POST"])
 def login():
     """ Log in with username. If username doesn't exist user is prompted to try another username.
-    If user exists & has admin privileges they are directed to 'adminOrUser' page. If user exists
-    & only has user privileges they are directed to 'user' page """
+    If user exists & has admin privileges they are directed to 'adminOrUser' page. Otherwise user is directed to 'user' page """
     if request.method == "POST":
         session.clear()
         username = request.form.get("username")
