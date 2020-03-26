@@ -266,7 +266,7 @@ def deleteRun(username):
                                             pageLocation=json.dumps(pageLocation),
                                             userRun=userRun,
                                             page = "delete-run",
-                                            active="adminSelectUser",
+                                            active="deleteRun",
                                             loggedIn=loggedIn,
                                             admin=session["admin"])
         pageLocation = "deleteRunForm"
