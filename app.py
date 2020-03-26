@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 runs = mongo.db.seqMetCol
 users = mongo.db.users
 
-# @app.route("/logout")
+
 @app.route("/")
 def index():
     """Display summary run data for all users"""
@@ -53,7 +53,7 @@ def login():
             session["admin"] = False
             return redirect(url_for("user", username=session["username"]))
         else:
-            flash("The username '{}' doesn't exist, please try a different username".format(username))
+            flash("The username '{}' doesn't exist, please try a different username".format(username), "error")
     return render_template("pages/auth.html", active="login", loggedIn=False)
 
 
@@ -76,13 +76,13 @@ def signup():
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     if request.method == "POST":
-        for user in users.find({}, {'user': 1, '_id': 0}):
-            if user.get('user') == request.form.get("newUsername"):
-                flash("username already exists, please enter a unique username")
-                return redirect(url_for('signup'))                
         newuser = request.form.get('newUsername')
+        for user in users.find({}, {'user': 1, '_id': 0}):
+            if user.get('user') == newUser:
+                flash("username {} already exists, please enter a unique username".format(newUser), "error")
+                return redirect(url_for('signup'))                
         users.insert_one({'user':newuser, 'member':'user', 'joined':{'date':date, 'time':time}})
-        flash("congratulations your username has been added to the database")
+        flash("congratulations {}, your username has been added to the database".format(newUser), "success")
         return redirect(url_for('signup'))
     return render_template("pages/auth.html", active="signup", loggedIn=False)
 
@@ -191,8 +191,9 @@ def updateRun(username):
                 updatedRun = Helpers.updateUserRun(runs, existingPoolNumber, username)
             userRun = [updatedRun["userRun"]]
             message = updatedRun["message"]
+            messageType = updatedRun["messageType"]
             if userRun[0] == "error":
-                flash(message)
+                flash(message, messageType)
                 userRun = session["userRun"]
                 return render_template("pages/update-run.html",
                                         username=username,
@@ -206,7 +207,7 @@ def updateRun(username):
                                         loggedIn=loggedIn,
                                         admin=session["admin"])
             else:
-                flash(message)
+                flash(message, messageType)
                 session["userRun"] = userRun
                 newChemistry = userRun[0]["chemistry"]
                 newExperiment = userRun[0]["experiment"]
@@ -256,7 +257,8 @@ def deleteRun(username):
                 if userRun == None:
                     userRun=session["userRun"]                
             message = deletedRun["message"]
-            flash(message)
+            messageType = deletedRun["messageType"]
+            flash(message, messageType)
             pageLocation = deletedRun["pageLocation"]
             return render_template("pages/delete-run.html",
                                             username=username,
@@ -329,7 +331,8 @@ def adminUpdateUser(username):
             userData = updateUser["userData"]
             selectedUserName = userData["user"]
             message = updateUser["message"]
-            flash(message)
+            messageType = updateUser["messageType"]
+            flash(message, messageType)
             selectedUser = [userData]
             session["selectedUser"] = selectedUser
             session["selectedUserName"] = selectedUserName
@@ -366,7 +369,8 @@ def adminDeleteUser(username):
             else:
                 selectedUser = [userData]
             message = deletedUser["message"]
-            flash(message)
+            messageType = deletedUser["messageType"]
+            flash(message, messageType)
             pageLocation = deletedUser["pageLocation"]
             return render_template("pages/admin-delete-user.html",
                                         username=username,
@@ -465,8 +469,10 @@ def addUserRun(username):
         loggedIn = True
         username = session["username"]
         if request.method == "POST":
-            message = Helpers.addUserRun(runs, username)
-            flash(message)
+            addUserMessage = Helpers.addUserRun(runs, username)
+            message = addUserMessage["messageInfo"]
+            messageType = addUserMessage["messageType"]
+            flash(message, messageType)
             return redirect(url_for("addUserRun", username=username, title=session["title"]))
         return render_template("pages/add-user-run.html",
                                 username=username,
