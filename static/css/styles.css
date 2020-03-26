@@ -459,19 +459,24 @@ input[type="radio"] {
 	background-color: #c2e390;
 	border: solid 4px green;
 	border-radius: 4px;
+	font-size: 18px;
+	font-weight: bold;
 	margin: 0 auto 50px;
 	padding: 20px;
 	text-align: center;
 	width: 95%;
 }
 
-.flashes > li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+.alert-success {
+	background-color: #c2e390;
+	border: solid 4px green;
 	color: green;
-	font-size: 18px;
-	font-weight: bold;
+}
+
+.alert-error {
+	background-color: #f0baad;
+	border: solid 4px #dc3545;
+	color: #dc3545;
 }
 
 .qc-data-list > ul {
