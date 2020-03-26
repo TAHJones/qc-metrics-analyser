@@ -357,9 +357,8 @@ class Helpers:
         return deletedRun
 
 
-    """ Gets updated form data & validates it. If incorrect an error message is returned. 
-    If all data is correct it adds updated run to database & returns form data as dict.
-    Takes database collection name, pool number & optional username as parameters """
+    """ Gets updated form data, validates it, then adds 
+    updated run to database & returns form data as dict. """
     @staticmethod
     def updateUserRun(database, run, user):
         updatedRun = {}
