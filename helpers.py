@@ -316,9 +316,7 @@ class Helpers:
         return dropDownList
 
 
-    """ Generates dropdown lists for chemistry & experiment catergories.
-    Uses createDropDownList function to create lists & adds to dropDownLists dict.
-    Takes currently selected chemistry & experiment catergories as parameters  """
+    """ Generates dropdown lists for chemistry & experiment catergories. """
     @staticmethod
     def getDropDownLists(selectedChemistry, selectedExperiment):
         dropDownLists = {}
