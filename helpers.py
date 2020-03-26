@@ -2,8 +2,7 @@ from flask import request, flash
 
 
 class Helpers:
-    """ Gets the number of each catergory for 'experiment' or 'chemistry' data types. 
-    Can be for a single user or for all users if no user parameter is given.
+    """ Gets the number of each catergory for 'experiment' or 'chemistry' data types.
     'Experiment' catergories are 'Genome', 'Exome' or 'Capture'.
     'Chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
     @staticmethod
@@ -19,9 +18,8 @@ class Helpers:
         return dataCount
 
 
-    """ Mongodb query that gets the min, max & average values for data that matchs the parameter 'param'.
-    The query can be for a selected user or for all users if no user parameter is given.
-    'param' parameter should be 'yields', 'clusterDensity', 'passFilter' or 'q30'. """
+    """ Gets the min, max & average values for data that matchs the parameter 'param'.
+    'param' parameter can be 'yields', 'clusterDensity', 'passFilter' or 'q30'. """
     @staticmethod
     def getDataSummary(database, param, user="N/A"):
         dollarParam = "${}".format(param)
@@ -46,9 +44,8 @@ class Helpers:
         return myresult
 
 
-    """ Take nested list of experiment types & catergory names & uses a nested loop to feed them into getDataCount function.
-    Takes the mongodb connect string as a parameter & user as an optional parameter which are passed to the getDataCount function.
-    Returns a dict object containing the number for each catergory for each experiment type """
+    """ Take nested list of experiment types & catergory names & uses 
+    a nested loop to feed them into getDataCount function. """
     @staticmethod
     def getExperimentData(database, user="N/A"):
         experiments = {"chemistry": ["Mid300", "Mid150", "High300"], "experiment": ["Genome", "Exome", "Capture"]}
