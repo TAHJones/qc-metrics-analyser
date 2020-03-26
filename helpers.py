@@ -156,11 +156,7 @@ class Helpers:
         return userList
 
 
-    """ Gets form data from post request & adds to req var.
-    Loops through req adding each key:value pair to formData dict.
-    Checks if values are missing & sends list of missing values to flash message.
-    Checks optional parameters 'intArgs' against values from form, 
-    matching values are converted to integers, all other form values remain as strings """
+    """ Gets form data from post request & returns data as formData dict"""
     @staticmethod
     def getFormData(*intArgs):
         formData = {}
