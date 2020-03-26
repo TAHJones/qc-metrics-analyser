@@ -2,10 +2,10 @@ from flask import request, flash
 
 
 class Helpers:
-    """ Mongodb query that counts the number incidences of each catergory for a given data type for a selected user or for all users if no user parameter is given.
-    Data types can either be 'experiment' or 'chemistry'. 
-    For the data type 'experiment' catergories are 'Genome', 'Exome' or 'Capture'.
-    For the data type 'chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
+    """ Gets the number of each catergory for 'experiment' or 'chemistry' data types. 
+    Can be for a single user or for all users if no user parameter is given.
+    'Experiment' catergories are 'Genome', 'Exome' or 'Capture'.
+    'Chemistry' catergories are 'Mid300', 'Mid150' or 'High300'. """
     @staticmethod
     def getDataCount(database, dataType, dataCatergory, user="N/A"):
         singleUser = {'$match': {dataType: dataCatergory}}
