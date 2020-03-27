@@ -34,7 +34,7 @@ def index():
                             loggedIn=False)
 
 
-@app.route("/pages/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """ Log in with username. If username doesn't exist user is prompted to try another username.
     If user exists & has admin privileges they are directed to 'adminOrUser' page. Otherwise user is directed to 'user' page """
@@ -52,8 +52,9 @@ def login():
             session["admin"] = False
             return redirect(url_for("user", username=session["username"]))
         else:
-            flash("The username '{}' doesn't exist, please try a different username".format(username), "error")
-    return render_template("pages/auth.html", active="login", loggedIn=False)
+            flash("Username '{}' not found, please try a different username or sign up".format(username), "error")
+            return render_template("pages/auth.html", active="login", loggedIn=False, loginFail=True)
+    return render_template("pages/auth.html", active="login", loggedIn=False, loginFail=False)
 
 
 @app.route("/logout/<username>")
@@ -78,12 +79,13 @@ def signup():
         newUser = request.form.get('newUsername')
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == newUser:
-                flash("username {} already exists, please enter a unique username".format(newUser), "error")
-                return redirect(url_for('signup'))                
+                flash("username {} already exists, enter a unique username or login".format(newUser), "error")
+                # return redirect(url_for('signup', active="signup", loggedIn=False, loginFail=True))                
+                return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=True)
         users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
-        return redirect(url_for('signup'))
-    return render_template("pages/auth.html", active="signup", loggedIn=False)
+        return redirect(url_for('signup', active="signup", loggedIn=False, loginFail=False))
+    return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
 
 
 @app.route("/admin-or-user/<username>")
