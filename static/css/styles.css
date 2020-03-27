@@ -195,11 +195,13 @@ section {
 	transition: all .5s ease-in-out;
 }
 
-.nav-item > .nav-link.signup-btn {
+.nav-item > .nav-link.signup-btn,
+.qc-data-btn.signup-btn {
     background-color: #28a745;
 }
 
-.nav-item > .nav-link.signup-btn:hover {
+.nav-item > .nav-link.signup-btn:hover,
+.qc-data-btn.signup-btn:hover {
     background-color: #218838;
 }
 
