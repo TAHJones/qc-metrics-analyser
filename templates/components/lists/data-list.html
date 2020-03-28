@@ -33,5 +33,13 @@
             <li>Chemistry: <span>{{ data.chemistry }}</span></li>
         </ul>
         {% endfor %}
+    {% elif dataType == "selectedUser" %}
+        {% for data in dataList %}
+        <ul class="user-run">
+            <li>Membership: <span>{{ data.member|capitalize }}</span></li>
+            <li>Date Joined: <span>{{ data.joined.date }}</span></li>
+            <li>Time Joined: <span>{{ data.joined.time }}</span></li>
+        </ul>
+        {% endfor %}
     {% endif %}
 {% endmacro %}
