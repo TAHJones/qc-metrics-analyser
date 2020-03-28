@@ -2,6 +2,7 @@
 
 {% block content %}
 {% import "components/forms/data-list-form.html" as dataListForm %}
+{% import "components/lists/data-list.html" as dataList %}
 
     <!-- SELECT-USER -->
     <section class="container" id="userFormBg">
@@ -21,13 +22,7 @@
             <div class="col-11 col-sm-8 col-md-6 col-lg-4">
                 <div class="data-list">
                     <h4 class="data-list-title">User: {{ selectedUserName }}</h4> 
-                    {% for data in selectedUser %}
-                    <ul class="user-run">
-                        <li>Membership: <span>{{ data.member|capitalize }}</span></li>
-                        <li>Date Joined: <span>{{ data.joined.date }}</span></li>
-                        <li>Time Joined: <span>{{ data.joined.time }}</span></li>
-                    </ul>
-                    {% endfor %}
+                    {{ dataList.dataList(selectedUser, "selectedUser") }}
                 </div>
     
                 <a href="{{ url_for('adminDeleteUser', username=username) }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRun">Delete</a>
