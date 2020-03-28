@@ -1,0 +1,32 @@
+{% macro updateUserForm(dataList, username) %}
+    <form method="POST">
+        <div class="row">
+            {% for data in dataList %}
+            <div class="form-group col-6 floating-label-form-group controls">
+                <label>Name</label>
+                <input type="text" class="form-control" value="{{ data.user }}" placeholder="{{ data.user }}" name="user" id="user" required data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group col-6 floating-label-form-group controls">
+                <label>Membership</label>
+                <input type="text" class="form-control" value="{{ data.member }}" placeholder="{{ data.member }}" name="member" id="member" required data-validation-required-message="Please enter pool number.">
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group col-6 floating-label-form-group controls">
+                <label>Date joined</label>
+                <input type="text" class="form-control" value="{{ data.joined.date }}" placeholder="{{ data.joined.date }}" name="date" id="date" required data-validation-required-message="Please enter run yield.">
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group col-6 floating-label-form-group controls">
+                <label>Time Joined</label>
+                <input type="text" class="form-control" value="{{ data.joined.time }}" placeholder="{{ data.joined.time }}" name="time" id="time" required data-validation-required-message="Please enter cluster density.">
+                <p class="help-block text-danger"></p>
+            </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
+                <a href="{{ url_for('adminSelectUser', username=username) }}" class="btn qc-data-btn">Return</a>
+            </div>
+        </div>
+    </form>
+{% endmacro %}
