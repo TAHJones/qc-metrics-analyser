@@ -1,5 +1,7 @@
 {% extends 'layout/base.html' %}
+
 {% block content %}
+{% import "components/forms/update-user-form.html" as updateUserForm %}
 
     <!-- UPDATE-DATA -->
     <section class="container">
@@ -7,37 +9,7 @@
             <div class="col-12 col-md-10 col-lg-8">
                 {% include '/components/messages/flash-message.html' %}
                 <h4 class="data-list-title">Update Pool {{ existingPoolNumber }}</h4> 
-                <form method="POST">
-                    <div class="row">
-                        {% for user in selectedUser %}
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Name</label>
-                            <input type="text" class="form-control" value="{{ user.user }}" placeholder="{{ user.user }}" name="user" id="user" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Membership</label>
-                            <input type="text" class="form-control" value="{{ user.member }}" placeholder="{{ user.member }}" name="member" id="member" required data-validation-required-message="Please enter pool number.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Date joined</label>
-                            <input type="text" class="form-control" value="{{ user.joined.date }}" placeholder="{{ user.joined.date }}" name="date" id="date" required data-validation-required-message="Please enter run yield.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group col-6 floating-label-form-group controls">
-                            <label>Time Joined</label>
-                            <input type="text" class="form-control" value="{{ user.joined.time }}" placeholder="{{ user.joined.time }}" name="time" id="time" required data-validation-required-message="Please enter cluster density.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
-                            <a href="{{ url_for('adminSelectUser', username=username) }}" class="btn qc-data-btn">Return</a>
-                        </div>
-                    </div>
-                </form>                
-
+                {{ updateUserForm.updateUserForm(selectedUser, username) }}
             </div>
         </div>
     </section>
