@@ -1,5 +1,7 @@
 {% extends 'layout/base.html' %}
+
 {% block content %}
+{% import "components/lists/data-list.html" as dataList %}
 
     <!-- DELETE-USER -->
     <section class="container" id="viewUserBg">
@@ -8,13 +10,7 @@
                 {% include '/components/messages/flash-message.html' %}
                 <div class="data-list">
                     <h4 class="data-list-title delete-user">User: {{ selectedUserName }}</h4> 
-                    {% for data in selectedUser %}
-                    <ul id="deleteUserList" class="user-run">
-                        <li>Membership: <span>{{ data.member|capitalize }}</span></li>
-                        <li>Date Joined: <span>{{ data.joined.date }}</span></li>
-                        <li>Time Joined: <span>{{ data.joined.time }}</span></li>
-                    </ul>
-                    {% endfor %}
+                    <div id="deleteUserList">{{ dataList.dataList(selectedUser, "selectedUser") }}</div>
                 </div>
                 <form method="POST" id="deleteUserForm">
                     <h4 class="data-list-title delete-user">Delete User: </h4> 
