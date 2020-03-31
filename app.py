@@ -38,6 +38,7 @@ def index():
 def login():
     """ Log in with username. If username doesn't exist user is prompted to try another username.
     If user exists & has admin privileges they are directed to 'adminOrUser' page. Otherwise user is directed to 'user' page """
+    session.clear()
     if request.method == "POST":
         session.clear()
         username = request.form.get("username")
@@ -73,6 +74,7 @@ def logout(username):
 def signup():
     """ Add new user to database. Check if username exists, if it does then user is prompted
     to try another username. If username doesn't exist add to database """
+    session.clear()
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     if request.method == "POST":
@@ -80,7 +82,6 @@ def signup():
         for user in users.find({}, {'user': 1, '_id': 0}):
             if user.get('user') == newUser:
                 flash("username {} already exists, enter a unique username or login".format(newUser), "error")
-                # return redirect(url_for('signup', active="signup", loggedIn=False, loginFail=True))                
                 return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=True)
         users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
