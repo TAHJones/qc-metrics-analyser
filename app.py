@@ -106,6 +106,39 @@ def adminOrUser(username):
                                 admin=session["admin"])
 
 
+@app.route("/admin/login/<username>", methods=["GET", "POST"])
+def adminLogin(username):
+    """ admin page for removing & updating user & sequencing run data """
+    if username != session["username"]:
+        return redirect(url_for('permissionDenied'))
+    else:
+        loggedIn = True
+        if request.method == "POST":
+            req = request.form
+            email = req.get("email")
+            for user in users.find({}, {'user': 1, 'email': 1, '_id': 0}):
+                if user.get("user") == username and user.get("email") == email :
+                    return redirect(url_for("admin",
+                                    title=session["title"],
+                                    username=username,
+                                    active="admin",
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"]))
+            flash("email '{}' is incorrect, please enter correct address".format(email), "error")
+            return redirect(url_for("adminLogin",
+                                    title=session["title"],
+                                    username=username,
+                                    active="adminLogin",
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"]))
+        return render_template("/pages/auth.html",
+                                title=session["title"],
+                                username=username,
+                                active="adminLogin",
+                                loggedIn=loggedIn,
+                                admin=session["admin"])
+
+
 @app.route("/admin/<username>")
 def admin(username):
     """ admin page for removing & updating user & sequencing run data """
