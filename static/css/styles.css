@@ -410,6 +410,7 @@ label {
 
 .form-control {
     font-size: 1.4rem;
+    height: 3.6rem;
 }
 
 /* FORMS-END */
@@ -699,9 +700,10 @@ label {
         font-size: 16px;
     }
 
-    .form-control {
-        font-size: 16px;
-    }
+.form-control {
+	font-size: 16px;
+	height: 3.9rem;
+}
 
 /* FORMS-END */
 
