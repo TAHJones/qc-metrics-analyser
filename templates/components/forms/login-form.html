@@ -1,16 +1,20 @@
-{% macro loginForm(title, name, placeholder, button) %}
+{% macro loginForm(title, name, placeholder, form) %}
     <h3 id="auth-form">{{ title }}</h3>
     <form method="POST">
         <div class="row">
             <div class="form-group col-8 floating-label-form-group controls">
-                <input type="text" class="form-control" name="{{ name }}" id="{{ name }}" placeholder="{{ placeholder }}">
+                {% if form == "login" or form == "signup" %}
+                    <input type="text" class="form-control" name="{{ name }}" id="{{ name }}" placeholder="{{ placeholder }}">
+                {% elif form == "adminLogin" %}
+                    <input type ="email" class="form-control" name="{{ name }}" id="{{ name }}" placeholder="{{ placeholder }}">
+                {% endif %}
                 <p class="help-block text-danger"></p>
             </div>
             <div id="success"></div>
             <div class="form-group floating-label-form-group controls">
-                {% if button == "login" %}
+                {% if form == "login" or form == "adminLogin" %}
                     <button type="submit" class="btn qc-data-btn">Login</button>
-                {% elif button == "signup" %}
+                {% elif form == "signup" %}
                     <button type="submit" class="btn qc-data-btn signup-btn">Sign Up</button>
                 {% endif %}
             </div>
