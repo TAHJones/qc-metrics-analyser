@@ -11,6 +11,8 @@
                     {{ loginForm.loginForm("Enter Username:", "username", "enter a username", "login") }}
                 {% elif active == "signup" %}
                     {{ loginForm.loginForm("Select Username:", "newUsername", "select a username", "signup") }}
+                {% elif active == "adminLogin" %}
+                    {{ loginForm.loginForm("Enter Email:", "email", "enter email address", "adminLogin") }}
                 {% endif %}
                 {% if loginFail == True and active == "signup" %}
                     <a class="btn qc-data-btn" href="{{ url_for('login') }}">Login</a>
