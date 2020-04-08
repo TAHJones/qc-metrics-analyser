@@ -6,8 +6,8 @@
         <a href="{{ url_for('adminSelectRuns', username=username) }}">
     {% elif urlName == "adminSelectUser" %}
         <a href="{{ url_for('adminSelectUser', username=username) }}">
-    {% elif urlName == "admin" %}
-        <a href="{{ url_for('admin', username=username) }}">
+    {% elif urlName == "adminLogin" %}
+        <a href="{{ url_for('adminLogin', username=username) }}">
     {% elif urlName == "user" %}
         <a href="{{ url_for('user', username=username) }}">
     {% endif %}
