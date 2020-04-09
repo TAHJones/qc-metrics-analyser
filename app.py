@@ -520,7 +520,13 @@ def addUserRun(username):
 @app.route("/permission-denied")
 def permissionDenied():
     """ Displayed if username url var doesn't match session username var """
-    return render_template("pages/permission-denied.html")
+    return render_template("pages/permission-denied.html", active="errorPage", loggedIn=False)
+
+
+@app.errorhandler(404) 
+def pageNotFound(e): 
+    """ Displays custom 404 page if url isn't recognised """ 
+    return render_template("pages/404.html", active="errorPage", loggedIn=False) 
 
 
 if __name__ == "__main__":
