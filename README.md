@@ -18,19 +18,19 @@ Each NGS sequencing run generates a set of 'Sequencing Metrics' which can be use
 
 The website records and displays four types of QC metric data:
 
-Yield
+1. Yield - Shows the expected number of nucleotide bases sequenced for the run. Typically this is measured in gigabases.
 
-Cluster Density
+2. Cluster Density - Shows the number of clusters detected for the sequencing run.
 
-Clusters Passing Filter
+3. Clusters Passing Filter - Shows the percentage of clusters passing the signal purity filter.
 
-Q30 Score
+4. Q30 Score  - Shows the percentage of bases that have a Q-score above or equal to 30; Q30 is a probability of incorrect base calling of 1 in 1000. A quality score, or Q-score, is a prediction of the probability of an incorrect base call. A higher Q-score implies that a base call is higher quality and more likely to be correct.
 
 In addition the website records the following related run information:
 
-Sequencing Chemistry
+1. Sequencing Chemistry - The type of chemistry used can be Mid150, Mid300 or High300. This effects the amount of sequencing that can be performed and therefore the expected yield.
 
-Sequencing Experiment
+2. Sequencing Experiment - The type of experiment performed can be Capture, Exome or Genome. This determines the amount of sequencing required and effects the type of chemistry used and therefore the expected yield.
 
 
 ## UX
@@ -90,3 +90,72 @@ Mobile Layout:
 <br>
 
 On mobile layout each modal image-links to stacked individually on top of each other. The navbar changes into a collapsible dropdown menu which is displayed by clicking the hamburger icon.
+
+
+
+
+
+## Technologies Used
+
+- HTML
+- CSS
+- Javascript
+- [Bootstrap](https://getbootstrap.com/docs/)
+- [Chart.js](https://www.chartjs.org/)
+- [mongoDB](https://www.mongodb.com/)
+- Python
+- [Flask](https://palletsprojects.com/p/flask/)
+- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+
+## Testing
+
+Information regarding testing can be found in separate [testing.md](https://github.com/TAHJones/qc-metrics-analyser/tree/master/testing/testing.md) file.
+
+## Deployment
+
+To deploy Avengers Top Trumps to GitHub Pages from its [GitHub repository](https://github.com/TAHJones/avengers-top-trumps) do the following:
+
+1. Log into GitHub.
+2. From the list of repositories on the screen, select **avengers-top-trumps**.
+3. Alternatively select **Repositories** from the menu items at the top of the page, then select **avengers-top-trumps**.
+4. From the menu items at the top of the page, select **Settings**.
+5. Scroll down to the **GitHub Pages** section.
+6. Under **Source** click on the drop-down menu and select **Master Branch**.
+7. On selecting Master Branch the page is automatically refreshed, Avengers Top Trumps is now deployed.
+8. In the **GitHub Pages** section the URL for the deployed website will now be available.
+
+To clone Avengers Top Trumps from its [GitHub repository](https://github.com/TAHJones/avengers-top-trumps) and run on your local environment do the following:
+
+1. Follow this link to the Avengers Top Trumps [GitHub repository](https://github.com/TAHJones/avengers-top-trumps).
+2. Under the repository name, click "Clone or download".
+3. In the **Clone with HTTPs** pop up window, copy the URL address for the Avengers Top Trumps repository.
+4. In your local IDE open your preferred terminal.
+5. Navigate to the location where the cloned repository will be downloaded.
+6. Type ```git clone``` followed by the Avengers Top Trumps URL address as follows:
+
+```
+git clone https://github.com/TAHJones/avengers-top-trumps
+```
+
+7. Press Enter and the cloned repository will be created.
+
+## Credits
+
+### Content
+
+Data used during the creation of this site was artifical so as not to breach NHS information governance rules.
+
+### Media
+
+Images were obtained from:
+- [Vecteezy](https://www.vecteezy.com/)
+
+Images were edited using [GIMP](https://www.gimp.org/).
+
+The color scheme was inspired by the NHS logo. It is intended to create a cool scientific / clinical feel.
+
+## Acknowledgements
+
+- The project is inspired by the site creators day job, where he saw a need for an easy way for sequencing users to record, organise and review the qc data generated for NGS sequencing runs.
+
+- Special thanks to my Code Institute Mentor [Simen Daehlin](https://github.com/eventyret) for his coding expertise, patience and generosity with his time.
