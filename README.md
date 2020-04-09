@@ -63,7 +63,7 @@ User requirements for QC Metrics Analyser are:
 
 ### Wireframes
 
-Wireframes for this project were created using [Balsamiq](https://balsamiq.com/) and can be found [here](https://github.com/TAHJones/avengers-top-trumps/tree/master/wireframes).
+Wireframes for this project were created using [Balsamiq](https://balsamiq.com/) and can be found [here](https://github.com/TAHJones/qc-metrics-analyser/tree/master/wireframes).
 
 #### Site Layout on Desktop, Tablet & Mobile Devices
 
