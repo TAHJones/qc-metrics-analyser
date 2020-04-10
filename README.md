@@ -92,8 +92,66 @@ Mobile Layout:
 On mobile layout each modal image-links to stacked individually on top of each other. The navbar changes into a collapsible dropdown menu which is displayed by clicking the hamburger icon.
 
 
+### How to Use the QC Metrics Analyser Website
 
+#### Using the Site as an Unregistered User
 
+##### Step 1 - Viewing Sequencing Run QC Data
+On the homepage unregistered users can see an overview of qc metric data by clicking on one of the six modal image-links on the page. A line-chart for yield, cluster density, clusters passing filter and Q30 score can be displayed by clicking on one of the four modal image-links in the 'Sequencing Run Metrics' section. A pie-chart for sequencing chemistry or sequencing experiment can be displayed by clicking on one of the two modal image-links in the 'Other Sequencing Metrics' section.
+
+##### Step2 - Creating a User Account
+Unregistered users can access the sign-up page by clicking on the green 'Sign Up' button located on the right of the header or footer navbar. On the sign-up page unregistered users can create an account by entering a unique username into the sign up form then clicking on the green 'Sign Up' form button. If the selected username already exists the following warning message will be displayed; "username 'selected username' already exists, enter a unique username or login".
+
+#### Using the Site as a Registered User
+
+##### Step 1 - Logging into a User Account
+On the homepage registered users can access the log-in page by clicking on the blue 'Login' button located on the right of the header or footer navbar. On the log-in page registered users can access their account by entering their unique username into the login form on the login page. When successfully logged in the user is directed to the user homepage.
+
+##### Step 2 - Viewing User Run QC Data
+On the user homepage registered users can see an overview of their own qc metric data by clicking on one of the six modal image-links on the page. A line-chart for yield, cluster density, clusters passing filter and Q30 score can be displayed by clicking on one of the four modal image-links in the 'Sequencing Run Metrics' section. A pie-chart for sequencing chemistry or sequencing experiment can be displayed by clicking on one of the two modal image-links in the 'Other Sequencing Metrics' section.
+
+##### Step 3 - Adding New Run QC Data
+Once successfully logged in the user can add a new sequencing run data by clicking on the 'Add Run' link If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.. On the add-run page the user can add new run data into the Add-New-Run form and submit it to the database by clicking on the yellow 'Add Run' form button. If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
+
+##### Step 4 - Managing Existing User Run QC Data
+Once successfully logged in the user can manage their existing run qc data by clicking on the 'Manage Runs' link located on the header or footer navbar.
+
+1. Selecting a Run - On the manage-runs page the user can either select an individual run directly from the dropdown menu then click on the blue 'Select' button or filter a group of runs using the series of dropdown menus provided then click on the blue 'Filter Runs' button. If  If the user chooses to filter run data then a filtered list of runs will be displayed. The user must then select one run from the list using the dropdown list provided.
+
+2. Viewing Selected Run - Once an individual run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The user will now have the option to delete or update the selected run.
+
+3. Deleting Selected Run - Once an individual run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once the user has selected 'yes' they can delete the run from the database by clicking on the red 'Delete' button. If the user clicks on the 'Delete' button without slecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
+
+4. Updating Selected Run - Once an individual run has been selected click on the yellow 'Update' button that appears at the bottom of the page. On the update-run page the selected run data is displayed in the update-run form. The data in each form field can be edited and these changes can be saved to the database by clicking on the yellow 'Update' button beneath the form. Once the run has been successfully updated the following message will be displayed; "Pool_XXX has been successfully updated". If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
+
+##### Step 5 - Ending User Session
+When the user wants to end their session they can click on the blue 'Logout' button located on the right of the header or footer navbar. This directs the user to the logout page which informs the user that they have successfully logged out and provides a link to return to the sites main homepage.
+
+#### Using the Site as a Registered User with Admin Privileges
+
+##### Step 1 - Logging into an Admin Account
+On the homepage registered users can access the log-in page by clicking on the blue 'Login' button located on the right of the header or footer navbar. On the log-in page registered users can access their account by entering their unique username into the login form on the login page. If the user has admin privileges they are directed to the admin-or-user page where they can choose to continue as either a regular user or as an admin-user. If the later option is chosen then the user is prompted to provide their email address as further confirmation of their identity. Once successfully logged the admin-user is directed to the admin page where they can choose to manage user run data or manage user accounts.
+
+##### Step 2 - Managing User Run Data as Admin-User
+1. Selecting a User Run - On the manage-user-runs page the admin user can either select all the runs for an individual user by using the default filter run settings and then selecting a user from the dropdown menu. Alternatively they can adjust the filter run settings to select the type of runs displayed, then select a user from the dropdown menu. Once the appropriate settings have been made the run data can be displayed by clicking on the blue 'Select' button. The admin-user must then select one run from the list using the dropdown list provided and clicking on the blue 'Select' button.
+
+2. Viewing Selected User Run - Once an individual user run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The admin-user will now have the option to delete or update the selected run.
+
+3. Deleting Selected Run - Once an individual user run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected user run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once 'yes' has been selected the run can be deleted from the database by clicking on the red 'Delete' button. If the 'Delete' button is clicked without selecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
+
+4. Updating Selected User Run - Once an individual user run has been selected click on the yellow 'Update' button that appears at the bottom of the page. On the update-run page the selected user run data is displayed in the update-run form. The data in each form field can be edited and these changes can be saved to the database by clicking on the yellow 'Update' button beneath the form. Once the run has been successfully updated the following message will be displayed; "Pool_XXX has been successfully updated". If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
+
+##### Step 3 - Managing User Accounts as Admin-User
+1. Selecting a User Account - On the select-user page the admin user can select a user account by selecting a username from the dropdown menu then clicking on the blue 'select' button.
+
+2. Viewing Selected User Account - Once an individual user account has been selected the users name, membership status, date joined and time joined are displayed on the page. The admin-user will now have the option to delete or update the selected user account.
+
+3. Deleting Selected User Account - Once a user account has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-user page the selected user run is displayed as a list along with a yes/no check box to confirm the deletion of the user. Once 'yes' has been selected the user can be deleted from the database by clicking on the red 'Delete' button. If the 'Delete' button is clicked without selecting the 'yes' checkbox first the following message is displayed; "To delete user account for 'selected user' select Yes then click Delete". Once the user has been successfully deleted the following message will be displayed; "User account for 'selected user' has been successfully deleted".
+
+4. Updating Selected User Account - Once an individual user account has been selected click on the yellow 'Update' button that appears at the bottom of the page. On the update-run page the selected user information is displayed in the update-run form. The data in each form field can be edited and these changes can be saved to the database by clicking on the yellow 'Update' button beneath the form. Once the user information has been successfully updated the following message will be displayed; "User account for 'selected user' has been successfully updated". If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
+
+##### Step 4 - Ending Admin-User Session
+When the admin-user wants to end their session they can click on the blue 'Logout' button located on the right of the header or footer navbar. This directs the admin-user to the logout page which informs the user that they have successfully logged out and provides a link to return to the sites main homepage.
 
 ## Technologies Used
 
@@ -113,31 +171,7 @@ Information regarding testing can be found in separate [testing.md](https://gith
 
 ## Deployment
 
-To deploy Avengers Top Trumps to GitHub Pages from its [GitHub repository](https://github.com/TAHJones/avengers-top-trumps) do the following:
-
-1. Log into GitHub.
-2. From the list of repositories on the screen, select **avengers-top-trumps**.
-3. Alternatively select **Repositories** from the menu items at the top of the page, then select **avengers-top-trumps**.
-4. From the menu items at the top of the page, select **Settings**.
-5. Scroll down to the **GitHub Pages** section.
-6. Under **Source** click on the drop-down menu and select **Master Branch**.
-7. On selecting Master Branch the page is automatically refreshed, Avengers Top Trumps is now deployed.
-8. In the **GitHub Pages** section the URL for the deployed website will now be available.
-
-To clone Avengers Top Trumps from its [GitHub repository](https://github.com/TAHJones/avengers-top-trumps) and run on your local environment do the following:
-
-1. Follow this link to the Avengers Top Trumps [GitHub repository](https://github.com/TAHJones/avengers-top-trumps).
-2. Under the repository name, click "Clone or download".
-3. In the **Clone with HTTPs** pop up window, copy the URL address for the Avengers Top Trumps repository.
-4. In your local IDE open your preferred terminal.
-5. Navigate to the location where the cloned repository will be downloaded.
-6. Type ```git clone``` followed by the Avengers Top Trumps URL address as follows:
-
-```
-git clone https://github.com/TAHJones/avengers-top-trumps
-```
-
-7. Press Enter and the cloned repository will be created.
+Still to be added...
 
 ## Credits
 
