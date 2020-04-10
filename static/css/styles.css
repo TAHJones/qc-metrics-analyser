@@ -72,8 +72,6 @@ section {
 .navbar {
     background-image: none;
     background-color: #222;
-    border-color: #222;
-    border-bottom-color: blue;
     margin-bottom: 0;
     padding: 2rem 0;
     position: relative;
@@ -88,7 +86,7 @@ section {
 
 .member-status {
 	background-color: #000;
-	border: #ffffff80 solid 4px;
+	border: rgba(255, 255, 255, 0.5)  solid 4px;
 	border-radius: 3px;
 	font-size: 1.4rem;
 	margin-left: 1rem;
@@ -100,7 +98,7 @@ section {
 }
 
 .member-status.admin {
-	color: red;
+	color: #f00;
 }
 
 .member-status:hover {
@@ -426,7 +424,7 @@ label {
 }
 
 .deleted > li > span {
-    color: red;
+    color: #f00;
     font-weight: 700;
     margin-left: 5px;
 }
@@ -487,7 +485,7 @@ label {
 }
 
 .footer-nav ul > li > a:hover {
-    color: #ffffffb3;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
 }
 
@@ -498,7 +496,7 @@ label {
 .footer-copyright {
 	text-align: center;
 	margin: 0 auto;
-    background-color: rgb(34, 49, 63);
+    background-color: #22313f;
 	background-image: url(/static/images/banner.jpg);
     background-repeat: no-repeat;
 	background-position: center;
@@ -525,7 +523,7 @@ label {
 
 .flashes {
 	background-color: #c2e390;
-	border: solid 4px green;
+	border: solid 4px #008000;
 	border-radius: 4px;
 	font-size: 1.8rem;
 	font-weight: 700;
@@ -537,8 +535,8 @@ label {
 
 .alert-success {
 	background-color: #c2e390;
-	border: solid 4px green;
-	color: green;
+	border: solid 4px #008000;
+	color: #008000;
 }
 
 .alert-error {
@@ -576,7 +574,7 @@ label {
 	left: 1.5rem;
 	z-index: 1;
 	cursor: pointer;
-	color: #ffffffb3;
+	color: rgba(255, 255, 255, 0.5);
 	opacity: 0;
 	background-color: transparent;
 	transition: all .25s ease-in-out;
@@ -598,8 +596,8 @@ label {
 /* FOOTER */
 
     .footer-nav ul > li > a {
-        font-size: 14px;
-        color: #ffffff80;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.5);
     }
 
 /* FOOTER-END */
