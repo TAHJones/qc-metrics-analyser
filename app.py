@@ -85,7 +85,7 @@ def signup():
                 return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=True)
         users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
-        return redirect(url_for('signup', active="signup", loggedIn=False, loginFail=False))
+        return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
     return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
 
 
