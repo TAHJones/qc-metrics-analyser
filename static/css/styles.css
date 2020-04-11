@@ -61,12 +61,21 @@ a:hover {
     text-decoration: none;
 }
 
-hr {
+/* hr {
     border: solid 2px #405a74;
     padding: 0;
     margin-top: 3rem;
     margin-bottom: 1rem;
     width: 100px;
+} */
+
+.hr {
+	border: solid 2px #405a74;
+	display: block;
+	margin: 3rem auto 2rem;
+	padding: 0;
+	text-align: center;
+	width: 100px;
 }
 
 section {
@@ -637,6 +646,7 @@ label {
     section {
         margin: 10rem 0 8rem;
     }
+
 
     a {
         font-size: 1.3rem;
