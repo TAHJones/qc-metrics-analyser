@@ -18,25 +18,25 @@
         </ul>
         <ul>
         {% if loggedIn == False and active != "errorPage" %}
-            <li><a class="footer-btn footer-login-btn" href="{{ url_for('login') }}">Login</a></li>
-            <li><a class="footer-btn footer-signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}" class="footer-btn login-btn">Login</a></li>
+            <li><a href="{{ url_for('signup') }}" class="footer-btn signup-btn">Sign Up</a></li>
         {% elif loggedIn == True and admin == True %}
             {% if active == "adminOrUser" or active == "admin" or active == "adminLogin" %}
-                <li><a class="footer-btn footer-login-btn" href="{{ url_for('logout', username=username) }}">Logout</a></li>
+                <li><a class="footer-btn login-btn" href="{{ url_for('logout', username=username) }}">Logout</a></li>
             {% elif active == "adminSelectRuns" or active == "updateRun" or active == "deleteRun" %}
                 <li><a href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
                 <li><a href="{{ url_for('adminSelectRuns', username=username) }}"><i class="fas fa-sort-amount-up"></i>Manage Runs</a></li>
-                <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn footer-login-btn">Logout</a></li>
+                <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn login-btn">Logout</a></li>
             {% elif active == "adminSelectUser" or active == "adminUpdateUser" or active == "adminDeleteUser" %}
                 <li><a href="{{ url_for('admin', username=username) }}"><i class="fas fa-user-plus"></i>Admin</a></li>
                 <li><a href="{{ url_for('adminSelectUser', username=username) }}"><i class="fas fa-users"></i>Manage Users</a></li>
-                <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn footer-login-btn">Logout</a></li>
+                <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn login-btn">Logout</a></li>
             {% endif %}
         {% elif loggedIn == True and admin == false %}
             <li><a href="{{ url_for('user', username=username) }}"><i class="fas fa-user"></i>User</a></li>
             <li><a href="{{ url_for('addUserRun', username=username) }}"><i class="fas fa-plus-circle"></i>Add Run</a></li>
             <li><a href="{{ url_for('viewUserRuns', username=username) }}"><i class="fas fa-sort-amount-up"></i>Manage Runs</a></li>
-            <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn footer-login-btn">Logout</a></li>
+            <li><a href="{{ url_for('logout', username=username) }}" class="footer-btn login-btn">Logout</a></li>
         {% endif %}
         </ul>
     </div>
