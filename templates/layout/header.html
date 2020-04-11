@@ -14,9 +14,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ml-auto">
-            {% if loggedIn == False and active != "errorPage" %}   
+            {% if loggedIn == False and active == "index" %}   
                 <li class="nav-item"><a class="nav-link navbar-btn login-btn" href="{{ url_for('login') }}">Login</a></li>
                 <li class="nav-item"><a class="nav-link navbar-btn signup-btn" href="{{ url_for('signup') }}">Sign Up</a></li>
+            {% elif loggedIn == False and active != "index" %}
+                <li class="nav-item"><a class="nav-link navbar-btn login-btn" href="{{ url_for('index') }}">Home</a></li>
             {% elif loggedIn == True and admin == True %}
                 {% if active == "adminOrUser" or active == "admin" or active == "adminLogin" %}
                     <li class="nav-item"><a class="nav-link navbar-btn login-btn" href="{{ url_for('logout', username=username) }}">Logout</a></li>
