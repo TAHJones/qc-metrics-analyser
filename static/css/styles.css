@@ -52,8 +52,8 @@ h4 {
 a {
     color: rgba(255,255,255,.5);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1rem;
-    margin: 0 .5rem;
+    font-size: 1.2rem;
+    margin-left: 1rem;
 }
 
 a:hover {
@@ -124,7 +124,8 @@ section {
     Overrides bootstrap styles .navbar-expand-sm .navbar-nav .nav-link - _navbar.scss 150 */
 .navbar-nav > .nav-item > .navbar-btn {
 	color: #fff;
-	padding: .5rem .75rem;
+	/* padding: .5rem .75rem; */
+    width: 70px
 }
 
 .navbar-btn {
@@ -133,7 +134,7 @@ section {
  	font-size: 1.3rem;
 	font-weight: 700;
     line-height: 1.8rem;
-	margin: 0;
+	margin-left : 1rem;
 	text-align: center;
     text-decoration: none;
 }
@@ -163,7 +164,7 @@ section {
 }
 
 .navbar-nav > li {
-    margin-left: 1.4rem
+    margin-left: .5rem;
 }
 
 .navbar-nav > li:first-of-type {
@@ -637,12 +638,17 @@ label {
         margin: 10rem 0 8rem;
     }
 
+    a {
+        font-size: 1.3rem;
+        margin: 0 .5rem
+    }
+
 /* GENERAL-END */
 
 /* NAVBAR */
 
     .navbar-nav > li {
-        margin-left: 0;
+        margin: 0 2rem 0 0;
     }
 
     .navbar-nav>li:first-of-type,
@@ -651,7 +657,7 @@ label {
     }
 
     .navbar-btn {
-        margin: 0 0 0 1rem;
+        margin: 0;
     }
 
 /* NAVBAR-END */
@@ -761,14 +767,18 @@ label {
         margin: 12rem 0 10rem;
     }
 
+    a {
+        font-size: 1.4rem;
+    }
+
 /* GENERAL-END */
 
 /* NAVBAR */
 
-    .navbar-btn,
+    /* .navbar-btn,
     .footer-btn {
         font-size: 1.4rem;
-    }
+    } */
 
     .navbar-nav > li:last-of-type {
         margin-right: 2.5rem;
@@ -851,14 +861,23 @@ label {
         margin: 14rem 0 12rem;
     }
 
+    a {
+        font-size: 1.5rem;
+    }
+
 /* GENERAL-END */
 
 /* NAVBAR */
 
     .navbar-btn,
     .footer-btn {
-        font-size: 1.6rem;
+        /* font-size: 1.6rem; */
         padding: .65rem 1rem;
+    }
+
+    .navbar-nav > .nav-item > .navbar-btn {
+        width: 80px;
+        height: 30px;
     }
 
 /* NAVBAR-END */
