@@ -17,9 +17,11 @@
             </li>
         </ul>
         <ul>
-        {% if loggedIn == False and active != "errorPage" %}
+        {% if loggedIn == False and active == "index" %}
             <li><a href="{{ url_for('login') }}" class="footer-btn login-btn">Login</a></li>
             <li><a href="{{ url_for('signup') }}" class="footer-btn signup-btn">Sign Up</a></li>
+        {% elif loggedIn == False and active != "index" %}
+            <li><a href="{{ url_for('index') }}" class="footer-btn login-btn">Home</a></li>
         {% elif loggedIn == True and admin == True %}
             {% if active == "adminOrUser" or active == "admin" or active == "adminLogin" %}
                 <li><a class="footer-btn login-btn" href="{{ url_for('logout', username=username) }}">Logout</a></li>
