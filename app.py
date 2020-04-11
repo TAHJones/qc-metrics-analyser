@@ -47,6 +47,7 @@ def login():
                 session["username"] = username
                 member = users.find_one({'user': username}, { '_id': 0 }).get("member")
         if "username" in session and member == "admin":
+            session["member"] = "admin"
             session["admin"] = True
             return redirect(url_for("adminOrUser", username=session["username"]))
         elif "username" in session and member == "user":    
@@ -92,10 +93,13 @@ def signup():
 @app.route("/admin-or-user/<username>")
 def adminOrUser(username):
     """ If user had admin rights give option to login as admin or user """
+    # print(session["admin"])
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
         loggedIn = True
+        if session["member"] == "admin":
+            session["admin"] = True
         title = "WELCOME {}".format(username.upper())
         session["title"] = title
         return render_template("pages/admin-or-user.html",
@@ -113,6 +117,8 @@ def adminLogin(username):
         return redirect(url_for('permissionDenied'))
     else:
         loggedIn = True
+        if session["member"] == "admin":
+            session["admin"] = True
         if request.method == "POST":
             req = request.form
             email = req.get("email")
