@@ -120,8 +120,8 @@ section {
 	color: #d1dce7;
 }
 
-/*  Overrides .navbar-dark .navbar-nav .nav-link - _navbar.scss 275
-    Overrides .navbar-expand-sm .navbar-nav .nav-link - _navbar.scss 150 */
+/*  Overrides bootstrap styles .navbar-dark .navbar-nav .nav-link - _navbar.scss 275
+    Overrides bootstrap styles .navbar-expand-sm .navbar-nav .nav-link - _navbar.scss 150 */
 .navbar-nav > .nav-item > .navbar-btn {
 	color: #fff;
 	padding: .5rem .75rem;
@@ -129,7 +129,7 @@ section {
 
 .navbar-btn {
 	border-radius: 4px;
-    display: inline-block;
+    /* display: inline-block; */
  	font-size: 1.3rem;
 	font-weight: 700;
     line-height: 1.8rem;
@@ -176,9 +176,11 @@ section {
 }
 
 .navbar.navbar-dark > .navbar-toggler {
-	margin-right: 1rem;
 	background-color: #000;
 	border: #ffffff80 solid 2px;
+	font-size: 2rem;
+	margin-right: 2rem;
+	padding: .3rem 0.75rem;
 }
 
 .navbar.navbar-dark > .navbar-toggler:hover {
