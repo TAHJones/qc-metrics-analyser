@@ -165,7 +165,40 @@ On mobile layout each modal image-links to stacked individually on top of each o
 #### Using the Site as an Unregistered User
 
 ##### Step 1 - Viewing Sequencing Run QC Data
-On the homepage unregistered users can see an overview of qc metric data by clicking on one of the six modal image-links on the page. A line-chart for yield, cluster density, clusters passing filter and Q30 score can be displayed by clicking on one of the four modal image-links in the 'Sequencing Run Metrics' section. A pie-chart for sequencing chemistry or sequencing experiment can be displayed by clicking on one of the two modal image-links in the 'Other Sequencing Metrics' section.
+On the homepage unregistered users can see an overview of qc metric data by clicking on one of the six modal image-links on the page.
+
+1. Viewing Linechart Data - A line-chart for yield, cluster density, clusters passing filter and Q30 score can be displayed by clicking on one of the four modal image-links in the 'Sequencing Run Metrics' section.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/PGgvn1v/select-image-link-modal.png" alt="selecting linechart modal image link">
+  </a>
+</div>
+<br>
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/mGYNM0P/linechart-modal.png" alt="linechart modal">
+  </a>
+</div>
+<br>
+
+2. Viewing Piechart Data - A pie-chart for sequencing chemistry or sequencing experiment can be displayed by clicking on one of the two modal image-links in the 'Other Sequencing Metrics' section.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/q14GGZT/select-image-link-modal-2.png" alt="selecting piechart modal image link">
+  </a>
+</div>
+<br>
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/bQvbR2r/piechart-modal.png" alt="piechart modal">
+  </a>
+</div>
+<br>
+
 
 ##### Step2 - Creating a User Account
 Unregistered users can access the sign-up page by clicking on the green 'Sign Up' button located on the right of the header or footer navbar. On the sign-up page unregistered users can create an account by entering a unique username into the sign up form then clicking on the green 'Sign Up' form button. If the selected username already exists the following warning message will be displayed; "username 'selected username' already exists, enter a unique username or login".
@@ -184,9 +217,35 @@ Once successfully logged in the user can add a new sequencing run data by clicki
 ##### Step 4 - Managing Existing User Run QC Data
 Once successfully logged in the user can manage their existing run qc data by clicking on the 'Manage Runs' link located on the header or footer navbar.
 
-1. Selecting a Run - On the manage-runs page the user can either select an individual run directly from the dropdown menu then click on the blue 'Select' button or filter a group of runs using the series of dropdown menus provided then click on the blue 'Filter Runs' button. If  If the user chooses to filter run data then a filtered list of runs will be displayed. The user must then select one run from the list using the dropdown list provided.
+1. Selecting a Run - On the manage-runs page the user can either select an individual run directly from the dropdown menu then click on the blue 'Select' button or filter a group of runs using the series of dropdown menus provided then click on the blue 'Filter Runs' button.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/pZ2B6ky/manage-runs-1.png" alt="selecting-run">
+  </a>
+</div>
+<br>
+
+2. Viewing Filtered Runs - If the user chooses to filter run data then a filtered list of runs will be displayed. The user must then select one run from the list using the dropdown list provided.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/2dy0XyH/manage-runs-2.png" alt="viewing filterd runs">
+  </a>
+</div>
+<br>
+
 
 2. Viewing Selected Run - Once an individual run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The user will now have the option to delete or update the selected run.
+
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/2KFXpWZ/manage-runs-3.png" alt="viewing selected run">
+  </a>
+</div>
+<br>
+
 
 3. Deleting Selected Run - Once an individual run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once the user has selected 'yes' they can delete the run from the database by clicking on the red 'Delete' button. If the user clicks on the 'Delete' button without slecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
 
