@@ -512,9 +512,9 @@ label {
 
 }
 
-.footer-copyright p {
+#copyRight {
 	color: #d1dce7;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	margin: 0;
 	padding: 2rem;
 }
@@ -734,8 +734,8 @@ label {
 
 /* FOOTER */
 
-    .footer-copyright p {
-        font-size: 1.2rem;
+    #copyRight {
+        font-size: 1.3rem;
     }
 
 /* FOOTER-END */
@@ -818,7 +818,7 @@ label {
 
 /* FOOTER */
 
-    .footer-copyright p {
+    #copyRight {
         font-size: 1.4rem;
     }
 
@@ -909,8 +909,8 @@ label {
 
 /* FOOTER */
 
-    .copyright {
-        font-size: 1.4rem;
+    #copyRight {
+        font-size: 1.5rem;
     }
 
 /* FOOTER-END */
