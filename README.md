@@ -39,25 +39,28 @@ This site is designed to be used by laboratory technicians and clinical scientis
 
 There are three type of user with three different levels of access to the QC Metrics Analyser website:
 
-#### Unregistered Users
-Users of the site that don't have a user account can access an overview of sequencing run qc data on the homepage but cannot select, edit, add or delete run qc data. Run data can be accessed by clicking on one of the six modal image links. The first four modals display line charts for the four main qc metrics of yield, cluster density, clusters passing filter and q30 score. The data is plotted sequentially by run number (Pool No.). The last two modals display pie charts that divide run data into sequencing chemistry type or sequencing experiment type. Unregistered users can create an account using the sign up page. To create an account they must entering a unique username into the sign up form on the sign up page.
+- Unregistered Users - Users of the site that don't have a user account, who can view run information on the homepage but cannot select, edit, add or delete run qc data.
 
-#### Registered Users
-Users of the site that have created a user account can access their account using the login page. To login the user must entering their unique username into the login form on the login page. When successfully logged in the user view, filter, edit and delete their own run data.
+- Registered Users - Users of the site that have created a user account page, who can view, filter, edit and delete their own run data.
 
-#### Registered Users with Admin Privileges
-Users of the site with a user account with admin privileges can access their account using the login page. To login the user must entering their unique username into the login form on the login page. Once successfully logged in they are given the choice to continue as a standard user or as a user which admin privileges. If they choose the later they are asked to verfiy their account by entering their email address. Once successfully logged in, users with admin privileges are able to view, filter, edit or delete run qc data for individual users. They are also able to view, edit or delete individual user accounts.
+- Registered Users with Admin Privileges - Users of the site with a user account with admin privileges, who are able to view, filter, edit or delete run qc data for other users. They are also able to view, edit or delete user accounts.
 
 
 ### User Requirements
 
-User requirements for QC Metrics Analyser are:
+The user requirements for QC Metrics Analyser are as follows:
 
-1. It's easy and intuitive to use.
-2. Unregistered users of the site can view a summary of qc metric data and can create a user account.
-3. Registered users can login to view, filter, update, edit and delete their own data.
-4. Registered users with admin privileges can view, filter, edit or delete user data.
-5. Registered users with admin privileges can view, edit or delete user accounts.
+- The site is easy and intuitive to use.
+
+- The site provides basic information about NGS qc data for new users.
+
+- The site has different levels of access/security depending on the users status which will be dependent on their training and job role.
+
+- Unregistered users are able to view basic run information but not edit or delete it. They must be able to create a user account using the sign-in in page.
+
+- Registered users must be able to use a unique user name to log into their user account. Once successfully logged in, the user must be able to view, filter, edit and delete their own run information.
+
+- Registered users with admin privileges must be able to use a unique user name to log into their user account. Once logged in as a user they must be able to verify their admin status by using a unique email address. Once successfully logged in with admin privileges they must be able to view, filter, edit or delete run information for individual users. They must also be able to view, edit or delete individual user accounts.
 
 
 
