@@ -63,6 +63,71 @@ The user requirements for QC Metrics Analyser are as follows:
 - Registered users with admin privileges must be able to use a unique user name to log into their user account. Once logged in as a user they must be able to verify their admin status by using a unique email address. Once successfully logged in with admin privileges they must be able to view, filter, edit or delete run information for individual users. They must also be able to view, edit or delete individual user accounts.
 
 
+### User Stories
+
+As an unregistered user:
+
+1. I want to be able to access the run qc data as easily as possible.
+
+2. I want to be able to see an overview of the data for each type of qc metric.
+
+3. I may not have a strong scientific in NGS sequencing and I may require additional information to help understand the qc metric data.
+
+4. I may not be familiar with the layout of the site so it must be easy and intuitive to use.
+
+5. I only want to be able to view the data. I don't want to be able to accidentally change or delete qc metric data.
+
+6. I may be a new NGS user and need to create a user account so I can add, edit and delete my own run qc data.
+
+
+As a registered user:
+
+1. I want to be able to log in to my account as quickly and easily as possible.
+
+2. I want to be able to see an overview of my own data for type of qc metric.
+
+3. I want to be able to add new run qc data to the database.
+
+4. I want to be able to edit or delete existing run qc data.
+
+5. I only want to be able to access my own run qc data. I don't want to be able to access other users data or user account information.
+
+6. I want to be able to filter my own data using specific criteria.
+
+7. I want to be able to log out of my account quickly and easily when my session is over.
+
+
+As a registered user with admin privileges:
+
+1. I want to be able to log in to my account as quickly and easily as possible.
+
+2. I want to be able to choose to log in as either a regular user or as a user with admin privileges.
+
+3. I want confirmation that I have logged in with or without admin privileges.
+
+4. I want to be able to choose to either edit run qc data or user accounts.
+
+5. I want to be able to view, edit or delete run qc data for individual users.
+
+6. I want to be able to filter run qc data for individual users according to  specific criteria.
+
+7. I want to be able to edit or delete user accounts for individual users.
+
+8. I want to be able to log out of my account quickly and easily when my session is over.
+
+
+As a NHS organisation:
+
+1. I want the run qc data to be stored securely.
+
+2. I want there to be different levels of access to the sites database to ensure only staff with the appropriate training can perform the appropriate tasks.
+
+3. I want registered users to have unique identifiers so there is traceability.
+
+4. I want users with admin privileges to have additional security measures (login with email).
+
+5. I want users with admin privileges to be able to edit/delete user run information and user accounts to ensure the database remains up-to-date and accurate.
+
 
 ### Wireframes
 
