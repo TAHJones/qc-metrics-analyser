@@ -409,7 +409,8 @@ class Helpers:
         userData = {
             'user': formData["user"],
             'member': formData["member"],
-            'joined': {'date': formData["date"], 'time': formData["time"]}
+            'joined': {'date': formData["date"], 'time': formData["time"]},
+            'email': formData["email"]
         }
         userDatabase.update_one({'user': user}, {'$set': userData})
         runDatabase.update_many({'user': user}, {'$set': {'user': formData["user"]}})
