@@ -84,7 +84,7 @@ def signup():
             if user.get('user') == newUser:
                 flash("username {} already exists, enter a unique username or login".format(newUser), "error")
                 return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=True)
-        users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}})
+        users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}, 'email':'N/A'})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
         return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
     return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
@@ -93,7 +93,6 @@ def signup():
 @app.route("/admin-or-user/<username>")
 def adminOrUser(username):
     """ If user had admin rights give option to login as admin or user """
-    # print(session["admin"])
     if username != session["username"]:
         return redirect(url_for('permissionDenied'))
     else:
