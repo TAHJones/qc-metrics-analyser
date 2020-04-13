@@ -367,6 +367,23 @@ def adminUpdateUser(username):
         selectedUser = session["selectedUser"]
         selectedUserName = session["selectedUserName"]
         if request.method == "POST":
+            newUserName = request.form.get('user')
+            for user in users.find({}, {'user': 1, '_id': 0}):
+                if user.get('user') == newUserName and selectedUser != newUserName:
+                    message = "username {} already exists, enter a unique username".format(newUserName)
+            member = request.form.get('member')
+            email = request.form.get('email')
+            if member == "admin" and email == "N/A":
+                message = "enter valid email address to update admin user account"
+            if message:
+                flash(message, "error")
+                return render_template("pages/admin-update-user.html",
+                                        username=username,
+                                        title=session["title"],
+                                        selectedUser=selectedUser,
+                                        active="adminUpdateUser",
+                                        loggedIn=loggedIn,
+                                        admin=session["admin"])
             updateUser = Helpers.adminUpdateUser(users, runs, selectedUserName)
             userData = updateUser["userData"]
             selectedUserName = userData["user"]
