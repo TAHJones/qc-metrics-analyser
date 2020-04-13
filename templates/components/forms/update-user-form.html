@@ -9,7 +9,14 @@
             </div>
             <div class="form-group col-6 floating-label-form-group controls">
                 <label>Membership</label>
-                <input type="text" class="form-control" value="{{ data.member }}" placeholder="{{ data.member }}" name="member" id="member" required data-validation-required-message="Please enter pool number.">
+                <select name="member" class="form-control" id="member">
+                    <option value="{{ data.member }}" selected>{{ data.member }}</option>
+                    {% if data.member == "admin" %}
+                        <option value="user">User</option>
+                    {% else %}
+                        <option value="admin">admin</option>
+                    {% endif %}
+                </select>
                 <p class="help-block text-danger"></p>
             </div>
             <div class="form-group col-6 floating-label-form-group controls">
