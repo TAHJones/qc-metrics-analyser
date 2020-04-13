@@ -194,11 +194,10 @@ On the homepage unregistered users can see an overview of qc metric data by clic
 
 <div align="center">
   <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
-    <img src="https://i.ibb.co/bQvbR2r/piechart-modal.png" alt="piechart modal">
+    <img src="https://i.ibb.co/wshGt5T/piechart-modal.png" alt="piechart modal">
   </a>
 </div>
 <br>
-
 
 ##### Step2 - Creating a User Account
 Unregistered users can access the sign-up page by clicking on the green 'Sign Up' button located on the right of the header or footer navbar. On the sign-up page unregistered users can create an account by entering a unique username into the sign up form then clicking on the green 'Sign Up' form button. If the selected username already exists the following warning message will be displayed; "username 'selected username' already exists, enter a unique username or login".
@@ -221,7 +220,7 @@ Once successfully logged in the user can manage their existing run qc data by cl
 
 <div align="center">
   <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
-    <img src="https://i.ibb.co/pZ2B6ky/manage-runs-1.png" alt="selecting-run">
+    <img src="https://i.ibb.co/vjKJfz3/manage-runs-1.png" alt="selecting run">
   </a>
 </div>
 <br>
@@ -230,22 +229,19 @@ Once successfully logged in the user can manage their existing run qc data by cl
 
 <div align="center">
   <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
-    <img src="https://i.ibb.co/2dy0XyH/manage-runs-2.png" alt="viewing filterd runs">
+    <img src="https://i.ibb.co/Wz2nNQV/manage-runs-2.png" alt="viewing filterd runs">
   </a>
 </div>
 <br>
-
 
 2. Viewing Selected Run - Once an individual run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The user will now have the option to delete or update the selected run.
 
-
 <div align="center">
   <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
-    <img src="https://i.ibb.co/2KFXpWZ/manage-runs-3.png" alt="viewing selected run">
+    <img src="https://i.ibb.co/3T9yzGc/manage-runs-3.png" alt="viewing selected run">
   </a>
 </div>
 <br>
-
 
 3. Deleting Selected Run - Once an individual run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once the user has selected 'yes' they can delete the run from the database by clicking on the red 'Delete' button. If the user clicks on the 'Delete' button without slecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
 
@@ -260,13 +256,37 @@ When the user wants to end their session they can click on the blue 'Logout' but
 On the homepage registered users can access the log-in page by clicking on the blue 'Login' button located on the right of the header or footer navbar. On the log-in page registered users can access their account by entering their unique username into the login form on the login page. If the user has admin privileges they are directed to the admin-or-user page where they can choose to continue as either a regular user or as an admin-user. If the later option is chosen then the user is prompted to provide their email address as further confirmation of their identity. Once successfully logged the admin-user is directed to the admin page where they can choose to manage user run data or manage user accounts.
 
 ##### Step 2 - Managing User Run Data as Admin-User
-1. Selecting a User Run - On the manage-user-runs page the admin user can either select all the runs for an individual user by using the default filter run settings and then selecting a user from the dropdown menu. Alternatively they can adjust the filter run settings to select the type of runs displayed, then select a user from the dropdown menu. Once the appropriate settings have been made the run data can be displayed by clicking on the blue 'Select' button. The admin-user must then select one run from the list using the dropdown list provided and clicking on the blue 'Select' button.
+1. Selecting User Runs - On the manage-user-runs page the admin user can either select all the runs for an individual user by using the default filter run settings and then selecting a user from the dropdown menu. Alternatively they can adjust the filter run settings to select the type of runs displayed, then select a user from the dropdown menu. Once the appropriate settings have been made the run data can be displayed by clicking on the blue 'Select' button.
 
-2. Viewing Selected User Run - Once an individual user run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The admin-user will now have the option to delete or update the selected run.
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/D76Fhps/manage-user-runs-1.png" alt="selecting user runs">
+  </a>
+</div>
+<br>
 
-3. Deleting Selected Run - Once an individual user run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected user run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once 'yes' has been selected the run can be deleted from the database by clicking on the red 'Delete' button. If the 'Delete' button is clicked without selecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
 
-4. Updating Selected User Run - Once an individual user run has been selected click on the yellow 'Update' button that appears at the bottom of the page. On the update-run page the selected user run data is displayed in the update-run form. The data in each form field can be edited and these changes can be saved to the database by clicking on the yellow 'Update' button beneath the form. Once the run has been successfully updated the following message will be displayed; "Pool_XXX has been successfully updated". If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
+2. Viewing User Runs - The selected user runs (filtered or unfiltered) are displayed as a list. The pool number, yield, cluster density, pass filter value and Q30 score is displayed for each run. The admin-user must select one run from the list using the dropdown list provided and clicking on the blue 'Select' button.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/P4z4Yd9/manage-user-runs-2.png" alt="viewing user runs">
+  </a>
+</div>
+<br>
+
+3. Viewing Selected User Run - Once an individual user run has been selected the runs pool number, yield, cluster density, pass filter value, Q30 score, chemistry and experiment type will all be displayed on the page. The admin-user will now have the option to delete or update the selected run.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/prXbR2K/manage-user-runs-3.png" alt="viewing selected run">
+  </a>
+</div>
+<br>
+
+4. Deleting Selected Run - Once an individual user run has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-run page the selected user run is displayed as a list along with a yes/no check box to confirm the deletion of the run. Once 'yes' has been selected the run can be deleted from the database by clicking on the red 'Delete' button. If the 'Delete' button is clicked without selecting the 'yes' checkbox first the following message is displayed; "To delete Pool_XXX select Yes then click Delete". Once the run has been successfully deleted the following message will be displayed; "Pool_XXX has been successfully deleted".
+
+5. Updating Selected User Run - Once an individual user run has been selected click on the yellow 'Update' button that appears at the bottom of the page. On the update-run page the selected user run data is displayed in the update-run form. The data in each form field can be edited and these changes can be saved to the database by clicking on the yellow 'Update' button beneath the form. Once the run has been successfully updated the following message will be displayed; "Pool_XXX has been successfully updated". If any of the fields are left empty the submission will fail and the message 'Please fill in this field' will appear below the first empty field encountered.
 
 ##### Step 3 - Managing User Accounts as Admin-User
 1. Selecting a User Account - On the select-user page the admin user can select a user account by selecting a username from the dropdown menu then clicking on the blue 'select' button.
