@@ -22,6 +22,11 @@
                 <input type="text" class="form-control" value="{{ data.joined.time }}" placeholder="{{ data.joined.time }}" name="time" id="time" required data-validation-required-message="Please enter cluster density.">
                 <p class="help-block text-danger"></p>
             </div>
+            <div class="form-group col-12 floating-label-form-group controls">
+                <label>Email Address</label>
+                <input type="email" class="form-control" value="{{ data.email }}" placeholder="{{ data.email }}" name="email" id="email" required data-validation-required-message="Please enter your email address.">
+                <p class="help-block text-danger"></p>
+            </div>
             {% endfor %}
             <div class="form-group">
                 <button type="submit" class="btn qc-data-btn qc-data-btn--update" id="updateRunButton">Update</button>
