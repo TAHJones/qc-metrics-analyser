@@ -271,7 +271,6 @@ On the homepage registered users can access the log-in page by clicking on the b
 <div align="center">
   <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
     <img src="https://i.ibb.co/0j0pntR/manage-user-runs-2.png" alt="viewing user runs">
-    <img src="https://i.ibb.co/P4z4Yd9/manage-user-runs-2.png" alt="viewing user runs">
   </a>
 </div>
 <br>
