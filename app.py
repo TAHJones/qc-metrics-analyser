@@ -84,7 +84,7 @@ def signup():
             if user.get('user') == newUser:
                 flash("username {} already exists, enter a unique username or login".format(newUser), "error")
                 return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=True)
-        users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}, 'email':'N/A'})
+        users.insert_one({'user':newUser, 'member':'user', 'joined':{'date':date, 'time':time}, 'email':'emailAddress@gmail.com'})
         flash("congratulations {}, your username has been added to the database".format(newUser), "success")
         return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
     return render_template("pages/auth.html", active="signup", loggedIn=False, loginFail=False)
@@ -367,32 +367,26 @@ def adminUpdateUser(username):
         selectedUser = session["selectedUser"]
         selectedUserName = session["selectedUserName"]
         if request.method == "POST":
-            newUserName = request.form.get('user')
-            for user in users.find({}, {'user': 1, '_id': 0}):
-                if user.get('user') == newUserName and selectedUser != newUserName:
-                    message = "username {} already exists, enter a unique username".format(newUserName)
-            member = request.form.get('member')
-            email = request.form.get('email')
-            if member == "admin" and email == "N/A":
-                message = "enter valid email address to update admin user account"
-            if message:
-                flash(message, "error")
-                return render_template("pages/admin-update-user.html",
-                                        username=username,
-                                        title=session["title"],
-                                        selectedUser=selectedUser,
-                                        active="adminUpdateUser",
-                                        loggedIn=loggedIn,
-                                        admin=session["admin"])
             updateUser = Helpers.adminUpdateUser(users, runs, selectedUserName)
             userData = updateUser["userData"]
-            selectedUserName = userData["user"]
+            updatedUserName = userData["user"]
+            member = userData["member"]
+            email = userData["email"]
             message = updateUser["message"]
             messageType = updateUser["messageType"]
+            if member == "admin" and email == "emailAddress@gmail.com":
+                message = "enter valid email address to update admin account"
+                messageType = "error"
+            else:
+                for user in users.find({}, {'user': 1, '_id': 0}):
+                    if user.get('user') == updatedUserName and selectedUserName != updatedUserName:
+                        message = "username {} already exists, enter a unique username".format(updatedUserName)
+                        messageType = "error"
+            if messageType != "error":
+                selectedUser = [userData]
+                session["selectedUser"] = selectedUser
+                session["selectedUserName"] = updatedUserName
             flash(message, messageType)
-            selectedUser = [userData]
-            session["selectedUser"] = selectedUser
-            session["selectedUserName"] = selectedUserName
             return render_template("pages/admin-update-user.html",
                                         username=username,
                                         title=session["title"],
