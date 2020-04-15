@@ -1,0 +1,24 @@
+{
+	"_id": {
+		"$oid": "unique serial number"
+	},
+	"pool": {
+		"$numberInt": "197"
+	},
+	"user": "Name",
+	"experiment": "Genome",
+	"chemistry": "High300",
+	"yield": {
+		"$numberInt": "85"
+	},
+	"clusterDensity": {
+		"$numberInt": "231"
+	},
+	"passFilter": {
+		"$numberInt": "79"
+	},
+	"q30": {
+		"$numberInt": "92"
+	},
+	"comment": "a random comment"
+}
