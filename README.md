@@ -318,7 +318,42 @@ Information regarding testing can be found in separate [testing.md](https://gith
 
 ## Deployment
 
-Still to be added...
+In order to deploy this project you must first set up an account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). Click [here](https://docs.atlas.mongodb.com/) for instructions on how to set up able Mongo Atlas account.
+
+## How to run this project using Gitpod
+
+1. Navigate to the github repository located at https://github.com/TAHJones/qc-metrics-analyser.
+
+2. Create a Gitpod workspace using one of the following methods:
+
+- Prefix the github repository URL in the address bar of your browser with https://gitpod.io/# e.g. https://gitpod.io/#https://github.com/TAHJones/qc-metrics-analyser
+
+- If you have installed the Gitpod [extension](https://www.gitpod.io/docs/browser-extension/) for Chrome or Firefox click on the green 'Gitpod' button located on the top right of the github repository homepage.
+
+3. If using Gitpod for the first time, you will have to authorize access to your GitHub account. This is necessary so you can access your data from within Gitpod.
+
+4. Gitpod will create a workspace container for you in the cloud, containing a full Linux system. It will also clone the GitHub repository branch based on the GitHub page you were coming from.
+
+5. Click 'Select Python interpreter' in the blue bar at the bottom of the page then select 'Python 3.7.4 64-bit ('3.7.4': pyenv) from the dropdown menu.
+
+6. Open a terminal and run the following command to install project dependencies:
+```
+pip3 install -r ./requirements.txt
+```
+6. In the projects root directory create a file called `env.py`.
+
+7. Inside the env.py file create SECRET_KEY, MONGO_DBNAME and MONGO_URI environment variables to link to your own mongodb database. Please make sure to call your database `sequencingMetricsDB`, with 2 collections called `users` and `seqMetCol`. You will find example json structures for these collections in the [schemas](https://github.com/TAHJones/qc-metrics-analyser/tree/master/schemas/) folder.
+
+8. You can now run the application from the terminal using the following command:
+```
+python3 app.py
+```
+
+
+
+
+
+
 
 ## Credits
 
