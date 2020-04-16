@@ -291,7 +291,14 @@ On the homepage registered users can access the log-in page by clicking on the b
 ##### Step 3 - Managing User Accounts as Admin-User
 1. Selecting a User Account - On the select-user page the admin user can select a user account by selecting a username from the dropdown menu then clicking on the blue 'select' button.
 
-2. Viewing Selected User Account - Once an individual user account has been selected the users name, membership status, date joined and time joined are displayed on the page. The admin-user will now have the option to delete or update the selected user account.
+2. Viewing Selected User Account - Once an individual user account has been selected the users name, membership status, date joined and time joined and email address are displayed on the page. The admin-user will now have the option to delete or update the selected user account.
+
+<div align="center">
+  <a href="https://qc-metrics-analyser.herokuapp.com/" target="_blank">
+    <img src="https://i.ibb.co/VNt7NPg/manager-users-1.png" alt="viewing selected user">
+  </a>
+</div>
+<br>
 
 3. Deleting Selected User Account - Once a user account has been selected click on the red 'Delete' button that appears at the bottom of the page. On the delete-user page the selected user run is displayed as a list along with a yes/no check box to confirm the deletion of the user. Once 'yes' has been selected the user can be deleted from the database by clicking on the red 'Delete' button. If the 'Delete' button is clicked without selecting the 'yes' checkbox first the following message is displayed; "To delete user account for 'selected user' select Yes then click Delete". Once the user has been successfully deleted the following message will be displayed; "User account for 'selected user' has been successfully deleted".
 
