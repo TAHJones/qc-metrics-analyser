@@ -345,7 +345,7 @@ In order to deploy this project you must first set up an account at [MongoDB Atl
 
 6. Open a terminal and run the following command to install project dependencies:
 ```
-pip3 install -r ./requirements.txt
+pip3 install -r requirements.txt
 ```
 6. In the projects root directory create a file called `env.py`.
 
@@ -388,7 +388,7 @@ SECRET_KEY | `<your_secret_key>`
 
 9. In the **Automatic Deploys** section click **Enable Automatic Deploys** to ensure your heroku app is automatically updated everytime your github repository is updated.
 
-10. Click on the "Open App" at the top of the page. The [Heroku website]( https://qc-metrics-analyser.herokuapp.com/) is now successfully deployed.
+10. Click on the "Open App" button at the top of the page. The [Heroku website]( https://qc-metrics-analyser.herokuapp.com/) is now successfully deployed.
 
 
 ## Credits
