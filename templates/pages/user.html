@@ -3,33 +3,35 @@
 {% block content %}
 {% import "components/modals/modal-link.html" as modalLink %}
 {% import "components/modals/modal-chart.html" as modalChart %}
+{% import "components/modals/popup.html" as popup %}
 
    <!--SEQUENCING-RUNS-->
     <section class="container">
+        {{ popup.popup("Next Generation Sequencing", metricInfo.intro) }}
         <h3>Sequencing Run Metrics</h3>
         <div class="hr"></div>
 
         <div class="row justify-content-center">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Yield", "yields")}}
-                {{ modalChart.modalChart("Yield - Gigabases", "yields", runData)}}
+                {{ modalChart.modalChart("Yield - Gigabases", "yields", runData, metricInfo.yield )}}
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Cluster Density", "clusterDensity")}}
-                {{ modalChart.modalChart("Cluster Density - K/mm2", "clusterDensity", runData)}}               
+                {{ modalChart.modalChart("Cluster Density - K/mm2", "clusterDensity", runData, metricInfo.clusterDensity )}}               
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Pass Filter", "passFilter")}}
-                {{ modalChart.modalChart("Pass Filter - %", "passFilter", runData)}}               
+                {{ modalChart.modalChart("Pass Filter - %", "passFilter", runData, metricInfo.passFilter )}}               
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Q30 Score", "q30")}}
-                {{ modalChart.modalChart("Q30 Score - %", "q30", runData)}}               
+                {{ modalChart.modalChart("Q30 Score - %", "q30", runData, metricInfo.q30 )}}               
             </div>
         </div>
     </section>
@@ -42,12 +44,12 @@
         <div class="row justify-content-center other-metrics">
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Chemistry", "chemistry") }}
-                {{ modalChart.modalChart("Chemistry", "chemistry", experimentData) }}            
+                {{ modalChart.modalChart("Chemistry", "chemistry", experimentData, metricInfo.chemistry ) }}            
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 col-lg-4">
                 {{ modalLink.modalLink("Experiments", "experiment") }}
-                {{ modalChart.modalChart("Experiments", "experiment", experimentData) }}            
+                {{ modalChart.modalChart("Experiments", "experiment", experimentData, metricInfo.experiment) }}            
             </div>
         </div>
     </section>
