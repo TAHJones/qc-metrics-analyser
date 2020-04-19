@@ -1,9 +1,10 @@
-{% macro modalChart(chartTitle, chartName, chartData) %}
+{% macro modalChart(chartTitle, chartName, chartData, infoContent) %}
     <div id="{{ chartName }}Modal" class="modal fade">
         <div class="modal-dialog modal-lg">
             <div class="modal-content qc-data">
                 <div class="modal-header qc-data-header">
                     <h4 class="modal-title">{{ chartTitle }}</h4>
+                    <button type="button" class="btn btn-lg btn-info" data-toggle="popover" data-placement="bottom" title="{{ chartTitle }}" data-html ="true" data-content='{{ infoContent }}'>Info</button>        
                 </div>
                 <div class="modal-body qc-data-list">
                     <ul class="d-none d-md-block">
