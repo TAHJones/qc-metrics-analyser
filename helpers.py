@@ -444,3 +444,52 @@ class Helpers:
             deletedUser["message"] = "To delete user account for {} select 'Yes' then click 'Delete'".format(user)
             deletedUser["messageType"] = "error"
         return deletedUser
+
+
+    """ Returns information about each sequencing qc metric 
+    which is used by popup button in linechart modal """
+    @staticmethod
+    def getMetricInfo():
+        metricInfo = {}
+        metricData = {
+            'intro': {
+                'title': 'Next Generation Sequencing',
+                'info': 'Next Generation Sequencing (NGS) is a high-throughput DNA sequencing technology used to sequence all or a portion of the DNA of an organism\'s genome at a single time. This is possible because NGS technologies are capable of processing multiple DNA sequences in parallel, generating millions of sequencing reads in a single experiment. This is why NGS is also called massively parallel sequencing. Illuminas NGS technology, called sequencing by synthesis, is a widely adopted sequencing technology. This approach records the incorporation of fluorescently labeled nucleotides, into clonally amplified DNA templates immobilized to an acrylamide coating on the surface of a glass flowcell. Essentially the DNA molecules are sequenced as they are being synthesized.',
+                'link': 'https://emea.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html?langsel=/gb/'
+            },
+            'yield': {
+                'title': 'Yield - GB',
+                'info': 'This shows the projected number of bases called for the run, measured in mega-bases. This figure is an estimation of the amount of sequencing data produced during the run but gives no indication of the quality of the data.',
+                'link': 'https://support.illumina.com/help/BaseSpace_Sequence_Hub/Source/Informatics/BS/Yield_swBS.htm'
+            },
+            'clusterDensity': {
+                'title': 'Cluster Density - K/mm2',
+                'info': 'Cluster density is an important metric that influences run quality, reads passing filter, Q30 scores, and total data output. While under-clustering maintains high data quality, it results in lower data output. Alternatively, over-clustering can lead to poor run performance, lower Q30 scores and lower total data output (decrease in the pass-filter metric).',
+                'link': 'https://emea.illumina.com/content/dam/illumina-marketing/documents/products/other/miseq-overclustering-primer-770-2014-038.pdf'
+            },
+            'passFilter': {
+                'title': 'Pass Filter - %',
+                'info': 'The percentage of clusters passing filter is an indication of signal purity from each cluster. Over clustering (high cluster density) typically generates a larger number of overlapping clusters. This leads to poor template generation, which causes a decrease in the pass-filter metric. Decreased cluster intensity also has a limited effect on sequencing quality but will obviously affect yield and therefore sequencing coverage.',
+                'link': 'https://gatk.broadinstitute.org/hc/en-us/articles/360035890991-PF-reads-Illumina-chastity-filter'
+            },
+            'q30': {
+                'title': 'Q30 Score - %',
+                'info': 'This shows the average percentage of bases greater than Q30. A quality score (Q-score) is a prediction of the probability of an error in base calling. For base calls with a quality score of Q30, one base call in 1,000 is predicted to be incorrect. Q30 quality scores are used across all Illumina sequencing platforms. When sequencing quality reaches Q30, virtually all of the reads will be correct. This is why Q30 is considered the bench mark for quality for next generation sequencing data.',
+                'link': 'https://emea.illumina.com/documents/products/technotes/technote_Q-Scores.pdf'
+            },
+            'experiment': {
+                'title': 'Experiment',
+                'info': 'Genomic sequencing also known as whole genome sequencing is the process of sequencing all the DNA of an organism\'s genome at a single time. This includes all of an organism\'s chromosomal DNA, including all the non-coding as well as coding regions. Exome experiments sequencing, also known as whole exome sequencing, is the process of sequencing all of the coding regions of genes (exons) of in an organisms genome. Capture based sequencing also known as target enrichment is the process of sequencing a subset of genes or regions of the genome. Target enrichment works by capturing genomic regions of interest by hybridization to target-specific biotinylated probes, which are then isolated by magnetic pulldown.',
+                'link': 'https://en.wikipedia.org/wiki/Whole_genome_sequencing'
+            },
+            'chemistry': {
+                'title': 'Chemistry',
+                'info': 'High300 generates 100–120 Gb sequencing data. Mid300 generates 32.5–39 Gb sequencing data. Mid150 generates 16.25–19.5 Gb sequencing data.',
+                'link': 'https://emea.illumina.com/systems/sequencing-platforms/nextseq/specifications.html'
+            }
+        }
+
+        for key, value in metricData.items():
+            metricInfo[key] = '<div class="popup-info">' + value['info'] + '</div><div class="popup-link"><a class="btn btn-lg btn-info" href="' + value['link'] + '" target="_blank">' + 'More Info' + '</a></div>'
+
+        return metricInfo

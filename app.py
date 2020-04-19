@@ -29,10 +29,12 @@ def index():
     runData = Helpers.getRunData(runs)
     experimentData = Helpers.getExperimentData(runs)
     linechartData = Helpers.getLinechartData(runs)
+    metricInfo = Helpers.getMetricInfo()
     return render_template("pages/index.html",
                             runData=runData,
                             experimentData=experimentData,
                             linechartData=linechartData,
+                            metricInfo=metricInfo,
                             active="index",
                             loggedIn=False)
 
@@ -459,12 +461,14 @@ def user(username):
         runData = Helpers.getRunData(runs, username)
         experimentData = Helpers.getExperimentData(runs, username)
         linechartData = Helpers.getLinechartData(runs, username)
+        metricInfo = Helpers.getMetricInfo()
         return render_template("pages/user.html",
                                 title=title,
                                 username=username,
                                 runData=runData,
                                 experimentData=experimentData,
                                 linechartData=linechartData,
+                                metricInfo=metricInfo,
                                 active="user",
                                 loggedIn=loggedIn,
                                 admin=session["admin"])
