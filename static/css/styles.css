@@ -560,6 +560,36 @@ label {
 
 /* CHARTS-END */
 
+/* POPUPS */
+
+.btn-popup {
+	font-size: 1.25rem;
+	padding: .5rem 1rem;
+	position: absolute;
+	right: 15px;
+	top: 340px;
+}
+
+.popover-header {
+    font-size: 1.1rem;
+}
+
+.popup-info {
+    font-size: 1rem;
+}
+
+.popup-link {
+	margin-top: 1rem;
+	width: 35%;
+	margin: 1rem auto .5rem;
+}
+
+.popup-link > a {
+	font-size: 1.1rem;
+}
+
+/* POPUPS-END */
+
 /* FLOATING_BUTTON */
 
 #backToTop.active:hover {
@@ -725,12 +755,34 @@ label {
         font-size: 1.6rem;
     }
 
-.form-control {
-	font-size: 1.6rem;
-	height: 3.9rem;
-}
+    .form-control {
+        font-size: 1.6rem;
+        height: 3.9rem;
+    }
 
 /* FORMS-END */
+
+/* POPUPS */
+
+    .btn-popup {
+        font-size: 1.4rem;
+        padding: .6rem 1.5rem;
+        top: 385px;
+    }
+
+    .popover-header {
+        font-size: 1.2rem;
+    }
+
+    .popup-info {
+        font-size: 1rem;
+    }
+
+    .popup-link > a {
+        font-size: 1.2rem;
+    }
+
+/* POPUPS-END */
 
 /* FOOTER */
 
@@ -815,6 +867,29 @@ label {
     }
 
 /* VIEW-USER-RUNS-END */
+
+/* POPUPS */
+
+    .btn-popup {
+        font-size: 1.5rem;
+        padding: .4rem 1.4rem;
+        top: 410px;
+        right: 18px;
+    }
+
+    .popover-header {
+        font-size: 1.3rem;
+    }
+
+    .popup-info {
+        font-size: 1.1rem;
+    }
+
+    .popup-link > a {
+        font-size: 1.3rem;
+    }
+
+/* POPUPS-END */
 
 /* FOOTER */
 
@@ -906,6 +981,32 @@ label {
     }
 
 /* VIEW-USER-RUNS-END */
+
+/* POPUPS */
+    .btn-popup {
+        font-size: 1.5rem;
+        padding: .4rem 1.4rem;
+        top: 440px;
+        right: 20px;
+    }
+
+    .popover-header {
+        font-size: 1.4rem;
+    }
+
+    .popup-info {
+        font-size: 1.2rem;
+    }
+
+    .popup-link {
+        width: 36%;
+    }
+
+    .popup-link > a {
+        font-size: 1.4rem;
+    }
+
+/* POPUPS-END */
 
 /* FOOTER */
 
