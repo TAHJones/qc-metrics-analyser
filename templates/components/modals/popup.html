@@ -1,0 +1,3 @@
+{% macro popup(infoTitle, infoContent) %}
+    <button type="button" class="btn btn-lg btn-info btn-popup float-right" data-toggle="popover" data-placement="bottom" title="{{ infoTitle }}" data-html ="true" data-content='{{ infoContent }}'>Info</button>
+{% endmacro %}
