@@ -1,9 +1,11 @@
-{% extends 'layout/base.html' %}
+j{% extends 'layout/base.html' %}
 
 {% block content %}
 {% import "components/forms/data-list-form.html" as dataListForm %}
 {% import "components/forms/user-list-form.html" as userListForm %}
 {% import "components/lists/data-list.html" as dataList %}
+
+{% if pageLocation == "userForm" %}
 
     <!-- USER-DATA-FORM -->
     <section class="container" id="userFormBg">
@@ -28,6 +30,8 @@
     </section>
     <!-- USER-DATA-FORM-END -->
 
+{% elif pageLocation == "userRuns" %}
+
     <!-- VIEW-RUNS -->
     <section class="container" id="userRunsBg">
         <div class="row justify-content-center">
@@ -49,6 +53,8 @@
     </section>
     <!-- VIEW-RUNS-END -->
 
+{% elif pageLocation == "userRun" %}
+
     <!-- VIEW-RUN -->
     <section class="container" id="userRunBg">
         <div class="row justify-content-center">
@@ -67,10 +73,6 @@
     </section>
     <!-- VIEW-RUN-END -->
 
+{% endif %}
+
 {% endblock content %}
-
-{% block javascript %}
- 
-    <script>let pageLocation = JSON.parse({{ pageLocation|tojson }});</script>
-
-{% endblock javascript %}
