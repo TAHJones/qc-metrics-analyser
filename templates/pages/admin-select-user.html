@@ -4,6 +4,8 @@
 {% import "components/forms/data-list-form.html" as dataListForm %}
 {% import "components/lists/data-list.html" as dataList %}
 
+{% if pageLocation == "userForm" %}
+
     <!-- SELECT-USER -->
     <section class="container" id="userFormBg">
         <div class="row justify-content-center">
@@ -15,6 +17,8 @@
         </div>
     </section>
     <!-- SELECT-USER-END -->
+
+{% elif pageLocation == "viewUser" %}
 
     <!-- VIEW-USER -->
     <section class="container" id="viewUserBg">
@@ -33,10 +37,6 @@
     </section>
     <!-- VIEW-USER-END -->
 
+{% endif %}
+
 {% endblock content %}
-
-{% block javascript %}
-
-    <script>let pageLocation = JSON.parse({{ pageLocation|tojson }});</script>
-
-{% endblock javascript %}
