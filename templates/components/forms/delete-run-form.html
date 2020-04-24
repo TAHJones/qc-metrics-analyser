@@ -1,13 +1,20 @@
-{% macro deleteRunForm(pageName, formValue) %}
-    <form method="POST" id="deleteRunForm">
-        <h4 class="data-list-title delete-user">Delete Run: </h4> 
-        <label class="radio-inline"><input type="radio" name="radio" value="yes">Yes</label>
-        <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
-    </form>
-    <button form="deleteRunForm" type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRunButton">Delete</button>
-    {% if pageName == "adminSelectRuns" %}
-        <a href="{{ url_for('adminSelectRuns', username=username) }}">
-    {% elif pageName == "viewUserRuns" %}
-        <a href="{{ url_for('viewUserRuns', username=username) }}">
+{% macro deleteRunForm(pageName, formValue, pageLocation, username) %}
+    {% if pageLocation == "deleteRunForm" %}
+        <form method="POST" id="deleteRunForm">
+            <h4 class="data-list-title delete-user">Delete Run: </h4> 
+            <label class="radio-inline"><input type="radio" name="radio" value="yes">Yes</label>
+            <label class="radio-inline"><input type="radio" name="radio" value="no" checked>No</label>
+        </form>
+    {% endif %}
+    {% if pageLocation == "deleteRunForm" and pageName == "adminSelectRuns" %}
+        <button form="deleteRunForm" type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRunButton">Delete</button>
+        <a href="{{ url_for('adminSelectRuns', username=username) }}" class="btn qc-data-btn">Return</a>
+    {% elif pageLocation == "runDeleted" and pageName == "adminSelectRuns" %}
+        <a href="{{ url_for('adminSelectRuns', username=username) }}" class="btn qc-data-btn">Return</a>
+    {% elif pageLocation == "deleteRunForm" and pageName == "viewUserRuns" %}
+        <button form="deleteRunForm" type="submit" name="formName" value="{{ formValue }}" class="btn qc-data-btn qc-data-btn--delete" id="deleteRunButton">Delete</button>
+        <a href="{{ url_for('viewUserRuns', username=username) }}" class="btn qc-data-btn">Return</a>
+    {% elif pageLocation == "runDeleted" and pageName == "viewUserRuns" %}
+        <a href="{{ url_for('viewUserRuns', username=username) }}" class="btn qc-data-btn">Return</a>
     {% endif %}
 {% endmacro %}
