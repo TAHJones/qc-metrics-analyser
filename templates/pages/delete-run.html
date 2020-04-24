@@ -10,13 +10,19 @@
             <div class="col-11 col-sm-8 col-md-6 col-lg-4">
                 {% include '/components/messages/flash-message.html' %}
                 <div class="data-list">
-                    <h4 class="data-list-title delete-user">User: {{ username }}</h4> 
+                    <h4 class="data-list-title delete-user">User:
+                    {% if admin == True %}
+                        {{ selectedUser }}
+                    {% elif admin == False %}
+                        {{ username }}
+                    {% endif %}
+                    </h4> 
                     {{ dataList.dataList(userRun, "deleteRun") }}
                 </div>
-                {% if page == "delete-run" and admin == True %}
-                    {{ deleteRunForm.deleteRunForm("adminSelectRuns", "adminForm") }}
-                {% elif page == "delete-run" and admin == False %}
-                    {{ deleteRunForm.deleteRunForm("viewUserRuns", "userForm") }}
+                {% if admin == True %}
+                    {{ deleteRunForm.deleteRunForm("adminSelectRuns", "adminForm", pageLocation, username) }}
+                {% elif admin == False %}
+                    {{ deleteRunForm.deleteRunForm("viewUserRuns", "userForm", pageLocation, username) }}
                 {% endif %}
             </div>
         </div>
@@ -24,10 +30,3 @@
     <!-- DELETE-USER-RUN-END -->
 
 {% endblock content %}
-
-{% block javascript %}
-
-    <script>let pageLocation = JSON.parse({{ pageLocation|tojson }});</script>
-    <script src="/static/js/deleteRun.js"></script>
-
-{% endblock javascript %}
