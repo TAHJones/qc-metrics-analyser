@@ -1017,3 +1017,17 @@ label {
 /* FOOTER-END */
 
 }
+
+@media (min-width: 1200px) {
+
+/* POPUPS */
+
+    .btn-popup {
+        top: 0;
+        left: 20px;
+        position: relative;
+    }
+
+/* POPUPS */
+
+}
