@@ -12,9 +12,6 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-# app.config["DEBUG"] = os.environ.get("DEBUG")
-# DEBUG = os.environ["DEBUG"]
-# DEBUG = True
 mongo = PyMongo(app)
 
 
@@ -290,12 +287,14 @@ def deleteRun(username):
         loggedIn = True
         if request.method == "POST":
             if request.form["formName"] == "adminForm":
+                selectedUser = session["selectedUser"]
                 selectedPoolNumber = session["selectedPoolNumber"]
                 deletedRun = Helpers.deleteUserRun(runs, selectedPoolNumber)
                 userRun = deletedRun["userRun"]
                 if userRun == None:
                     userRun = session["selectedUserRun"]
             elif request.form["formName"] == "userForm":
+                selectedUser = username
                 poolNumber = session["poolNumber"]
                 deletedRun = Helpers.deleteUserRun(runs, poolNumber, username)
                 userRun = deletedRun["userRun"]
@@ -307,24 +306,28 @@ def deleteRun(username):
             pageLocation = deletedRun["pageLocation"]
             return render_template("pages/delete-run.html",
                                             username=username,
+                                            selectedUser=selectedUser,
                                             title=session["title"],
-                                            pageLocation=json.dumps(pageLocation),
+                                            pageLocation=pageLocation,
                                             userRun=userRun,
-                                            page = "delete-run",
+                                            # page = "delete-run",
                                             active="deleteRun",
                                             loggedIn=loggedIn,
                                             admin=session["admin"])
         pageLocation = "deleteRunForm"
         if session["admin"] == True:
             userRun = session["selectedUserRun"]
+            selectedUser = session["selectedUser"]
         else:
             userRun = session["userRun"]
+            selectedUser = username
         return render_template("pages/delete-run.html",
                                     username=username,
+                                    selectedUser=selectedUser,
                                     title=session["title"],
-                                    pageLocation=json.dumps(pageLocation),
+                                    pageLocation=pageLocation,
                                     userRun=userRun,
-                                    page = "delete-run",
+                                    # page = "delete-run",
                                     active="deleteRun",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
@@ -431,7 +434,7 @@ def adminDeleteUser(username):
             return render_template("pages/admin-delete-user.html",
                                         username=username,
                                         title=session["title"],
-                                        pageLocation=json.dumps(pageLocation),
+                                        pageLocation=pageLocation,
                                         selectedUser=selectedUser,
                                         selectedUserName=selectedUserName,
                                         active="adminDeleteUser",
@@ -440,7 +443,7 @@ def adminDeleteUser(username):
         return render_template("pages/admin-delete-user.html",
                                     username=username,
                                     title=session["title"],
-                                    pageLocation=json.dumps("deleteUserForm"),
+                                    pageLocation="deleteUserForm",
                                     selectedUser=selectedUser,
                                     selectedUserName=selectedUserName,
                                     active="adminDeleteUser",
