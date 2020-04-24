@@ -430,7 +430,8 @@ class Helpers:
             userData = {
                 'user': 'Deleted',
                 'member': 'Deleted',
-                'joined': {'date': 'Deleted', 'time': 'Deleted'}
+                'joined': {'date': 'Deleted', 'time': 'Deleted'},
+                'email': 'Deleted'
             }
             deletedUser["userData"] = userData
             deletedUser["pageLocation"] = "userDeleted"
