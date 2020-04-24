@@ -1,18 +1,9 @@
-{% if active == "index" or active == "user" %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="/static/js/graphs.js"></script>
-{% elif active == "adminSelectRuns" or active == "viewUserRuns" %}
-    <script src="/static/js/selectUserRun.js"></script>
-{% elif active == "deleteRun" %}
-    <script src="/static/js/deleteRun.js"></script>
-{% elif active == "adminSelectUser" %}
-    <script src="/static/js/adminSelectUser.js"></script>
-{% elif active == "adminDeleteUser" %}
-    <script src="/static/js/deleteUser.js"></script>
-{% endif %}
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="/static/js/backToTop.js"></script>
-<script src="/static/js/getCurrentYear.js"></script>
+<script src="/static/js/script.js"></script>
+
+{% if active == "index" or active == "user" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="/static/js/graphs.js"></script>
+{% endif %}
