@@ -310,7 +310,6 @@ def deleteRun(username):
                                             title=session["title"],
                                             pageLocation=pageLocation,
                                             userRun=userRun,
-                                            # page = "delete-run",
                                             active="deleteRun",
                                             loggedIn=loggedIn,
                                             admin=session["admin"])
@@ -327,7 +326,6 @@ def deleteRun(username):
                                     title=session["title"],
                                     pageLocation=pageLocation,
                                     userRun=userRun,
-                                    # page = "delete-run",
                                     active="deleteRun",
                                     loggedIn=loggedIn,
                                     admin=session["admin"])
