@@ -335,9 +335,9 @@ When the admin-user wants to end their session they can click on the blue 'Logou
 
 - At around the mid point during development, I realised I needed tighter control of the numerical metric values being entered into the add-run and update-run forms. This was achieved by creating a 'checkMetricValues' helper function that checked all numberical metric values are within a specified range. If any metric is outside it's specified range an error message is returned. If all values pass then the message 'pass' is returned.
 
-- Whilst testing the admin-delete-user form I realised that when a user was deleted their runs were not being deleted because they are stored in a separate collection. This was fixed by adding the appropriate momgodb query to the adminDeleteUser helper function.
+- Whilst testing the admin-delete-user form I realised that when a user was deleted their runs were not being deleted because they are stored in a separate collection. This was fixed by adding the appropriate mongodb query to the adminDeleteUser helper function.
 
-- A similar issue became apparent with the admin-update-user form. I realised that if a user changed their username, then there username also had to change in each of their runs.  This wasn't happening because they are stored in a separate collection. This was fixed by adding the appropriate momgodb query to the adminUpdateUser helper function.
+- A similar issue became apparent with the admin-update-user form. I realised that if a user changed their username, then there username also had to change in each of their runs.  This wasn't happening because they are stored in a separate collection. This was fixed by adding the appropriate mongodb query to the adminUpdateUser helper function.
 
 - On the admin-update-user form it was possible to enter a value other than 'user' or 'admin' into the membership input field. This was addressed by changing this field to a dropdown menu with only 'user' and 'admin' as possible options.
 
