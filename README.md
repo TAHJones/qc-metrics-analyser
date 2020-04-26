@@ -307,6 +307,93 @@ On the homepage registered users can access the log-in page by clicking on the b
 ##### Step 4 - Ending Admin-User Session
 When the admin-user wants to end their session they can click on the blue 'Logout' button located on the right of the header or footer navbar. This directs the admin-user to the logout page which informs the user that they have successfully logged out and provides a link to return to the sites main homepage.
 
+
+## Main Features
+
+### Main Page
+
+The main page allows all users of the site to view the qc data for all sequencing runs. The page is divided into two sections. The first section has four modal links that display qc data as line charts. The second section contains two modal links that display qc data as pie charts. From the main page the user is able to access the login or signup page.
+
+### Login Page
+
+The login page allows a registered user to log into their user account using their unique username. If successful the user is directed to the main user page.
+
+### Signup Page
+
+The signup page allows unregistered users to create a user account by entering a unique username into the signup form.
+
+### User Page
+
+The user page (accessed by logging in with username) allows the user to view all of the qc data for their own sequencing runs. The page has the main layout features as the main page. From the user page the user is able to access the add-run page and the manage-runs page.
+
+### Add Run Page
+
+The add-run page allows the user to add new qc run data to the database.
+
+### Manage Runs Page
+
+The manage-runs page allows the user to view qc data for individual runs or groups of runs. Once an individual run has been selected, the user is able to access the delete-run or update-run pages.
+
+### Admin or User Page
+
+The admin-or-user page allows users with admin privileges to choose to login as a standard user or as an admin user.
+
+### Admin Page
+
+The admin-page (accessed by verifying email address) allows the user with admin privileges to choose to manager user runs or manage user accounts.
+
+### Manage User Runs Page
+
+The manage-user-runs page allows the admin-user to select all the runs for a selected user or to filter runs for a selected user using various criteria. The user can then select an individual run. Once an individual run has been selected the qc data for that run is displayed and the admin-user is able to access the delete-run or update-run page.
+
+### Delete Run Page
+
+The delete-run page allows the user or admin-user to delete the currently selected run.
+
+### Update Run Page
+
+The update-run page allows the user or admin-user to update the currently selected run.
+
+### Manage Users Page
+
+The manage-users page allows the admin-user to select individual user accounts. Once an individual user has been selected their account details are displayed and the admin-user is able to access the delete-user or update-user page.
+
+### Delete User Page
+
+The delete-user page allows the admin-user to delete the currently selected user account.
+
+### Update User Page
+
+The update-user page allows the admin-user to update the currently selected user account.
+
+### Logout Page
+
+Accessed via the logout button and allows the user or admin-user to end their current session. Informs the user that they have successfully logged out and provides a link back to the main page.
+
+### Permission Denied Page
+
+If the user tries to access a user account, other than the current user count, via the url address then they will be redirected to the permission-denied page. The permission-denied page informs the current user that they don't have permission to go to that page and provides a link back to the main page.
+
+### 404 Error Page
+
+If the user attempts to use a url that does not exist then they will be redirected to the 404 page. The 404 page will inform the current user that the page they are trying to access doesn't exist and provides a link back to the main page.
+
+
+### Features Left to Implement
+
+- Add password as well as username to access user accounts for increased security
+
+- Add pass fail criteria for sequencing runs based on metric values.
+
+- Add 'Clinical Trial' catergory e.g. CRUK to database and restrict access of standard & admin users accordingly to provide further security.
+
+- Add ability to share or transfer ownership of sequencing runs to other users.
+
+- Add more charts for further analysis of qc metrics e.g. plot cluster density against q30 values.
+
+- Link the website to the Illumina Basespace api to obtain further run data (requires further investigation).
+
+
 ## Technologies Used
 
 - HTML
