@@ -12,25 +12,25 @@
 
 ## Introduction
 
-[QC Metrics Analyser](https://qc-metrics-analyser.herokuapp.com/) is a website that can be used by Next Generation Sequencing (NGS) users using Illumina's sequencing chemistries and instruments. The site has been primarily designed for employees of the Royal Marsden Hospital working within the Molecular Diagnostics department. The department uses Illumina's sequencing technologies to detect acquired genetic mutations in patients tumour samples. Patients found to have clinically actionable mutations can then be assigned to an appropriate clinical trial for treatment.
+[QC Metrics Analyser](https://qc-metrics-analyser.herokuapp.com/) is a website that can be used by **Next Generation Sequencing (NGS)** users using [Illuminas](https://www.illumina.com/index-d.html) sequencing chemistries and instruments. The site has been primarily designed for employees of the [Royal Marsden Hospital](https://www.royalmarsden.nhs.uk/) working within the [Molecular Diagnostics department](https://www.royalmarsden.nhs.uk/our-consultants-units-and-wards/clinical-departments/cancer-diagnostics). The department uses [Illumina's sequencing technologies](https://emea.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html?langsel=/gb/) to detect acquired genetic mutations in patients tumour samples. Patients found to have clinically actionable mutations can then be assigned to an appropriate clinical trial for treatment.
 
-Each NGS sequencing run generates a set of 'Sequencing Metrics' which can be used to assess the quality of the sequencing data produced. These sequencing metrics are useful for QC purposes. Firstly to ensure the quality of individual runs remain high and secondly to monitor the performance of the sequencing instruments over time.
+Each NGS sequencing run generates a set of **Sequencing Metrics** which can be used to assess the quality of the sequencing data produced. These sequencing metrics are useful for QC purposes. Firstly to ensure the quality of individual runs remain high and secondly to monitor the performance of the sequencing instruments over time.
 
 The website records and displays four types of QC metric data:
 
-1. Yield - Shows the expected number of nucleotide bases sequenced for the run. Typically this is measured in gigabases.
+1. **Yield** - Shows the expected number of nucleotide bases sequenced for the run. Typically this is measured in gigabases.
 
-2. Cluster Density - Shows the number of clusters detected for the sequencing run.
+2. **Cluster Density** - Shows the number of clusters detected for the sequencing run.
 
-3. Clusters Passing Filter - Shows the percentage of clusters passing the signal purity filter.
+3. **Clusters Passing Filter** - Shows the percentage of clusters passing the signal purity filter.
 
-4. Q30 Score  - Shows the percentage of bases that have a Q-score above or equal to 30; Q30 is a probability of incorrect base calling of 1 in 1000. A quality score, or Q-score, is a prediction of the probability of an incorrect base call. A higher Q-score implies that a base call is higher quality and more likely to be correct.
+4. **Q30 Score**  - Shows the percentage of bases that have a Q-score above or equal to 30; Q30 is a probability of incorrect base calling of 1 in 1000. A quality score, or Q-score, is a prediction of the probability of an incorrect base call. A higher Q-score implies that a base call is higher quality and more likely to be correct.
 
 In addition the website records the following related run information:
 
-1. Sequencing Chemistry - The type of chemistry used can be Mid150, Mid300 or High300. This effects the amount of sequencing that can be performed and therefore the expected yield.
+1. **Sequencing Chemistry** - The type of chemistry used can be Mid150, Mid300 or High300. This effects the amount of sequencing that can be performed and therefore the expected yield.
 
-2. Sequencing Experiment - The type of experiment performed can be Capture, Exome or Genome. This determines the amount of sequencing required and effects the type of chemistry used and therefore the expected yield.
+2. **Sequencing Experiment** - The type of experiment performed can be Capture, Exome or Genome. This determines the amount of sequencing required and effects the type of chemistry used and therefore the expected yield.
 
 
 ## Table of Contents
@@ -76,15 +76,15 @@ In addition the website records the following related run information:
 
 ## UX
 
-This site is designed to be used by laboratory technicians and clinical scientists working within the Molecular Diagnostics department. Laboratory technicians who set up the sequencing experiments will have standard user accounts and will be able to enter new run data and review previous run data for their own runs. Clinical scientists who analyse the sequencing data will have user accounts with admin privileges so will be able to review runs for multiple users and have a general overview of sequencing run performance.
+This site is designed to be used by **laboratory technicians** and **clinical scientists** working within the [Molecular Diagnostics department](https://www.royalmarsden.nhs.uk/our-consultants-units-and-wards/clinical-departments/cancer-diagnostics). Laboratory technicians who set up the sequencing experiments will have standard user accounts and will be able to enter new run data and review previous run data for their own runs. Clinical scientists who analyse the sequencing data will have user accounts with admin privileges so will be able to review runs for multiple users and have a general overview of sequencing run performance.
 
 There are three type of user with three different levels of access to the QC Metrics Analyser website:
 
-- Unregistered Users - Users of the site that don't have a user account, who can view run information on the homepage but cannot select, edit, add or delete run qc data.
+- **Unregistered Users** - Users of the site that don't have a user account, who can view run information on the homepage but cannot select, edit, add or delete run qc data.
 
-- Registered Users - Users of the site that have created a user account page, who can view, filter, edit and delete their own run data.
+- **Registered Users** - Users of the site that have created a user account page, who can view, filter, edit and delete their own run data.
 
-- Registered Users with Admin Privileges - Users of the site with a user account with admin privileges, who are able to view, filter, edit or delete run qc data for other users. They are also able to view, edit or delete user accounts.
+- **Registered Users with Admin Privileges** - Users of the site with a user account with admin privileges, who are able to view, filter, edit or delete run qc data for other users. They are also able to view, edit or delete user accounts.
 
 
 ### User Requirements
