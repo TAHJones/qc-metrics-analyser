@@ -532,7 +532,12 @@ def addUserRun(username):
             message = addUserMessage["messageInfo"]
             messageType = addUserMessage["messageType"]
             flash(message, messageType)
-            return redirect(url_for("addUserRun", username=username, title=session["title"]))
+            return render_template("pages/add-user-run.html",
+                                    username=username, 
+                                    title=session["title"],
+                                    active="addUserRun",
+                                    loggedIn=loggedIn,
+                                    admin=session["admin"])
         return render_template("pages/add-user-run.html",
                                 username=username,
                                 title=session["title"],
