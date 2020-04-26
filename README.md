@@ -86,6 +86,11 @@ There are three type of user with three different levels of access to the QC Met
 
 - **Registered Users with Admin Privileges** - Users of the site with a user account with admin privileges, who are able to view, filter, edit or delete run qc data for other users. They are also able to view, edit or delete user accounts.
 
+**Note for Project Assessor** - To log in with admin privileges use the following:
+
+- Username - assessor
+- email - assessor@gmail.com
+
 
 ### User Requirements
 
