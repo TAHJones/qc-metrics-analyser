@@ -33,6 +33,47 @@ In addition the website records the following related run information:
 2. Sequencing Experiment - The type of experiment performed can be Capture, Exome or Genome. This determines the amount of sequencing required and effects the type of chemistry used and therefore the expected yield.
 
 
+## Table of Contents
+1. [UX](#ux)
+    - [User Requirements](#user-requirements)
+    - [User Stories](#user-stories)
+    - [Wireframes](#wireframes)
+      - [Site Layout](#site-layout)
+      - [How to Use the Site](#how-to-use-the-qc-metrics-analyser-website)
+        - [As an Unregistered User](using-the-site-as-an-unregistered-user)
+        - [As a Registered User](using-the-site-as-a-registered-user)
+        - [As a Registered User with Admin Privileges](using-the-site-as-a-registered-user-with-admin-privileges)
+2. [Main Features](#main-features)
+     - [Main Page](#main-page)
+     - [Login Page](#login-page)
+     - [Signup Page](#signup-page)
+     - [User Page](#user-page)
+     - [Add Run Page](#add-run-page)
+     - [Manage Runs Page](manage-runs-page)
+     - [Admin or User Page](admin-or-user-page)
+     - [Admin Page](#admin-page)
+     - [Manage User Runs Page](#manage-user-runs-page)
+     - [Delete Run Page](#delete-run-page)
+     - [Update Run Page](#update-run-page)
+     - [Manage Users Page](#manage-users-page)
+     - [Delete User Page](#delete-user-page)
+     - [Update User Page](#update-user-page)
+     - [Logout Page](#logout-page)
+     - [Permission Denied Page](#permission-denied-page)
+     - [404 Error Page](#404-error-page)
+     - [Features Left to Implement](#features-left-to-implement)
+3. [Technologies Used](#technologies-used)
+4. [Testing](#testing)
+     - [Testing Stories](#testing-stories)
+5. [Deployment](#deployment)
+     - [How to Deploy Project Using Gitpod](#how-to-deploy-project-using-gitpod)
+     - [How to Deploy Project Using Heroku](#how-to-deploy-project-using-heroku)
+6. [Credits](#credits)
+     - [Content](#content)
+     - [Media](#media)
+     - [Acknowledgements](#acknowledgements)
+
+
 ## UX
 
 This site is designed to be used by laboratory technicians and clinical scientists working within the Molecular Diagnostics department. Laboratory technicians who set up the sequencing experiments will have standard user accounts and will be able to enter new run data and review previous run data for their own runs. Clinical scientists who analyse the sequencing data will have user accounts with admin privileges so will be able to review runs for multiple users and have a general overview of sequencing run performance.
@@ -437,7 +478,7 @@ If the user attempts to use a url that does not exist then they will be redirect
 
 In order to deploy this project you must first set up an account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). Click [here](https://docs.atlas.mongodb.com/) for instructions on how to set up able Mongo Atlas account.
 
-## How to deploy project using Gitpod
+## How to Deploy Project Using Gitpod
 
 1. Navigate to the github repository located at https://github.com/TAHJones/qc-metrics-analyser.
 
@@ -466,7 +507,7 @@ pip3 install -r requirements.txt
 python3 app.py
 ```
 
-## How to deploy project using Heroku
+## How to Deploy Project Using Heroku
 
 1. Create a `requirements.txt` file from the terminal using the command `pip3 freeze --local > requirements.txt`.
 
