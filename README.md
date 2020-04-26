@@ -321,7 +321,30 @@ When the admin-user wants to end their session they can click on the blue 'Logou
 
 ## Testing
 
-Information regarding testing can be found in separate [testing.md](https://github.com/TAHJones/qc-metrics-analyser/tree/master/testing/testing.md) file.
+### Testing Stories
+
+- During a milestone project review I was informed that my site wasn't secure because it was possible to access another users account by editing the url address. To address this security issue I added a check to each route that compared the url username with current session username. If they didn't match the user would be redirected to the permission denied page.
+
+- At an early point during development, I realised that if an incorrect username was entered into the login form the site provided no feedback. To fix this problem a check was added to compare the username entered into the login form with the list of usernames in the database. If no match was found, the message "Username 'XXX' not found, please try a different username or sign up" was returned to inform the user. Also the site was modified so the signup button is displayed so the current user has the opportunity to sign up with a new user name.
+
+- A similar issue became apparent with the sign up form. It was possible to enter a username that already existed. To fix this problem a check was added to compare the username entered into the signup form with the list of usernames in the database. If a match was found the message "username 'XXX' already exists, enter a unique username or login" was returned to inform the user. Also the site was modified so the login button is displayed so the current user has the opportunity to log in with an existing username. If no match was found the username was added to the database and the message "congratulations 'XXX', your username has been added to the database" was returned.
+
+- The select user dropdown menu on the admin-select-user page was displaying two entries for the user Andrew. I tried various solutions with no success, including the loop.index jinja method to try to force the dropdown menu to automatically select the first list item. Eventually I realised this was an actual error in the database. The user account username for Wayne had been accidendly changed to Andrew. This reminded me that checking the obvious things first can save you a lot of time.
+
+- An internal server error occurred when an existing run number or different username was entered into the form on the add-user-run page. This was being caused by a keyword error for "messageInfo". It was fixed by modifying the nesting of if statements and the addition of more return statements to the addUserRun helper functon.
+
+- At around the mid point during development, I realised I needed tighter control of the numerical metric values being entered into the add-run and update-run forms. This was achieved by creating a 'checkMetricValues' helper function that checked all numberical metric values are within a specified range. If any metric is outside it's specified range an error message is returned. If all values pass then the message 'pass' is returned.
+
+- Whilst testing the admin-delete-user form I realised that when a user was deleted their runs were not being deleted because they are stored in a separate collection. This was fixed by adding the appropriate momgodb query to the adminDeleteUser helper function.
+
+- A similar issue became apparent with the admin-update-user form. I realised that if a user changed their username, then there username also had to change in each of their runs.  This wasn't happening because they are stored in a separate collection. This was fixed by adding the appropriate momgodb query to the adminUpdateUser helper function.
+
+- On the admin-update-user form it was possible to enter a value other than 'user' or 'admin' into the membership input field. This was addressed by changing this field to a dropdown menu with only 'user' and 'admin' as possible options.
+
+- During a mile stone project review it was suggested that my flash messaging should be color coded i.e. green for success, red for error. This was achieved by adding the 'with_categories' to the get_flashed_messages function and setting it to true. This made it possible to link css classnames to flash messages. 
+
+- On larger screens (>1200px) the 'info' button on the index and user page was being forced out of position. This was fixed by applying an additional media query at 1200px or above that changed the positioning of the button from absolute to relative and changed the top and left position values.
+
 
 ## Deployment
 
