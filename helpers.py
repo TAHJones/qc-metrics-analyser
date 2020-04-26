@@ -278,17 +278,20 @@ class Helpers:
         if user != formName:
             addUserMessage["messageInfo"] = "Username '{}' is incorrect".format(formName)
             addUserMessage["messageType"] = "error"
-            return message
+            return addUserMessage
         elif user == formName:
             for run in runList:
                 if run["pool"] == poolNumber:
                     addUserMessage["messageInfo"] = "Pool_{} already exists, enter a unique number".format(poolNumber)
                     addUserMessage["messageType"] = "error"
-                    return message
-            if message == "pass":
-                database.insert_one(formData)
-                addUserMessage["messageInfo"] = "Pool_{} has been successfully added".format(poolNumber)
-                addUserMessage["messageType"] = "success"
+                    return addUserMessage
+        if message == "pass":
+            database.insert_one(formData)
+            addUserMessage["messageInfo"] = "Pool_{} has been successfully added".format(poolNumber)
+            addUserMessage["messageType"] = "success"
+        elif message != "pass":
+            addUserMessage["messageInfo"] = message
+            addUserMessage["messageType"] = "error"
         return addUserMessage
 
 
